@@ -27,10 +27,36 @@
           "desc": "UV protected"
         }
       ]
+    },
+    {
+      "id": "cat3",
+      "name": "Meters",
+      "icon": "📊",
+      "products": [
+        {
+          "id": "p3",
+          "name": "SINGLE PHASE METER",
+          "spec": "5/30A",
+          "icon": "📊",
+          "desc": "Bi-directional"
+        }
+      ]
+    },
+    {
+      "id": "1777302419354ktuubg",
+      "name": "a",
+      "icon": "a",
+      "products": []
+    },
+    {
+      "id": "1777305739734y1uq0i",
+      "name": "a++",
+      "icon": "sd",
+      "products": []
     }
   ],
   "companyInfo": {
-    "name": "Rhysco Power limitedfdfghdfgh",
+    "name": "Rhysco Power Private Limitedd",
     "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>⚡ A to Z</span>",
     "heroSubtitle": "WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories",
     "catalogTitle": "Our Premium Catalog",
@@ -62,5 +88,5 @@
       "label": "Fast Delivery"
     }
   ],
-  "lastUpdated": "2026-04-27T16:31:54.096Z"
+  "lastUpdated": "2026-04-27T16:39:46.351Z"
 }
