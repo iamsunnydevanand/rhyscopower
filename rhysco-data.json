@@ -4,19 +4,27 @@
       "id": "1777312652787z0ob9s",
       "name": "sunny",
       "icon": "d",
-      "products": []
+      "products": [
+        {
+          "id": "177731356936844aj1z",
+          "name": "s",
+          "spec": "df",
+          "icon": "dfg",
+          "desc": "fdg"
+        }
+      ]
     }
   ],
   "companyInfo": {
     "name": "Rhysco Power Private Limitedd",
-    "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>ÃÂ¢ÃÂÃÂ¡ A to Z</span>",
-    "heroSubtitle": "WAA Cables ÃÂ¢ÃÂÃÂ¢ Meters ÃÂ¢ÃÂÃÂ¢ Solar ÃÂ¢ÃÂÃÂ¢ Earthing ÃÂ¢ÃÂÃÂ¢ Fire Safety ÃÂ¢ÃÂÃÂ¢ Accessories",
+    "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ¡ A to Z</span>",
+    "heroSubtitle": "WAA Cables ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ¢ Meters ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ¢ Solar ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ¢ Earthing ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ¢ Fire Safety ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ¢ Accessories",
     "catalogTitle": "Our Premium Catalog",
     "phone": "+91 6203691393",
     "email": "bikram.biharelctrometer@gmail.com",
     "whatsapp": "916203691393",
     "address": "India (Bihar & NCR) | Global Shipping Available",
-    "footer": "ÃÂÃÂ© 2026 Rhysco Power - All Rights Reserved"
+    "footer": "ÃÂÃÂÃÂÃÂ© 2026 Rhysco Power - All Rights Reserved"
   },
   "stats": [
     {
