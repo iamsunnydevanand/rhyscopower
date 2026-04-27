@@ -1,32 +1,10 @@
 {
   "categories": [
     {
-      "id": "cat2",
-      "name": "Solar & MC4",
-      "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
-      "products": [
-        {
-          "id": "p2",
-          "name": "SOLAR DC CABLE",
-          "spec": "500MTR",
-          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
-          "desc": "UV protected"
-        }
-      ]
-    },
-    {
       "id": "cat3",
       "name": "Meters",
       "icon": "ÃÂ°ÃÂÃÂÃÂ",
-      "products": [
-        {
-          "id": "p3",
-          "name": "SINGLE PHASE METER",
-          "spec": "5/30A",
-          "icon": "ÃÂ°ÃÂÃÂÃÂ",
-          "desc": "Bi-directional"
-        }
-      ]
+      "products": []
     },
     {
       "id": "1777302419354ktuubg",
