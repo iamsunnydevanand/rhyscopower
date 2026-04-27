@@ -224,17 +224,6 @@
         <input type="password" id="githubToken" placeholder="GitHub Token (ghp_...)">
         <button id="saveGithubBtn" class="save-btn">💾 Save GitHub Config</button>
         <div id="githubStatusMsg"></div>
-        <div style="margin-top:1rem; padding:1rem; background:var(--bg-primary); border-radius:12px; font-size:0.9rem;">
-          <strong>📝 Token Kaise Banayein:</strong>
-          <ol style="margin-left:1.2rem; margin-top:0.5rem;">
-            <li>GitHub.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</li>
-            <li>"Generate new token (classic)" click karein</li>
-            <li>Note: "rhysco-website" likhein</li>
-            <li>Expiration: "No expiration" select karein</li>
-            <li>Scopes: ✅ "repo" tick karein</li>
-            <li>Generate karein aur token COPY karein</li>
-          </ol>
-        </div>
       </div>
     </div>
   </div>
@@ -242,7 +231,7 @@
 
 <script>
   // Default Data
-  let categories = JSON.parse(localStorage.getItem('rhysco_categories')) || [
+  let categories = [
     { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
       { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper" }
     ]},
@@ -251,7 +240,7 @@
     ]}
   ];
   
-  let companyInfo = JSON.parse(localStorage.getItem('rhysco_company')) || {
+  let companyInfo = {
     name: "Rhysco Power",
     heroTitle: "Complete Electrical Solutions <br> <span style='color: #f97316;'>⚡ A to Z</span>",
     heroSubtitle: "WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories",
@@ -263,7 +252,7 @@
     footer: "© 2026 Rhysco Power - All Rights Reserved"
   };
   
-  let stats = JSON.parse(localStorage.getItem('rhysco_stats')) || [
+  let stats = [
     { icon: "fas fa-trophy", number: "15+", label: "Years Experience" },
     { icon: "fas fa-boxes", number: "500+", label: "Premium Products" },
     { icon: "fas fa-users", number: "1000+", label: "Happy Clients" },
@@ -279,7 +268,26 @@
   
   let activeCategory = "all", searchQuery = "";
   let isAdminAuthenticated = false;
-  let githubConfig = JSON.parse(localStorage.getItem('rhysco_github_config')) || { repo: "iamsunnydevanand/rhyscopower", token: "" };
+  let githubConfig = { repo: "iamsunnydevanand/rhyscopower", token: "" };
+  
+  // Load saved data from localStorage
+  let savedData = localStorage.getItem('rhysco_all_data');
+  if (savedData) {
+    try {
+      let parsed = JSON.parse(savedData);
+      if (parsed.categories) categories = parsed.categories;
+      if (parsed.companyInfo) companyInfo = parsed.companyInfo;
+      if (parsed.stats) stats = parsed.stats;
+    } catch(e) {}
+  }
+  
+  // Load GitHub config
+  let savedConfig = localStorage.getItem('rhysco_github_config');
+  if (savedConfig) {
+    try {
+      githubConfig = JSON.parse(savedConfig);
+    } catch(e) {}
+  }
   
   function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
   
@@ -292,15 +300,15 @@
     setTimeout(() => toast.remove(), 3000);
   }
   
-  function saveToLocal() {
-    localStorage.setItem('rhysco_categories', JSON.stringify(categories));
-    localStorage.setItem('rhysco_company', JSON.stringify(companyInfo));
-    localStorage.setItem('rhysco_stats', JSON.stringify(stats));
+  function saveAllToLocal() {
+    let allData = { categories, companyInfo, stats, lastUpdated: new Date().toISOString() };
+    localStorage.setItem('rhysco_all_data', JSON.stringify(allData));
   }
   
   async function saveToGitHub() {
     if (!githubConfig.token || !githubConfig.repo) {
-      showToast("⚠️ GitHub token not configured! Changes saved only locally.", "#ef4444");
+      saveAllToLocal();
+      showToast("⚠️ GitHub not configured! Saved locally only.", "#ef4444");
       return false;
     }
     
@@ -321,15 +329,15 @@
       });
       
       if (res.ok) {
-        showToast("✅ Saved PERMANENTLY to GitHub! Sabko dikhega!", "#10b981");
+        saveAllToLocal();
+        showToast("✅ Saved to GitHub! Changes are PERMANENT!", "#10b981");
         return true;
       } else {
-        let err = await res.json();
-        showToast("❌ GitHub save failed: " + (err.message || "Check token permissions"), "#ef4444");
+        showToast("❌ GitHub save failed! Check token.", "#ef4444");
         return false;
       }
     } catch(e) {
-      showToast("❌ Network error! Could not save to GitHub.", "#ef4444");
+      showToast("❌ Network error! Saved locally only.", "#ef4444");
       return false;
     }
   }
@@ -337,7 +345,7 @@
   async function loadFromGitHub() {
     if (!githubConfig.token || !githubConfig.repo) return;
     try {
-      let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
+      let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`, {
         headers: { 'Authorization': `token ${githubConfig.token}` }
       });
       if (res.ok) {
@@ -346,18 +354,16 @@
         if (content.categories) categories = content.categories;
         if (content.companyInfo) companyInfo = content.companyInfo;
         if (content.stats) stats = content.stats;
-        saveToLocal();
+        saveAllToLocal();
         renderAll();
-        showToast("📥 Data loaded from GitHub!", "#10b981");
+        showToast("📥 Loaded latest data from GitHub!", "#10b981");
       }
-    } catch(e) { console.log("No existing data on GitHub"); }
+    } catch(e) { console.log("No data on GitHub yet"); }
   }
   
   async function saveAllData() {
-    saveToLocal();
-    if (githubConfig.token && githubConfig.repo) {
-      await saveToGitHub();
-    }
+    saveAllToLocal();
+    await saveToGitHub();
     renderAll();
   }
   
@@ -377,29 +383,40 @@
   }
   
   function renderCompanyInfo() {
-    document.getElementById('companyNameDisplay').innerHTML = companyInfo.name;
-    document.getElementById('heroTitle').innerHTML = companyInfo.heroTitle;
-    document.getElementById('heroSubtitle').innerHTML = companyInfo.heroSubtitle;
-    document.getElementById('catalogTitle').innerHTML = companyInfo.catalogTitle;
-    document.getElementById('footerText').innerHTML = companyInfo.footer;
-    document.getElementById('floatingWhatsApp').href = `https://wa.me/${companyInfo.whatsapp}`;
+    let nameSpan = document.getElementById('companyNameDisplay');
+      if (nameSpan) nameSpan.innerHTML = companyInfo.name;
+    let heroTitle = document.getElementById('heroTitle');
+      if (heroTitle) heroTitle.innerHTML = companyInfo.heroTitle;
+    let heroSubtitle = document.getElementById('heroSubtitle');
+      if (heroSubtitle) heroSubtitle.innerHTML = companyInfo.heroSubtitle;
+    let catalogTitle = document.getElementById('catalogTitle');
+      if (catalogTitle) catalogTitle.innerHTML = companyInfo.catalogTitle;
+    let footerText = document.getElementById('footerText');
+      if (footerText) footerText.innerHTML = companyInfo.footer;
+    let waLink = document.getElementById('floatingWhatsApp');
+      if (waLink) waLink.href = `https://wa.me/${companyInfo.whatsapp}`;
   }
   
   function renderStats() {
-    document.getElementById('statsSection').innerHTML = stats.map(s => `<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join('');
+    let container = document.getElementById('statsSection');
+    if (container) container.innerHTML = stats.map(s => `<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join('');
   }
   
   function renderFeatures() {
-    document.getElementById('featuresGrid').innerHTML = features.map(f => `<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
+    let container = document.getElementById('featuresGrid');
+    if (container) container.innerHTML = features.map(f => `<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
   }
   
   function renderContact() {
-    document.getElementById('contactContent').innerHTML = `<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp for Quick Quote</a></p>`;
+    let container = document.getElementById('contactContent');
+    if (container) container.innerHTML = `<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp for Quick Quote</a></p>`;
   }
   
   function renderFilters() {
     let total = getAllProducts().length;
-    document.getElementById('filterGroup').innerHTML = `<button class="filter-btn ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">📂 All (${total})</button>` + categories.map(cat => `<button class="filter-btn ${activeCategory === cat.id ? 'active' : ''}" data-cat="${cat.id}">${cat.icon} ${cat.name} (${cat.products.length})</button>`).join('');
+    let container = document.getElementById('filterGroup');
+    if (!container) return;
+    container.innerHTML = `<button class="filter-btn ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">📂 All (${total})</button>` + categories.map(cat => `<button class="filter-btn ${activeCategory === cat.id ? 'active' : ''}" data-cat="${cat.id}">${cat.icon} ${cat.name} (${cat.products.length})</button>`).join('');
     document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => { activeCategory = btn.getAttribute('data-cat'); renderProducts(); renderFilters(); }));
   }
   
@@ -407,6 +424,7 @@
     let filtered = activeCategory === 'all' ? getAllProducts() : (categories.find(c => c.id === activeCategory)?.products.map(p => ({ ...p, categoryName: categories.find(c => c.id === activeCategory).name })) || []);
     filtered = filtered.filter(p => searchQuery === "" || p.name.toLowerCase().includes(searchQuery));
     let container = document.getElementById('productGrid');
+    if (!container) return;
     if (filtered.length === 0) { container.innerHTML = `<div class="no-results"><i class="fas fa-box-open"></i> No products found.</div>`; return; }
     container.innerHTML = filtered.map(p => `<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc)}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail="${escapeHtml(p.name)} - ${p.desc}"><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
     document.querySelectorAll('.wa-btn').forEach(btn => btn.addEventListener('click', () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`, '_blank')));
@@ -415,6 +433,7 @@
   
   function renderCategoriesList() {
     let container = document.getElementById('categoriesList');
+    if (!container) return;
     container.innerHTML = categories.map((cat, catIdx) => `
       <div class="category-item">
         <div class="category-header">
@@ -430,6 +449,7 @@
   
   function renderStatsAdmin() {
     let container = document.getElementById('statsEditList');
+    if (!container) return;
     container.innerHTML = stats.map((s, idx) => `<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="flex:1; padding:0.5rem; border-radius:8px;"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:80px; padding:0.5rem; border-radius:8px;"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1; padding:0.5rem; border-radius:8px;"><button class="small-btn edit-btn" onclick="updateStat(${idx})">Save</button></div>`).join('');
   }
   
@@ -441,7 +461,7 @@
   window.createCategory = async function() {
     let name = document.getElementById('newCatName').value.trim();
     let icon = document.getElementById('newCatIcon').value.trim() || '📁';
-    if (name) { categories.push({ id: generateId(), name, icon, products: [] }); await saveAllData(); document.getElementById('newCatName').value = ''; renderAll(); showToast(`✅ Category "${name}" created permanently!`, "#10b981"); }
+    if (name) { categories.push({ id: generateId(), name, icon, products: [] }); await saveAllData(); document.getElementById('newCatName').value = ''; renderAll(); showToast(`✅ Category "${name}" created!`, "#10b981"); }
     else showToast("⚠️ Enter category name", "#ef4444");
   };
   
@@ -460,7 +480,7 @@
       categories[catIdx].products.push({ id: generateId(), name, spec: document.getElementById(`newProdSpec_${catIdx}`).value.trim() || "Standard", icon: document.getElementById(`newProdIcon_${catIdx}`).value.trim() || "🔌", desc: document.getElementById(`newProdDesc_${catIdx}`).value.trim() || "Premium product" });
       await saveAllData(); renderAll();
       document.getElementById(`newProdName_${catIdx}`).value = ''; document.getElementById(`newProdSpec_${catIdx}`).value = ''; document.getElementById(`newProdDesc_${catIdx}`).value = '';
-      showToast(`✅ "${name}" added permanently!`, "#10b981");
+      showToast(`✅ "${name}" added!`, "#10b981");
     } else showToast("⚠️ Enter product name", "#ef4444");
   };
   
@@ -486,7 +506,7 @@
     companyInfo.whatsapp = document.getElementById('whatsappInput').value;
     companyInfo.address = document.getElementById('addressInput').value;
     companyInfo.footer = document.getElementById('footerTextInput').value;
-    await saveAllData(); showToast("✅ Company info saved permanently!", "#10b981");
+    await saveAllData(); showToast("✅ Company info saved!", "#10b981");
   };
   
   document.getElementById('saveGithubBtn').onclick = async () => {
@@ -495,18 +515,16 @@
     if (repo && token) {
       githubConfig = { repo, token };
       localStorage.setItem('rhysco_github_config', JSON.stringify(githubConfig));
-      document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ GitHub configured! Testing connection...</div>';
+      document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ GitHub configured! Testing...</div>';
       let testRes = await fetch(`https://api.github.com/repos/${repo}`, { headers: { 'Authorization': `token ${token}` } });
       if (testRes.ok) {
-        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ GitHub connected successfully! Changes will now be PERMANENT.</div>';
-        await saveAllData();
-        showToast("✅ GitHub configured! Now all changes are PERMANENT!", "#10b981");
-        setTimeout(() => { document.getElementById('githubStatusMsg').innerHTML = ''; }, 3000);
+        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ Connected! Changes will be PERMANENT.</div>';
+        await loadFromGitHub();
+        showToast("✅ GitHub connected!", "#10b981");
       } else {
-        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status error">❌ Invalid token or repo! Check your credentials.</div>';
-        showToast("❌ Invalid token or repository!", "#ef4444");
+        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status error">❌ Invalid token or repo!</div>';
       }
-    } else { showToast("⚠️ Please enter both Repository and Token", "#ef4444"); }
+    } else { showToast("⚠️ Enter both Repository and Token", "#ef4444"); }
   };
   
   document.getElementById('searchBtn').onclick = () => { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
@@ -566,7 +584,11 @@
   window.onscroll = () => backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
   backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   
-  (async () => { await loadFromGitHub(); renderAll(); })();
+  // Final load
+  (async () => {
+    await loadFromGitHub();
+    renderAll();
+  })();
 </script>
 </body>
 </html>
