@@ -1,29 +1,15 @@
 {
   "categories": [
     {
-      "id": "cat1",
-      "name": "WAA Cables",
-      "icon": "Ã°ÂÂÂ",
-      "products": [
-        {
-          "id": "p1",
-          "name": "WAA CABLE 4.00SQMM RED BLACK",
-          "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "100% pure copper"
-        }
-      ]
-    },
-    {
       "id": "cat2",
       "name": "Solar & MC4",
-      "icon": "Ã¢ÂÂÃ¯Â¸Â",
+      "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
       "products": [
         {
           "id": "p2",
           "name": "SOLAR DC CABLE",
           "spec": "500MTR",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "UV protected"
         }
       ]
@@ -31,13 +17,13 @@
     {
       "id": "cat3",
       "name": "Meters",
-      "icon": "Ã°ÂÂÂ",
+      "icon": "ÃÂ°ÃÂÃÂÃÂ",
       "products": [
         {
           "id": "p3",
           "name": "SINGLE PHASE METER",
           "spec": "5/30A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Bi-directional"
         }
       ]
@@ -57,20 +43,20 @@
     {
       "id": "1777310901106fwlt1l",
       "name": "asdf",
-      "icon": "📁",
+      "icon": "ð",
       "products": []
     }
   ],
   "companyInfo": {
     "name": "Rhysco Power Private Limitedd",
-    "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>Ã¢ÂÂ¡ A to Z</span>",
-    "heroSubtitle": "WAA Cables Ã¢ÂÂ¢ Meters Ã¢ÂÂ¢ Solar Ã¢ÂÂ¢ Earthing Ã¢ÂÂ¢ Fire Safety Ã¢ÂÂ¢ Accessories",
+    "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>ÃÂ¢ÃÂÃÂ¡ A to Z</span>",
+    "heroSubtitle": "WAA Cables ÃÂ¢ÃÂÃÂ¢ Meters ÃÂ¢ÃÂÃÂ¢ Solar ÃÂ¢ÃÂÃÂ¢ Earthing ÃÂ¢ÃÂÃÂ¢ Fire Safety ÃÂ¢ÃÂÃÂ¢ Accessories",
     "catalogTitle": "Our Premium Catalog",
     "phone": "+91 6203691393",
     "email": "bikram.biharelctrometer@gmail.com",
     "whatsapp": "916203691393",
     "address": "India (Bihar & NCR) | Global Shipping Available",
-    "footer": "ÃÂ© 2026 Rhysco Power - All Rights Reserved"
+    "footer": "ÃÂÃÂ© 2026 Rhysco Power - All Rights Reserved"
   },
   "stats": [
     {
@@ -93,6 +79,5 @@
       "number": "PAN India",
       "label": "Fast Delivery"
     }
-  ],
-  "lastUpdated": "2026-04-27T17:28:21.106Z"
+  ]
 }
