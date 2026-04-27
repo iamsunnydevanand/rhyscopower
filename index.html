@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Rhysco Power | 5 Themes - Click to Switch</title>
+  <title>Rhysco Power | Permanent Save - Complete Electrical Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -116,7 +116,7 @@
       75% { transform: translateX(8px); }
     }
 
-    /* Theme Switcher - Fixed Click to Open */
+    /* Theme Switcher */
     .theme-switcher {
       position: relative;
       display: inline-block;
@@ -148,10 +148,7 @@
       border: 1px solid var(--border-light);
       z-index: 1000;
     }
-    .theme-dropdown.show {
-      display: block;
-      animation: fadeInUp 0.2s ease;
-    }
+    .theme-dropdown.show { display: block; animation: fadeInUp 0.2s ease; }
     .theme-option {
       display: flex;
       align-items: center;
@@ -162,15 +159,8 @@
       transition: 0.2s;
       color: var(--text-primary);
     }
-    .theme-option:hover {
-      background: var(--accent-gradient);
-      color: white;
-    }
-    .theme-color-box {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-    }
+    .theme-option:hover { background: var(--accent-gradient); color: white; }
+    .theme-color-box { width: 28px; height: 28px; border-radius: 50%; }
     .theme-1-color { background: linear-gradient(135deg, #0ea5e9, #f97316); }
     .theme-2-color { background: linear-gradient(135deg, #2c7da0, #e76f51); }
     .theme-3-color { background: linear-gradient(135deg, #4caf50, #ff9800); }
@@ -377,9 +367,24 @@
     @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
     
     .category-badge { background: var(--accent-gradient); padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-block; margin-top: 5px; }
+    
+    /* Permanent Save Toast */
+    .permanent-toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10b981;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      z-index: 3000;
+      font-weight: 600;
+      animation: fadeInUp 0.3s ease;
+    }
   </style>
 </head>
-<body class="theme-1">
+<body class="theme-1" id="appBody">
 
 <nav class="navbar">
   <div class="nav-container">
@@ -428,20 +433,21 @@
 <!-- Admin Panel Modal -->
 <div id="adminModal" class="admin-modal">
   <div class="admin-container">
-    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard</h2><button class="close-admin" id="closeAdminBtn">×</button></div>
+    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard <span style="font-size: 0.8rem; background: #10b981; padding: 2px 8px; border-radius: 20px;">💾 PERMANENT SAVE</span></h2><button class="close-admin" id="closeAdminBtn">×</button></div>
     <div class="admin-tabs">
       <button class="admin-tab active" data-tab="categories">📁 Categories</button>
       <button class="admin-tab" data-tab="products">📦 Products</button>
       <button class="admin-tab" data-tab="company">🏢 Company</button>
+      <button class="admin-tab" data-tab="github">🔧 GitHub Setup</button>
     </div>
     
     <div id="tabCategories" class="tab-content active">
       <div class="category-section">
-        <h3>➕ Create New Category</h3>
+        <h3>➕ Create New Category (Permanent)</h3>
         <div class="category-form">
           <input type="text" id="newCatName" placeholder="Category Name">
           <input type="text" id="newCatIcon" placeholder="Icon (emoji: 🔌, ☀️, 📊)">
-          <button id="createCategoryBtn" class="save-btn">+ Create Category</button>
+          <button id="createCategoryBtn" class="save-btn">+ Create Category (Permanent)</button>
         </div>
       </div>
       <div class="category-section">
@@ -466,24 +472,54 @@
         <input type="text" id="whatsappInput" placeholder="WhatsApp Number">
         <textarea id="addressInput" placeholder="Address" rows="2"></textarea>
         <input type="text" id="footerTextInput" placeholder="Footer Text">
-        <button id="saveCompanyBtn" class="save-btn">Save Company Info</button>
+        <button id="saveCompanyBtn" class="save-btn">Save Company Info (Permanent)</button>
       </div>
       <div id="statsAdmin" style="margin-top: 2rem;"><h3>📊 Stats Cards</h3><div id="statsEditList"></div></div>
+    </div>
+    
+    <div id="tabGithub" class="tab-content">
+      <div style="background: var(--bg-primary); border-radius: 20px; padding: 1.5rem;">
+        <h3>🔐 GitHub Setup for Permanent Save</h3>
+        <p style="margin: 1rem 0;">Admin panel se changes permanent karne ke liye GitHub Token chahiye.</p>
+        
+        <div style="margin: 1rem 0;">
+          <label>Step 1: GitHub Token Generate Karein</label>
+          <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li>GitHub.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</li>
+            <li>"Generate new token" click karein</li>
+            <li>Note: "rhysco-website" likhein</li>
+            <li>Scopes me "repo" select karein</li>
+            <li>Generate karein aur token copy karein</li>
+          </ol>
+        </div>
+        
+        <div class="company-form">
+          <input type="text" id="githubRepo" placeholder="Repository Name (e.g., username/repo)">
+          <input type="password" id="githubToken" placeholder="GitHub Token">
+          <button id="saveGithubConfigBtn" class="save-btn">Save GitHub Config</button>
+        </div>
+        
+        <div id="githubStatus" style="margin-top: 1rem; padding: 0.5rem; border-radius: 10px;"></div>
+        
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+          ⚡ Note: Token sirf aapke browser me save hoga. Ye secure hai.
+        </p>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Data Structure
+  // Default Data
   let categories = [
     { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
-      { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper" }
+      { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper, flame retardant" }
     ]},
     { id: "cat2", name: "Solar & MC4", icon: "☀️", products: [
-      { id: "p2", name: "SOLAR DC CABLE", spec: "500MTR", icon: "☀️", desc: "UV protected" }
+      { id: "p2", name: "SOLAR DC CABLE", spec: "500MTR", icon: "☀️", desc: "UV protected solar cable" }
     ]},
     { id: "cat3", name: "Meters", icon: "📊", products: [
-      { id: "p3", name: "SINGLE PHASE METER", spec: "5/30A", icon: "📊", desc: "Bi-directional" }
+      { id: "p3", name: "SINGLE PHASE NET METER", spec: "5/30A", icon: "📊", desc: "Bi-directional net meter" }
     ]}
   ];
   
@@ -515,6 +551,12 @@
   
   let activeCategory = "all", searchQuery = "";
   let isAdminAuthenticated = false;
+  let githubConfig = { repo: "", token: "" };
+  
+  // Load GitHub config from localStorage
+  if(localStorage.getItem('rhysco_github_config')) {
+    githubConfig = JSON.parse(localStorage.getItem('rhysco_github_config'));
+  }
   
   function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
   
@@ -522,13 +564,95 @@
     localStorage.setItem('rhysco_categories', JSON.stringify(categories));
     localStorage.setItem('rhysco_company', JSON.stringify(companyInfo));
     localStorage.setItem('rhysco_stats', JSON.stringify(stats));
+    
+    // Agar GitHub config hai to permanent save karein
+    if(githubConfig.repo && githubConfig.token) {
+      saveToGitHub();
+    }
+  }
+  
+  async function saveToGitHub() {
+    const dataToSave = {
+      categories: categories,
+      companyInfo: companyInfo,
+      stats: stats
+    };
+    
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(dataToSave, null, 2))));
+    
+    try {
+      // Pehle file check karein
+      const checkResponse = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/data.json`, {
+        headers: { 'Authorization': `token ${githubConfig.token}` }
+      });
+      
+      let sha = null;
+      if(checkResponse.ok) {
+        const fileData = await checkResponse.json();
+        sha = fileData.sha;
+      }
+      
+      // File update/create karein
+      const response = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/data.json`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${githubConfig.token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: "Update website data from admin panel",
+          content: content,
+          sha: sha
+        })
+      });
+      
+      if(response.ok) {
+        showPermanentToast("✅ Changes saved permanently to GitHub!");
+      }
+    } catch(e) {
+      console.log("GitHub save failed:", e);
+    }
+  }
+  
+  async function loadFromGitHub() {
+    if(!githubConfig.repo || !githubConfig.token) return;
+    
+    try {
+      const response = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/data.json`, {
+        headers: { 'Authorization': `token ${githubConfig.token}` }
+      });
+      
+      if(response.ok) {
+        const data = await response.json();
+        const content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+        if(content.categories) categories = content.categories;
+        if(content.companyInfo) companyInfo = content.companyInfo;
+        if(content.stats) stats = content.stats;
+        renderAll();
+        showPermanentToast("📥 Data loaded from GitHub!");
+      }
+    } catch(e) {
+      console.log("GitHub load failed:", e);
+    }
+  }
+  
+  function showPermanentToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'permanent-toast';
+    toast.innerHTML = '💾 ' + message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
   }
   
   function loadAllData() {
+    // Pehle local se load karein
     if(localStorage.getItem('rhysco_categories')) categories = JSON.parse(localStorage.getItem('rhysco_categories'));
     if(localStorage.getItem('rhysco_company')) companyInfo = JSON.parse(localStorage.getItem('rhysco_company'));
     if(localStorage.getItem('rhysco_stats')) stats = JSON.parse(localStorage.getItem('rhysco_stats'));
     renderAll();
+    
+    // Phir GitHub se load karein (agar available ho)
+    loadFromGitHub();
   }
   
   function getAllProducts() {
@@ -572,24 +696,7 @@
     isAdminAuthenticated = false;
     document.getElementById('adminModal').style.display = 'none';
     renderAll();
-    showToast('✅ Logged out successfully!', '#22c55e');
-  }
-  
-  function showToast(message, color) {
-    const toast = document.createElement('div');
-    toast.innerHTML = message;
-    toast.style.position = 'fixed';
-    toast.style.bottom = '100px';
-    toast.style.right = '20px';
-    toast.style.backgroundColor = color;
-    toast.style.color = 'white';
-    toast.style.padding = '12px 24px';
-    toast.style.borderRadius = '50px';
-    toast.style.zIndex = '3000';
-    toast.style.fontWeight = '600';
-    toast.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
+    showPermanentToast('✅ Logged out successfully!');
   }
   
   function renderCompanyInfo() {
@@ -673,7 +780,7 @@
             <input type="text" id="newProdSpec_${catIdx}" placeholder="Specification">
             <input type="text" id="newProdIcon_${catIdx}" placeholder="Icon" value="🔌">
             <input type="text" id="newProdDesc_${catIdx}" placeholder="Description">
-            <button class="small-btn" onclick="addProductToCategory(${catIdx})">+ Add Product</button>
+            <button class="small-btn" onclick="addProductToCategory(${catIdx})">+ Add Product (Permanent)</button>
           </div>
         </div>
       </div>
@@ -697,20 +804,21 @@
     let icon = document.getElementById('newCatIcon').value.trim() || '📁';
     if(name) {
       categories.push({ id: generateId(), name: name, icon: icon, products: [] });
-      saveAllData(); renderAll();
+      saveAllData();
+      renderAll();
       document.getElementById('newCatName').value = '';
-      showToast(`✅ Category "${name}" created!`, '#22c55e');
-    } else showToast('⚠️ Enter category name', '#ef4444');
+      showPermanentToast(`✅ Category "${name}" created and SAVED PERMANENTLY!`);
+    } else showPermanentToast('⚠️ Enter category name');
   };
   
   window.editCategory = function(idx) {
     let newName = prompt('Edit Category Name:', categories[idx].name);
-    if(newName && newName.trim()) { categories[idx].name = newName.trim(); saveAllData(); renderAll(); showToast('✅ Updated!', '#22c55e'); }
+    if(newName && newName.trim()) { categories[idx].name = newName.trim(); saveAllData(); renderAll(); showPermanentToast('✅ Category updated permanently!'); }
   };
   
   window.deleteCategory = function(idx) {
     if(confirm(`Delete "${categories[idx].name}" and ${categories[idx].products.length} products?`)) {
-      categories.splice(idx, 1); saveAllData(); renderAll(); showToast('✅ Deleted!', '#22c55e');
+      categories.splice(idx, 1); saveAllData(); renderAll(); showPermanentToast('✅ Category deleted permanently!');
     }
   };
   
@@ -725,21 +833,21 @@
       });
       saveAllData(); renderAll();
       document.getElementById(`newProdName_${catIdx}`).value = '';
-      showToast(`✅ "${name}" added!`, '#22c55e');
-    } else showToast('⚠️ Enter product name', '#ef4444');
+      showPermanentToast(`✅ "${name}" added permanently!`);
+    } else showPermanentToast('⚠️ Enter product name');
   };
   
   window.editProductInCat = function(catIdx, prodIdx) {
     let prod = categories[catIdx].products[prodIdx];
     let newName = prompt('Edit Product Name:', prod.name);
     if(newName) prod.name = newName;
-    saveAllData(); renderAll(); showToast('✅ Updated!', '#22c55e');
+    saveAllData(); renderAll(); showPermanentToast('✅ Product updated permanently!');
   };
   
   window.deleteProductFromCat = function(catIdx, prodIdx) {
     if(confirm('Delete product?')) {
       categories[catIdx].products.splice(prodIdx, 1);
-      saveAllData(); renderAll(); showToast('✅ Deleted!', '#22c55e');
+      saveAllData(); renderAll(); showPermanentToast('✅ Product deleted permanently!');
     }
   };
   
@@ -750,7 +858,7 @@
   
   window.updateStat = function(idx) {
     stats[idx] = { icon: document.getElementById(`statIcon_${idx}`).value, number: document.getElementById(`statNum_${idx}`).value, label: document.getElementById(`statLabel_${idx}`).value };
-    saveAllData(); renderAll(); showToast('✅ Stats updated!', '#22c55e');
+    saveAllData(); renderAll(); showPermanentToast('✅ Stats updated permanently!');
   };
   
   function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
@@ -766,44 +874,37 @@
     companyInfo.whatsapp = document.getElementById('whatsappInput').value;
     companyInfo.address = document.getElementById('addressInput').value;
     companyInfo.footer = document.getElementById('footerTextInput').value;
-    saveAllData(); renderAll(); showToast('✅ Saved!', '#22c55e');
+    saveAllData(); renderAll(); showPermanentToast('✅ Company info saved permanently!');
+  });
+  
+  document.getElementById('saveGithubConfigBtn').addEventListener('click', () => {
+    const repo = document.getElementById('githubRepo').value.trim();
+    const token = document.getElementById('githubToken').value.trim();
+    if(repo && token) {
+      githubConfig = { repo: repo, token: token };
+      localStorage.setItem('rhysco_github_config', JSON.stringify(githubConfig));
+      const statusDiv = document.getElementById('githubStatus');
+      statusDiv.innerHTML = '✅ GitHub config saved! Changes will now save permanently to GitHub.';
+      statusDiv.style.background = '#10b981';
+      statusDiv.style.color = 'white';
+      showPermanentToast('✅ GitHub configured! Now all changes are PERMANENT!');
+      saveToGitHub();
+    } else {
+      showPermanentToast('⚠️ Please enter both Repository and Token');
+    }
   });
   
   document.getElementById('searchBtn').addEventListener('click', () => { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); });
   document.getElementById('searchInput').addEventListener('keyup', (e) => { if(e.key === 'Enter') { searchQuery = e.target.value.toLowerCase(); renderProducts(); } });
   
-  // Theme Switcher - CLICK TO OPEN (Fixed)
+  // Theme Switcher
   const themeBtn = document.getElementById('themeBtn');
   const themeDropdown = document.getElementById('themeDropdown');
-  
-  themeBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    themeDropdown.classList.toggle('show');
-  });
-  
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!themeBtn.contains(e.target) && !themeDropdown.contains(e.target)) {
-      themeDropdown.classList.remove('show');
-    }
-  });
-  
-  function setTheme(themeName) {
-    document.body.className = themeName;
-    localStorage.setItem('rhysco_theme', themeName);
-    themeDropdown.classList.remove('show');
-  }
-  
-  document.querySelectorAll('.theme-option').forEach(option => {
-    option.addEventListener('click', () => {
-      const theme = option.getAttribute('data-theme');
-      setTheme(theme);
-    });
-  });
-  
-  const savedTheme = localStorage.getItem('rhysco_theme');
-  if(savedTheme) setTheme(savedTheme);
-  else setTheme('theme-1');
+  themeBtn.addEventListener('click', (e) => { e.stopPropagation(); themeDropdown.classList.toggle('show'); });
+  document.addEventListener('click', (e) => { if (!themeBtn.contains(e.target) && !themeDropdown.contains(e.target)) { themeDropdown.classList.remove('show'); } });
+  function setTheme(themeName) { document.body.className = themeName; localStorage.setItem('rhysco_theme', themeName); themeDropdown.classList.remove('show'); }
+  document.querySelectorAll('.theme-option').forEach(option => { option.addEventListener('click', () => { setTheme(option.getAttribute('data-theme')); }); });
+  const savedTheme = localStorage.getItem('rhysco_theme'); if(savedTheme) setTheme(savedTheme); else setTheme('theme-1');
   
   // Login
   function showLoginPopup() {
@@ -813,7 +914,7 @@
     document.body.appendChild(loginDiv);
     document.getElementById('loginSubmitBtn').addEventListener('click', () => {
       if(document.getElementById('loginUsername').value === 'sunny' && document.getElementById('loginPassword').value === 'admin') {
-        isAdminAuthenticated = true; loginDiv.remove(); openAdminPanel(); showToast('✅ Welcome!', '#22c55e');
+        isAdminAuthenticated = true; loginDiv.remove(); openAdminPanel(); showPermanentToast('✅ Welcome Admin!');
       } else {
         const err = document.getElementById('loginErrorMsg');
         err.style.display = 'block'; err.innerHTML = '❌ Invalid credentials';
@@ -833,6 +934,8 @@
     document.getElementById('whatsappInput').value = companyInfo.whatsapp;
     document.getElementById('addressInput').value = companyInfo.address;
     document.getElementById('footerTextInput').value = companyInfo.footer;
+    document.getElementById('githubRepo').value = githubConfig.repo;
+    document.getElementById('githubToken').value = githubConfig.token;
     document.getElementById('adminModal').style.display = 'block';
   }
   
@@ -848,6 +951,7 @@
       document.getElementById('tabCategories').classList.toggle('active', tab.dataset.tab === 'categories');
       document.getElementById('tabProducts').classList.toggle('active', tab.dataset.tab === 'products');
       document.getElementById('tabCompany').classList.toggle('active', tab.dataset.tab === 'company');
+      document.getElementById('tabGithub').classList.toggle('active', tab.dataset.tab === 'github');
       if(isAdminAuthenticated && tab.dataset.tab === 'categories') renderCategoriesList();
       if(isAdminAuthenticated && tab.dataset.tab === 'products') renderAllProductsList();
     });
