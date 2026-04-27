@@ -3,105 +3,518 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Rhysco Power | Electrical Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Rhysco Power | Premium Electrical Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111115;
+      --bg-card: rgba(18, 18, 24, 0.8);
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent-cyan: #00d4ff;
+      --accent-purple: #7c3aed;
+      --accent-pink: #ec4899;
+      --accent-orange: #f97316;
+      --accent-gradient: linear-gradient(135deg, #00d4ff, #7c3aed, #ec4899);
+      --accent-gradient-2: linear-gradient(135deg, #f97316, #ff2d75);
+      --glow: 0 0 20px rgba(0, 212, 255, 0.3);
+      --glow-strong: 0 0 30px rgba(0, 212, 255, 0.5);
+      --border-light: rgba(255, 255, 255, 0.08);
+      --card-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      --nav-bg: rgba(10, 10, 15, 0.85);
+      --hero-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(124, 58, 237, 0.3));
+    }
+
+    body.light {
+      --bg-primary: #f5f5f7;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.8);
+      --text-primary: #1a1a2e;
+      --text-secondary: #4a4a6a;
+      --accent-cyan: #0066cc;
+      --accent-purple: #5b21b6;
+      --accent-pink: #db2777;
+      --border-light: rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.03);
+      --nav-bg: rgba(255, 255, 255, 0.85);
+      --hero-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(91, 33, 182, 0.2));
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       transition: all 0.3s ease;
       overflow-x: hidden;
     }
-    :root {
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --accent-blue: #0ea5e9;
-      --accent-orange: #f97316;
-      --accent-gradient: linear-gradient(135deg, #0ea5e9, #f97316);
-      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
-      --border-light: #334155;
-      --nav-bg: rgba(15, 23, 42, 0.95);
-      --hero-overlay: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(2, 6, 23, 0.9));
+
+    /* Custom Cursor */
+    .cursor-follower {
+      width: 30px;
+      height: 30px;
+      background: rgba(0, 212, 255, 0.3);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: 0.1s;
+      backdrop-filter: blur(4px);
     }
-    body.light {
-      --bg-primary: #f0f4f8;
-      --bg-secondary: #ffffff;
-      --text-primary: #1a2a3a;
-      --text-secondary: #4a5a6a;
-      --accent-blue: #2c7da0;
-      --accent-orange: #e76f51;
-      --accent-gradient: linear-gradient(135deg, #2c7da0, #e76f51);
-      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
-      --border-light: #dce5ed;
-      --nav-bg: rgba(255, 255, 255, 0.95);
-      --hero-overlay: linear-gradient(135deg, rgba(44, 125, 160, 0.85), rgba(231, 111, 81, 0.9));
-    }
+
     html { scroll-behavior: smooth; }
-    ::-webkit-scrollbar { width: 10px; }
+
+    ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg-primary); }
     ::-webkit-scrollbar-thumb { background: var(--accent-gradient); border-radius: 10px; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes float-slow { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+    @keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 5px rgba(0,212,255,0.3); } 50% { box-shadow: 0 0 25px rgba(0,212,255,0.7); } }
+    @keyframes border-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
     @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-    
+
+    /* Navbar Premium */
     .navbar {
-      position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(20px);
-      z-index: 1000; padding: 1rem 2rem; border-bottom: 1px solid var(--border-light);
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1300px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 0.8rem 2rem;
+      border-radius: 80px;
+      transition: all 0.3s;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--card-shadow);
     }
-    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { display: flex; align-items: center; gap: 12px; font-size: 1.8rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; cursor: pointer; }
-    .logo i { font-size: 2rem; color: var(--accent-orange); }
-    .nav-links { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
-    .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 600; transition: 0.3s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-gradient); transition: 0.3s; }
+    .navbar-scrolled {
+      top: 10px;
+      width: 95%;
+      background: var(--nav-bg);
+      backdrop-filter: blur(25px);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--accent-gradient);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 3s ease infinite;
+    }
+    .logo-icon i {
+      font-size: 1.5rem;
+      color: white;
+    }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      transition: 0.3s;
+      border-radius: 2px;
+    }
     .nav-links a:hover::after { width: 100%; }
-    .admin-btn { background: var(--accent-gradient); color: white !important; padding: 0.5rem 1.2rem; border-radius: 40px; border: none; cursor: pointer; font-weight: 600; }
-    .theme-btn { background: var(--bg-secondary); border: 1px solid var(--border-light); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; color: var(--text-primary); }
+    .nav-links a:hover { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .admin-btn {
+      background: var(--accent-gradient-2);
+      color: white !important;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .admin-btn:hover { transform: scale(1.05); box-shadow: var(--glow-strong); }
+    .admin-btn::after { display: none; }
+    .theme-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+      color: var(--text-primary);
+    }
+    .theme-btn:hover { transform: rotate(15deg); background: var(--accent-gradient); color: white; }
     .mobile-menu { display: none; font-size: 1.8rem; cursor: pointer; }
     @media (max-width: 850px) {
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--nav-bg); flex-direction: column; padding: 2rem; gap: 1rem; }
+      .navbar { top: 10px; width: 95%; padding: 0.8rem 1.2rem; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; border-radius: 30px; gap: 1rem; }
       .nav-links.active { display: flex; }
       .mobile-menu { display: block; }
     }
-    .hero { min-height: 100vh; background: url('https://images.unsplash.com/photo-1581092335871-5d6a0e3f6e5e?q=80&w=2070&auto=format') center/cover fixed; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: var(--hero-overlay); }
-    .hero-content { position: relative; z-index: 2; animation: fadeInUp 1s ease; }
-    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, var(--accent-blue), var(--accent-orange)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero p { font-size: 1.3rem; color: #e2e8f0; margin-bottom: 2rem; }
-    .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--accent-gradient); color: white; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; text-decoration: none; }
-    .stats-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .stat-card { background: var(--bg-secondary); padding: 2rem; border-radius: 24px; text-align: center; transition: 0.3s; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); }
-    .stat-card i { font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .catalog-header { text-align: center; padding: 2rem; }
-    .catalog-header h2 { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .filter-bar { max-width: 1300px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    .search-box { flex: 1; min-width: 250px; display: flex; background: var(--bg-secondary); border-radius: 60px; overflow: hidden; border: 1px solid var(--border-light); }
-    .search-box input { flex: 1; padding: 1rem 1.5rem; border: none; background: transparent; color: var(--text-primary); outline: none; }
-    .search-box button { padding: 0 1.8rem; background: var(--accent-gradient); border: none; color: white; cursor: pointer; font-weight: 600; }
-    .filter-group { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    .filter-btn { padding: 0.7rem 1.5rem; border-radius: 40px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); cursor: pointer; transition: 0.2s; font-weight: 600; }
-    .filter-btn.active, .filter-btn:hover { background: var(--accent-gradient); color: white; transform: translateY(-2px); }
-    .product-grid { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
-    .product-card { background: var(--bg-secondary); border-radius: 28px; padding: 1.8rem; transition: all 0.4s; border: 1px solid var(--border-light); position: relative; overflow: hidden; }
-    .product-card:hover { transform: translateY(-12px); box-shadow: var(--card-shadow); border-color: var(--accent-blue); }
-    .product-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: var(--accent-gradient); transition: 0.5s; }
+
+    /* Hero Section Premium */
+    .hero {
+      min-height: 100vh;
+      background: url('https://images.unsplash.com/photo-1581092335871-5d6a0e3f6e5e?q=80&w=2070&auto=format') center/cover fixed;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--hero-overlay);
+    }
+    .hero-bg-blur {
+      position: absolute;
+      top: 20%;
+      left: -20%;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(0,212,255,0.2), transparent);
+      filter: blur(80px);
+      animation: float-slow 8s ease infinite;
+    }
+    .hero-bg-blur-2 {
+      position: absolute;
+      bottom: 10%;
+      right: -10%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.15), transparent);
+      filter: blur(80px);
+      animation: float-slow 6s ease infinite reverse;
+    }
+    .hero-content { position: relative; z-index: 2; animation: fadeInUp 0.8s ease; }
+    .hero-badge {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero h1 {
+      font-size: 5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    .hero .gradient-text {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem 2.5rem;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      border-radius: 60px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      animation: glow-pulse 2s infinite;
+    }
+    .cta-btn:hover { transform: translateY(-3px) scale(1.02); filter: brightness(1.05); }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.8rem; } }
+
+    /* Stats Cards Premium */
+    .stats-section {
+      padding: 4rem 2rem;
+      max-width: 1300px;
+      margin: -4rem auto 2rem;
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+      border-radius: 32px;
+      text-align: center;
+      transition: all 0.4s;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--card-shadow);
+    }
+    .stat-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); box-shadow: 0 0 25px rgba(0,212,255,0.2); }
+    .stat-card i { font-size: 2.8rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
+    .stat-card h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .stat-card p { color: var(--text-secondary); }
+
+    /* Catalog Header */
+    .catalog-header { text-align: center; padding: 3rem 2rem 1rem; }
+    .catalog-header h2 { font-size: 2.8rem; font-weight: 800; }
+    .catalog-header h2 i { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* Filter Bar */
+    .filter-bar {
+      max-width: 1300px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      background: var(--bg-card);
+      border-radius: 60px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(8px);
+    }
+    .search-box input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      outline: none;
+    }
+    .search-box button {
+      padding: 0 2rem;
+      background: var(--accent-gradient);
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .search-box button:hover { filter: brightness(1.1); }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .filter-btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-gradient);
+      color: white;
+      transform: translateY(-2px);
+      border-color: transparent;
+    }
+
+    /* Product Grid Premium */
+    .product-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 1.8rem;
+      transition: all 0.4s;
+      border: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-gradient);
+      transition: 0.5s;
+    }
     .product-card:hover::before { left: 0; }
-    .product-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .product-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 30px 50px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,212,255,0.3);
+    }
+    .product-icon { font-size: 3rem; margin-bottom: 1rem; }
     .product-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .product-spec { font-size: 0.8rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
-    .product-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.2rem; }
+    .product-spec { font-size: 0.8rem; color: var(--accent-cyan); margin-bottom: 0.5rem; }
+    .product-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.4; }
+    .category-badge {
+      background: var(--accent-gradient-2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
     .product-actions { display: flex; gap: 0.8rem; }
-    .wa-btn, .detail-btn { flex: 1; padding: 0.7rem; border-radius: 40px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .wa-btn, .detail-btn {
+      flex: 1;
+      padding: 0.7rem;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
     .wa-btn { background: #25D366; color: white; }
-    .detail-btn { background: var(--accent-blue); color: white; }
+    .detail-btn { background: var(--accent-gradient); color: white; }
+    .wa-btn:hover, .detail-btn:hover { transform: scale(1.02); filter: brightness(1.05); }
     .no-results { text-align: center; padding: 4rem; grid-column: 1/-1; }
-    
-    /* Product Detail Modal */
+
+    /* Features Premium */
+    .features {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      margin: 3rem 2rem;
+      padding: 4rem 2rem;
+      border-radius: 48px;
+      border: 1px solid var(--border-light);
+    }
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .feature-item {
+      text-align: center;
+      padding: 1.5rem;
+      transition: 0.3s;
+    }
+    .feature-item i { font-size: 2.8rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
+
+    /* Contact Premium */
+    .contact {
+      background: var(--accent-gradient);
+      margin: 2rem;
+      padding: 4rem 2rem;
+      border-radius: 48px;
+      text-align: center;
+      color: white;
+    }
+    .contact a { color: white; text-decoration: none; border-bottom: 2px solid white; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* Floating Elements */
+    .floating-wa {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      z-index: 100;
+      transition: 0.3s;
+      box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+      animation: float 2s infinite;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 7rem;
+      right: 2rem;
+      background: var(--accent-gradient);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      border: none;
+      color: white;
+      transition: 0.3s;
+    }
+    .back-to-top:hover { transform: translateY(-5px); }
+
+    /* Modal Styles */
     .detail-modal {
       display: none;
       position: fixed;
@@ -110,21 +523,20 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.9);
-      z-index: 2500;
+      z-index: 3000;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(15px);
     }
     .detail-modal-content {
-      background: var(--bg-secondary);
-      border-radius: 32px;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border-radius: 40px;
       padding: 2rem;
       max-width: 500px;
       width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-      animation: fadeInUp 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: fadeInUp 0.3s;
     }
     .detail-close {
       position: absolute;
@@ -132,18 +544,13 @@
       right: 20px;
       font-size: 28px;
       cursor: pointer;
-      color: var(--text-secondary);
       background: none;
       border: none;
+      color: var(--text-secondary);
     }
-    .detail-close:hover { color: var(--accent-orange); }
-    .detail-icon { font-size: 4rem; text-align: center; margin-bottom: 1rem; }
-    .detail-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center; }
-    .detail-spec { font-size: 1rem; color: var(--accent-blue); text-align: center; margin-bottom: 1rem; }
-    .detail-desc { font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem; }
-    .detail-category { background: var(--accent-gradient); padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
-    .detail-wa-btn { background: #25D366; color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 1rem; font-size: 1rem; }
-    
+    .detail-wa-btn { background: #25D366; color: white; border: none; padding: 12px; border-radius: 50px; width: 100%; margin-top: 1rem; font-weight: 700; cursor: pointer; }
+
+    /* Admin Panel Modal */
     .admin-modal {
       display: none;
       position: fixed;
@@ -151,66 +558,73 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.9);
       z-index: 2000;
       overflow-y: auto;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
     }
     .admin-container {
       max-width: 1200px;
       margin: 2rem auto;
-      background: var(--bg-secondary);
-      border-radius: 32px;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border-radius: 40px;
       padding: 2rem;
-      position: relative;
+      border: 1px solid var(--border-light);
     }
-    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
-    .close-admin { background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
-    .admin-tabs { display: flex; gap: 0.5rem; border-bottom: 2px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
-    .admin-tab { padding: 0.75rem 1.5rem; cursor: pointer; background: transparent; border: none; font-weight: 600; color: var(--text-primary); transition: 0.3s; border-radius: 40px; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+    .close-admin { background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+    .admin-tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
+    .admin-tab { padding: 0.75rem 1.5rem; cursor: pointer; background: transparent; border: none; font-weight: 600; color: var(--text-primary); border-radius: 40px; transition: 0.3s; }
     .admin-tab.active { background: var(--accent-gradient); color: white; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .form-group { background: var(--bg-primary); border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
-    .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-secondary); color: var(--text-primary); }
-    .save-btn { background: var(--accent-gradient); color: white; border: none; padding: 0.75rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; }
+    .form-group { background: rgba(0,0,0,0.2); border-radius: 24px; padding: 1.5rem; margin-bottom: 2rem; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--border-light); border-radius: 16px; background: var(--bg-secondary); color: var(--text-primary); }
+    .save-btn { background: var(--accent-gradient); color: white; border: none; padding: 0.75rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+    .save-btn:hover { transform: scale(1.02); }
     .category-list { display: grid; gap: 1rem; max-height: 500px; overflow-y: auto; }
-    .category-item { background: var(--bg-secondary); border-radius: 16px; padding: 1rem; border: 1px solid var(--border-light); margin-bottom: 1rem; }
+    .category-item { background: var(--bg-secondary); border-radius: 24px; padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-light); }
     .category-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
     .category-name { font-size: 1.2rem; font-weight: 700; color: var(--accent-orange); }
-    .product-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; background: var(--bg-primary); border-radius: 10px; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .product-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; background: rgba(0,0,0,0.2); border-radius: 16px; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
     .small-btn { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; border: none; cursor: pointer; }
-    .edit-btn { background: var(--accent-blue); color: white; }
+    .edit-btn { background: var(--accent-cyan); color: white; }
     .delete-btn { background: #ef4444; color: white; }
     .add-product-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
-    .add-product-row input { flex: 1; padding: 0.5rem; border-radius: 10px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); }
-    .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2100; display: flex; align-items: center; justify-content: center; }
-    .login-box { background: var(--bg-secondary); padding: 2rem; border-radius: 32px; width: 90%; max-width: 350px; text-align: center; }
-    .login-box input { width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid var(--border-light); border-radius: 50px; background: var(--bg-primary); color: var(--text-primary); }
-    .login-box button { width: 100%; padding: 0.75rem; background: var(--accent-gradient); color: white; border: none; border-radius: 50px; cursor: pointer; margin-top: 0.5rem; }
-    .login-error { color: #ef4444; margin-top: 0.5rem; font-size: 0.85rem; animation: shake 0.3s ease; }
-    .features, .contact { background: var(--bg-secondary); padding: 4rem 2rem; margin: 2rem 0; }
-    .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .feature-item { text-align: center; padding: 1.5rem; }
-    .feature-item i { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .contact { background: var(--accent-gradient); text-align: center; color: white; border-radius: 48px; margin: 2rem; }
-    .contact a { color: white; }
-    footer { text-align: center; padding: 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-light); }
-    .floating-wa { position: fixed; bottom: 2rem; right: 2rem; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; z-index: 100; animation: float 2s infinite; }
-    .back-to-top { position: fixed; bottom: 7rem; right: 2rem; background: var(--accent-blue); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: none; color: white; }
-    .category-badge { background: var(--accent-gradient); padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-block; margin-top: 8px; }
-    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 12px 24px; border-radius: 40px; z-index: 3000; font-weight: 600; animation: fadeInUp 0.3s ease; }
-    .github-status { margin-top: 1rem; padding: 0.75rem; border-radius: 10px; text-align: center; }
-    .github-status.success { background: #10b981; color: white; }
-    .github-status.error { background: #ef4444; color: white; }
-    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
+    .add-product-row input { flex: 1; padding: 0.5rem; border-radius: 12px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); }
+
+    .login-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2100;
+      display: flex; align-items: center; justify-content: center; backdrop-filter: blur(15px);
+    }
+    .login-box {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      padding: 2.5rem;
+      border-radius: 40px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+    }
+    .login-box h3 { margin-bottom: 1.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .login-box input { width: 100%; padding: 0.8rem; margin: 0.7rem 0; border: 1px solid var(--border-light); border-radius: 60px; background: var(--bg-primary); color: var(--text-primary); outline: none; }
+    .login-box button { width: 100%; padding: 0.8rem; background: var(--accent-gradient); color: white; border: none; border-radius: 60px; font-weight: 700; cursor: pointer; }
+    .login-error { color: #ef4444; margin-top: 0.8rem; font-size: 0.85rem; animation: shake 0.3s; }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 12px 24px; border-radius: 50px; z-index: 3000; font-weight: 600; animation: fadeInUp 0.3s; }
   </style>
 </head>
 <body>
 
-<nav class="navbar">
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<nav class="navbar" id="navbar">
   <div class="nav-container">
-    <div class="logo"><i class="fas fa-bolt"></i><span id="companyNameDisplay">Loading...</span></div>
+    <div class="logo">
+      <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+      <div class="logo-text">Rhysco Power</div>
+    </div>
     <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
     <div class="nav-links" id="navLinks">
       <a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a>
@@ -222,482 +636,129 @@
 </nav>
 
 <section id="home" class="hero">
+  <div class="hero-bg-blur"></div>
+  <div class="hero-bg-blur-2"></div>
   <div class="hero-content">
-    <h1 id="heroTitle">Loading...</h1>
-    <p id="heroSubtitle">Please wait...</p>
+    <div class="hero-badge"><i class="fas fa-certificate"></i> Since 2010 | Premium Quality</div>
+    <h1>Complete <span class="gradient-text">Electrical</span><br>Solutions</h1>
+    <p>WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories</p>
     <a href="#catalog" class="cta-btn">Explore Products <i class="fas fa-arrow-right"></i></a>
   </div>
 </section>
 
 <div class="stats-section" id="statsSection"></div>
-<div id="catalog" style="scroll-margin-top: 90px;"></div>
-<div class="catalog-header"><h2><i class="fas fa-store"></i> <span id="catalogTitle">Our Premium Catalog</span></h2></div>
+<div id="catalog" style="scroll-margin-top: 100px;"></div>
+<div class="catalog-header"><h2><i class="fas fa-store"></i> Premium Catalog</h2></div>
 <div class="filter-bar">
-  <div class="search-box"><input type="text" id="searchInput" placeholder="Search products..."><button id="searchBtn"><i class="fas fa-search"></i></button></div>
+  <div class="search-box"><input type="text" id="searchInput" placeholder="Search products..."><button id="searchBtn"><i class="fas fa-search"></i> Find</button></div>
   <div class="filter-group" id="filterGroup"></div>
 </div>
 <div id="productGrid" class="product-grid"></div>
 <section id="features" class="features"><div class="features-grid" id="featuresGrid"></div></section>
 <section id="contact" class="contact"><div id="contactContent"></div></section>
-<footer><p id="footerText">© 2026 Rhysco Power - All Rights Reserved</p></footer>
+<footer><p id="footerText">© 2026 Rhysco Power - All Rights Reserved | Premium Electrical Solutions</p></footer>
 <a href="#" class="floating-wa" id="floatingWhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-<!-- Product Detail Modal -->
-<div id="detailModal" class="detail-modal">
-  <div class="detail-modal-content">
-    <button class="detail-close" id="detailCloseBtn">&times;</button>
-    <div id="detailContent"></div>
-  </div>
-</div>
+<!-- Detail Modal -->
+<div id="detailModal" class="detail-modal"><div class="detail-modal-content"><button class="detail-close" id="detailCloseBtn">&times;</button><div id="detailContent"></div></div></div>
 
+<!-- Admin Modal -->
 <div id="adminModal" class="admin-modal">
   <div class="admin-container">
-    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard <span style="background:#10b981; font-size:0.7rem; padding:2px 8px; border-radius:20px;">💾 PERMANENT SAVE</span></h2><button class="close-admin" id="closeAdminBtn">×</button></div>
-    <div class="admin-tabs">
-      <button class="admin-tab active" data-tab="categories">📁 Categories</button>
-      <button class="admin-tab" data-tab="company">🏢 Company</button>
-      <button class="admin-tab" data-tab="github">🔧 GitHub Setup</button>
-    </div>
-    
+    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard</h2><button class="close-admin" id="closeAdminBtn">×</button></div>
+    <div class="admin-tabs"><button class="admin-tab active" data-tab="categories">📁 Categories</button><button class="admin-tab" data-tab="company">🏢 Company</button><button class="admin-tab" data-tab="github">🔧 GitHub Setup</button></div>
     <div id="tabCategories" class="tab-content active">
-      <div class="form-group">
-        <h3>➕ Create New Category</h3>
-        <input type="text" id="newCatName" placeholder="Category Name">
-        <input type="text" id="newCatIcon" placeholder="Icon (🔌, ☀️, 📊)">
-        <button id="createCategoryBtn" class="save-btn">+ Create Category (Permanent)</button>
-      </div>
+      <div class="form-group"><h3>➕ Create New Category</h3><input type="text" id="newCatName" placeholder="Category Name"><input type="text" id="newCatIcon" placeholder="Icon (🔌, ☀️, 📊)"><button id="createCategoryBtn" class="save-btn">+ Create Category</button></div>
       <div id="categoriesList" class="category-list"></div>
     </div>
-    
     <div id="tabCompany" class="tab-content">
-      <div class="form-group">
-        <h3>🏢 Company Information</h3>
-        <input type="text" id="companyName" placeholder="Company Name">
-        <input type="text" id="heroTitleInput" placeholder="Hero Title">
-        <input type="text" id="heroSubtitleInput" placeholder="Hero Subtitle">
-        <input type="text" id="catalogTitleInput" placeholder="Catalog Title">
-        <input type="text" id="phoneInput" placeholder="Phone Number">
-        <input type="email" id="emailInput" placeholder="Email">
-        <input type="text" id="whatsappInput" placeholder="WhatsApp Number">
-        <textarea id="addressInput" placeholder="Address" rows="2"></textarea>
-        <input type="text" id="footerTextInput" placeholder="Footer Text">
-        <button id="saveCompanyBtn" class="save-btn">Save Company Info (Permanent)</button>
-      </div>
-      <div class="form-group">
-        <h3>📊 Stats Cards</h3>
-        <div id="statsEditList"></div>
-      </div>
+      <div class="form-group"><h3>🏢 Company Info</h3><input type="text" id="companyName" placeholder="Company Name"><input type="text" id="heroTitleInput" placeholder="Hero Title"><input type="text" id="heroSubtitleInput" placeholder="Hero Subtitle"><input type="text" id="catalogTitleInput" placeholder="Catalog Title"><input type="text" id="phoneInput" placeholder="Phone"><input type="email" id="emailInput" placeholder="Email"><input type="text" id="whatsappInput" placeholder="WhatsApp"><textarea id="addressInput" placeholder="Address" rows="2"></textarea><input type="text" id="footerTextInput" placeholder="Footer"><button id="saveCompanyBtn" class="save-btn">Save</button></div>
+      <div class="form-group"><h3>📊 Stats Cards</h3><div id="statsEditList"></div></div>
     </div>
-    
     <div id="tabGithub" class="tab-content">
-      <div class="form-group">
-        <h3>🔐 GitHub Configuration</h3>
-        <input type="text" id="githubRepo" placeholder="Repository (username/repo)" value="iamsunnydevanand/rhyscopower">
-        <input type="password" id="githubToken" placeholder="GitHub Token (Optional for reading)">
-        <button id="saveGithubBtn" class="save-btn">💾 Save Config</button>
-        <div id="githubStatusMsg"></div>
-        <p style="margin-top:1rem; font-size:0.8rem;">✅ Token optional: Bina token ke bhi data read kar sakte ho! Token sirf edit karne ke liye chahiye.</p>
-      </div>
+      <div class="form-group"><h3>🔐 GitHub Setup</h3><input type="text" id="githubRepo" placeholder="Repository (username/repo)" value="iamsunnydevanand/rhyscopower"><input type="password" id="githubToken" placeholder="GitHub Token"><button id="saveGithubBtn" class="save-btn">Save Config</button><div id="githubStatusMsg"></div></div>
     </div>
   </div>
 </div>
 
 <script>
-  // Default Data (fallback only)
-  let categories = [
-    { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
-      { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper, flame retardant, industrial grade" }
-    ]},
-    { id: "cat2", name: "Solar & MC4", icon: "☀️", products: [
-      { id: "p2", name: "SOLAR DC CABLE", spec: "500MTR", icon: "☀️", desc: "UV protected solar cable" }
-    ]}
+  let categories = JSON.parse(localStorage.getItem('rhysco_categories')) || [
+    { id: "cat1", name: "WAA Cables", icon: "🔌", products: [{ id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper, flame retardant" }]},
+    { id: "cat2", name: "Solar & MC4", icon: "☀️", products: [{ id: "p2", name: "SOLAR DC CABLE", spec: "500MTR", icon: "☀️", desc: "UV protected solar cable" }]}
   ];
-  
-  let companyInfo = {
-    name: "Rhysco Power",
-    heroTitle: "Complete Electrical Solutions <br> <span style='color: #f97316;'>⚡ A to Z</span>",
-    heroSubtitle: "WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories",
-    catalogTitle: "Our Premium Catalog",
-    phone: "+91 6203691393",
-    email: "bikram.biharelctrometer@gmail.com",
-    whatsapp: "916203691393",
-    address: "India (Bihar & NCR) | Global Shipping Available",
-    footer: "© 2026 Rhysco Power - All Rights Reserved"
-  };
-  
-  let stats = [
+  let companyInfo = JSON.parse(localStorage.getItem('rhysco_company')) || { name: "Rhysco Power", heroTitle: "Complete Electrical Solutions", heroSubtitle: "WAA Cables • Solar • Meters", catalogTitle: "Premium Catalog", phone: "+91 6203691393", email: "bikram.biharelctrometer@gmail.com", whatsapp: "916203691393", address: "India (Bihar & NCR)", footer: "© 2026 Rhysco Power" };
+  let stats = JSON.parse(localStorage.getItem('rhysco_stats')) || [
     { icon: "fas fa-trophy", number: "15+", label: "Years Experience" },
     { icon: "fas fa-boxes", number: "500+", label: "Premium Products" },
     { icon: "fas fa-users", number: "1000+", label: "Happy Clients" },
     { icon: "fas fa-truck", number: "PAN India", label: "Fast Delivery" }
   ];
-  
   let features = [
-    { icon: "fas fa-shield-alt", title: "Quality Assured", desc: "ISO certified products" },
+    { icon: "fas fa-shield-alt", title: "Quality Assured", desc: "ISO certified" },
     { icon: "fas fa-clock", title: "24/7 Support", desc: "Technical assistance" },
     { icon: "fas fa-truck-fast", title: "Pan India Supply", desc: "Fast shipping" },
     { icon: "fas fa-hand-holding-usd", title: "Best Price", desc: "Wholesale pricing" }
   ];
-  
-  let activeCategory = "all", searchQuery = "";
-  let isAdminAuthenticated = false;
-  let githubConfig = { repo: "iamsunnydevanand/rhyscopower", token: "" };
-  
+  let activeCategory = "all", searchQuery = "", isAdminAuthenticated = false;
+  let githubConfig = JSON.parse(localStorage.getItem('rhysco_github_config')) || { repo: "iamsunnydevanand/rhyscopower", token: "" };
   function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
-  
-  function showToast(msg, color) {
-    let toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.style.background = color;
-    toast.innerHTML = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
-  }
-  
-  // Product Detail Modal Function
-  function showProductDetail(product) {
-    let modal = document.getElementById('detailModal');
-    let content = document.getElementById('detailContent');
-    content.innerHTML = `
-      <div class="detail-icon">${product.icon || '🔌'}</div>
-      <div class="detail-title">${escapeHtml(product.name)}</div>
-      <div class="detail-spec"><i class="fas fa-ruler"></i> ${escapeHtml(product.spec)}</div>
-      <div style="text-align: center;"><span class="detail-category">📁 ${escapeHtml(product.categoryName)}</span></div>
-      <div class="detail-desc">${escapeHtml(product.desc)}</div>
-      <button class="detail-wa-btn" id="detailWaBtn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</button>
-    `;
-    modal.style.display = 'flex';
-    document.getElementById('detailWaBtn').onclick = () => {
-      window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(product.spec)})`, '_blank');
-    };
-  }
-  
-  document.getElementById('detailCloseBtn').onclick = () => {
-    document.getElementById('detailModal').style.display = 'none';
-  };
-  window.onclick = (e) => {
-    if (e.target === document.getElementById('detailModal')) {
-      document.getElementById('detailModal').style.display = 'none';
-    }
-  };
-  
+  function showToast(msg, color) { let t = document.createElement('div'); t.className = 'toast'; t.style.background = color; t.innerHTML = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
+  function showProductDetail(p) { let modal = document.getElementById('detailModal'); document.getElementById('detailContent').innerHTML = `<div style="text-align:center"><div style="font-size:4rem">${p.icon}</div><h2>${escapeHtml(p.name)}</h2><p style="color:var(--accent-cyan)"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</p><span style="background:var(--accent-gradient-2);padding:4px 12px;border-radius:20px;display:inline-block;margin:10px 0">📁 ${escapeHtml(p.categoryName)}</span><p style="margin:15px 0">${escapeHtml(p.desc)}</p><button class="detail-wa-btn" id="detailWABtn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</button></div>`; modal.style.display = 'flex'; document.getElementById('detailWABtn').onclick = () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(p.name)}`, '_blank'); }
+  document.getElementById('detailCloseBtn').onclick = () => document.getElementById('detailModal').style.display = 'none';
+  window.onclick = (e) => { if(e.target === document.getElementById('detailModal')) document.getElementById('detailModal').style.display = 'none'; };
   async function loadFromGitHubPublic() {
-    try {
-      let url = `https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`;
-      let res = await fetch(url);
-      
-      if (res.ok) {
-        let data = await res.json();
-        let content = JSON.parse(atob(data.content));
-        if (content.categories) categories = content.categories;
-        if (content.companyInfo) companyInfo = content.companyInfo;
-        if (content.stats) stats = content.stats;
-        renderAll();
-        return true;
-      }
-    } catch(e) {}
-    
-    try {
-      let rawUrl = `https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`;
-      let rawRes = await fetch(rawUrl);
-      if (rawRes.ok) {
-        let content = await rawRes.json();
-        if (content.categories) categories = content.categories;
-        if (content.companyInfo) companyInfo = content.companyInfo;
-        if (content.stats) stats = content.stats;
-        renderAll();
-        return true;
-      }
-    } catch(e) {}
-    
-    renderAll();
-    return false;
+    try { let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`); if(res.ok){ let data=await res.json(); let c=JSON.parse(atob(data.content)); if(c.categories) categories=c.categories; if(c.companyInfo) companyInfo=c.companyInfo; if(c.stats) stats=c.stats; renderAll(); return true; } } catch(e){}
+    try { let rawRes = await fetch(`https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`); if(rawRes.ok){ let c=await rawRes.json(); if(c.categories) categories=c.categories; if(c.companyInfo) companyInfo=c.companyInfo; if(c.stats) stats=c.stats; renderAll(); return true; } } catch(e){}
+    renderAll(); return false;
   }
-  
-  function saveToLocal() {
-    let allData = { categories, companyInfo, stats, lastUpdated: new Date().toISOString() };
-    localStorage.setItem('rhysco_all_data', JSON.stringify(allData));
+  function saveToLocal() { localStorage.setItem('rhysco_all_data', JSON.stringify({categories,companyInfo,stats})); }
+  async function saveToGitHub() { if(!githubConfig.token) { saveToLocal(); return false; } let data={categories,companyInfo,stats}; let content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2)))); try { let sha=null; let check=await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`,{headers:{'Authorization':`token ${githubConfig.token}`}}); if(check.ok){ let fd=await check.json(); sha=fd.sha; } let res=await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`,{method:'PUT',headers:{'Authorization':`token ${githubConfig.token}`,'Content-Type':'application/json'},body:JSON.stringify({message:"Update",content:content,sha:sha})}); if(res.ok){ saveToLocal(); showToast("✅ Saved permanently!","#10b981"); return true; } } catch(e){ showToast("❌ Save failed","#ef4444"); } return false; }
+  async function saveAllData() { saveToLocal(); await saveToGitHub(); renderAll(); }
+  function getAllProducts() { let all=[]; categories.forEach(c=>c.products.forEach(p=>all.push({...p,categoryName:c.name,categoryIcon:c.icon}))); return all; }
+  function renderAll() { renderCompanyInfo(); renderStats(); renderFeatures(); renderContact(); renderFilters(); renderProducts(); if(isAdminAuthenticated){ renderCategoriesList(); renderStatsAdmin(); } }
+  function renderCompanyInfo() { 
+    document.getElementById('companyNameDisplay')?document.getElementById('companyNameDisplay').innerHTML=companyInfo.name:null;
+    let ht=document.getElementById('heroTitle'); if(ht) ht.innerHTML=companyInfo.heroTitle || "Complete Electrical Solutions";
+    let hs=document.getElementById('heroSubtitle'); if(hs) hs.innerHTML=companyInfo.heroSubtitle || "WAA Cables • Solar • Meters";
+    let ct=document.getElementById('catalogTitle'); if(ct) ct.innerHTML=companyInfo.catalogTitle || "Premium Catalog";
+    let ft=document.getElementById('footerText'); if(ft) ft.innerHTML=companyInfo.footer;
+    let wa=document.getElementById('floatingWhatsApp'); if(wa) wa.href=`https://wa.me/${companyInfo.whatsapp}`;
   }
-  
-  async function saveToGitHub() {
-    if (!githubConfig.token || !githubConfig.repo) {
-      saveToLocal();
-      showToast("⚠️ No token! Saved locally only.", "#ef4444");
-      return false;
-    }
-    
-    let dataToSave = { categories, companyInfo, stats, lastUpdated: new Date().toISOString() };
-    let content = btoa(unescape(encodeURIComponent(JSON.stringify(dataToSave, null, 2))));
-    
-    try {
-      let sha = null;
-      let checkRes = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
-        headers: { 'Authorization': `token ${githubConfig.token}` }
-      });
-      if (checkRes.ok) { let fileData = await checkRes.json(); sha = fileData.sha; }
-      
-      let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
-        method: 'PUT',
-        headers: { 'Authorization': `token ${githubConfig.token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: "Update website data", content: content, sha: sha })
-      });
-      
-      if (res.ok) {
-        saveToLocal();
-        showToast("✅ Saved to GitHub! Changes PERMANENT!", "#10b981");
-        return true;
-      }
-    } catch(e) { showToast("❌ Save failed!", "#ef4444"); }
-    return false;
+  function renderStats() { let container=document.getElementById('statsSection'); if(container) container.innerHTML=stats.map(s=>`<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join(''); }
+  function renderFeatures() { let container=document.getElementById('featuresGrid'); if(container) container.innerHTML=features.map(f=>`<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join(''); }
+  function renderContact() { let container=document.getElementById('contactContent'); if(container) container.innerHTML=`<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>`; }
+  function renderFilters() { let total=getAllProducts().length; let container=document.getElementById('filterGroup'); if(container) container.innerHTML=`<button class="filter-btn ${activeCategory==='all'?'active':''}" data-cat="all">📂 All (${total})</button>`+categories.map(c=>`<button class="filter-btn ${activeCategory===c.id?'active':''}" data-cat="${c.id}">${c.icon} ${c.name} (${c.products.length})</button>`).join(''); document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{activeCategory=btn.getAttribute('data-cat');renderProducts();renderFilters();})); }
+  function renderProducts() { let filtered=activeCategory==='all'?getAllProducts():(categories.find(c=>c.id===activeCategory)?.products.map(p=>({...p,categoryName:categories.find(c=>c.id===activeCategory).name}))||[]); filtered=filtered.filter(p=>searchQuery===""||p.name.toLowerCase().includes(searchQuery)||p.spec.toLowerCase().includes(searchQuery)); let container=document.getElementById('productGrid'); if(!container) return; if(filtered.length===0){container.innerHTML=`<div class="no-results"><i class="fas fa-box-open"></i> No products found.</div>`;return;} container.innerHTML=filtered.map(p=>`<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc.substring(0,80))}${p.desc.length>80?'...':''}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail='${JSON.stringify(p)}'><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
+    document.querySelectorAll('.wa-btn').forEach(btn=>btn.addEventListener('click',()=>window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`,'_blank')));
+    document.querySelectorAll('.detail-btn').forEach(btn=>btn.addEventListener('click',()=>{try{showProductDetail(JSON.parse(btn.getAttribute('data-detail')));}catch(e){showToast("Error","#ef4444");}}));
   }
-  
-  async function saveAllData() {
-    saveToLocal();
-    await saveToGitHub();
-    renderAll();
-  }
-  
-  function getAllProducts() {
-    let all = [];
-    categories.forEach(cat => {
-      cat.products.forEach(prod => {
-        all.push({ ...prod, categoryName: cat.name, categoryIcon: cat.icon });
-      });
-    });
-    return all;
-  }
-  
-  function renderAll() {
-    renderCompanyInfo(); renderStats(); renderFeatures(); renderContact(); renderFilters(); renderProducts();
-    if (isAdminAuthenticated) { renderCategoriesList(); renderStatsAdmin(); }
-  }
-  
-  function renderCompanyInfo() {
-    let nameSpan = document.getElementById('companyNameDisplay');
-      if (nameSpan) nameSpan.innerHTML = companyInfo.name;
-    let heroTitle = document.getElementById('heroTitle');
-      if (heroTitle) heroTitle.innerHTML = companyInfo.heroTitle;
-    let heroSubtitle = document.getElementById('heroSubtitle');
-      if (heroSubtitle) heroSubtitle.innerHTML = companyInfo.heroSubtitle;
-    let catalogTitle = document.getElementById('catalogTitle');
-      if (catalogTitle) catalogTitle.innerHTML = companyInfo.catalogTitle;
-    let footerText = document.getElementById('footerText');
-      if (footerText) footerText.innerHTML = companyInfo.footer;
-    let waLink = document.getElementById('floatingWhatsApp');
-      if (waLink) waLink.href = `https://wa.me/${companyInfo.whatsapp}`;
-  }
-  
-  function renderStats() {
-    let container = document.getElementById('statsSection');
-    if (container) container.innerHTML = stats.map(s => `<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join('');
-  }
-  
-  function renderFeatures() {
-    let container = document.getElementById('featuresGrid');
-    if (container) container.innerHTML = features.map(f => `<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
-  }
-  
-  function renderContact() {
-    let container = document.getElementById('contactContent');
-    if (container) container.innerHTML = `<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp for Quick Quote</a></p>`;
-  }
-  
-  function renderFilters() {
-    let total = getAllProducts().length;
-    let container = document.getElementById('filterGroup');
-    if (!container) return;
-    container.innerHTML = `<button class="filter-btn ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">📂 All (${total})</button>` + categories.map(cat => `<button class="filter-btn ${activeCategory === cat.id ? 'active' : ''}" data-cat="${cat.id}">${cat.icon} ${cat.name} (${cat.products.length})</button>`).join('');
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => { activeCategory = btn.getAttribute('data-cat'); renderProducts(); renderFilters(); }));
-  }
-  
-  function renderProducts() {
-    let filtered = activeCategory === 'all' ? getAllProducts() : (categories.find(c => c.id === activeCategory)?.products.map(p => ({ ...p, categoryName: categories.find(c => c.id === activeCategory).name })) || []);
-    filtered = filtered.filter(p => searchQuery === "" || p.name.toLowerCase().includes(searchQuery) || p.spec.toLowerCase().includes(searchQuery));
-    let container = document.getElementById('productGrid');
-    if (!container) return;
-    if (filtered.length === 0) { container.innerHTML = `<div class="no-results"><i class="fas fa-box-open"></i> No products found.</div>`; return; }
-    container.innerHTML = filtered.map(p => `<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc.substring(0, 80))}${p.desc.length > 80 ? '...' : ''}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail='${JSON.stringify(p)}'><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
-    
-    document.querySelectorAll('.wa-btn').forEach(btn => btn.addEventListener('click', () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`, '_blank')));
-    
-    // ✅ FIXED: Detail button with full product info
-    document.querySelectorAll('.detail-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        try {
-          let productData = JSON.parse(btn.getAttribute('data-detail'));
-          showProductDetail(productData);
-        } catch(e) {
-          showToast("Error loading details", "#ef4444");
-        }
-      });
-    });
-  }
-  
-  function renderCategoriesList() {
-    let container = document.getElementById('categoriesList');
-    if (!container) return;
-    container.innerHTML = categories.map((cat, catIdx) => `
-      <div class="category-item">
-        <div class="category-header">
-          <span><span style="font-size:1.5rem;">${cat.icon}</span> <span class="category-name">${cat.name}</span> (${cat.products.length})</span>
-          <div><button class="small-btn edit-btn" onclick="editCategory(${catIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteCategory(${catIdx})">Delete</button></div>
-        </div>
-        <div class="category-products">
-          ${cat.products.map((prod, prodIdx) => `<div class="product-item"><span>${prod.icon} ${prod.name} | ${prod.spec}</span><div><button class="small-btn edit-btn" onclick="editProduct(${catIdx},${prodIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteProduct(${catIdx},${prodIdx})">Delete</button></div></div>`).join('')}
-          <div class="add-product-row"><input type="text" id="newProdName_${catIdx}" placeholder="Product Name"><input type="text" id="newProdSpec_${catIdx}" placeholder="Spec"><input type="text" id="newProdIcon_${catIdx}" placeholder="Icon" value="🔌" style="width:60px"><input type="text" id="newProdDesc_${catIdx}" placeholder="Desc"><button class="small-btn edit-btn" onclick="addProduct(${catIdx})">+ Add</button></div>
-        </div>
-      </div>`).join('');
-  }
-  
-  function renderStatsAdmin() {
-    let container = document.getElementById('statsEditList');
-    if (!container) return;
-    container.innerHTML = stats.map((s, idx) => `<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="flex:1; padding:0.5rem; border-radius:8px;"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:80px; padding:0.5rem; border-radius:8px;"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1; padding:0.5rem; border-radius:8px;"><button class="small-btn edit-btn" onclick="updateStat(${idx})">Save</button></div>`).join('');
-  }
-  
-  window.updateStat = async function(idx) {
-    stats[idx] = { icon: document.getElementById(`statIcon_${idx}`).value, number: document.getElementById(`statNum_${idx}`).value, label: document.getElementById(`statLabel_${idx}`).value };
-    await saveAllData(); renderAll();
-  };
-  
-  window.createCategory = async function() {
-    let name = document.getElementById('newCatName').value.trim();
-    let icon = document.getElementById('newCatIcon').value.trim() || '📁';
-    if (name) { categories.push({ id: generateId(), name, icon, products: [] }); await saveAllData(); document.getElementById('newCatName').value = ''; renderAll(); showToast(`✅ Category "${name}" created!`, "#10b981"); }
-    else showToast("⚠️ Enter category name", "#ef4444");
-  };
-  
-  window.editCategory = async function(idx) {
-    let newName = prompt('Edit Category Name:', categories[idx].name);
-    if (newName) { categories[idx].name = newName; await saveAllData(); renderAll(); showToast("✅ Category updated!", "#10b981"); }
-  };
-  
-  window.deleteCategory = async function(idx) {
-    if (confirm(`Delete "${categories[idx].name}" and all its products?`)) { categories.splice(idx,1); await saveAllData(); renderAll(); showToast("✅ Category deleted!", "#10b981"); }
-  };
-  
-  window.addProduct = async function(catIdx) {
-    let name = document.getElementById(`newProdName_${catIdx}`).value.trim();
-    if (name) {
-      categories[catIdx].products.push({ id: generateId(), name, spec: document.getElementById(`newProdSpec_${catIdx}`).value.trim() || "Standard", icon: document.getElementById(`newProdIcon_${catIdx}`).value.trim() || "🔌", desc: document.getElementById(`newProdDesc_${catIdx}`).value.trim() || "Premium product" });
-      await saveAllData(); renderAll();
-      document.getElementById(`newProdName_${catIdx}`).value = ''; document.getElementById(`newProdSpec_${catIdx}`).value = ''; document.getElementById(`newProdDesc_${catIdx}`).value = '';
-      showToast(`✅ "${name}" added!`, "#10b981");
-    } else showToast("⚠️ Enter product name", "#ef4444");
-  };
-  
-  window.editProduct = async function(catIdx, prodIdx) {
-    let newName = prompt('Edit Product Name:', categories[catIdx].products[prodIdx].name);
-    if (newName) { categories[catIdx].products[prodIdx].name = newName; await saveAllData(); renderAll(); showToast("✅ Product updated!", "#10b981"); }
-  };
-  
-  window.deleteProduct = async function(catIdx, prodIdx) {
-    if (confirm('Delete this product?')) { categories[catIdx].products.splice(prodIdx,1); await saveAllData(); renderAll(); showToast("✅ Product deleted!", "#10b981"); }
-  };
-  
-  function escapeHtml(str) { 
-    if (!str) return '';
-    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); 
-  }
-  
-  document.getElementById('createCategoryBtn').onclick = () => window.createCategory();
-  document.getElementById('saveCompanyBtn').onclick = async () => {
-    companyInfo.name = document.getElementById('companyName').value;
-    companyInfo.heroTitle = document.getElementById('heroTitleInput').value;
-    companyInfo.heroSubtitle = document.getElementById('heroSubtitleInput').value;
-    companyInfo.catalogTitle = document.getElementById('catalogTitleInput').value;
-    companyInfo.phone = document.getElementById('phoneInput').value;
-    companyInfo.email = document.getElementById('emailInput').value;
-    companyInfo.whatsapp = document.getElementById('whatsappInput').value;
-    companyInfo.address = document.getElementById('addressInput').value;
-    companyInfo.footer = document.getElementById('footerTextInput').value;
-    await saveAllData(); showToast("✅ Company info saved!", "#10b981");
-  };
-  
-  document.getElementById('saveGithubBtn').onclick = async () => {
-    let repo = document.getElementById('githubRepo').value.trim();
-    let token = document.getElementById('githubToken').value.trim();
-    if (repo) {
-      githubConfig = { repo, token };
-      localStorage.setItem('rhysco_github_config', JSON.stringify(githubConfig));
-      document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ Config saved! Loading data...</div>';
-      await loadFromGitHubPublic();
-      setTimeout(() => { document.getElementById('githubStatusMsg').innerHTML = ''; }, 3000);
-    } else { showToast("⚠️ Enter repository name", "#ef4444"); }
-  };
-  
-  document.getElementById('searchBtn').onclick = () => { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
-  document.getElementById('searchInput').onkeyup = (e) => { if (e.key === 'Enter') { searchQuery = e.target.value.toLowerCase(); renderProducts(); } };
-  
-  // ✅ FIXED: Login - No credential hints!
-  function showLoginPopup() {
-    let div = document.createElement('div'); div.className = 'login-overlay';
-    div.innerHTML = `<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange);"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" class="login-error"></div></div>`;
-    document.body.appendChild(div);
-    document.getElementById('loginBtn').onclick = () => {
-      let username = document.getElementById('loginUser').value;
-      let password = document.getElementById('loginPass').value;
-      if (username === 'sunny' && password === 'admin') {
-        isAdminAuthenticated = true; div.remove(); openAdminPanel(); showToast("✅ Welcome Admin!", "#10b981");
-      } else {
-        document.getElementById('loginErr').innerText = '❌ Invalid credentials';
-      }
-    };
-  }
-  
-  function openAdminPanel() {
-    if (!isAdminAuthenticated) { showLoginPopup(); return; }
-    document.getElementById('companyName').value = companyInfo.name;
-    document.getElementById('heroTitleInput').value = companyInfo.heroTitle;
-    document.getElementById('heroSubtitleInput').value = companyInfo.heroSubtitle;
-    document.getElementById('catalogTitleInput').value = companyInfo.catalogTitle;
-    document.getElementById('phoneInput').value = companyInfo.phone;
-    document.getElementById('emailInput').value = companyInfo.email;
-    document.getElementById('whatsappInput').value = companyInfo.whatsapp;
-    document.getElementById('addressInput').value = companyInfo.address;
-    document.getElementById('footerTextInput').value = companyInfo.footer;
-    document.getElementById('githubRepo').value = githubConfig.repo;
-    document.getElementById('githubToken').value = githubConfig.token;
-    renderCategoriesList(); renderStatsAdmin();
-    document.getElementById('adminModal').style.display = 'block';
-  }
-  
-  document.getElementById('openAdminBtn').onclick = openAdminPanel;
-  document.getElementById('logoutBtn').onclick = () => { isAdminAuthenticated = false; document.getElementById('adminModal').style.display = 'none'; renderAll(); showToast("✅ Logged out!", "#10b981"); };
-  document.getElementById('closeAdminBtn').onclick = () => document.getElementById('adminModal').style.display = 'none';
-  window.onclick = (e) => { if (e.target === document.getElementById('adminModal')) document.getElementById('adminModal').style.display = 'none'; };
-  
-  document.querySelectorAll('.admin-tab').forEach(tab => {
-    tab.onclick = () => {
-      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('tabCategories').classList.toggle('active', tab.dataset.tab === 'categories');
-      document.getElementById('tabCompany').classList.toggle('active', tab.dataset.tab === 'company');
-      document.getElementById('tabGithub').classList.toggle('active', tab.dataset.tab === 'github');
-    };
-  });
-  
-  let themeBtn = document.getElementById('themeBtn');
-  themeBtn.onclick = () => { document.body.classList.toggle('light'); let icon = themeBtn.querySelector('i'); icon.classList.toggle('fa-moon'); icon.classList.toggle('fa-sun'); };
-  
-  let mobileMenu = document.getElementById('mobileMenu'), navLinks = document.getElementById('navLinks');
-  mobileMenu.onclick = () => navLinks.classList.toggle('active');
-  document.querySelectorAll('.nav-links a').forEach(link => link.onclick = () => navLinks.classList.remove('active'));
-  
-  let backToTop = document.getElementById('backToTop');
-  window.onscroll = () => backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
-  backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-  
-  // Load saved config
-  let savedConfig = localStorage.getItem('rhysco_github_config');
-  if (savedConfig) {
-    try {
-      githubConfig = JSON.parse(savedConfig);
-      document.getElementById('githubRepo').value = githubConfig.repo;
-    } catch(e) {}
-  }
-  
+  function renderCategoriesList() { let container=document.getElementById('categoriesList'); if(!container) return; container.innerHTML=categories.map((cat,catIdx)=>`<div class="category-item"><div class="category-header"><span><span style="font-size:1.5rem;">${cat.icon}</span> <span class="category-name">${cat.name}</span> (${cat.products.length})</span><div><button class="small-btn edit-btn" onclick="editCategory(${catIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteCategory(${catIdx})">Delete</button></div></div><div class="category-products">${cat.products.map((prod,prodIdx)=>`<div class="product-item"><span>${prod.icon} ${prod.name} | ${prod.spec}</span><div><button class="small-btn edit-btn" onclick="editProduct(${catIdx},${prodIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteProduct(${catIdx},${prodIdx})">Delete</button></div></div>`).join('')}<div class="add-product-row"><input type="text" id="newProdName_${catIdx}" placeholder="Name"><input type="text" id="newProdSpec_${catIdx}" placeholder="Spec"><input type="text" id="newProdIcon_${catIdx}" placeholder="🔌" style="width:60px"><input type="text" id="newProdDesc_${catIdx}" placeholder="Desc"><button class="small-btn edit-btn" onclick="addProduct(${catIdx})">+ Add</button></div></div></div>`).join(''); }
+  function renderStatsAdmin() { let container=document.getElementById('statsEditList'); if(container) container.innerHTML=stats.map((s,idx)=>`<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="flex:1; padding:0.5rem; border-radius:12px;"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:80px; padding:0.5rem; border-radius:12px;"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1; padding:0.5rem; border-radius:12px;"><button class="small-btn edit-btn" onclick="updateStat(${idx})">Save</button></div>`).join(''); }
+  window.updateStat=async function(idx){ stats[idx]={icon:document.getElementById(`statIcon_${idx}`).value,number:document.getElementById(`statNum_${idx}`).value,label:document.getElementById(`statLabel_${idx}`).value}; await saveAllData(); renderAll(); };
+  window.createCategory=async function(){ let name=document.getElementById('newCatName').value.trim(); let icon=document.getElementById('newCatIcon').value.trim()||'📁'; if(name){ categories.push({id:generateId(),name,icon,products:[]}); await saveAllData(); document.getElementById('newCatName').value=''; renderAll(); showToast(`✅ Category "${name}" created!`,"#10b981"); } else showToast("⚠️ Enter name","#ef4444"); };
+  window.editCategory=async function(idx){ let newName=prompt('Edit Category:',categories[idx].name); if(newName){ categories[idx].name=newName; await saveAllData(); renderAll(); showToast("✅ Updated","#10b981"); } };
+  window.deleteCategory=async function(idx){ if(confirm(`Delete "${categories[idx].name}"?`)){ categories.splice(idx,1); await saveAllData(); renderAll(); showToast("✅ Deleted","#10b981"); } };
+  window.addProduct=async function(catIdx){ let name=document.getElementById(`newProdName_${catIdx}`).value.trim(); if(name){ categories[catIdx].products.push({id:generateId(),name,spec:document.getElementById(`newProdSpec_${catIdx}`).value.trim()||"Standard",icon:document.getElementById(`newProdIcon_${catIdx}`).value.trim()||"🔌",desc:document.getElementById(`newProdDesc_${catIdx}`).value.trim()||"Premium"}); await saveAllData(); renderAll(); document.getElementById(`newProdName_${catIdx}`).value=''; showToast(`✅ "${name}" added!`,"#10b981"); } else showToast("⚠️ Name required","#ef4444"); };
+  window.editProduct=async function(catIdx,prodIdx){ let newName=prompt('Edit Product:',categories[catIdx].products[prodIdx].name); if(newName){ categories[catIdx].products[prodIdx].name=newName; await saveAllData(); renderAll(); showToast("✅ Updated","#10b981"); } };
+  window.deleteProduct=async function(catIdx,prodIdx){ if(confirm('Delete product?')){ categories[catIdx].products.splice(prodIdx,1); await saveAllData(); renderAll(); showToast("✅ Deleted","#10b981"); } };
+  function escapeHtml(str){ if(!str) return ''; return str.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+  document.getElementById('createCategoryBtn').onclick=()=>window.createCategory();
+  document.getElementById('saveCompanyBtn').onclick=async()=>{ companyInfo.name=document.getElementById('companyName').value; companyInfo.heroTitle=document.getElementById('heroTitleInput').value; companyInfo.heroSubtitle=document.getElementById('heroSubtitleInput').value; companyInfo.catalogTitle=document.getElementById('catalogTitleInput').value; companyInfo.phone=document.getElementById('phoneInput').value; companyInfo.email=document.getElementById('emailInput').value; companyInfo.whatsapp=document.getElementById('whatsappInput').value; companyInfo.address=document.getElementById('addressInput').value; companyInfo.footer=document.getElementById('footerTextInput').value; await saveAllData(); showToast("✅ Company saved!","#10b981"); };
+  document.getElementById('saveGithubBtn').onclick=async()=>{ let repo=document.getElementById('githubRepo').value.trim(); let token=document.getElementById('githubToken').value.trim(); if(repo){ githubConfig={repo,token}; localStorage.setItem('rhysco_github_config',JSON.stringify(githubConfig)); document.getElementById('githubStatusMsg').innerHTML='<div style="background:#10b981;padding:10px;border-radius:12px">✅ Saved! Loading...</div>'; await loadFromGitHubPublic(); setTimeout(()=>{document.getElementById('githubStatusMsg').innerHTML='';},3000); } else showToast("⚠️ Enter repo","#ef4444"); };
+  document.getElementById('searchBtn').onclick=()=>{ searchQuery=document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
+  document.getElementById('searchInput').onkeyup=(e)=>{ if(e.key==='Enter'){ searchQuery=e.target.value.toLowerCase(); renderProducts(); } };
+  function showLoginPopup(){ let div=document.createElement('div'); div.className='login-overlay'; div.innerHTML=`<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange)"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" class="login-error"></div></div>`; document.body.appendChild(div); document.getElementById('loginBtn').onclick=()=>{ if(document.getElementById('loginUser').value==='sunny'&&document.getElementById('loginPass').value==='admin'){ isAdminAuthenticated=true; div.remove(); openAdminPanel(); showToast("✅ Welcome!","#10b981"); } else { document.getElementById('loginErr').innerText='❌ Invalid credentials'; } }; }
+  function openAdminPanel(){ if(!isAdminAuthenticated){ showLoginPopup(); return; } document.getElementById('companyName').value=companyInfo.name; document.getElementById('heroTitleInput').value=companyInfo.heroTitle; document.getElementById('heroSubtitleInput').value=companyInfo.heroSubtitle; document.getElementById('catalogTitleInput').value=companyInfo.catalogTitle; document.getElementById('phoneInput').value=companyInfo.phone; document.getElementById('emailInput').value=companyInfo.email; document.getElementById('whatsappInput').value=companyInfo.whatsapp; document.getElementById('addressInput').value=companyInfo.address; document.getElementById('footerTextInput').value=companyInfo.footer; document.getElementById('githubRepo').value=githubConfig.repo; document.getElementById('githubToken').value=githubConfig.token; renderCategoriesList(); renderStatsAdmin(); document.getElementById('adminModal').style.display='block'; }
+  document.getElementById('openAdminBtn').onclick=openAdminPanel;
+  document.getElementById('logoutBtn').onclick=()=>{ isAdminAuthenticated=false; document.getElementById('adminModal').style.display='none'; renderAll(); showToast("✅ Logged out","#10b981"); };
+  document.getElementById('closeAdminBtn').onclick=()=>document.getElementById('adminModal').style.display='none';
+  window.onclick=(e)=>{ if(e.target===document.getElementById('adminModal')) document.getElementById('adminModal').style.display='none'; };
+  document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.onclick=()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); document.getElementById('tabCategories').classList.toggle('active',tab.dataset.tab==='categories'); document.getElementById('tabCompany').classList.toggle('active',tab.dataset.tab==='company'); document.getElementById('tabGithub').classList.toggle('active',tab.dataset.tab==='github'); }; });
+  let themeBtn=document.getElementById('themeBtn'); themeBtn.onclick=()=>{ document.body.classList.toggle('light'); let i=themeBtn.querySelector('i'); i.classList.toggle('fa-moon'); i.classList.toggle('fa-sun'); };
+  let mobileMenu=document.getElementById('mobileMenu'),navLinks=document.getElementById('navLinks'); mobileMenu.onclick=()=>navLinks.classList.toggle('active'); document.querySelectorAll('.nav-links a').forEach(link=>link.onclick=()=>navLinks.classList.remove('active'));
+  let backToTop=document.getElementById('backToTop'); window.onscroll=()=>{ backToTop.style.display=window.scrollY>300?'flex':'none'; if(window.scrollY>50) document.getElementById('navbar').classList.add('navbar-scrolled'); else document.getElementById('navbar').classList.remove('navbar-scrolled'); }; backToTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  let cursor=document.getElementById('cursorFollower'); document.addEventListener('mousemove',(e)=>{ cursor.style.left=e.clientX-15+'px'; cursor.style.top=e.clientY-15+'px'; });
   loadFromGitHubPublic();
 </script>
 </body>
