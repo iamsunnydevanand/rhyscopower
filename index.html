@@ -145,7 +145,7 @@
 
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo"><i class="fas fa-bolt"></i><span id="companyNameDisplay">Rhysco Power</span></div>
+    <div class="logo"><i class="fas fa-bolt"></i><span id="companyNameDisplay">Loading...</span></div>
     <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
     <div class="nav-links" id="navLinks">
       <a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a>
@@ -158,8 +158,8 @@
 
 <section id="home" class="hero">
   <div class="hero-content">
-    <h1 id="heroTitle">Complete Electrical Solutions <br> <span style="color: #f97316;">⚡ A to Z</span></h1>
-    <p id="heroSubtitle">WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories</p>
+    <h1 id="heroTitle">Loading...</h1>
+    <p id="heroSubtitle">Please wait...</p>
     <a href="#catalog" class="cta-btn">Explore Products <i class="fas fa-arrow-right"></i></a>
   </div>
 </section>
@@ -219,18 +219,19 @@
     
     <div id="tabGithub" class="tab-content">
       <div class="form-group">
-        <h3>🔐 GitHub Configuration (Permanent Save)</h3>
+        <h3>🔐 GitHub Configuration</h3>
         <input type="text" id="githubRepo" placeholder="Repository (username/repo)" value="iamsunnydevanand/rhyscopower">
-        <input type="password" id="githubToken" placeholder="GitHub Token (ghp_...)">
-        <button id="saveGithubBtn" class="save-btn">💾 Save GitHub Config</button>
+        <input type="password" id="githubToken" placeholder="GitHub Token (Optional for reading)">
+        <button id="saveGithubBtn" class="save-btn">💾 Save Config</button>
         <div id="githubStatusMsg"></div>
+        <p style="margin-top:1rem; font-size:0.8rem;">✅ Token optional: Bina token ke bhi data read kar sakte ho! Token sirf edit karne ke liye chahiye.</p>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Default Data
+  // Default Data (fallback only)
   let categories = [
     { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
       { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper" }
@@ -270,25 +271,6 @@
   let isAdminAuthenticated = false;
   let githubConfig = { repo: "iamsunnydevanand/rhyscopower", token: "" };
   
-  // Load saved data from localStorage
-  let savedData = localStorage.getItem('rhysco_all_data');
-  if (savedData) {
-    try {
-      let parsed = JSON.parse(savedData);
-      if (parsed.categories) categories = parsed.categories;
-      if (parsed.companyInfo) companyInfo = parsed.companyInfo;
-      if (parsed.stats) stats = parsed.stats;
-    } catch(e) {}
-  }
-  
-  // Load GitHub config
-  let savedConfig = localStorage.getItem('rhysco_github_config');
-  if (savedConfig) {
-    try {
-      githubConfig = JSON.parse(savedConfig);
-    } catch(e) {}
-  }
-  
   function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
   
   function showToast(msg, color) {
@@ -300,15 +282,52 @@
     setTimeout(() => toast.remove(), 3000);
   }
   
-  function saveAllToLocal() {
+  // 🔥 PUBLIC GITHUB API - BINA TOKEN KE KAAM KAREGA 🔥
+  async function loadFromGitHubPublic() {
+    try {
+      // Public raw URL - bina token ke kaam karega
+      let url = `https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`;
+      let res = await fetch(url);
+      
+      if (res.ok) {
+        let data = await res.json();
+        let content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+        if (content.categories) categories = content.categories;
+        if (content.companyInfo) companyInfo = content.companyInfo;
+        if (content.stats) stats = content.stats;
+        renderAll();
+        showToast("📥 Loaded data from GitHub!", "#10b981");
+        return true;
+      } else {
+        // Fallback to raw.githubusercontent.com
+        let rawUrl = `https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`;
+        let rawRes = await fetch(rawUrl);
+        if (rawRes.ok) {
+          let content = await rawRes.json();
+          if (content.categories) categories = content.categories;
+          if (content.companyInfo) companyInfo = content.companyInfo;
+          if (content.stats) stats = content.stats;
+          renderAll();
+          showToast("📥 Loaded data from GitHub!", "#10b981");
+          return true;
+        }
+      }
+    } catch(e) {
+      console.log("Failed to load from GitHub, using default data", e);
+    }
+    renderAll();
+    return false;
+  }
+  
+  function saveToLocal() {
     let allData = { categories, companyInfo, stats, lastUpdated: new Date().toISOString() };
     localStorage.setItem('rhysco_all_data', JSON.stringify(allData));
   }
   
   async function saveToGitHub() {
     if (!githubConfig.token || !githubConfig.repo) {
-      saveAllToLocal();
-      showToast("⚠️ GitHub not configured! Saved locally only.", "#ef4444");
+      saveToLocal();
+      showToast("⚠️ No token! Saved locally only.", "#ef4444");
       return false;
     }
     
@@ -325,44 +344,20 @@
       let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
         method: 'PUT',
         headers: { 'Authorization': `token ${githubConfig.token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: "Update website data from admin panel", content: content, sha: sha })
+        body: JSON.stringify({ message: "Update website data", content: content, sha: sha })
       });
       
       if (res.ok) {
-        saveAllToLocal();
-        showToast("✅ Saved to GitHub! Changes are PERMANENT!", "#10b981");
+        saveToLocal();
+        showToast("✅ Saved to GitHub! Changes PERMANENT!", "#10b981");
         return true;
-      } else {
-        showToast("❌ GitHub save failed! Check token.", "#ef4444");
-        return false;
       }
-    } catch(e) {
-      showToast("❌ Network error! Saved locally only.", "#ef4444");
-      return false;
-    }
-  }
-  
-  async function loadFromGitHub() {
-    if (!githubConfig.token || !githubConfig.repo) return;
-    try {
-      let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`, {
-        headers: { 'Authorization': `token ${githubConfig.token}` }
-      });
-      if (res.ok) {
-        let data = await res.json();
-        let content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
-        if (content.categories) categories = content.categories;
-        if (content.companyInfo) companyInfo = content.companyInfo;
-        if (content.stats) stats = content.stats;
-        saveAllToLocal();
-        renderAll();
-        showToast("📥 Loaded latest data from GitHub!", "#10b981");
-      }
-    } catch(e) { console.log("No data on GitHub yet"); }
+    } catch(e) { showToast("❌ Save failed!", "#ef4444"); }
+    return false;
   }
   
   async function saveAllData() {
-    saveAllToLocal();
+    saveToLocal();
     await saveToGitHub();
     renderAll();
   }
@@ -512,19 +507,13 @@
   document.getElementById('saveGithubBtn').onclick = async () => {
     let repo = document.getElementById('githubRepo').value.trim();
     let token = document.getElementById('githubToken').value.trim();
-    if (repo && token) {
+    if (repo) {
       githubConfig = { repo, token };
       localStorage.setItem('rhysco_github_config', JSON.stringify(githubConfig));
-      document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ GitHub configured! Testing...</div>';
-      let testRes = await fetch(`https://api.github.com/repos/${repo}`, { headers: { 'Authorization': `token ${token}` } });
-      if (testRes.ok) {
-        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ Connected! Changes will be PERMANENT.</div>';
-        await loadFromGitHub();
-        showToast("✅ GitHub connected!", "#10b981");
-      } else {
-        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status error">❌ Invalid token or repo!</div>';
-      }
-    } else { showToast("⚠️ Enter both Repository and Token", "#ef4444"); }
+      document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ Config saved! Loading data...</div>';
+      await loadFromGitHubPublic();
+      setTimeout(() => { document.getElementById('githubStatusMsg').innerHTML = ''; }, 3000);
+    } else { showToast("⚠️ Enter repository name", "#ef4444"); }
   };
   
   document.getElementById('searchBtn').onclick = () => { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
@@ -584,10 +573,19 @@
   window.onscroll = () => backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
   backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   
-  // Final load
+  // ========== FINAL LOAD - PUBLIC GITHUB API ==========
   (async () => {
-    await loadFromGitHub();
-    renderAll();
+    // Load saved config
+    let savedConfig = localStorage.getItem('rhysco_github_config');
+    if (savedConfig) {
+      try {
+        githubConfig = JSON.parse(savedConfig);
+        document.getElementById('githubRepo').value = githubConfig.repo;
+      } catch(e) {}
+    }
+    
+    // Load data from GitHub (NO TOKEN NEEDED!)
+    await loadFromGitHubPublic();
   })();
 </script>
 </body>
