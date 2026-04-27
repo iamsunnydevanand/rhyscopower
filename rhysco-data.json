@@ -4,7 +4,15 @@
       "id": "1777312652787z0ob9s",
       "name": "🔌WAA CABLES",
       "icon": "d",
-      "products": []
+      "products": [
+        {
+          "id": "17773148457264ad9wu",
+          "name": "WAA CABLE 4.00SQMM RED BLACK",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "100% pure copper, flame retardant, industrial grade"
+        }
+      ]
     }
   ],
   "companyInfo": {
