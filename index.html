@@ -47,6 +47,8 @@
     ::-webkit-scrollbar-thumb { background: var(--accent-gradient); border-radius: 10px; }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    
     .navbar {
       position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(20px);
       z-index: 1000; padding: 1rem 2rem; border-bottom: 1px solid var(--border-light);
@@ -84,7 +86,7 @@
     .filter-group { display: flex; flex-wrap: wrap; gap: 0.8rem; }
     .filter-btn { padding: 0.7rem 1.5rem; border-radius: 40px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); cursor: pointer; transition: 0.2s; font-weight: 600; }
     .filter-btn.active, .filter-btn:hover { background: var(--accent-gradient); color: white; transform: translateY(-2px); }
-    .product-grid { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+    .product-grid { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
     .product-card { background: var(--bg-secondary); border-radius: 28px; padding: 1.8rem; transition: all 0.4s; border: 1px solid var(--border-light); position: relative; overflow: hidden; }
     .product-card:hover { transform: translateY(-12px); box-shadow: var(--card-shadow); border-color: var(--accent-blue); }
     .product-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: var(--accent-gradient); transition: 0.5s; }
@@ -98,8 +100,70 @@
     .wa-btn { background: #25D366; color: white; }
     .detail-btn { background: var(--accent-blue); color: white; }
     .no-results { text-align: center; padding: 4rem; grid-column: 1/-1; }
-    .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; overflow-y: auto; backdrop-filter: blur(5px); }
-    .admin-container { max-width: 1200px; margin: 2rem auto; background: var(--bg-secondary); border-radius: 32px; padding: 2rem; position: relative; }
+    
+    /* Product Detail Modal */
+    .detail-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 2500;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+    .detail-modal-content {
+      background: var(--bg-secondary);
+      border-radius: 32px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeInUp 0.3s ease;
+    }
+    .detail-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      background: none;
+      border: none;
+    }
+    .detail-close:hover { color: var(--accent-orange); }
+    .detail-icon { font-size: 4rem; text-align: center; margin-bottom: 1rem; }
+    .detail-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center; }
+    .detail-spec { font-size: 1rem; color: var(--accent-blue); text-align: center; margin-bottom: 1rem; }
+    .detail-desc { font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem; }
+    .detail-category { background: var(--accent-gradient); padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+    .detail-wa-btn { background: #25D366; color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 1rem; font-size: 1rem; }
+    
+    .admin-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 2000;
+      overflow-y: auto;
+      backdrop-filter: blur(5px);
+    }
+    .admin-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: var(--bg-secondary);
+      border-radius: 32px;
+      padding: 2rem;
+      position: relative;
+    }
     .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
     .close-admin { background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
     .admin-tabs { display: flex; gap: 0.5rem; border-bottom: 2px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
@@ -124,6 +188,7 @@
     .login-box { background: var(--bg-secondary); padding: 2rem; border-radius: 32px; width: 90%; max-width: 350px; text-align: center; }
     .login-box input { width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid var(--border-light); border-radius: 50px; background: var(--bg-primary); color: var(--text-primary); }
     .login-box button { width: 100%; padding: 0.75rem; background: var(--accent-gradient); color: white; border: none; border-radius: 50px; cursor: pointer; margin-top: 0.5rem; }
+    .login-error { color: #ef4444; margin-top: 0.5rem; font-size: 0.85rem; animation: shake 0.3s ease; }
     .features, .contact { background: var(--bg-secondary); padding: 4rem 2rem; margin: 2rem 0; }
     .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
     .feature-item { text-align: center; padding: 1.5rem; }
@@ -177,6 +242,14 @@
 <footer><p id="footerText">© 2026 Rhysco Power - All Rights Reserved</p></footer>
 <a href="#" class="floating-wa" id="floatingWhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Product Detail Modal -->
+<div id="detailModal" class="detail-modal">
+  <div class="detail-modal-content">
+    <button class="detail-close" id="detailCloseBtn">&times;</button>
+    <div id="detailContent"></div>
+  </div>
+</div>
 
 <div id="adminModal" class="admin-modal">
   <div class="admin-container">
@@ -234,10 +307,10 @@
   // Default Data (fallback only)
   let categories = [
     { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
-      { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper" }
+      { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper, flame retardant, industrial grade" }
     ]},
     { id: "cat2", name: "Solar & MC4", icon: "☀️", products: [
-      { id: "p2", name: "SOLAR DC CABLE", spec: "500MTR", icon: "☀️", desc: "UV protected" }
+      { id: "p2", name: "SOLAR DC CABLE", spec: "500MTR", icon: "☀️", desc: "UV protected solar cable" }
     ]}
   ];
   
@@ -282,39 +355,62 @@
     setTimeout(() => toast.remove(), 3000);
   }
   
-  // 🔥 PUBLIC GITHUB API - BINA TOKEN KE KAAM KAREGA 🔥
+  // Product Detail Modal Function
+  function showProductDetail(product) {
+    let modal = document.getElementById('detailModal');
+    let content = document.getElementById('detailContent');
+    content.innerHTML = `
+      <div class="detail-icon">${product.icon || '🔌'}</div>
+      <div class="detail-title">${escapeHtml(product.name)}</div>
+      <div class="detail-spec"><i class="fas fa-ruler"></i> ${escapeHtml(product.spec)}</div>
+      <div style="text-align: center;"><span class="detail-category">📁 ${escapeHtml(product.categoryName)}</span></div>
+      <div class="detail-desc">${escapeHtml(product.desc)}</div>
+      <button class="detail-wa-btn" id="detailWaBtn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</button>
+    `;
+    modal.style.display = 'flex';
+    document.getElementById('detailWaBtn').onclick = () => {
+      window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(product.spec)})`, '_blank');
+    };
+  }
+  
+  document.getElementById('detailCloseBtn').onclick = () => {
+    document.getElementById('detailModal').style.display = 'none';
+  };
+  window.onclick = (e) => {
+    if (e.target === document.getElementById('detailModal')) {
+      document.getElementById('detailModal').style.display = 'none';
+    }
+  };
+  
   async function loadFromGitHubPublic() {
     try {
-      // Public raw URL - bina token ke kaam karega
       let url = `https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`;
       let res = await fetch(url);
       
       if (res.ok) {
         let data = await res.json();
-        let content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+        let content = JSON.parse(atob(data.content));
         if (content.categories) categories = content.categories;
         if (content.companyInfo) companyInfo = content.companyInfo;
         if (content.stats) stats = content.stats;
         renderAll();
-        showToast("📥 Loaded data from GitHub!", "#10b981");
         return true;
-      } else {
-        // Fallback to raw.githubusercontent.com
-        let rawUrl = `https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`;
-        let rawRes = await fetch(rawUrl);
-        if (rawRes.ok) {
-          let content = await rawRes.json();
-          if (content.categories) categories = content.categories;
-          if (content.companyInfo) companyInfo = content.companyInfo;
-          if (content.stats) stats = content.stats;
-          renderAll();
-          showToast("📥 Loaded data from GitHub!", "#10b981");
-          return true;
-        }
       }
-    } catch(e) {
-      console.log("Failed to load from GitHub, using default data", e);
-    }
+    } catch(e) {}
+    
+    try {
+      let rawUrl = `https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`;
+      let rawRes = await fetch(rawUrl);
+      if (rawRes.ok) {
+        let content = await rawRes.json();
+        if (content.categories) categories = content.categories;
+        if (content.companyInfo) companyInfo = content.companyInfo;
+        if (content.stats) stats = content.stats;
+        renderAll();
+        return true;
+      }
+    } catch(e) {}
+    
     renderAll();
     return false;
   }
@@ -417,13 +513,25 @@
   
   function renderProducts() {
     let filtered = activeCategory === 'all' ? getAllProducts() : (categories.find(c => c.id === activeCategory)?.products.map(p => ({ ...p, categoryName: categories.find(c => c.id === activeCategory).name })) || []);
-    filtered = filtered.filter(p => searchQuery === "" || p.name.toLowerCase().includes(searchQuery));
+    filtered = filtered.filter(p => searchQuery === "" || p.name.toLowerCase().includes(searchQuery) || p.spec.toLowerCase().includes(searchQuery));
     let container = document.getElementById('productGrid');
     if (!container) return;
     if (filtered.length === 0) { container.innerHTML = `<div class="no-results"><i class="fas fa-box-open"></i> No products found.</div>`; return; }
-    container.innerHTML = filtered.map(p => `<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc)}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail="${escapeHtml(p.name)} - ${p.desc}"><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
+    container.innerHTML = filtered.map(p => `<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc.substring(0, 80))}${p.desc.length > 80 ? '...' : ''}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail='${JSON.stringify(p)}'><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
+    
     document.querySelectorAll('.wa-btn').forEach(btn => btn.addEventListener('click', () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`, '_blank')));
-    document.querySelectorAll('.detail-btn').forEach(btn => btn.addEventListener('click', () => alert("⚡ " + btn.getAttribute('data-detail'))));
+    
+    // ✅ FIXED: Detail button with full product info
+    document.querySelectorAll('.detail-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        try {
+          let productData = JSON.parse(btn.getAttribute('data-detail'));
+          showProductDetail(productData);
+        } catch(e) {
+          showToast("Error loading details", "#ef4444");
+        }
+      });
+    });
   }
   
   function renderCategoriesList() {
@@ -488,7 +596,10 @@
     if (confirm('Delete this product?')) { categories[catIdx].products.splice(prodIdx,1); await saveAllData(); renderAll(); showToast("✅ Product deleted!", "#10b981"); }
   };
   
-  function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+  function escapeHtml(str) { 
+    if (!str) return '';
+    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); 
+  }
   
   document.getElementById('createCategoryBtn').onclick = () => window.createCategory();
   document.getElementById('saveCompanyBtn').onclick = async () => {
@@ -519,14 +630,19 @@
   document.getElementById('searchBtn').onclick = () => { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
   document.getElementById('searchInput').onkeyup = (e) => { if (e.key === 'Enter') { searchQuery = e.target.value.toLowerCase(); renderProducts(); } };
   
+  // ✅ FIXED: Login - No credential hints!
   function showLoginPopup() {
     let div = document.createElement('div'); div.className = 'login-overlay';
-    div.innerHTML = `<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange);"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" style="color:#ef4444; margin-top:0.5rem;"></div></div>`;
+    div.innerHTML = `<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange);"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" class="login-error"></div></div>`;
     document.body.appendChild(div);
     document.getElementById('loginBtn').onclick = () => {
-      if (document.getElementById('loginUser').value === 'sunny' && document.getElementById('loginPass').value === 'admin') {
+      let username = document.getElementById('loginUser').value;
+      let password = document.getElementById('loginPass').value;
+      if (username === 'sunny' && password === 'admin') {
         isAdminAuthenticated = true; div.remove(); openAdminPanel(); showToast("✅ Welcome Admin!", "#10b981");
-      } else { document.getElementById('loginErr').innerText = '❌ Invalid credentials (Username: sunny, Password: admin)'; }
+      } else {
+        document.getElementById('loginErr').innerText = '❌ Invalid credentials';
+      }
     };
   }
   
@@ -573,20 +689,16 @@
   window.onscroll = () => backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
   backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   
-  // ========== FINAL LOAD - PUBLIC GITHUB API ==========
-  (async () => {
-    // Load saved config
-    let savedConfig = localStorage.getItem('rhysco_github_config');
-    if (savedConfig) {
-      try {
-        githubConfig = JSON.parse(savedConfig);
-        document.getElementById('githubRepo').value = githubConfig.repo;
-      } catch(e) {}
-    }
-    
-    // Load data from GitHub (NO TOKEN NEEDED!)
-    await loadFromGitHubPublic();
-  })();
+  // Load saved config
+  let savedConfig = localStorage.getItem('rhysco_github_config');
+  if (savedConfig) {
+    try {
+      githubConfig = JSON.parse(savedConfig);
+      document.getElementById('githubRepo').value = githubConfig.repo;
+    } catch(e) {}
+  }
+  
+  loadFromGitHubPublic();
 </script>
 </body>
 </html>
