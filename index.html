@@ -54,15 +54,15 @@
     .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: 12px; font-size: 1.8rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; cursor: pointer; }
     .logo i { font-size: 2rem; color: var(--accent-orange); }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
     .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 600; transition: 0.3s; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-gradient); transition: 0.3s; }
     .nav-links a:hover::after { width: 100%; }
-    .admin-btn { background: var(--accent-gradient); color: white !important; padding: 0.5rem 1.2rem; border-radius: 40px; }
+    .admin-btn { background: var(--accent-gradient); color: white !important; padding: 0.5rem 1.2rem; border-radius: 40px; border: none; cursor: pointer; font-weight: 600; }
     .theme-btn { background: var(--bg-secondary); border: 1px solid var(--border-light); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; color: var(--text-primary); }
     .mobile-menu { display: none; font-size: 1.8rem; cursor: pointer; }
     @media (max-width: 850px) {
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--nav-bg); flex-direction: column; padding: 2rem; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--nav-bg); flex-direction: column; padding: 2rem; gap: 1rem; }
       .nav-links.active { display: flex; }
       .mobile-menu { display: block; }
     }
@@ -73,7 +73,7 @@
     .hero p { font-size: 1.3rem; color: #e2e8f0; margin-bottom: 2rem; }
     .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--accent-gradient); color: white; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; text-decoration: none; }
     .stats-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .stat-card { background: var(--bg-secondary); padding: 2rem; border-radius: 24px; text-align: center; transition: 0.3s; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); cursor: pointer; }
+    .stat-card { background: var(--bg-secondary); padding: 2rem; border-radius: 24px; text-align: center; transition: 0.3s; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); }
     .stat-card i { font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .catalog-header { text-align: center; padding: 2rem; }
     .catalog-header h2 { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -98,50 +98,47 @@
     .wa-btn { background: #25D366; color: white; }
     .detail-btn { background: var(--accent-blue); color: white; }
     .no-results { text-align: center; padding: 4rem; grid-column: 1/-1; }
-    .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; backdrop-filter: blur(5px); }
-    .admin-container { max-width: 1400px; margin: 2rem auto; background: var(--bg-secondary); border-radius: 32px; padding: 2rem; position: relative; }
+    .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; overflow-y: auto; backdrop-filter: blur(5px); }
+    .admin-container { max-width: 1200px; margin: 2rem auto; background: var(--bg-secondary); border-radius: 32px; padding: 2rem; position: relative; }
     .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
     .close-admin { background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
-    .admin-tabs { display: flex; gap: 1rem; border-bottom: 2px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
+    .admin-tabs { display: flex; gap: 0.5rem; border-bottom: 2px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
     .admin-tab { padding: 0.75rem 1.5rem; cursor: pointer; background: transparent; border: none; font-weight: 600; color: var(--text-primary); transition: 0.3s; border-radius: 40px; }
     .admin-tab.active { background: var(--accent-gradient); color: white; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .category-section, .company-form { background: var(--bg-primary); border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; display: grid; gap: 1rem; }
-    .category-form input, .company-form input, .company-form textarea { padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-secondary); color: var(--text-primary); }
+    .form-group { background: var(--bg-primary); border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-secondary); color: var(--text-primary); }
     .save-btn { background: var(--accent-gradient); color: white; border: none; padding: 0.75rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; }
-    .category-list { display: grid; gap: 1rem; margin-top: 1rem; max-height: 400px; overflow-y: auto; }
-    .category-item { background: var(--bg-secondary); border-radius: 16px; padding: 1rem; border: 1px solid var(--border-light); }
-    .category-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; }
-    .category-name { font-size: 1.1rem; font-weight: 700; color: var(--accent-orange); }
-    .category-products { padding-left: 1rem; border-left: 2px solid var(--accent-blue); margin-top: 0.5rem; }
-    .category-product-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; background: var(--bg-primary); border-radius: 10px; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
-    .add-product-to-cat { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
-    .add-product-to-cat input { flex: 1; padding: 0.5rem; border-radius: 10px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); }
-    .small-btn { padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.8rem; background: #10b981; color: white; border: none; cursor: pointer; }
-    .edit-cat-btn { background: var(--accent-blue); }
-    .delete-cat-btn { background: #ef4444; }
-    .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2100; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-    .login-box { background: var(--bg-secondary); padding: 2.5rem; border-radius: 32px; width: 90%; max-width: 380px; text-align: center; }
-    .login-box h3 { margin-bottom: 1.5rem; color: var(--accent-orange); }
-    .login-box input { width: 100%; padding: 1rem; margin: 0.7rem 0; border: 2px solid var(--border-light); border-radius: 60px; background: var(--bg-primary); color: var(--text-primary); outline: none; }
-    .login-box button { width: 100%; padding: 1rem; background: var(--accent-gradient); color: white; border: none; border-radius: 60px; font-weight: 700; cursor: pointer; margin-top: 1rem; }
-    .login-error { color: #ef4444; margin-top: 1rem; font-size: 0.9rem; }
+    .category-list { display: grid; gap: 1rem; max-height: 500px; overflow-y: auto; }
+    .category-item { background: var(--bg-secondary); border-radius: 16px; padding: 1rem; border: 1px solid var(--border-light); margin-bottom: 1rem; }
+    .category-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .category-name { font-size: 1.2rem; font-weight: 700; color: var(--accent-orange); }
+    .product-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; background: var(--bg-primary); border-radius: 10px; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .small-btn { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; border: none; cursor: pointer; }
+    .edit-btn { background: var(--accent-blue); color: white; }
+    .delete-btn { background: #ef4444; color: white; }
+    .add-product-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+    .add-product-row input { flex: 1; padding: 0.5rem; border-radius: 10px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); }
+    .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2100; display: flex; align-items: center; justify-content: center; }
+    .login-box { background: var(--bg-secondary); padding: 2rem; border-radius: 32px; width: 90%; max-width: 350px; text-align: center; }
+    .login-box input { width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid var(--border-light); border-radius: 50px; background: var(--bg-primary); color: var(--text-primary); }
+    .login-box button { width: 100%; padding: 0.75rem; background: var(--accent-gradient); color: white; border: none; border-radius: 50px; cursor: pointer; margin-top: 0.5rem; }
     .features, .contact { background: var(--bg-secondary); padding: 4rem 2rem; margin: 2rem 0; }
-    .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-    .feature-item { text-align: center; padding: 2rem; }
-    .feature-item i { font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .feature-item { text-align: center; padding: 1.5rem; }
+    .feature-item i { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .contact { background: var(--accent-gradient); text-align: center; color: white; border-radius: 48px; margin: 2rem; }
-    .contact a { color: white; text-decoration: none; border-bottom: 2px solid white; }
+    .contact a { color: white; }
     footer { text-align: center; padding: 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-light); }
-    .floating-wa { position: fixed; bottom: 2rem; right: 2rem; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; z-index: 100; animation: float 2s infinite; cursor: pointer; }
-    .back-to-top { position: fixed; bottom: 8rem; right: 2rem; background: var(--accent-blue); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: none; color: white; }
-    .category-badge { background: var(--accent-gradient); padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-block; margin-top: 5px; }
-    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
-    .toast { position: fixed; bottom: 100px; right: 20px; background: #10b981; color: white; padding: 12px 24px; border-radius: 50px; z-index: 3000; font-weight: 600; animation: fadeInUp 0.3s ease; }
-    .github-status { margin-top: 1rem; padding: 1rem; border-radius: 12px; text-align: center; }
+    .floating-wa { position: fixed; bottom: 2rem; right: 2rem; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; z-index: 100; animation: float 2s infinite; }
+    .back-to-top { position: fixed; bottom: 7rem; right: 2rem; background: var(--accent-blue); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: none; color: white; }
+    .category-badge { background: var(--accent-gradient); padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-block; margin-top: 8px; }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 12px 24px; border-radius: 40px; z-index: 3000; font-weight: 600; animation: fadeInUp 0.3s ease; }
+    .github-status { margin-top: 1rem; padding: 0.75rem; border-radius: 10px; text-align: center; }
     .github-status.success { background: #10b981; color: white; }
     .github-status.error { background: #ef4444; color: white; }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
   </style>
 </head>
 <body>
@@ -152,7 +149,7 @@
     <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
     <div class="nav-links" id="navLinks">
       <a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a>
-      <div class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></div>
+      <button class="theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
       <button class="admin-btn" id="openAdminBtn"><i class="fas fa-user-shield"></i> Admin</button>
       <button class="admin-btn" id="logoutBtn" style="display: none; background:#ef4444;"><i class="fas fa-sign-out-alt"></i> Logout</button>
     </div>
@@ -183,7 +180,7 @@
 
 <div id="adminModal" class="admin-modal">
   <div class="admin-container">
-    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard <span style="background:#10b981; font-size:0.7rem; padding:2px 8px; border-radius:20px;">🔐 PERMANENT SAVE</span></h2><button class="close-admin" id="closeAdminBtn">×</button></div>
+    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard <span style="background:#10b981; font-size:0.7rem; padding:2px 8px; border-radius:20px;">💾 PERMANENT SAVE</span></h2><button class="close-admin" id="closeAdminBtn">×</button></div>
     <div class="admin-tabs">
       <button class="admin-tab active" data-tab="categories">📁 Categories</button>
       <button class="admin-tab" data-tab="company">🏢 Company</button>
@@ -191,19 +188,18 @@
     </div>
     
     <div id="tabCategories" class="tab-content active">
-      <div class="category-section">
+      <div class="form-group">
         <h3>➕ Create New Category</h3>
-        <div class="category-form">
-          <input type="text" id="newCatName" placeholder="Category Name">
-          <input type="text" id="newCatIcon" placeholder="Icon (🔌, ☀️, 📊)">
-          <button id="createCategoryBtn" class="save-btn">+ Create Category (Permanent)</button>
-        </div>
+        <input type="text" id="newCatName" placeholder="Category Name">
+        <input type="text" id="newCatIcon" placeholder="Icon (🔌, ☀️, 📊)">
+        <button id="createCategoryBtn" class="save-btn">+ Create Category (Permanent)</button>
       </div>
       <div id="categoriesList" class="category-list"></div>
     </div>
     
     <div id="tabCompany" class="tab-content">
-      <div class="company-form">
+      <div class="form-group">
+        <h3>🏢 Company Information</h3>
         <input type="text" id="companyName" placeholder="Company Name">
         <input type="text" id="heroTitleInput" placeholder="Hero Title">
         <input type="text" id="heroSubtitleInput" placeholder="Hero Subtitle">
@@ -215,25 +211,30 @@
         <input type="text" id="footerTextInput" placeholder="Footer Text">
         <button id="saveCompanyBtn" class="save-btn">Save Company Info (Permanent)</button>
       </div>
-      <div><h3>📊 Stats Cards</h3><div id="statsEditList"></div></div>
+      <div class="form-group">
+        <h3>📊 Stats Cards</h3>
+        <div id="statsEditList"></div>
+      </div>
     </div>
     
     <div id="tabGithub" class="tab-content">
-      <div class="company-form">
+      <div class="form-group">
+        <h3>🔐 GitHub Configuration (Permanent Save)</h3>
         <input type="text" id="githubRepo" placeholder="Repository (username/repo)" value="iamsunnydevanand/rhyscopower">
-        <input type="password" id="githubToken" placeholder="GitHub Token">
+        <input type="password" id="githubToken" placeholder="GitHub Token (ghp_...)">
         <button id="saveGithubBtn" class="save-btn">💾 Save GitHub Config</button>
         <div id="githubStatusMsg"></div>
-      </div>
-      <div style="margin-top:1rem; padding:1rem; background:var(--bg-primary); border-radius:12px;">
-        <h4>📝 Token Kaise Banayein:</h4>
-        <ol style="margin-left:1.5rem; margin-top:0.5rem;">
-          <li>GitHub.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</li>
-          <li>"Generate new token" click karein</li>
-          <li>Note: "rhysco-website" likhein</li>
-          <li>Scopes me "repo" select karein</li>
-          <li>Generate karein aur token copy karein</li>
-        </ol>
+        <div style="margin-top:1rem; padding:1rem; background:var(--bg-primary); border-radius:12px; font-size:0.9rem;">
+          <strong>📝 Token Kaise Banayein:</strong>
+          <ol style="margin-left:1.2rem; margin-top:0.5rem;">
+            <li>GitHub.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</li>
+            <li>"Generate new token (classic)" click karein</li>
+            <li>Note: "rhysco-website" likhein</li>
+            <li>Expiration: "No expiration" select karein</li>
+            <li>Scopes: ✅ "repo" tick karein</li>
+            <li>Generate karein aur token COPY karein</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -282,6 +283,15 @@
   
   function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
   
+  function showToast(msg, color) {
+    let toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.style.background = color;
+    toast.innerHTML = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  
   function saveToLocal() {
     localStorage.setItem('rhysco_categories', JSON.stringify(categories));
     localStorage.setItem('rhysco_company', JSON.stringify(companyInfo));
@@ -289,44 +299,53 @@
   }
   
   async function saveToGitHub() {
-    if(!githubConfig.token || !githubConfig.repo) {
+    if (!githubConfig.token || !githubConfig.repo) {
       showToast("⚠️ GitHub token not configured! Changes saved only locally.", "#ef4444");
       return false;
     }
     
-    const dataToSave = { categories, companyInfo, stats, lastUpdated: new Date().toISOString() };
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(dataToSave, null, 2))));
+    let dataToSave = { categories, companyInfo, stats, lastUpdated: new Date().toISOString() };
+    let content = btoa(unescape(encodeURIComponent(JSON.stringify(dataToSave, null, 2))));
     
     try {
       let sha = null;
-      const checkRes = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
+      let checkRes = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
         headers: { 'Authorization': `token ${githubConfig.token}` }
       });
-      if(checkRes.ok) { const fileData = await checkRes.json(); sha = fileData.sha; }
+      if (checkRes.ok) { let fileData = await checkRes.json(); sha = fileData.sha; }
       
-      const res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
+      let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
         method: 'PUT',
         headers: { 'Authorization': `token ${githubConfig.token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: "Update website data", content: content, sha: sha })
+        body: JSON.stringify({ message: "Update website data from admin panel", content: content, sha: sha })
       });
       
-      if(res.ok) { showToast("✅ Saved PERMANENTLY to GitHub! Sabko dikhega!", "#10b981"); return true; }
-      else { showToast("❌ GitHub save failed! Check token permissions.", "#ef4444"); return false; }
-    } catch(e) { showToast("❌ Network error! Could not save to GitHub.", "#ef4444"); return false; }
+      if (res.ok) {
+        showToast("✅ Saved PERMANENTLY to GitHub! Sabko dikhega!", "#10b981");
+        return true;
+      } else {
+        let err = await res.json();
+        showToast("❌ GitHub save failed: " + (err.message || "Check token permissions"), "#ef4444");
+        return false;
+      }
+    } catch(e) {
+      showToast("❌ Network error! Could not save to GitHub.", "#ef4444");
+      return false;
+    }
   }
   
   async function loadFromGitHub() {
-    if(!githubConfig.token || !githubConfig.repo) return;
+    if (!githubConfig.token || !githubConfig.repo) return;
     try {
-      const res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
+      let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, {
         headers: { 'Authorization': `token ${githubConfig.token}` }
       });
-      if(res.ok) {
-        const data = await res.json();
-        const content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
-        if(content.categories) categories = content.categories;
-        if(content.companyInfo) companyInfo = content.companyInfo;
-        if(content.stats) stats = content.stats;
+      if (res.ok) {
+        let data = await res.json();
+        let content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+        if (content.categories) categories = content.categories;
+        if (content.companyInfo) companyInfo = content.companyInfo;
+        if (content.stats) stats = content.stats;
         saveToLocal();
         renderAll();
         showToast("📥 Data loaded from GitHub!", "#10b981");
@@ -336,42 +355,47 @@
   
   async function saveAllData() {
     saveToLocal();
-    if(githubConfig.token && githubConfig.repo) { await saveToGitHub(); }
+    if (githubConfig.token && githubConfig.repo) {
+      await saveToGitHub();
+    }
     renderAll();
-  }
-  
-  function showToast(msg, color) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.style.background = color;
-    toast.innerHTML = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
   }
   
   function getAllProducts() {
     let all = [];
-    categories.forEach(cat => { cat.products.forEach(prod => { all.push({ ...prod, categoryName: cat.name, categoryIcon: cat.icon }); }); });
+    categories.forEach(cat => {
+      cat.products.forEach(prod => {
+        all.push({ ...prod, categoryName: cat.name, categoryIcon: cat.icon });
+      });
+    });
     return all;
   }
   
   function renderAll() {
     renderCompanyInfo(); renderStats(); renderFeatures(); renderContact(); renderFilters(); renderProducts();
-    if(isAdminAuthenticated) { renderCategoriesList(); renderStatsAdmin(); }
+    if (isAdminAuthenticated) { renderCategoriesList(); renderStatsAdmin(); }
   }
   
   function renderCompanyInfo() {
-    document.getElementById('companyNameDisplay').innerText = companyInfo.name;
+    document.getElementById('companyNameDisplay').innerHTML = companyInfo.name;
     document.getElementById('heroTitle').innerHTML = companyInfo.heroTitle;
-    document.getElementById('heroSubtitle').innerText = companyInfo.heroSubtitle;
-    document.getElementById('catalogTitle').innerText = companyInfo.catalogTitle;
+    document.getElementById('heroSubtitle').innerHTML = companyInfo.heroSubtitle;
+    document.getElementById('catalogTitle').innerHTML = companyInfo.catalogTitle;
     document.getElementById('footerText').innerHTML = companyInfo.footer;
     document.getElementById('floatingWhatsApp').href = `https://wa.me/${companyInfo.whatsapp}`;
   }
   
-  function renderStats() { document.getElementById('statsSection').innerHTML = stats.map(s => `<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join(''); }
-  function renderFeatures() { document.getElementById('featuresGrid').innerHTML = features.map(f => `<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join(''); }
-  function renderContact() { document.getElementById('contactContent').innerHTML = `<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp for Quick Quote</a></p>`; }
+  function renderStats() {
+    document.getElementById('statsSection').innerHTML = stats.map(s => `<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join('');
+  }
+  
+  function renderFeatures() {
+    document.getElementById('featuresGrid').innerHTML = features.map(f => `<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
+  }
+  
+  function renderContact() {
+    document.getElementById('contactContent').innerHTML = `<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp for Quick Quote</a></p>`;
+  }
   
   function renderFilters() {
     let total = getAllProducts().length;
@@ -382,29 +406,31 @@
   function renderProducts() {
     let filtered = activeCategory === 'all' ? getAllProducts() : (categories.find(c => c.id === activeCategory)?.products.map(p => ({ ...p, categoryName: categories.find(c => c.id === activeCategory).name })) || []);
     filtered = filtered.filter(p => searchQuery === "" || p.name.toLowerCase().includes(searchQuery));
-    const container = document.getElementById('productGrid');
-    if(filtered.length === 0) { container.innerHTML = `<div class="no-results"><i class="fas fa-box-open"></i> No products found.</div>`; return; }
+    let container = document.getElementById('productGrid');
+    if (filtered.length === 0) { container.innerHTML = `<div class="no-results"><i class="fas fa-box-open"></i> No products found.</div>`; return; }
     container.innerHTML = filtered.map(p => `<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc)}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail="${escapeHtml(p.name)} - ${p.desc}"><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
     document.querySelectorAll('.wa-btn').forEach(btn => btn.addEventListener('click', () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`, '_blank')));
     document.querySelectorAll('.detail-btn').forEach(btn => btn.addEventListener('click', () => alert("⚡ " + btn.getAttribute('data-detail'))));
   }
   
   function renderCategoriesList() {
-    const container = document.getElementById('categoriesList');
+    let container = document.getElementById('categoriesList');
     container.innerHTML = categories.map((cat, catIdx) => `
       <div class="category-item">
-        <div class="category-header"><div><span style="font-size:1.5rem;">${cat.icon}</span> <span class="category-name">${cat.name}</span> (${cat.products.length})</div>
-        <div><button class="small-btn edit-cat-btn" onclick="editCategory(${catIdx})">Edit</button><button class="small-btn delete-cat-btn" onclick="deleteCategory(${catIdx})">Delete</button></div></div>
+        <div class="category-header">
+          <span><span style="font-size:1.5rem;">${cat.icon}</span> <span class="category-name">${cat.name}</span> (${cat.products.length})</span>
+          <div><button class="small-btn edit-btn" onclick="editCategory(${catIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteCategory(${catIdx})">Delete</button></div>
+        </div>
         <div class="category-products">
-          ${cat.products.map((prod, prodIdx) => `<div class="category-product-item"><span>${prod.icon} ${prod.name} | ${prod.spec}</span><div><button class="small-btn edit-cat-btn" onclick="editProduct(${catIdx},${prodIdx})">Edit</button><button class="small-btn delete-cat-btn" onclick="deleteProduct(${catIdx},${prodIdx})">Delete</button></div></div>`).join('')}
-          <div class="add-product-to-cat"><input type="text" id="newProdName_${catIdx}" placeholder="Product Name"><input type="text" id="newProdSpec_${catIdx}" placeholder="Spec"><input type="text" id="newProdIcon_${catIdx}" placeholder="Icon" value="🔌"><input type="text" id="newProdDesc_${catIdx}" placeholder="Desc"><button class="small-btn" onclick="addProduct(${catIdx})">+ Add</button></div>
+          ${cat.products.map((prod, prodIdx) => `<div class="product-item"><span>${prod.icon} ${prod.name} | ${prod.spec}</span><div><button class="small-btn edit-btn" onclick="editProduct(${catIdx},${prodIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteProduct(${catIdx},${prodIdx})">Delete</button></div></div>`).join('')}
+          <div class="add-product-row"><input type="text" id="newProdName_${catIdx}" placeholder="Product Name"><input type="text" id="newProdSpec_${catIdx}" placeholder="Spec"><input type="text" id="newProdIcon_${catIdx}" placeholder="Icon" value="🔌" style="width:60px"><input type="text" id="newProdDesc_${catIdx}" placeholder="Desc"><button class="small-btn edit-btn" onclick="addProduct(${catIdx})">+ Add</button></div>
         </div>
       </div>`).join('');
   }
   
   function renderStatsAdmin() {
-    const container = document.getElementById('statsEditList');
-    container.innerHTML = stats.map((s, idx) => `<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="flex:1"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:100px"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1"><button class="small-btn" onclick="updateStat(${idx})">Save</button></div>`).join('');
+    let container = document.getElementById('statsEditList');
+    container.innerHTML = stats.map((s, idx) => `<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="flex:1; padding:0.5rem; border-radius:8px;"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:80px; padding:0.5rem; border-radius:8px;"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1; padding:0.5rem; border-radius:8px;"><button class="small-btn edit-btn" onclick="updateStat(${idx})">Save</button></div>`).join('');
   }
   
   window.updateStat = async function(idx) {
@@ -415,36 +441,36 @@
   window.createCategory = async function() {
     let name = document.getElementById('newCatName').value.trim();
     let icon = document.getElementById('newCatIcon').value.trim() || '📁';
-    if(name) { categories.push({ id: generateId(), name, icon, products: [] }); await saveAllData(); document.getElementById('newCatName').value = ''; renderAll(); showToast(`✅ Category "${name}" created!`, "#10b981"); }
+    if (name) { categories.push({ id: generateId(), name, icon, products: [] }); await saveAllData(); document.getElementById('newCatName').value = ''; renderAll(); showToast(`✅ Category "${name}" created permanently!`, "#10b981"); }
     else showToast("⚠️ Enter category name", "#ef4444");
   };
   
   window.editCategory = async function(idx) {
     let newName = prompt('Edit Category Name:', categories[idx].name);
-    if(newName) { categories[idx].name = newName; await saveAllData(); renderAll(); }
+    if (newName) { categories[idx].name = newName; await saveAllData(); renderAll(); showToast("✅ Category updated!", "#10b981"); }
   };
   
   window.deleteCategory = async function(idx) {
-    if(confirm(`Delete "${categories[idx].name}" and all products?`)) { categories.splice(idx,1); await saveAllData(); renderAll(); }
+    if (confirm(`Delete "${categories[idx].name}" and all its products?`)) { categories.splice(idx,1); await saveAllData(); renderAll(); showToast("✅ Category deleted!", "#10b981"); }
   };
   
   window.addProduct = async function(catIdx) {
     let name = document.getElementById(`newProdName_${catIdx}`).value.trim();
-    if(name) {
+    if (name) {
       categories[catIdx].products.push({ id: generateId(), name, spec: document.getElementById(`newProdSpec_${catIdx}`).value.trim() || "Standard", icon: document.getElementById(`newProdIcon_${catIdx}`).value.trim() || "🔌", desc: document.getElementById(`newProdDesc_${catIdx}`).value.trim() || "Premium product" });
       await saveAllData(); renderAll();
       document.getElementById(`newProdName_${catIdx}`).value = ''; document.getElementById(`newProdSpec_${catIdx}`).value = ''; document.getElementById(`newProdDesc_${catIdx}`).value = '';
-      showToast(`✅ Product added!`, "#10b981");
+      showToast(`✅ "${name}" added permanently!`, "#10b981");
     } else showToast("⚠️ Enter product name", "#ef4444");
   };
   
   window.editProduct = async function(catIdx, prodIdx) {
     let newName = prompt('Edit Product Name:', categories[catIdx].products[prodIdx].name);
-    if(newName) { categories[catIdx].products[prodIdx].name = newName; await saveAllData(); renderAll(); }
+    if (newName) { categories[catIdx].products[prodIdx].name = newName; await saveAllData(); renderAll(); showToast("✅ Product updated!", "#10b981"); }
   };
   
   window.deleteProduct = async function(catIdx, prodIdx) {
-    if(confirm('Delete product?')) { categories[catIdx].products.splice(prodIdx,1); await saveAllData(); renderAll(); }
+    if (confirm('Delete this product?')) { categories[catIdx].products.splice(prodIdx,1); await saveAllData(); renderAll(); showToast("✅ Product deleted!", "#10b981"); }
   };
   
   function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
@@ -464,34 +490,41 @@
   };
   
   document.getElementById('saveGithubBtn').onclick = async () => {
-    const repo = document.getElementById('githubRepo').value.trim();
-    const token = document.getElementById('githubToken').value.trim();
-    if(repo && token) {
+    let repo = document.getElementById('githubRepo').value.trim();
+    let token = document.getElementById('githubToken').value.trim();
+    if (repo && token) {
       githubConfig = { repo, token };
       localStorage.setItem('rhysco_github_config', JSON.stringify(githubConfig));
-      document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ GitHub configured! Now saving to GitHub...</div>';
-      await saveAllData();
-      setTimeout(() => { document.getElementById('githubStatusMsg').innerHTML = ''; }, 3000);
-      showToast("✅ GitHub configured! Changes will now be PERMANENT!", "#10b981");
+      document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ GitHub configured! Testing connection...</div>';
+      let testRes = await fetch(`https://api.github.com/repos/${repo}`, { headers: { 'Authorization': `token ${token}` } });
+      if (testRes.ok) {
+        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status success">✅ GitHub connected successfully! Changes will now be PERMANENT.</div>';
+        await saveAllData();
+        showToast("✅ GitHub configured! Now all changes are PERMANENT!", "#10b981");
+        setTimeout(() => { document.getElementById('githubStatusMsg').innerHTML = ''; }, 3000);
+      } else {
+        document.getElementById('githubStatusMsg').innerHTML = '<div class="github-status error">❌ Invalid token or repo! Check your credentials.</div>';
+        showToast("❌ Invalid token or repository!", "#ef4444");
+      }
     } else { showToast("⚠️ Please enter both Repository and Token", "#ef4444"); }
   };
   
   document.getElementById('searchBtn').onclick = () => { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
-  document.getElementById('searchInput').onkeyup = (e) => { if(e.key === 'Enter') { searchQuery = e.target.value.toLowerCase(); renderProducts(); } };
+  document.getElementById('searchInput').onkeyup = (e) => { if (e.key === 'Enter') { searchQuery = e.target.value.toLowerCase(); renderProducts(); } };
   
   function showLoginPopup() {
-    const div = document.createElement('div'); div.className = 'login-overlay';
-    div.innerHTML = `<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange);"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" class="login-error"></div></div>`;
+    let div = document.createElement('div'); div.className = 'login-overlay';
+    div.innerHTML = `<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange);"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" style="color:#ef4444; margin-top:0.5rem;"></div></div>`;
     document.body.appendChild(div);
     document.getElementById('loginBtn').onclick = () => {
-      if(document.getElementById('loginUser').value === 'sunny' && document.getElementById('loginPass').value === 'admin') {
+      if (document.getElementById('loginUser').value === 'sunny' && document.getElementById('loginPass').value === 'admin') {
         isAdminAuthenticated = true; div.remove(); openAdminPanel(); showToast("✅ Welcome Admin!", "#10b981");
-      } else { document.getElementById('loginErr').innerText = '❌ Invalid credentials'; }
+      } else { document.getElementById('loginErr').innerText = '❌ Invalid credentials (Username: sunny, Password: admin)'; }
     };
   }
   
   function openAdminPanel() {
-    if(!isAdminAuthenticated) { showLoginPopup(); return; }
+    if (!isAdminAuthenticated) { showLoginPopup(); return; }
     document.getElementById('companyName').value = companyInfo.name;
     document.getElementById('heroTitleInput').value = companyInfo.heroTitle;
     document.getElementById('heroSubtitleInput').value = companyInfo.heroSubtitle;
@@ -510,7 +543,7 @@
   document.getElementById('openAdminBtn').onclick = openAdminPanel;
   document.getElementById('logoutBtn').onclick = () => { isAdminAuthenticated = false; document.getElementById('adminModal').style.display = 'none'; renderAll(); showToast("✅ Logged out!", "#10b981"); };
   document.getElementById('closeAdminBtn').onclick = () => document.getElementById('adminModal').style.display = 'none';
-  window.onclick = (e) => { if(e.target === document.getElementById('adminModal')) document.getElementById('adminModal').style.display = 'none'; };
+  window.onclick = (e) => { if (e.target === document.getElementById('adminModal')) document.getElementById('adminModal').style.display = 'none'; };
   
   document.querySelectorAll('.admin-tab').forEach(tab => {
     tab.onclick = () => {
@@ -519,19 +552,17 @@
       document.getElementById('tabCategories').classList.toggle('active', tab.dataset.tab === 'categories');
       document.getElementById('tabCompany').classList.toggle('active', tab.dataset.tab === 'company');
       document.getElementById('tabGithub').classList.toggle('active', tab.dataset.tab === 'github');
-      if(isAdminAuthenticated && tab.dataset.tab === 'categories') renderCategoriesList();
-      if(isAdminAuthenticated && tab.dataset.tab === 'company') renderStatsAdmin();
     };
   });
   
-  const themeBtn = document.getElementById('themeBtn');
-  themeBtn.onclick = () => { document.body.classList.toggle('light'); const icon = themeBtn.querySelector('i'); icon.classList.toggle('fa-moon'); icon.classList.toggle('fa-sun'); };
+  let themeBtn = document.getElementById('themeBtn');
+  themeBtn.onclick = () => { document.body.classList.toggle('light'); let icon = themeBtn.querySelector('i'); icon.classList.toggle('fa-moon'); icon.classList.toggle('fa-sun'); };
   
-  const mobileMenu = document.getElementById('mobileMenu'), navLinks = document.getElementById('navLinks');
+  let mobileMenu = document.getElementById('mobileMenu'), navLinks = document.getElementById('navLinks');
   mobileMenu.onclick = () => navLinks.classList.toggle('active');
   document.querySelectorAll('.nav-links a').forEach(link => link.onclick = () => navLinks.classList.remove('active'));
   
-  const backToTop = document.getElementById('backToTop');
+  let backToTop = document.getElementById('backToTop');
   window.onscroll = () => backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
   backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   
