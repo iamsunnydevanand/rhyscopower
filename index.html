@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Rhysco Power | 5 Themes - Click to Switch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Theme 1: Dark Royal (Default) */
+    body.theme-1 {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --accent-blue: #0ea5e9;
+      --accent-orange: #f97316;
+      --accent-gradient: linear-gradient(135deg, #0ea5e9, #f97316);
+      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+      --border-light: #334155;
+      --nav-bg: rgba(15, 23, 42, 0.95);
+      --hero-overlay: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(2, 6, 23, 0.9));
+    }
+
+    /* Theme 2: Modern Light */
+    body.theme-2 {
+      --bg-primary: #f0f4f8;
+      --bg-secondary: #ffffff;
+      --text-primary: #1a2a3a;
+      --text-secondary: #4a5a6a;
+      --accent-blue: #2c7da0;
+      --accent-orange: #e76f51;
+      --accent-gradient: linear-gradient(135deg, #2c7da0, #e76f51);
+      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      --border-light: #dce5ed;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --hero-overlay: linear-gradient(135deg, rgba(44, 125, 160, 0.85), rgba(231, 111, 81, 0.9));
+    }
+
+    /* Theme 3: Forest Green */
+    body.theme-3 {
+      --bg-primary: #0d2b1f;
+      --bg-secondary: #1a3a2a;
+      --text-primary: #e8f5e9;
+      --text-secondary: #c8e6c9;
+      --accent-blue: #4caf50;
+      --accent-orange: #ff9800;
+      --accent-gradient: linear-gradient(135deg, #4caf50, #ff9800);
+      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+      --border-light: #2e5a3e;
+      --nav-bg: rgba(13, 43, 31, 0.95);
+      --hero-overlay: linear-gradient(135deg, rgba(13, 43, 31, 0.85), rgba(26, 58, 42, 0.9));
+    }
+
+    /* Theme 4: Sunset Orange */
+    body.theme-4 {
+      --bg-primary: #1a0f0a;
+      --bg-secondary: #2d1f18;
+      --text-primary: #fff3e6;
+      --text-secondary: #ffd9b5;
+      --accent-blue: #ff6b35;
+      --accent-orange: #ffb347;
+      --accent-gradient: linear-gradient(135deg, #ff6b35, #ffb347);
+      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+      --border-light: #4a2f20;
+      --nav-bg: rgba(26, 15, 10, 0.95);
+      --hero-overlay: linear-gradient(135deg, rgba(255, 107, 53, 0.8), rgba(255, 179, 71, 0.85));
+    }
+
+    /* Theme 5: Purple Haze */
+    body.theme-5 {
+      --bg-primary: #1a1025;
+      --bg-secondary: #2d1f3a;
+      --text-primary: #f3e8ff;
+      --text-secondary: #d4c4e8;
+      --accent-blue: #9b59b6;
+      --accent-orange: #e67e22;
+      --accent-gradient: linear-gradient(135deg, #9b59b6, #e67e22);
+      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+      --border-light: #4a3060;
+      --nav-bg: rgba(26, 16, 37, 0.95);
+      --hero-overlay: linear-gradient(135deg, rgba(155, 89, 182, 0.85), rgba(230, 126, 34, 0.9));
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-gradient); border-radius: 10px; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    /* Theme Switcher - Fixed Click to Open */
+    .theme-switcher {
+      position: relative;
+      display: inline-block;
+    }
+    .theme-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+      color: var(--text-primary);
+    }
+    .theme-btn:hover { transform: rotate(15deg); background: var(--accent-gradient); color: white; }
+    .theme-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      padding: 0.5rem;
+      min-width: 200px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border-light);
+      z-index: 1000;
+    }
+    .theme-dropdown.show {
+      display: block;
+      animation: fadeInUp 0.2s ease;
+    }
+    .theme-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: var(--text-primary);
+    }
+    .theme-option:hover {
+      background: var(--accent-gradient);
+      color: white;
+    }
+    .theme-color-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+    .theme-1-color { background: linear-gradient(135deg, #0ea5e9, #f97316); }
+    .theme-2-color { background: linear-gradient(135deg, #2c7da0, #e76f51); }
+    .theme-3-color { background: linear-gradient(135deg, #4caf50, #ff9800); }
+    .theme-4-color { background: linear-gradient(135deg, #ff6b35, #ffb347); }
+    .theme-5-color { background: linear-gradient(135deg, #9b59b6, #e67e22); }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: all 0.3s;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      cursor: pointer;
+    }
+    .logo i { font-size: 2rem; color: var(--accent-orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      transition: 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--accent-blue); }
+    .admin-btn {
+      background: var(--accent-gradient);
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+    }
+    .admin-btn:hover { transform: scale(1.05); }
+    .admin-btn::after { display: none; }
+    .logout-btn {
+      background: #ef4444;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+    }
+    .logout-btn:hover { transform: scale(1.05); background: #dc2626; }
+    .logout-btn::after { display: none; }
+    .mobile-menu { display: none; font-size: 1.8rem; cursor: pointer; }
+
+    @media (max-width: 850px) {
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--nav-bg); flex-direction: column; padding: 2rem; backdrop-filter: blur(20px); }
+      .nav-links.active { display: flex; }
+      .mobile-menu { display: block; }
+      .theme-dropdown { right: -100px; }
+    }
+
+    .hero {
+      min-height: 100vh;
+      background: url('https://images.unsplash.com/photo-1581092335871-5d6a0e3f6e5e?q=80&w=2070&auto=format') center/cover fixed;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--hero-overlay);
+    }
+    .hero-content { position: relative; z-index: 2; animation: fadeInUp 1s ease; }
+    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, var(--accent-blue), var(--accent-orange)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { font-size: 1.3rem; color: #e2e8f0; margin-bottom: 2rem; }
+    .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: var(--accent-gradient); color: white; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; text-decoration: none; }
+    .cta-btn:hover { transform: scale(1.05); }
+
+    .stats-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .stat-card { background: var(--bg-secondary); padding: 2rem; border-radius: 24px; text-align: center; transition: 0.3s; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); cursor: pointer; }
+    .stat-card:hover { transform: translateY(-10px); }
+    .stat-card i { font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    .catalog-header { text-align: center; padding: 2rem; }
+    .catalog-header h2 { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .filter-bar { max-width: 1300px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .search-box { flex: 1; min-width: 250px; display: flex; background: var(--bg-secondary); border-radius: 60px; overflow: hidden; border: 1px solid var(--border-light); }
+    .search-box input { flex: 1; padding: 1rem 1.5rem; border: none; background: transparent; color: var(--text-primary); outline: none; }
+    .search-box button { padding: 0 1.8rem; background: var(--accent-gradient); border: none; color: white; cursor: pointer; font-weight: 600; }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 0.8rem; max-height: 100px; overflow-x: auto; padding-bottom: 5px; }
+    .filter-group::-webkit-scrollbar { height: 5px; }
+    .filter-btn { padding: 0.7rem 1.5rem; border-radius: 40px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); cursor: pointer; transition: 0.2s; font-weight: 600; white-space: nowrap; }
+    .filter-btn.active, .filter-btn:hover { background: var(--accent-gradient); color: white; transform: translateY(-2px); }
+    .product-grid { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+    .product-card { background: var(--bg-secondary); border-radius: 28px; padding: 1.8rem; transition: all 0.4s; border: 1px solid var(--border-light); position: relative; overflow: hidden; }
+    .product-card:hover { transform: translateY(-12px); box-shadow: var(--card-shadow); border-color: var(--accent-blue); }
+    .product-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: var(--accent-gradient); transition: 0.5s; }
+    .product-card:hover::before { left: 0; }
+    .product-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .product-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .product-spec { font-size: 0.8rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+    .product-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.2rem; }
+    .product-actions { display: flex; gap: 0.8rem; }
+    .wa-btn, .detail-btn { flex: 1; padding: 0.7rem; border-radius: 40px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .wa-btn { background: #25D366; color: white; }
+    .detail-btn { background: var(--accent-blue); color: white; }
+    .no-results { text-align: center; padding: 4rem; grid-column: 1/-1; }
+
+    /* Admin Panel Styles */
+    .admin-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      overflow-y: auto;
+      backdrop-filter: blur(5px);
+    }
+    .admin-container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      background: var(--bg-secondary);
+      border-radius: 32px;
+      padding: 2rem;
+      position: relative;
+    }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .close-admin { background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+    .admin-tabs { display: flex; gap: 1rem; border-bottom: 2px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
+    .admin-tab { padding: 0.75rem 1.5rem; cursor: pointer; background: transparent; border: none; font-weight: 600; color: var(--text-primary); transition: 0.3s; border-radius: 40px; }
+    .admin-tab.active { background: var(--accent-gradient); color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .category-section, .product-section-admin { background: var(--bg-primary); border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+    .category-form, .product-form-admin, .company-form { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+    .category-form input, .product-form-admin input, .product-form-admin textarea, .company-form input, .company-form textarea {
+      padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-secondary); color: var(--text-primary);
+    }
+    .save-btn { background: var(--accent-gradient); color: white; border: none; padding: 0.75rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; }
+    .delete-btn { background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 20px; cursor: pointer; font-size: 0.8rem; }
+    .category-list { display: grid; gap: 1rem; margin-top: 1rem; max-height: 400px; overflow-y: auto; }
+    .category-item { background: var(--bg-secondary); border-radius: 16px; padding: 1rem; border: 1px solid var(--border-light); }
+    .category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 0.5rem; }
+    .category-name { font-size: 1.1rem; font-weight: 700; color: var(--accent-orange); }
+    .category-products { padding-left: 1rem; border-left: 2px solid var(--accent-blue); margin-top: 0.5rem; }
+    .category-product-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; background: var(--bg-primary); border-radius: 10px; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .add-product-to-cat { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+    .add-product-to-cat input { flex: 1; padding: 0.5rem; border-radius: 10px; border: 1px solid var(--border-light); background: var(--bg-secondary); color: var(--text-primary); }
+    .small-btn { padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.8rem; background: #10b981; color: white; border: none; cursor: pointer; }
+    .edit-cat-btn { background: var(--accent-blue); }
+    .delete-cat-btn { background: #ef4444; }
+
+    .login-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2100;
+      display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);
+    }
+    .login-box {
+      background: var(--bg-secondary); padding: 2.5rem; border-radius: 32px; width: 90%; max-width: 380px;
+      text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid var(--border-light);
+    }
+    .login-box h3 { margin-bottom: 1.5rem; color: var(--accent-orange); font-size: 1.5rem; }
+    .login-box input { width: 100%; padding: 1rem; margin: 0.7rem 0; border: 2px solid var(--border-light); border-radius: 60px; background: var(--bg-primary); color: var(--text-primary); outline: none; }
+    .login-box input:focus { border-color: var(--accent-blue); }
+    .login-box button { width: 100%; padding: 1rem; background: var(--accent-gradient); color: white; border: none; border-radius: 60px; font-weight: 700; cursor: pointer; margin-top: 1rem; }
+    .login-error { color: #ef4444; margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem; background: rgba(239,68,68,0.1); border-radius: 12px; animation: shake 0.3s ease; }
+
+    .features, .contact { background: var(--bg-secondary); padding: 4rem 2rem; margin: 2rem 0; }
+    .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .feature-item { text-align: center; padding: 2rem; }
+    .feature-item i { font-size: 3rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .contact { background: var(--accent-gradient); text-align: center; color: white; border-radius: 48px; margin: 2rem; }
+    .contact a { color: white; text-decoration: none; border-bottom: 2px solid white; }
+    footer { text-align: center; padding: 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-light); }
+    .floating-wa { position: fixed; bottom: 2rem; right: 2rem; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; z-index: 100; animation: float 2s infinite; cursor: pointer; }
+    .back-to-top { position: fixed; bottom: 8rem; right: 2rem; background: var(--accent-blue); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: none; color: white; }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
+    
+    .category-badge { background: var(--accent-gradient); padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-block; margin-top: 5px; }
+  </style>
+</head>
+<body class="theme-1">
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo"><i class="fas fa-bolt"></i><span id="companyNameDisplay">Rhysco Power</span></div>
+    <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a>
+      <div class="theme-switcher">
+        <div class="theme-btn" id="themeBtn"><i class="fas fa-palette"></i></div>
+        <div class="theme-dropdown" id="themeDropdown">
+          <div class="theme-option" data-theme="theme-1"><div class="theme-color-box theme-1-color"></div>🌙 Dark Royal</div>
+          <div class="theme-option" data-theme="theme-2"><div class="theme-color-box theme-2-color"></div>☀️ Modern Light</div>
+          <div class="theme-option" data-theme="theme-3"><div class="theme-color-box theme-3-color"></div>🌿 Forest Green</div>
+          <div class="theme-option" data-theme="theme-4"><div class="theme-color-box theme-4-color"></div>🌅 Sunset Orange</div>
+          <div class="theme-option" data-theme="theme-5"><div class="theme-color-box theme-5-color"></div>🟣 Purple Haze</div>
+        </div>
+      </div>
+      <button class="admin-btn" id="openAdminBtn"><i class="fas fa-user-shield"></i> Admin</button>
+      <button class="logout-btn" id="logoutBtn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1 id="heroTitle">Complete Electrical Solutions <br> <span style="color: #f97316;">⚡ A to Z</span></h1>
+    <p id="heroSubtitle">WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories</p>
+    <a href="#catalog" class="cta-btn">Explore Products <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<div class="stats-section" id="statsSection"></div>
+<div id="catalog" style="scroll-margin-top: 90px;"></div>
+<div class="catalog-header"><h2><i class="fas fa-store"></i> <span id="catalogTitle">Our Premium Catalog</span></h2></div>
+<div class="filter-bar">
+  <div class="search-box"><input type="text" id="searchInput" placeholder="Search products..."><button id="searchBtn"><i class="fas fa-search"></i></button></div>
+  <div class="filter-group" id="filterGroup"></div>
+</div>
+<div id="productGrid" class="product-grid"></div>
+<section id="features" class="features"><div class="features-grid" id="featuresGrid"></div></section>
+<section id="contact" class="contact"><div id="contactContent"></div></section>
+<footer><p id="footerText">© 2026 Rhysco Power - All Rights Reserved</p></footer>
+<a href="#" class="floating-wa" id="floatingWhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Admin Panel Modal -->
+<div id="adminModal" class="admin-modal">
+  <div class="admin-container">
+    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard</h2><button class="close-admin" id="closeAdminBtn">×</button></div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="categories">📁 Categories</button>
+      <button class="admin-tab" data-tab="products">📦 Products</button>
+      <button class="admin-tab" data-tab="company">🏢 Company</button>
+    </div>
+    
+    <div id="tabCategories" class="tab-content active">
+      <div class="category-section">
+        <h3>➕ Create New Category</h3>
+        <div class="category-form">
+          <input type="text" id="newCatName" placeholder="Category Name">
+          <input type="text" id="newCatIcon" placeholder="Icon (emoji: 🔌, ☀️, 📊)">
+          <button id="createCategoryBtn" class="save-btn">+ Create Category</button>
+        </div>
+      </div>
+      <div class="category-section">
+        <h3>📁 All Categories</h3>
+        <div id="categoriesList" class="category-list"></div>
+      </div>
+    </div>
+    
+    <div id="tabProducts" class="tab-content">
+      <h3>📋 All Products</h3>
+      <div id="allProductsList" class="category-list"></div>
+    </div>
+    
+    <div id="tabCompany" class="tab-content">
+      <div class="company-form">
+        <input type="text" id="companyName" placeholder="Company Name">
+        <input type="text" id="heroTitleInput" placeholder="Hero Title">
+        <input type="text" id="heroSubtitleInput" placeholder="Hero Subtitle">
+        <input type="text" id="catalogTitleInput" placeholder="Catalog Title">
+        <input type="text" id="phoneInput" placeholder="Phone Number">
+        <input type="email" id="emailInput" placeholder="Email">
+        <input type="text" id="whatsappInput" placeholder="WhatsApp Number">
+        <textarea id="addressInput" placeholder="Address" rows="2"></textarea>
+        <input type="text" id="footerTextInput" placeholder="Footer Text">
+        <button id="saveCompanyBtn" class="save-btn">Save Company Info</button>
+      </div>
+      <div id="statsAdmin" style="margin-top: 2rem;"><h3>📊 Stats Cards</h3><div id="statsEditList"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Data Structure
+  let categories = [
+    { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
+      { id: "p1", name: "WAA CABLE 4.00SQMM RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper" }
+    ]},
+    { id: "cat2", name: "Solar & MC4", icon: "☀️", products: [
+      { id: "p2", name: "SOLAR DC CABLE", spec: "500MTR", icon: "☀️", desc: "UV protected" }
+    ]},
+    { id: "cat3", name: "Meters", icon: "📊", products: [
+      { id: "p3", name: "SINGLE PHASE METER", spec: "5/30A", icon: "📊", desc: "Bi-directional" }
+    ]}
+  ];
+  
+  let companyInfo = {
+    name: "Rhysco Power",
+    heroTitle: "Complete Electrical Solutions <br> <span style='color: #f97316;'>⚡ A to Z</span>",
+    heroSubtitle: "WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories",
+    catalogTitle: "Our Premium Catalog",
+    phone: "+91 6203691393",
+    email: "bikram.biharelctrometer@gmail.com",
+    whatsapp: "916203691393",
+    address: "India (Bihar & NCR) | Global Shipping Available",
+    footer: "© 2026 Rhysco Power - All Rights Reserved"
+  };
+  
+  let stats = [
+    { icon: "fas fa-trophy", number: "15+", label: "Years Experience" },
+    { icon: "fas fa-boxes", number: "500+", label: "Premium Products" },
+    { icon: "fas fa-users", number: "1000+", label: "Happy Clients" },
+    { icon: "fas fa-truck", number: "PAN India", label: "Fast Delivery" }
+  ];
+  
+  let features = [
+    { icon: "fas fa-shield-alt", title: "Quality Assured", desc: "ISO certified products" },
+    { icon: "fas fa-clock", title: "24/7 Support", desc: "Technical assistance" },
+    { icon: "fas fa-truck-fast", title: "Pan India Supply", desc: "Fast shipping" },
+    { icon: "fas fa-hand-holding-usd", title: "Best Price", desc: "Wholesale pricing" }
+  ];
+  
+  let activeCategory = "all", searchQuery = "";
+  let isAdminAuthenticated = false;
+  
+  function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
+  
+  function saveAllData() {
+    localStorage.setItem('rhysco_categories', JSON.stringify(categories));
+    localStorage.setItem('rhysco_company', JSON.stringify(companyInfo));
+    localStorage.setItem('rhysco_stats', JSON.stringify(stats));
+  }
+  
+  function loadAllData() {
+    if(localStorage.getItem('rhysco_categories')) categories = JSON.parse(localStorage.getItem('rhysco_categories'));
+    if(localStorage.getItem('rhysco_company')) companyInfo = JSON.parse(localStorage.getItem('rhysco_company'));
+    if(localStorage.getItem('rhysco_stats')) stats = JSON.parse(localStorage.getItem('rhysco_stats'));
+    renderAll();
+  }
+  
+  function getAllProducts() {
+    let all = [];
+    categories.forEach(cat => {
+      cat.products.forEach(prod => {
+        all.push({ ...prod, categoryName: cat.name, categoryIcon: cat.icon, categoryId: cat.id });
+      });
+    });
+    return all;
+  }
+  
+  function renderAll() {
+    renderCompanyInfo();
+    renderStats();
+    renderFeatures();
+    renderContact();
+    renderFilters();
+    renderProducts();
+    updateNavbarButtons();
+    if(isAdminAuthenticated) {
+      renderCategoriesList();
+      renderAllProductsList();
+      renderStatsAdmin();
+    }
+  }
+  
+  function updateNavbarButtons() {
+    const adminBtn = document.getElementById('openAdminBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    if(isAdminAuthenticated) {
+      adminBtn.style.display = 'none';
+      logoutBtn.style.display = 'flex';
+    } else {
+      adminBtn.style.display = 'flex';
+      logoutBtn.style.display = 'none';
+    }
+  }
+  
+  function logout() {
+    isAdminAuthenticated = false;
+    document.getElementById('adminModal').style.display = 'none';
+    renderAll();
+    showToast('✅ Logged out successfully!', '#22c55e');
+  }
+  
+  function showToast(message, color) {
+    const toast = document.createElement('div');
+    toast.innerHTML = message;
+    toast.style.position = 'fixed';
+    toast.style.bottom = '100px';
+    toast.style.right = '20px';
+    toast.style.backgroundColor = color;
+    toast.style.color = 'white';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.zIndex = '3000';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  
+  function renderCompanyInfo() {
+    document.getElementById('companyNameDisplay').innerText = companyInfo.name;
+    document.getElementById('heroTitle').innerHTML = companyInfo.heroTitle;
+    document.getElementById('heroSubtitle').innerText = companyInfo.heroSubtitle;
+    document.getElementById('catalogTitle').innerText = companyInfo.catalogTitle;
+    document.getElementById('footerText').innerHTML = companyInfo.footer;
+    document.getElementById('floatingWhatsApp').href = `https://wa.me/${companyInfo.whatsapp}?text=Hello`;
+  }
+  
+  function renderStats() {
+    document.getElementById('statsSection').innerHTML = stats.map(s => `<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join('');
+  }
+  
+  function renderFeatures() {
+    document.getElementById('featuresGrid').innerHTML = features.map(f => `<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
+  }
+  
+  function renderContact() {
+    document.getElementById('contactContent').innerHTML = `<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p style="margin-top:1rem;"><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp for Quick Quote</a></p>`;
+  }
+  
+  function renderFilters() {
+    let totalProducts = getAllProducts().length;
+    const container = document.getElementById('filterGroup');
+    container.innerHTML = `<button class="filter-btn ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">📂 All (${totalProducts})</button>` + 
+      categories.map(cat => `<button class="filter-btn ${activeCategory === cat.id ? 'active' : ''}" data-cat="${cat.id}">${cat.icon} ${cat.name} (${cat.products.length})</button>`).join('');
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeCategory = btn.getAttribute('data-cat');
+        renderProducts();
+        renderFilters();
+      });
+    });
+  }
+  
+  function renderProducts() {
+    let filteredProducts = [];
+    if(activeCategory === 'all') {
+      filteredProducts = getAllProducts();
+    } else {
+      let cat = categories.find(c => c.id === activeCategory);
+      if(cat) filteredProducts = cat.products.map(p => ({ ...p, categoryName: cat.name, categoryIcon: cat.icon }));
+    }
+    filteredProducts = filteredProducts.filter(p => searchQuery === "" || p.name.toLowerCase().includes(searchQuery) || p.spec.toLowerCase().includes(searchQuery));
+    
+    const container = document.getElementById('productGrid');
+    if(filteredProducts.length === 0) { container.innerHTML = `<div class="no-results"><i class="fas fa-box-open"></i> No products found.</div>`; return; }
+    container.innerHTML = filteredProducts.map(p => `<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc)}</div><div class="category-badge">${p.categoryIcon || '📁'} ${escapeHtml(p.categoryName)}</div><div class="product-actions" style="margin-top: 12px;"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail="${escapeHtml(p.name)} - ${p.desc}"><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
+    
+    document.querySelectorAll('.wa-btn').forEach(btn => btn.addEventListener('click', () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`, '_blank')));
+    document.querySelectorAll('.detail-btn').forEach(btn => btn.addEventListener('click', () => alert("⚡ " + btn.getAttribute('data-detail') + "\n\n✅ Best quality\n📞 " + companyInfo.phone)));
+  }
+  
+  function renderCategoriesList() {
+    const container = document.getElementById('categoriesList');
+    container.innerHTML = categories.map((cat, catIdx) => `
+      <div class="category-item">
+        <div class="category-header">
+          <div><span style="font-size: 1.5rem;">${cat.icon}</span> <span class="category-name">${cat.name}</span> <span style="font-size: 0.8rem;">(${cat.products.length} products)</span></div>
+          <div>
+            <button class="small-btn edit-cat-btn" onclick="editCategory(${catIdx})">✏️ Edit</button>
+            <button class="small-btn delete-cat-btn" onclick="deleteCategory(${catIdx})">🗑️ Delete</button>
+          </div>
+        </div>
+        <div class="category-products">
+          <h4>Products:</h4>
+          ${cat.products.map((prod, prodIdx) => `
+            <div class="category-product-item">
+              <span>${prod.icon} <strong>${prod.name}</strong> | ${prod.spec}</span>
+              <div>
+                <button class="small-btn edit-cat-btn" onclick="editProductInCat(${catIdx}, ${prodIdx})">✏️</button>
+                <button class="small-btn delete-cat-btn" onclick="deleteProductFromCat(${catIdx}, ${prodIdx})">🗑️</button>
+              </div>
+            </div>
+          `).join('')}
+          <div class="add-product-to-cat">
+            <input type="text" id="newProdName_${catIdx}" placeholder="Product Name">
+            <input type="text" id="newProdSpec_${catIdx}" placeholder="Specification">
+            <input type="text" id="newProdIcon_${catIdx}" placeholder="Icon" value="🔌">
+            <input type="text" id="newProdDesc_${catIdx}" placeholder="Description">
+            <button class="small-btn" onclick="addProductToCategory(${catIdx})">+ Add Product</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  function renderAllProductsList() {
+    const container = document.getElementById('allProductsList');
+    container.innerHTML = categories.map(cat => `
+      <div class="category-item">
+        <div class="category-header"><span class="category-name">${cat.icon} ${cat.name} (${cat.products.length} items)</span></div>
+        <div class="category-products">
+          ${cat.products.map(prod => `<div class="category-product-item"><span>${prod.icon} ${prod.name} - ${prod.spec}</span></div>`).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  window.createCategory = function() {
+    let name = document.getElementById('newCatName').value.trim();
+    let icon = document.getElementById('newCatIcon').value.trim() || '📁';
+    if(name) {
+      categories.push({ id: generateId(), name: name, icon: icon, products: [] });
+      saveAllData(); renderAll();
+      document.getElementById('newCatName').value = '';
+      showToast(`✅ Category "${name}" created!`, '#22c55e');
+    } else showToast('⚠️ Enter category name', '#ef4444');
+  };
+  
+  window.editCategory = function(idx) {
+    let newName = prompt('Edit Category Name:', categories[idx].name);
+    if(newName && newName.trim()) { categories[idx].name = newName.trim(); saveAllData(); renderAll(); showToast('✅ Updated!', '#22c55e'); }
+  };
+  
+  window.deleteCategory = function(idx) {
+    if(confirm(`Delete "${categories[idx].name}" and ${categories[idx].products.length} products?`)) {
+      categories.splice(idx, 1); saveAllData(); renderAll(); showToast('✅ Deleted!', '#22c55e');
+    }
+  };
+  
+  window.addProductToCategory = function(catIdx) {
+    let name = document.getElementById(`newProdName_${catIdx}`).value.trim();
+    if(name) {
+      categories[catIdx].products.push({
+        id: generateId(), name: name,
+        spec: document.getElementById(`newProdSpec_${catIdx}`).value.trim() || 'Standard',
+        icon: document.getElementById(`newProdIcon_${catIdx}`).value.trim() || '🔌',
+        desc: document.getElementById(`newProdDesc_${catIdx}`).value.trim() || 'Premium product'
+      });
+      saveAllData(); renderAll();
+      document.getElementById(`newProdName_${catIdx}`).value = '';
+      showToast(`✅ "${name}" added!`, '#22c55e');
+    } else showToast('⚠️ Enter product name', '#ef4444');
+  };
+  
+  window.editProductInCat = function(catIdx, prodIdx) {
+    let prod = categories[catIdx].products[prodIdx];
+    let newName = prompt('Edit Product Name:', prod.name);
+    if(newName) prod.name = newName;
+    saveAllData(); renderAll(); showToast('✅ Updated!', '#22c55e');
+  };
+  
+  window.deleteProductFromCat = function(catIdx, prodIdx) {
+    if(confirm('Delete product?')) {
+      categories[catIdx].products.splice(prodIdx, 1);
+      saveAllData(); renderAll(); showToast('✅ Deleted!', '#22c55e');
+    }
+  };
+  
+  function renderStatsAdmin() {
+    const container = document.getElementById('statsEditList');
+    container.innerHTML = stats.map((s, idx) => `<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; align-items:center; flex-wrap:wrap;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="width:120px; padding:0.5rem; border-radius:10px;"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:100px; padding:0.5rem; border-radius:10px;"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1; padding:0.5rem; border-radius:10px;"><button class="edit-btn" onclick="updateStat(${idx})" style="padding:0.5rem 1rem;">Save</button></div>`).join('');
+  }
+  
+  window.updateStat = function(idx) {
+    stats[idx] = { icon: document.getElementById(`statIcon_${idx}`).value, number: document.getElementById(`statNum_${idx}`).value, label: document.getElementById(`statLabel_${idx}`).value };
+    saveAllData(); renderAll(); showToast('✅ Stats updated!', '#22c55e');
+  };
+  
+  function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+  
+  document.getElementById('createCategoryBtn').onclick = () => window.createCategory();
+  document.getElementById('saveCompanyBtn').addEventListener('click', () => {
+    companyInfo.name = document.getElementById('companyName').value;
+    companyInfo.heroTitle = document.getElementById('heroTitleInput').value;
+    companyInfo.heroSubtitle = document.getElementById('heroSubtitleInput').value;
+    companyInfo.catalogTitle = document.getElementById('catalogTitleInput').value;
+    companyInfo.phone = document.getElementById('phoneInput').value;
+    companyInfo.email = document.getElementById('emailInput').value;
+    companyInfo.whatsapp = document.getElementById('whatsappInput').value;
+    companyInfo.address = document.getElementById('addressInput').value;
+    companyInfo.footer = document.getElementById('footerTextInput').value;
+    saveAllData(); renderAll(); showToast('✅ Saved!', '#22c55e');
+  });
+  
+  document.getElementById('searchBtn').addEventListener('click', () => { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); });
+  document.getElementById('searchInput').addEventListener('keyup', (e) => { if(e.key === 'Enter') { searchQuery = e.target.value.toLowerCase(); renderProducts(); } });
+  
+  // Theme Switcher - CLICK TO OPEN (Fixed)
+  const themeBtn = document.getElementById('themeBtn');
+  const themeDropdown = document.getElementById('themeDropdown');
+  
+  themeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themeDropdown.classList.toggle('show');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!themeBtn.contains(e.target) && !themeDropdown.contains(e.target)) {
+      themeDropdown.classList.remove('show');
+    }
+  });
+  
+  function setTheme(themeName) {
+    document.body.className = themeName;
+    localStorage.setItem('rhysco_theme', themeName);
+    themeDropdown.classList.remove('show');
+  }
+  
+  document.querySelectorAll('.theme-option').forEach(option => {
+    option.addEventListener('click', () => {
+      const theme = option.getAttribute('data-theme');
+      setTheme(theme);
+    });
+  });
+  
+  const savedTheme = localStorage.getItem('rhysco_theme');
+  if(savedTheme) setTheme(savedTheme);
+  else setTheme('theme-1');
+  
+  // Login
+  function showLoginPopup() {
+    const loginDiv = document.createElement('div');
+    loginDiv.className = 'login-overlay';
+    loginDiv.innerHTML = `<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange);margin-bottom:1rem;"></i><h3>Admin Login</h3><input type="text" id="loginUsername" placeholder="Username"><input type="password" id="loginPassword" placeholder="Password"><button id="loginSubmitBtn">Login</button><div id="loginErrorMsg" class="login-error" style="display:none;"></div></div>`;
+    document.body.appendChild(loginDiv);
+    document.getElementById('loginSubmitBtn').addEventListener('click', () => {
+      if(document.getElementById('loginUsername').value === 'sunny' && document.getElementById('loginPassword').value === 'admin') {
+        isAdminAuthenticated = true; loginDiv.remove(); openAdminPanel(); showToast('✅ Welcome!', '#22c55e');
+      } else {
+        const err = document.getElementById('loginErrorMsg');
+        err.style.display = 'block'; err.innerHTML = '❌ Invalid credentials';
+      }
+    });
+  }
+  
+  function openAdminPanel() {
+    if(!isAdminAuthenticated) { showLoginPopup(); return; }
+    renderCategoriesList(); renderAllProductsList(); renderStatsAdmin();
+    document.getElementById('companyName').value = companyInfo.name;
+    document.getElementById('heroTitleInput').value = companyInfo.heroTitle;
+    document.getElementById('heroSubtitleInput').value = companyInfo.heroSubtitle;
+    document.getElementById('catalogTitleInput').value = companyInfo.catalogTitle;
+    document.getElementById('phoneInput').value = companyInfo.phone;
+    document.getElementById('emailInput').value = companyInfo.email;
+    document.getElementById('whatsappInput').value = companyInfo.whatsapp;
+    document.getElementById('addressInput').value = companyInfo.address;
+    document.getElementById('footerTextInput').value = companyInfo.footer;
+    document.getElementById('adminModal').style.display = 'block';
+  }
+  
+  document.getElementById('openAdminBtn').onclick = openAdminPanel;
+  document.getElementById('logoutBtn').onclick = logout;
+  document.getElementById('closeAdminBtn').onclick = () => document.getElementById('adminModal').style.display = 'none';
+  window.onclick = (e) => { if(e.target === document.getElementById('adminModal')) document.getElementById('adminModal').style.display = 'none'; };
+  
+  document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tabCategories').classList.toggle('active', tab.dataset.tab === 'categories');
+      document.getElementById('tabProducts').classList.toggle('active', tab.dataset.tab === 'products');
+      document.getElementById('tabCompany').classList.toggle('active', tab.dataset.tab === 'company');
+      if(isAdminAuthenticated && tab.dataset.tab === 'categories') renderCategoriesList();
+      if(isAdminAuthenticated && tab.dataset.tab === 'products') renderAllProductsList();
+    });
+  });
+  
+  const mobileMenu = document.getElementById('mobileMenu'), navLinks = document.getElementById('navLinks');
+  mobileMenu.addEventListener('click', () => navLinks.classList.toggle('active'));
+  document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none');
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  
+  loadAllData();
+</script>
+</body>
+</html>
