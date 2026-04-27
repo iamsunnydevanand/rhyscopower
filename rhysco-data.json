@@ -1,0 +1,66 @@
+{
+  "categories": [
+    {
+      "id": "cat1",
+      "name": "WAA Cables",
+      "icon": "🔌",
+      "products": [
+        {
+          "id": "p1",
+          "name": "WAA CABLE 4.00SQMM RED BLACK",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "100% pure copper"
+        }
+      ]
+    },
+    {
+      "id": "cat2",
+      "name": "Solar & MC4",
+      "icon": "☀️",
+      "products": [
+        {
+          "id": "p2",
+          "name": "SOLAR DC CABLE",
+          "spec": "500MTR",
+          "icon": "☀️",
+          "desc": "UV protected"
+        }
+      ]
+    }
+  ],
+  "companyInfo": {
+    "name": "Rhysco Power",
+    "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>⚡ A to Z</span>",
+    "heroSubtitle": "WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories",
+    "catalogTitle": "Our Premium Catalog",
+    "phone": "+91 6203691393f",
+    "email": "bikram.biharelctrometer@gmail.com",
+    "whatsapp": "916203691393",
+    "address": "India (Bihar & NCR) | Global Shipping Available",
+    "footer": "© 2026 Rhysco Power - All Rights Reserved"
+  },
+  "stats": [
+    {
+      "icon": "fas fa-trophy",
+      "number": "15+",
+      "label": "Years Experience"
+    },
+    {
+      "icon": "fas fa-boxes",
+      "number": "500+",
+      "label": "Premium Products"
+    },
+    {
+      "icon": "fas fa-users",
+      "number": "1000+",
+      "label": "Happy Clients"
+    },
+    {
+      "icon": "fas fa-truck",
+      "number": "PAN India",
+      "label": "Fast Delivery"
+    }
+  ],
+  "lastUpdated": "2026-04-27T16:18:49.920Z"
+}
