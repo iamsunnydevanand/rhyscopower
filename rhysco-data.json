@@ -4,7 +4,15 @@
       "id": "1777376920838dxtyj3",
       "name": "sunny",
       "icon": "☀️",
-      "products": []
+      "products": [
+        {
+          "id": "1777376937125iz44vg",
+          "name": "sunny dev anand",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "100% pure copper, flame retardant, industrial grade"
+        }
+      ]
     },
     {
       "id": "1777376921508653lcd",
