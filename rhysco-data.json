@@ -1,5 +1,12 @@
 {
-  "categories": [],
+  "categories": [
+    {
+      "id": "1777376920838dxtyj3",
+      "name": "sunny",
+      "icon": "☀️",
+      "products": []
+    }
+  ],
   "companyInfo": {
     "name": "Rhysco Power Private Limitedd",
     "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡ A to Z</span>",
