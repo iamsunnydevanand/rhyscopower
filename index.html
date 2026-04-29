@@ -4,157 +4,246 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>Rhysco Power</title>
+  <meta name="description" content="Premium electrical solutions" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg:#f8f9fc; --bg2:#fff; --text:#1a1a2e; --text2:#5a5a7a; --border:rgba(0,0,0,0.06); --card:rgba(255,255,255,0.85); --nav:rgba(255,255,255,0.8); --grad:linear-gradient(135deg,#0ea5e9,#6366f1,#a855f7); --grad2:linear-gradient(135deg,#f59e0b,#ef4444); --wa:#25D366; --ok:#10b981; --err:#ef4444; }
-    [data-theme="dark"] { --bg:#06060c; --bg2:#0f0f18; --text:#f0f0f5; --text2:#8888a0; --border:rgba(255,255,255,0.06); --card:rgba(18,18,30,0.8); --nav:rgba(10,10,18,0.8); }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); }
-    button { cursor:pointer; border:none; background:none; color:inherit; font:inherit; }
-    input { padding:10px; border:1px solid var(--border); border-radius:10px; background:var(--bg); color:var(--text); width:100%; font:inherit; }
-    .grd { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800; }
-    
-    .nav { position:fixed; top:10px; left:50%; transform:translateX(-50%); width:95%; max-width:1100px; z-index:999; background:var(--nav); backdrop-filter:blur(20px); border:1px solid var(--border); border-radius:999px; padding:8px 20px; display:flex; align-items:center; justify-content:space-between; }
-    .nav .logo { font-weight:800; font-size:16px; }
-    .nav .links { display:flex; gap:2px; }
-    .nav .links a { padding:8px 14px; border-radius:999px; font-size:13px; opacity:.8; }
-    .nav .links a:hover { opacity:1; background:var(--border); }
-    .btn { padding:10px 18px; border-radius:10px; font-weight:700; font-size:13px; background:var(--grad); color:#fff; }
-    .btn2 { padding:10px 18px; border-radius:10px; font-weight:700; font-size:13px; background:var(--ok); color:#fff; }
-    .btn3 { padding:10px 18px; border-radius:10px; font-weight:700; font-size:13px; background:var(--err); color:#fff; }
-    
-    .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:100px 20px; background:linear-gradient(135deg,rgba(99,102,241,.3),rgba(14,165,233,.2)),url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1400&q=80') center/cover; }
-    .hero h1 { color:#fff; font-size:clamp(36px,7vw,68px); font-weight:900; }
-    .hero p { color:rgba(255,255,255,.85); font-size:16px; max-width:500px; margin:12px auto 24px; }
-    .hero a { display:inline-block; padding:14px 28px; border-radius:999px; background:var(--grad); color:#fff; font-weight:700; }
-    
-    .sec { max-width:1100px; margin:0 auto; padding:60px 20px; }
-    .sec h2 { font-size:clamp(26px,4vw,40px); font-weight:900; text-align:center; margin-bottom:30px; }
-    .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:18px; }
-    .card h3 { font-size:14px; margin:6px 0; }
-    .card .spec { font-size:11px; color:#0ea5e9; font-weight:600; }
-    .card p { font-size:12px; color:var(--text2); }
-    .card .btns { display:flex; gap:6px; margin-top:10px; }
-    .card .btns a, .card .btns button { flex:1; padding:8px; border-radius:999px; font-size:11px; font-weight:700; text-align:center; color:#fff; }
-    .card .btns .wa { background:var(--wa); }
-    .card .btns .det { background:var(--grad); }
-    
-    .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:1100px; margin:-50px auto 0; padding:0 20px; position:relative; z-index:5; }
-    .stat { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:20px; text-align:center; }
-    .stat .num { font-size:26px; font-weight:900; color:#6366f1; }
-    .stat .lbl { font-size:10px; text-transform:uppercase; color:var(--text2); }
-    
-    .feat-grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); }
-    .feat { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:20px; text-align:center; }
-    .feat h4 { font-size:14px; font-weight:800; }
-    .feat p { font-size:12px; color:var(--text2); }
-    
-    .contact { display:grid; grid-template-columns:1fr 1fr; border-radius:20px; overflow:hidden; border:1px solid var(--border); }
-    .contact .left { padding:30px; background:var(--grad); color:#fff; }
-    .contact .left h2 { font-size:28px; font-weight:900; text-align:left; }
-    .contact .right { padding:30px; background:var(--card); }
-    
-    footer { text-align:center; padding:30px; color:var(--text2); font-size:12px; border-top:1px solid var(--border); }
-    .float { position:fixed; right:16px; bottom:16px; width:48px; height:48px; background:var(--wa); border-radius:50%; display:grid; place-items:center; color:#fff; font-size:22px; z-index:90; }
-    
-    .modal { position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:16px; }
-    .modal.open { display:flex; }
-    .modal .card { width:100%; max-width:500px; max-height:85vh; background:var(--bg2); overflow-y:auto; }
-    .fld { margin-bottom:10px; }
-    .fld label { display:block; font-size:11px; font-weight:600; margin-bottom:4px; }
-    .toast { position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:var(--bg2); border:1px solid var(--border); padding:10px 18px; border-radius:12px; font-size:13px; font-weight:600; z-index:9999; opacity:0; transition:all .3s; }
-    .toast.show { opacity:1; }
-    .sync { position:fixed; top:0; left:0; right:0; z-index:9999; padding:6px; text-align:center; font-size:12px; font-weight:600; color:#fff; display:none; }
-    .sync.on { display:block; }
-    .sync.load { background:#f59e0b; }
-    .sync.ok { background:#10b981; }
-    .sync.fail { background:#ef4444; }
-    
-    @media(max-width:768px){.nav .links{display:none}.stats{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:1fr}}
+    :root {
+      --bg: #f8f9fc; --bg2: #fff; --text: #1a1a2e; --text2: #5a5a7a;
+      --border: rgba(0,0,0,0.06); --card: rgba(255,255,255,0.85);
+      --nav: rgba(255,255,255,0.8); --hero-overlay: rgba(0,0,0,0.5);
+      --shadow: 0 2px 20px rgba(0,0,0,0.04);
+      --grad: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);
+      --grad2: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      --wa: #25D366; --ok: #10b981; --err: #ef4444; --warn: #f59e0b;
+      --radius: 16px; --radius-sm: 10px; --radius-xl: 24px;
+    }
+    [data-theme="dark"] {
+      --bg: #06060c; --bg2: #0f0f18; --text: #f0f0f5; --text2: #8888a0;
+      --border: rgba(255,255,255,0.06); --card: rgba(18,18,30,0.8);
+      --nav: rgba(10,10,18,0.8); --hero-overlay: rgba(0,0,0,0.7);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: all .3s; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; font-size: inherit; }
+    input, textarea { font-family: inherit; outline: none; border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; width: 100%; transition: border .2s; }
+    input:focus, textarea:focus { border-color: #6366f1; }
+    textarea { resize: vertical; min-height: 60px; }
+    .grd { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grd2 { background: var(--grad2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* NAV */
+    .nav { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1200px; z-index: 999; background: var(--nav); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; transition: all .3s; }
+    .nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; }
+    .nav .logo .dot { width: 34px; height: 34px; background: var(--grad); border-radius: 10px; display: grid; place-items: center; color: #fff; font-size: 16px; }
+    .nav .links { display: flex; gap: 2px; }
+    .nav .links a { padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: .75; transition: all .2s; }
+    .nav .links a:hover { opacity: 1; background: var(--border); }
+    .nav .actions { display: flex; align-items: center; gap: 8px; }
+    .nav .actions .btn-icon { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; font-size: 14px; transition: all .2s; }
+    .nav .actions .btn-icon:hover { background: var(--border); }
+    .nav .actions .btn-admin { padding: 8px 14px; border-radius: 999px; background: var(--grad2); color: #fff; font-size: 12px; font-weight: 700; transition: all .2s; }
+    .nav .actions .btn-admin:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .nav .actions .btn-admin.out { background: #ef4444; }
+    @media (max-width: 768px) { .nav .links { display: none; } }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; position: relative; overflow: hidden; }
+    .hero .bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(99,102,241,.3), rgba(14,165,233,.2)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1400&q=80') center/cover; filter: brightness(.45); }
+    .hero .overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
+    .hero .content { position: relative; z-index: 2; max-width: 800px; }
+    .hero .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: 12px; margin-bottom: 20px; }
+    .hero h1 { color: #fff; font-size: clamp(38px, 7vw, 76px); font-weight: 900; line-height: 1.05; margin-bottom: 16px; }
+    .hero p { color: rgba(255,255,255,.85); font-size: 16px; max-width: 550px; margin: 0 auto 28px; }
+    .hero .cta { display: inline-flex; align-items: center; gap: 8px; padding: 15px 30px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 8px 30px rgba(99,102,241,.4); transition: all .3s; }
+    .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(99,102,241,.6); }
+
+    /* STATS */
+    .stats { max-width: 1100px; margin: -60px auto 0; padding: 0 20px; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; position: relative; z-index: 5; }
+    @media (max-width: 600px) { .stats { grid-template-columns: repeat(2,1fr); } }
+    .stat { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 22px 16px; border-radius: var(--radius-xl); text-align: center; box-shadow: var(--shadow); }
+    .stat .num { font-size: 28px; font-weight: 900; color: #6366f1; }
+    .stat .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text2); margin-top: 4px; }
+
+    /* SECTIONS */
+    .sec { max-width: 1100px; margin: 0 auto; padding: 70px 20px; }
+    .sec .head { text-align: center; margin-bottom: 40px; }
+    .sec .head h2 { font-size: clamp(28px,4.5vw,44px); font-weight: 900; }
+    .sec .head p { color: var(--text2); font-size: 14px; max-width: 500px; margin: 8px auto 0; }
+
+    /* SEARCH */
+    .search { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 4px 4px 4px 16px; max-width: 500px; margin: 0 auto 20px; }
+    .search input { flex: 1; border: none; background: transparent; padding: 10px; font-size: 13px; }
+    .search button { padding: 8px 18px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 12px; white-space: nowrap; }
+
+    /* PILLS */
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 24px; }
+    .pill { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); transition: all .2s; background: var(--card); cursor: pointer; }
+    .pill:hover { background: var(--border); }
+    .pill.on { background: var(--grad); color: #fff; border-color: transparent; }
+
+    /* GRID */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 20px; display: flex; flex-direction: column; transition: all .3s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .card .icon { font-size: 30px; margin-bottom: 8px; }
+    .card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .card .spec { font-size: 11px; color: #0ea5e9; font-weight: 600; margin-bottom: 6px; }
+    .card p { font-size: 12px; color: var(--text2); flex: 1; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card .badge { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; background: var(--grad2); color: #fff; padding: 4px 8px; border-radius: 999px; margin-bottom: 10px; align-self: flex-start; }
+    .card .btns { display: flex; gap: 6px; }
+    .card .btns a, .card .btns button { flex: 1; padding: 9px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; text-align: center; transition: all .2s; cursor: pointer; }
+    .card .btns .wa { background: var(--wa); }
+    .card .btns .det { background: var(--grad); }
+
+    /* FEATURES */
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; }
+    .feat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 24px; text-align: center; transition: all .3s; }
+    .feat:hover { transform: translateY(-4px); }
+    .feat .ic { width: 40px; height: 40px; margin: 0 auto 12px; background: var(--grad); border-radius: 12px; display: grid; place-items: center; color: #fff; font-size: 18px; }
+    .feat h4 { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+    .feat p { font-size: 12px; color: var(--text2); }
+
+    /* CONTACT */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border); }
+    @media (max-width: 700px) { .contact { grid-template-columns: 1fr; } }
+    .contact .left { padding: 40px 30px; background: var(--grad); color: #fff; }
+    .contact .left h2 { font-size: 30px; font-weight: 900; margin-bottom: 12px; }
+    .contact .left p { opacity: .9; font-size: 14px; margin-bottom: 20px; }
+    .contact .left a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 700; font-size: 13px; text-decoration: none; }
+    .contact .right { padding: 30px; display: flex; flex-direction: column; gap: 10px; background: var(--card); }
+    .contact .right .item { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 14px; font-size: 13px; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 30px; color: var(--text2); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+    /* FLOAT */
+    .float { position: fixed; right: 16px; bottom: 16px; width: 48px; height: 48px; background: var(--wa); border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 22px; z-index: 90; box-shadow: 0 8px 30px rgba(37,211,102,.4); text-decoration: none; }
+
+    /* MODAL */
+    .modal { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 16px; }
+    .modal.open { display: flex; }
+    .modal .card { width: 100%; max-width: 500px; max-height: 85vh; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow-y: auto; padding: 24px; position: relative; }
+    .modal .card.wide { max-width: 650px; }
+    .modal .close { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%; background: var(--border); display: grid; place-items: center; font-size: 14px; cursor: pointer; }
+
+    /* ADMIN */
+    .admin-tabs { display: flex; gap: 4px; background: var(--border); border-radius: 12px; padding: 3px; margin-bottom: 16px; }
+    .admin-tabs button { flex: 1; padding: 8px; border-radius: 9px; font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; background: transparent; }
+    .admin-tabs button.on { background: var(--bg2); color: var(--text); }
+    .fld { margin-bottom: 10px; }
+    .fld label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+    .fld input, .fld textarea { width: 100%; }
+
+    /* TOAST */
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid var(--border); padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; z-index: 9999; opacity: 0; pointer-events: none; transition: all .3s; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+
+    /* SYNC */
+    .sync { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; padding: 6px; text-align: center; font-size: 12px; font-weight: 600; color: #fff; display: none; }
+    .sync.on { display: block; }
+    .sync.load { background: #f59e0b; }
+    .sync.ok { background: #10b981; }
+    .sync.fail { background: #ef4444; }
   </style>
 </head>
 <body>
 
 <div class="sync" id="sync"></div>
 
-<nav class="nav">
-  <span class="logo"><span class="grd" id="navName">Rhysco Power</span></span>
-  <div class="links"><a href="#home">Home</a><a href="#cat">Products</a><a href="#feat">Features</a><a href="#contact">Contact</a></div>
-  <button class="btn" id="adminBtn" onclick="openAdmin()">🔑 Admin</button>
+<nav class="nav" id="nav">
+  <a href="#" class="logo"><span class="dot">⚡</span><span class="grd" id="navName">Rhysco Power</span></a>
+  <div class="links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a></div>
+  <div class="actions">
+    <button class="btn-icon" onclick="toggleTheme()">🌓</button>
+    <button class="btn-admin" id="adminBtn" onclick="openAdmin()">🔑 Admin</button>
+  </div>
 </nav>
 
 <section class="hero" id="home">
-  <h1 id="heroTitle">Complete <span class="grd">Electrical</span> Solutions</h1>
-  <p id="heroSub"></p>
-  <a href="#cat">Explore Products →</a>
+  <div class="bg"></div><div class="overlay"></div>
+  <div class="content">
+    <span class="badge">⭐ Since 2010 • Trusted Quality</span>
+    <h1 id="heroTitle">Complete <span class="grd">Electrical</span> Solutions</h1>
+    <p id="heroSub"></p>
+    <a href="#catalog" class="cta">Explore Products →</a>
+  </div>
 </section>
 
 <div class="stats" id="statsGrid"></div>
 
-<section class="sec" id="cat">
-  <h2>Our <span class="grd">Products</span></h2>
-  <div style="max-width:500px;margin:0 auto 20px;display:flex;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:4px">
-    <input type="search" id="searchInput" placeholder="Search…" style="border:none;background:transparent"><button id="clearBtn" style="display:none;padding:8px 16px;border-radius:999px;background:var(--grad);color:#fff;font-weight:700;font-size:12px" onclick="clearSearch()">Clear</button>
-  </div>
+<section class="sec" id="catalog">
+  <div class="head"><h2>Our <span class="grd">Products</span></h2><p>Premium electrical equipment for professionals</p></div>
+  <div class="search"><span style="color:var(--text2);margin-right:4px">🔍</span><input type="search" id="searchInput" placeholder="Search cables, meters, MC4 connectors…"><button id="clearBtn" style="display:none" onclick="clearSearch()">✕</button></div>
+  <div class="pills" id="pills"></div>
   <div class="grid" id="prodGrid"></div>
 </section>
 
-<section class="sec" id="feat">
-  <h2>Why <span class="grd">Choose Us</span></h2>
+<section class="sec" id="features">
+  <div class="head"><h2>Why <span class="grd2">Choose Us</span></h2></div>
   <div class="feat-grid" id="featGrid"></div>
 </section>
 
 <section class="sec" id="contact">
   <div class="contact">
-    <div class="left"><h2>Let's Talk</h2><p style="margin-top:10px">Reach out for enquiries or bulk orders.</p><a id="contactWa" href="#" target="_blank" style="display:inline-block;margin-top:16px;padding:12px 22px;border-radius:999px;background:var(--wa);color:#fff;font-weight:700">💬 WhatsApp</a></div>
+    <div class="left"><h2>Let's Talk</h2><p>Reach out for enquiries, bulk orders, or technical guidance.</p><a id="contactWa" href="#" target="_blank">💬 Chat on WhatsApp</a></div>
     <div class="right" id="contactRight"></div>
   </div>
 </section>
 
-<footer>© <span id="footerYear"></span> <span id="footerName"></span></footer>
+<footer>© <span id="footerYear"></span> <span id="footerName"></span>. All rights reserved.</footer>
+
 <a class="float" id="floatWa" href="#" target="_blank">💬</a>
 
-<div class="modal" id="adminModal"><div class="card" style="max-width:550px"><h3 style="margin-bottom:14px">Admin Panel</h3><div id="adminTabs" style="display:flex;gap:4px;background:var(--border);border-radius:12px;padding:3px;margin-bottom:14px"></div><div id="adminPane"></div><button class="btn3" style="margin-top:10px;width:100%" onclick="closeAdmin()">Close</button></div></div>
+<div class="modal" id="prodModal"><div class="card" id="prodModalCard"></div></div>
+<div class="modal" id="adminModal"><div class="card wide"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3>Admin Panel</h3><button class="close" onclick="closeAdmin()">✕</button></div><div class="admin-tabs" id="adminTabs"></div><div id="adminPane"></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
-// ========== COMPLETE WORKING CODE v7 ==========
 'use strict';
-console.clear();
-console.log('🚀 Rhysco Power v7 — FORCE UPDATE FIX');
-
-// DATA
-const DEFCAT = [{id:'cat_WAA',name:'WAA Cables',icon:'🔌',prods:[{id:'p_1',name:'4.0 SQMM WAA CABLE RED BLACK',spec:'100 MTR',icon:'🔌',desc:'Premium 100% pure copper flexible cable'}]}];
+// ========== DATA ==========
+const DEFCAT = [{id:'cat_WAA',name:'WAA Cables',icon:'🔌',prods:[{id:'p_1',name:'4.0 SQMM WAA CABLE RED BLACK',spec:'100 MTR',icon:'🔌',desc:'Premium 100% pure copper flexible cable for industrial use'}]}];
 const DEF = {
   cat: JSON.parse(JSON.stringify(DEFCAT)),
-  com: {name:'Rhysco Power',ph:'+91 6203691393',em:'test@test.com',wa:'916203691393',ad:'India',ht:'Complete Electrical Solutions',hs:'WAA Cables • Solar • MC4 • Meters'},
-  st: [{n:'15+',l:'Years'},{n:'1',l:'Products'},{n:'1000+',l:'Clients'},{n:'PAN India',l:'Delivery'}],
-  ft: [{t:'Quality',d:'ISO certified'},{t:'Support',d:'24/7 available'},{t:'Delivery',d:'Nationwide'},{t:'Price',d:'Wholesale'}]
+  com: {name:'Rhysco Power',tag:'Premium Electrical Solutions',ph:'+91 6203691393',em:'bikram.biharelctrometer@gmail.com',wa:'916203691393',ad:'India',ht:'Complete Electrical Solutions',hs:'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety'},
+  st:[{n:'15+',l:'Years'},{n:'100+',l:'Products'},{n:'1000+',l:'Clients'},{n:'PAN India',l:'Delivery'}],
+  ft:[{t:'Quality Assured',d:'ISO certified products'},{t:'24/7 Support',d:'Technical assistance anytime'},{t:'Fast Delivery',d:'Nationwide shipping'},{t:'Best Price',d:'Wholesale pricing'},{t:'Trusted Brands',d:'Original grade only'},{t:'Bulk Orders',d:'Project supply expert'}]
 };
 
-// GIT CONFIG
+// ========== STATE ==========
 let G = {owner:'',token:'',repo:'rhysco-data',branch:'main',path:'data.json',ok:!1};
 try{let s=JSON.parse(localStorage.getItem('rc_git')||'{}');if(s.owner&&s.token){G.owner=s.owner;G.token=s.token;G.repo=s.repo||'rhysco-data';G.branch=s.branch||'main';G.ok=!0}}catch{}
 
-// STATE
 let S = {
   cat:JSON.parse(JSON.stringify(DEF.cat)),com:{...DEF.com},st:JSON.parse(JSON.stringify(DEF.st)),ft:JSON.parse(JSON.stringify(DEF.ft)),
   adm:!!(function(){try{return localStorage.getItem('rc_auth')==='1'}catch{return!1}}()),
-  q:'',tab:'company'
+  acat:'all',q:'',tab:'company',ecat:null,eid:null,ed:{name:'',spec:'',desc:'',icon:'📦'}
 };
-let syncTimer;
+let st,tt;
 
-// HELPERS
+// ========== HELPERS ==========
+const uid=()=>'id_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const wa=t=>`https://wa.me/${S.com.wa}?text=${encodeURIComponent(t)}`;
 const flat=()=>S.cat.flatMap(c=>c.prods.map(p=>({...p,cid:c.id,cn:c.name,ci:c.icon})));
-const refresh=()=>{RC();RSt();RP();RF();};
+function fullRefresh(){RC();RSt();RCat();RP();RF();}
 function toast(m,d=2500){let t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),d)}
 function syn(m,c){let b=document.getElementById('sync');b.textContent=m;b.className='sync on '+c;setTimeout(()=>b.className='sync',c==='ok'?2000:4000)}
 
-// THEME
-(function(){let t=(()=>{try{return localStorage.getItem('rc_theme')||'dark'}catch{return'dark'}})();document.documentElement.dataset.theme=t})();
+// ========== THEME ==========
+(function(){
+  let t=(()=>{try{return localStorage.getItem('rc_theme')||'dark'}catch{return'dark'}})();
+  document.documentElement.dataset.theme=t;
+})();
+function toggleTheme(){
+  let t=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  try{localStorage.setItem('rc_theme',t)}catch{}
+  document.documentElement.dataset.theme=t;
+}
 
-// GITHUB API
+// ========== GITHUB API ==========
 async function gh(ep,m='GET',body=null){
   if(!G.token)throw new Error('Token missing');
   let c=new AbortController(),to=setTimeout(()=>c.abort(),12000);
@@ -166,7 +255,11 @@ async function gh(ep,m='GET',body=null){
     });
     clearTimeout(to);
     let j=await r.json();
-    if(!r.ok)throw new Error(r.status===401?'Invalid token':r.status===404?'Repo not found':j.message||'Error');
+    if(!r.ok){
+      if(r.status===401)throw new Error('Invalid token');
+      if(r.status===404)throw new Error('Repo not found');
+      throw new Error(j.message||'Error '+r.status);
+    }
     return j;
   }catch(e){clearTimeout(to);throw e}
 }
@@ -180,23 +273,17 @@ async function gitPush(){
 }
 
 async function gitPull(){
-  console.log('📥 Pulling from GitHub...');
   let r=await gh(`/contents/${G.path}`);
   let d=JSON.parse(atob(r.content));
-  console.log('📦 Data:',d);
-  
-  // FORCE UPDATE
   if(d.cat?.length)S.cat=d.cat;
   if(d.com?.name)S.com={...DEF.com,...d.com};
   if(d.st?.length)S.st=d.st;
   if(d.ft?.length)S.ft=d.ft;
-  
-  // FORCE REFRESH ALL UI
-  RC();RSt();RP();RF();
-  console.log('✅ UI updated with GitHub data');
+  fullRefresh();
+  toast('✅ Data synced from GitHub');
 }
 
-// RENDER
+// ========== RENDER ==========
 function RC(){
   document.getElementById('navName').textContent=S.com.name;
   document.getElementById('footerName').textContent=S.com.name;
@@ -205,160 +292,131 @@ function RC(){
   document.getElementById('heroTitle').innerHTML=S.com.ht.replace(/Electrical/gi,'<span class="grd">Electrical</span>');
   document.getElementById('heroSub').textContent=S.com.hs;
   document.getElementById('floatWa').href=wa('Hi');
-  document.getElementById('contactWa').href=wa('Hi');
-  document.getElementById('contactRight').innerHTML=[{l:'Phone',v:S.com.ph},{l:'WhatsApp',v:'+'+S.com.wa},{l:'Email',v:S.com.em},{l:'Address',v:S.com.ad}].map(i=>`<div style="padding:8px"><strong>${i.l}:</strong> ${i.v}</div>`).join('');
+  document.getElementById('contactWa').href=wa('Hi, enquiry');
+  document.getElementById('contactRight').innerHTML=[
+    {l:'Phone',v:S.com.ph},{l:'WhatsApp',v:'+'+S.com.wa},{l:'Email',v:S.com.em},{l:'Address',v:S.com.ad}
+  ].map(i=>`<div class="item"><strong>${i.l}</strong>: ${i.v}</div>`).join('');
 }
 
 function RSt(){
-  document.getElementById('statsGrid').innerHTML=S.st.map(s=>`<div class="stat"><div class="num">${s.n}</div><div class="lbl">${s.l}</div></div>`).join('');
+  document.getElementById('statsGrid').innerHTML=S.st.map((s,i)=>`<div class="stat"><div class="num">${s.n}</div><div class="lbl">${s.l}</div></div>`).join('');
 }
 
 function RF(){
-  document.getElementById('featGrid').innerHTML=S.ft.map(f=>`<div class="feat"><h4>${f.t}</h4><p>${f.d}</p></div>`).join('');
+  document.getElementById('featGrid').innerHTML=S.ft.map(f=>`<div class="feat"><div class="ic">⭐</div><h4>${f.t}</h4><p>${f.d}</p></div>`).join('');
+}
+
+function RCat(){
+  let all=flat();
+  document.getElementById('pills').innerHTML='<button class="pill '+(S.acat==='all'?'on':'')+'" onclick="setCat(\'all\')">📂 All</button>'+S.cat.map(c=>'<button class="pill '+(S.acat===c.id?'on':'')+'" onclick="setCat(\''+c.id+'\')">'+c.icon+' '+c.name+'</button>').join('');
 }
 
 function RP(){
   let g=document.getElementById('prodGrid');
   let all=flat();
-  let f=S.q.trim().toLowerCase()?all.filter(p=>p.name.toLowerCase().includes(S.q.trim().toLowerCase())):all;
-  if(!f.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text2)">No products</div>';return}
-  g.innerHTML=f.map(p=>`<div class="card"><div style="font-size:28px">${p.icon}</div><h3>${p.name}</h3><div class="spec">📏 ${p.spec}</div><p>${p.desc}</p><div class="btns"><a class="wa" href="${wa('Interested: '+p.name)}" target="_blank">💬 Enquiry</a><button class="det">Details</button></div></div>`).join('');
+  let base=S.acat==='all'?all:all.filter(p=>p.cid===S.acat);
+  let q=S.q.trim().toLowerCase();
+  let f=q?base.filter(p=>p.name.toLowerCase().includes(q)||p.spec.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)):base;
+  if(!f.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text2)">No products found</div>';return}
+  g.innerHTML=f.map(p=>{
+    let w=wa('Interested in: '+p.name);
+    return `<div class="card"><div class="icon">${p.icon || '📦'}</div><h3>${escapeHtml(p.name)}</h3><div class="spec">📏 ${escapeHtml(p.spec)}</div><p>${escapeHtml(p.desc)}</p><span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span><div class="btns"><a class="wa" href="${w}" target="_blank">💬 Enquiry</a><button class="det" onclick="openProd('${p.id}')">Details</button></div></div>`;
+  }).join('');
 }
 
+function escapeHtml(str){if(!str)return '';return str.replace(/[&<>]/g,function(m){if(m==='&')return '&amp;';if(m==='<')return '&lt;';if(m==='>')return '&gt;';return m;});}
+
+function setCat(id){S.acat=id;RCat();RP()}
 function clearSearch(){S.q='';document.getElementById('searchInput').value='';document.getElementById('clearBtn').style.display='none';RP()}
 
-// ADMIN
+function openProd(id){
+  let p=flat().find(p=>p.id===id);
+  if(!p)return;
+  let w=wa('Quote: '+p.name);
+  document.getElementById('prodModalCard').innerHTML=`<button class="close" onclick="closeProd()">✕</button><div style="text-align:center"><div style="font-size:48px">${p.icon || '📦'}</div><span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span><h2 style="margin:8px 0">${escapeHtml(p.name)}</h2><div style="color:#0ea5e9;font-weight:600">📏 ${escapeHtml(p.spec)}</div><p style="color:var(--text2);margin:10px 0">${escapeHtml(p.desc)}</p><div style="display:flex;gap:8px;margin-top:14px"><a class="btn" href="${w}" target="_blank" style="flex:1;padding:12px;border-radius:999px;color:#fff;text-align:center;font-weight:700;background:#25D366;text-decoration:none">💬 WhatsApp</a><a class="btn" href="tel:${S.com.ph.replace(/\s+/g,'')}" style="flex:1;padding:12px;border-radius:999px;color:#fff;text-align:center;font-weight:700;background:var(--grad);text-decoration:none">📞 Call</a></div></div>`;
+  document.getElementById('prodModal').classList.add('open');
+}
+function closeProd(){document.getElementById('prodModal').classList.remove('open')}
+
+// ========== ADMIN ==========
 function openAdmin(){document.getElementById('adminModal').classList.add('open');renderAdmin()}
 function closeAdmin(){document.getElementById('adminModal').classList.remove('open')}
 function login(){
   if(document.getElementById('au')?.value?.trim()==='sunny'&&document.getElementById('ap')?.value==='admin'){
-    S.adm=!0;try{localStorage.setItem('rc_auth','1')}catch{}updateBtn();renderAdmin();toast('Welcome!');
-  }else{let e=document.getElementById('le');if(e)e.textContent='Invalid'}
+    S.adm=!0;try{localStorage.setItem('rc_auth','1')}catch{}
+    updateBtn();renderAdmin();toast('Welcome Admin!');
+  }else{let e=document.getElementById('le');if(e)e.textContent='Invalid credentials'}
   return!1;
 }
-function logout(){S.adm=!1;try{localStorage.removeItem('rc_auth')}catch{}updateBtn();closeAdmin()}
+function logout(){S.adm=!1;try{localStorage.removeItem('rc_auth')}catch{}updateBtn();closeAdmin();fullRefresh()}
 function updateBtn(){
   let b=document.getElementById('adminBtn');
-  if(S.adm){b.textContent='Logout';b.onclick=logout;b.style.background='#ef4444'}
-  else{b.textContent='🔑 Admin';b.onclick=openAdmin;b.style.background='var(--grad)'}
+  if(S.adm){b.className='btn-admin out';b.textContent='🚪 Logout';b.onclick=logout}
+  else{b.className='btn-admin';b.textContent='🔑 Admin';b.onclick=openAdmin}
 }
 
 function renderAdmin(){
   if(!S.adm){
     document.getElementById('adminTabs').innerHTML='';
-    document.getElementById('adminPane').innerHTML=`<form onsubmit="return login()" style="max-width:260px;margin:0 auto;display:flex;flex-direction:column;gap:10px"><h4 style="text-align:center">Admin Login</h4><div class="fld"><label>Username</label><input id="au" required></div><div class="fld"><label>Password</label><input id="ap" type="password" required></div><div id="le" style="color:#ef4444;font-size:11px;text-align:center"></div><button class="btn" type="submit">Sign In</button></form>`;
+    document.getElementById('adminPane').innerHTML=`<form onsubmit="return login()" style="max-width:280px;margin:20px auto;display:flex;flex-direction:column;gap:12px"><h3 style="text-align:center">Admin Login</h3><div class="fld"><label>Username</label><input id="au" required></div><div class="fld"><label>Password</label><input id="ap" type="password" required></div><div id="le" style="color:#ef4444;font-size:11px;text-align:center"></div><button class="btn" style="background:var(--grad);color:#fff;padding:10px;border-radius:10px;font-weight:700;cursor:pointer">Sign In</button></form>`;
     return;
   }
-  document.getElementById('adminTabs').innerHTML=`<button class="btn" style="${S.tab==='company'?'opacity:1':'opacity:.5'};font-size:11px;flex:1" onclick="setTab('company')">Company</button><button class="btn2" style="${S.tab==='git'?'opacity:1':'opacity:.5'};font-size:11px;flex:1" onclick="setTab('git')">🔗 Git</button>`;
+  document.getElementById('adminTabs').innerHTML=`<button class="${S.tab==='company'?'on':''}" onclick="setTab('company')">🏢 Company</button><button class="${S.tab==='git'?'on':''}" onclick="setTab('git')">🔗 GitHub</button><button class="${S.tab==='stats'?'on':''}" onclick="setTab('stats')">📊 Stats</button><button class="${S.tab==='features'?'on':''}" onclick="setTab('features')">⭐ Features</button>`;
   renderPane();
 }
 function setTab(t){S.tab=t;renderAdmin()}
 function renderPane(){
   let p=document.getElementById('adminPane');
-  if(S.tab==='company'){
-    p.innerHTML=`<h4 style="margin-bottom:10px">Company Settings</h4><div class="fld"><label>Name</label><input value="${S.com.name}" oninput="updateField('name',this.value)"></div><div class="fld"><label>Hero Title</label><input value="${S.com.ht}" oninput="updateField('ht',this.value)"></div><div class="fld"><label>Hero Subtitle</label><input value="${S.com.hs}" oninput="updateField('hs',this.value)"></div><div class="fld"><label>Phone</label><input value="${S.com.ph}" oninput="updateField('ph',this.value)"></div><div class="fld"><label>WhatsApp</label><input value="${S.com.wa}" oninput="updateField('wa',this.value)"></div><div class="fld"><label>Email</label><input value="${S.com.em}" oninput="updateField('em',this.value)"></div><p style="font-size:10px;color:var(--text2);margin-top:8px">Auto-saves to GitHub every 3 seconds</p>`;
-  }
-  if(S.tab==='git'){
-    p.innerHTML=`<h4 style="margin-bottom:10px">GitHub Sync</h4><p style="font-size:11px;color:var(--text2);margin-bottom:10px">Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#0ea5e9">github.com/settings/tokens</a> → <b>repo</b> scope</p><div class="fld"><label>GitHub Username</label><input id="go" value="${G.owner}" placeholder="username"></div><div class="fld"><label>Token</label><input id="gt" type="password" value="${G.token}" placeholder="ghp_..."></div><div class="fld"><label>Repo</label><input id="gr" value="${G.repo}" placeholder="rhysco-data"></div><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn" onclick="saveGit()">💾 Save & Sync</button>${G.ok?`<button class="btn2" onclick="gitPush().then(()=>toast('✅ Pushed')).catch(e=>toast('❌ '+e.message))">📤 Push</button><button class="btn2" onclick="gitPull().then(()=>toast('✅ Loaded! Refresh page')).catch(e=>toast('❌ '+e.message))">📥 Pull</button>`:''}</div><div style="margin-top:8px;font-size:11px"><b>${G.ok?'✅ Connected to '+G.owner+'/'+G.repo:'⚡ Not connected'}</b></div>`;
-  }
+  if(S.tab==='company')p.innerHTML=`<h4>Company Settings</h4><div class="fld"><label>Company Name</label><input id="compName" value="${escapeAttr(S.com.name)}" oninput="updateCompany('name',this.value)"></div><div class="fld"><label>Hero Title</label><input id="compHt" value="${escapeAttr(S.com.ht)}" oninput="updateCompany('ht',this.value)"></div><div class="fld"><label>Hero Subtitle</label><input id="compHs" value="${escapeAttr(S.com.hs)}" oninput="updateCompany('hs',this.value)"></div><div class="fld"><label>Phone</label><input id="compPh" value="${escapeAttr(S.com.ph)}" oninput="updateCompany('ph',this.value)"></div><div class="fld"><label>WhatsApp (numbers only)</label><input id="compWa" value="${escapeAttr(S.com.wa)}" oninput="updateCompany('wa',this.value)"></div><div class="fld"><label>Email</label><input id="compEm" value="${escapeAttr(S.com.em)}" oninput="updateCompany('em',this.value)"></div><div class="fld"><label>Address</label><input id="compAd" value="${escapeAttr(S.com.ad)}" oninput="updateCompany('ad',this.value)"></div><button onclick="syncToGitHub()" style="margin-top:12px;padding:10px;background:var(--grad);color:#fff;border-radius:10px;font-weight:700;cursor:pointer">💾 Save & Sync to GitHub</button>`;
+  
+  if(S.tab==='git')p.innerHTML=`<h4>GitHub Configuration</h4><p style="font-size:12px;color:var(--text2);margin-bottom:12px">📌 <a href="https://github.com/settings/tokens" target="_blank" style="color:#0ea5e9">Create token</a> with repo scope</p><div class="fld"><label>GitHub Username</label><input id="go" value="${escapeAttr(G.owner)}" placeholder="username"></div><div class="fld"><label>Personal Access Token</label><input id="gt" type="password" value="${G.token}" placeholder="ghp_..."></div><div class="fld"><label>Repository Name</label><input id="gr" value="${escapeAttr(G.repo)}" placeholder="rhysco-data"></div><div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn" style="background:var(--grad);color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer" onclick="saveGit()">💾 Save & Test</button>${G.ok?`<button class="btn" style="background:#10b981;color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer" onclick="doPush()">📤 Push to GitHub</button><button class="btn" style="background:#10b981;color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer" onclick="doPull()">📥 Pull from GitHub</button>`:''}</div><div style="margin-top:12px;padding:8px;border-radius:8px;background:var(--border);font-size:12px">${G.ok?'✅ GitHub Connected • Auto-sync enabled':'⚡ Configure GitHub for cloud backup'}</div>`;
+  
+  if(S.tab==='stats')p.innerHTML=`<h4>Statistics Section</h4><div id="statsEditor"></div><button onclick="addStat()" style="margin:8px 0;padding:8px;background:var(--grad);color:#fff;border-radius:8px;cursor:pointer">+ Add Stat</button><button onclick="syncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px;cursor:pointer">💾 Save All</button><div style="margin-top:16px;font-size:12px;color:var(--text2)">Tip: Stats appear below hero section</div>`;
+  if(S.tab==='stats')document.getElementById('statsEditor').innerHTML=S.st.map((s,i)=>`<div style="display:flex;gap:8px;margin-bottom:8px;align-items:center"><input value="${escapeAttr(s.n)}" onchange="updateStat(${i},'n',this.value)" placeholder="Number" style="flex:1"><input value="${escapeAttr(s.l)}" onchange="updateStat(${i},'l',this.value)" placeholder="Label" style="flex:2"><button onclick="removeStat(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer">🗑️</button></div>`).join('');
+  
+  if(S.tab==='features')p.innerHTML=`<h4>Features Section</h4><div id="featuresEditor"></div><button onclick="addFeature()" style="margin:8px 0;padding:8px;background:var(--grad);color:#fff;border-radius:8px;cursor:pointer">+ Add Feature</button><button onclick="syncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px;cursor:pointer">💾 Save All</button><div style="margin-top:16px;font-size:12px;color:var(--text2)">Features appear in the "Why Choose Us" section</div>`;
+  if(S.tab==='features')document.getElementById('featuresEditor').innerHTML=S.ft.map((f,i)=>`<div style="display:flex;gap:8px;margin-bottom:8px;align-items:center"><input value="${escapeAttr(f.t)}" onchange="updateFeature(${i},'t',this.value)" placeholder="Title" style="flex:1"><input value="${escapeAttr(f.d)}" onchange="updateFeature(${i},'d',this.value)" placeholder="Description" style="flex:2"><button onclick="removeFeature(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer">🗑️</button></div>`).join('');
 }
 
-function updateField(k,v){
-  S.com[k]=v;
-  RC(); // Update UI immediately
-  clearTimeout(syncTimer);
-  if(G.ok)syncTimer=setTimeout(()=>gitPush().then(()=>console.log('✅ Auto-synced')).catch(e=>console.log('Sync:',e.message)),3000);
-}
+function escapeAttr(str){if(!str)return '';return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function updateCompany(field,val){S.com[field]=val;RC();autoSync()}
+function updateStat(idx,field,val){if(S.st[idx]){S.st[idx][field]=val;RSt();autoSync()}}
+function addStat(){S.st.push({n:'New',l:'Stat'});renderAdmin();RSt();autoSync()}
+function removeStat(idx){S.st.splice(idx,1);renderAdmin();RSt();autoSync()}
+function updateFeature(idx,field,val){if(S.ft[idx]){S.ft[idx][field]=val;RF();autoSync()}}
+function addFeature(){S.ft.push({t:'New Feature',d:'Description'});renderAdmin();RF();autoSync()}
+function removeFeature(idx){S.ft.splice(idx,1);renderAdmin();RF();autoSync()}
+
+let autoSyncTimer=null;
+function autoSync(){if(G.ok){clearTimeout(autoSyncTimer);autoSyncTimer=setTimeout(()=>{gitPush().catch(e=>console.warn(e));},2000);}}
+async function syncToGitHub(){if(!G.ok){toast('⚠️ Configure GitHub first');return;}try{await gitPush();toast('✅ Saved to GitHub');}catch(e){toast('❌ '+e.message);}}
+async function doPush(){try{await gitPush();toast('✅ Pushed to GitHub');}catch(e){toast('❌ '+e.message);}}
+async function doPull(){try{await gitPull();fullRefresh();closeAdmin();toast('✅ Data loaded');}catch(e){toast('❌ '+e.message);}}
 
 async function saveGit(){
   let o=document.getElementById('go')?.value?.trim(),t=document.getElementById('gt')?.value?.trim();
   if(!o||!t)return toast('⚠️ Username & token required');
-  G.owner=o;G.token=t;G.repo=document.getElementById('gr')?.value?.trim()||'rhysco-data';G.ok=!0;
-  try{localStorage.setItem('rc_git',JSON.stringify({owner:o,token:t,repo:G.repo,branch:'main'}))}catch{}
-  try{
-    await gitPush();
-    toast('✅ Connected & synced! All devices will see changes.');
-  }catch(e){toast('⚠️ '+e.message)}
-  renderAdmin();
+  G.owner=o;G.token=t;G.repo=document.getElementById('gr')?.value?.trim()||'rhysco-data';G.branch='main';
+  try{localStorage.setItem('rc_git',JSON.stringify({owner:o,token:t,repo:G.repo,branch:'main'}));G.ok=!0;toast('✅ Saved');await gitPush();toast('✅ Connected & first sync complete');renderAdmin();}catch(e){toast('⚠️ '+e.message);G.ok=!1;}
 }
 
-// EVENTS
+// ========== EVENTS ==========
 document.getElementById('searchInput').addEventListener('input',e=>{
   S.q=e.target.value;
   document.getElementById('clearBtn').style.display=S.q?'inline-block':'none';
-  RP();
+  clearTimeout(tt);tt=setTimeout(RP,200);
 });
 
-// ========== INIT - FORCE LOAD FROM GITHUB ==========
+// ========== INIT ==========
 (async function init(){
-  console.log('🚀 INIT: Git connected?', G.ok);
-  
   if(G.ok){
-    syn('🔄 Fetching latest data from GitHub...','load');
-    console.log('📡 Fetching from:', G.owner+'/'+G.repo);
-    
-    try {
-      // DIRECT API CALL - no function wrapper
-      let ctrl = new AbortController();
-      let timeout = setTimeout(() => ctrl.abort(), 12000);
-      
-      let response = await fetch(`https://api.github.com/repos/${encodeURIComponent(G.owner)}/${encodeURIComponent(G.repo)}/contents/${G.path}`, {
-        headers: {'Authorization': `Bearer ${G.token}`, 'Accept': 'application/vnd.github.v3+json'},
-        signal: ctrl.signal
-      });
-      clearTimeout(timeout);
-      
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      
-      let fileData = await response.json();
-      let data = JSON.parse(atob(fileData.content));
-      
-      console.log('📦 GitHub data:', data);
-      console.log('📦 Company name from GitHub:', data.com?.name);
-      
-      // FORCE OVERWRITE STATE
-      if (data.cat?.length) {
-        S.cat = data.cat;
-        console.log('✅ Categories loaded:', S.cat.length);
-      }
-      if (data.com?.name) {
-        S.com = data.com;
-        console.log('✅ Company loaded:', S.com.name);
-      }
-      if (data.st?.length) {
-        S.st = data.st;
-        console.log('✅ Stats loaded');
-      }
-      if (data.ft?.length) {
-        S.ft = data.ft;
-        console.log('✅ Features loaded');
-      }
-      
-      // FORCE UI REFRESH
-      refresh();
-      
-      syn('✅ Latest data loaded from GitHub!','ok');
-      console.log('✅ UI refreshed with GitHub data');
-      
-    } catch(e) {
-      console.error('❌ GitHub load error:', e.message);
-      syn('⚠️ ' + e.message + ' — using defaults','fail');
-      refresh();
-    }
-  } else {
-    console.log('ℹ️ No Git config — using defaults');
-    refresh();
-  }
-  
+    syn('🔄 Syncing latest data...','load');
+    try{await gitPull();syn('✅ Latest data loaded from GitHub','ok')}catch(e){syn('⚠️ '+e.message,'fail');fullRefresh()}
+  }else{fullRefresh()}
   updateBtn();
-  
-  // Tab focus = re-pull
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && G.ok) {
-      console.log('🔄 Tab visible — re-pulling...');
-      gitPull().catch(e => console.log('Pull error:', e));
-    }
-  });
+  // Auto-refresh when page becomes visible
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&G.ok){gitPull().catch(()=>{});}});
 })();
 </script>
 </body>
