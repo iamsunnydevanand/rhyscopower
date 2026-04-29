@@ -74,6 +74,44 @@
       border: 1px solid var(--border);
     }
 
+    /* SYNC INDICATOR */
+    .sync-indicator {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 90;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp .3s ease;
+      pointer-events: none;
+    }
+    .sync-indicator .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    .sync-indicator .dot.loading {
+      background: var(--warning);
+      animation: pulse 1s ease-in-out infinite;
+    }
+    .sync-indicator .dot.error {
+      background: var(--danger);
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
     /* NAVBAR */
     .nav {
       position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
@@ -520,6 +558,10 @@
     @keyframes pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
     .spinner {
       width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.3);
       border-top-color: #fff; border-radius: 50%;
@@ -547,7 +589,7 @@
       <span class="logo-mark">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       </span>
-      <span class="logo-text grad-text" id="navName">Rhysco Power</span>
+      <span class="logo-text grad-text" id="navName">Loading...</span>
     </a>
     <div class="nav-links">
       <a href="#home">Home</a>
@@ -566,6 +608,12 @@
     </div>
   </nav>
 
+  <!-- SYNC INDICATOR -->
+  <div class="sync-indicator" id="syncIndicator" style="display:none">
+    <div class="dot" id="syncDot"></div>
+    <span id="syncText">Syncing from GitHub...</span>
+  </div>
+
   <!-- HERO -->
   <section id="home" class="hero">
     <div class="hero-bg"></div>
@@ -577,7 +625,7 @@
         Since 2010 • Premium Quality
       </span>
       <h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1>
-      <p id="heroSubtitle">WAA Cables • Solar &amp; MC4 • Meters • Earthing • Fire Safety • Accessories</p>
+      <p id="heroSubtitle">Loading products...</p>
       <a href="#catalog" class="cta">
         Explore Products
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -594,7 +642,7 @@
     <div class="section-head">
       <span class="eyebrow">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-        <span id="catalogCount">0 products</span>
+        <span id="catalogCount">Loading...</span>
       </span>
       <h2>Premium <span class="grad-text">Catalog</span></h2>
       <p>Industrial-grade electrical equipment trusted by contractors, electricians and procurement teams across India.</p>
@@ -607,7 +655,12 @@
       </div>
       <div class="pills" id="categoryPills"></div>
     </div>
-    <div id="productsGrid" class="grid"></div>
+    <div id="productsGrid" class="grid">
+      <div class="empty" style="grid-column:1/-1">
+        <div class="spinner" style="margin:0 auto 12px"></div>
+        <div style="font-size:18px;font-weight:700">Loading products...</div>
+      </div>
+    </div>
   </section>
 
   <!-- FEATURES -->
@@ -644,7 +697,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </span>
         <div>
-          <div class="grad-text" id="footerName" style="font-weight:800; font-size:15px">Rhysco Power</div>
+          <div class="grad-text" id="footerName" style="font-weight:800; font-size:15px">Loading...</div>
           <div class="footer-text">Since 2010 • Premium Electrical Solutions</div>
         </div>
       </div>
@@ -835,10 +888,10 @@
   /* ============== GITHUB CONFIG ============== */
   const GIT_CONFIG = {
     owner: '',       // Your GitHub username
-    repo: '',        // Your repository name
-    branch: 'main',  // Branch name (main or master)
+    repo: '',        // Your repository name  
+    branch: 'main',  // Branch name
     token: '',       // GitHub Personal Access Token
-    path: 'data.json' // File path in repo for data storage
+    path: 'data.json' // File path in repo
   };
 
   /* ============== STATE & STORAGE ============== */
@@ -857,7 +910,7 @@
     try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
   }
 
-  // Load Git config from localStorage
+  // Load Git config from localStorage FIRST
   const savedGit = load(KEYS.git, null);
   if (savedGit) Object.assign(GIT_CONFIG, savedGit);
 
@@ -886,13 +939,30 @@
     state.syncPending = true;
     save(KEYS.sync, true);
     
-    // Auto-sync if Git is configured
+    // Auto-sync to GitHub
     if (state.gitConnected) {
       syncToGitHub().catch(() => {});
     }
   }
 
   /* ============== GITHUB API ============== */
+  function showSyncIndicator(status, text) {
+    const el = document.getElementById('syncIndicator');
+    const dot = document.getElementById('syncDot');
+    const txt = document.getElementById('syncText');
+    if (!el || !dot || !txt) return;
+    
+    el.style.display = 'flex';
+    dot.className = 'dot ' + status;
+    txt.textContent = text;
+    
+    if (status === 'loading') {
+      setTimeout(() => {
+        if (el.style.display !== 'none') el.style.display = 'none';
+      }, 3000);
+    }
+  }
+
   async function githubAPI(endpoint, method = 'GET', body = null) {
     if (!GIT_CONFIG.token) throw new Error('GitHub token not configured');
     
@@ -917,7 +987,7 @@
   }
 
   async function syncToGitHub() {
-    if (!state.gitConnected) return;
+    if (!state.gitConnected) return false;
     
     const dataToSync = {
       categories: state.categories,
@@ -928,14 +998,11 @@
     };
 
     try {
-      // Get current file info (to get SHA for update)
       let sha = null;
       try {
         const fileInfo = await githubAPI(`/contents/${GIT_CONFIG.path}`);
         sha = fileInfo.sha;
-      } catch {
-        // File doesn't exist yet, will create
-      }
+      } catch {}
 
       const content = btoa(unescape(encodeURIComponent(JSON.stringify(dataToSync, null, 2))));
       
@@ -964,22 +1031,42 @@
   async function loadFromGitHub() {
     if (!state.gitConnected) return false;
     
+    showSyncIndicator('loading', 'Loading data from GitHub...');
+    
     try {
       const data = await githubAPI(`/contents/${GIT_CONFIG.path}`);
       const content = JSON.parse(atob(data.content));
       
+      // Update state with GitHub data
       state.categories = content.categories || DEFAULTS.categories;
       state.company = { ...DEFAULTS.company, ...(content.company || {}) };
       state.stats = content.stats || DEFAULTS.stats;
       state.features = content.features || DEFAULTS.features;
       
-      persist();
+      // Save to localStorage
+      save(KEYS.cat, state.categories);
+      save(KEYS.com, state.company);
+      save(KEYS.stat, state.stats);
+      save(KEYS.feat, state.features);
+      state.syncPending = false;
+      save(KEYS.sync, false);
+      
+      // Refresh UI
       refreshAll();
-      toast('✅ Data loaded from GitHub');
+      updateGitBadge();
+      
+      showSyncIndicator('', '✓ Data loaded from GitHub');
+      setTimeout(() => {
+        document.getElementById('syncIndicator').style.display = 'none';
+      }, 2000);
+      
       return true;
     } catch (err) {
       console.error('GitHub load failed:', err);
-      toast('❌ Failed to load from GitHub');
+      showSyncIndicator('error', '⚠ Using local data (GitHub unreachable)');
+      setTimeout(() => {
+        document.getElementById('syncIndicator').style.display = 'none';
+      }, 3000);
       return false;
     }
   }
@@ -1502,7 +1589,7 @@
       ['tagline', 'Tagline'],
       ['since', 'Established Year'],
       ['phone', 'Phone (display)'],
-      ['whatsapp', 'WhatsApp number (digits only, e.g. 916203691393)'],
+      ['whatsapp', 'WhatsApp number (digits only)'],
       ['email', 'Email'],
       ['address', 'Address', true],
       ['heroTitle', 'Hero Title'],
@@ -1538,7 +1625,6 @@
               <input value="${escapeAttr(s.label)}" placeholder="Years" oninput="updateStat(${i},'label',this.value)" />
             </div>`).join('')}
         </div>
-        <p style="font-size:11px;color:var(--text-2);margin-top:8px">Icon options: trophy, boxes, users, truck.</p>
       </div>
       <div class="panel-section">
         <h4>Features</h4>
@@ -1562,7 +1648,7 @@
       <div class="panel-section">
         <h4>${svg('github',16)} GitHub Integration</h4>
         <p style="font-size:13px;color:var(--text-2);margin-bottom:14px">
-          Connect to your GitHub repository. Changes made in admin panel will auto-sync to <code style="background:var(--border);padding:2px 6px;border-radius:4px">data.json</code> in your repo.
+          <strong>📌 Important:</strong> When you save GitHub config on <strong>one device</strong>, all other devices opening this website will <strong>automatically load</strong> that same data. Just open the site on any device — it will fetch latest data from GitHub!
           <br><br>
           <strong>How to get a token:</strong><br>
           1. Go to <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a><br>
@@ -1579,13 +1665,13 @@
         </div>
         <div class="row" style="margin-top:14px">
           <button class="btn btn-primary" onclick="saveGitConfig()">${svg('save',14)} Save & Connect</button>
-          ${state.gitConnected ? `<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?'✅ Synced to GitHub':'❌ Sync failed'))">${svg('cloud',14)} Sync Now</button>` : ''}
-          ${state.gitConnected ? `<button class="btn btn-success" onclick="loadFromGitHub()">${svg('download',14)} Load from GitHub</button>` : ''}
+          ${state.gitConnected ? `<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?'✅ Synced to GitHub':'❌ Sync failed'))">${svg('cloud',14)} Push to GitHub</button>` : ''}
+          ${state.gitConnected ? `<button class="btn btn-success" onclick="loadFromGitHub()">${svg('download',14)} Pull from GitHub</button>` : ''}
           ${state.gitConnected ? `<button class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>` : ''}
         </div>
         <div style="margin-top:8px;font-size:11px;color:var(--text-2)">
           Status: <strong>${state.gitConnected ? '✅ Connected to '+GIT_CONFIG.owner+'/'+GIT_CONFIG.repo : '⚡ Not connected'}</strong>
-          ${state.syncPending ? ' | ⚠️ Changes pending sync' : ''}
+          ${state.syncPending ? ' | ⚠️ Changes pending sync' : ' | ✓ All changes synced'}
         </div>
       </div>`;
   }
@@ -1606,20 +1692,26 @@
     if (e.key === 'Escape') { closeProduct(); closeAdmin(); }
   });
 
-  /* ============== INIT ============== */
+  /* ============== INIT - AUTO LOAD FROM GITHUB ============== */
   applyTheme();
-  renderCompany();
-  renderStats();
-  renderCategories();
-  renderProducts(); 
-  renderFeatures();
-  updateAdminBtn();
-  updateGitBadge();
-
-  // Auto-load from GitHub on startup if connected
-  if (state.gitConnected && state.syncPending) {
-    syncToGitHub().catch(() => {});
+  
+  // Load data from GitHub if connected, then render
+  async function initApp() {
+    if (state.gitConnected) {
+      const loaded = await loadFromGitHub();
+      if (!loaded) {
+        // GitHub failed, use localStorage
+        refreshAll();
+      }
+    } else {
+      // No GitHub config, use localStorage  
+      refreshAll();
+    }
+    updateAdminBtn();
+    updateGitBadge();
   }
+  
+  initApp();
   </script>
 </body>
 </html>
