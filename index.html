@@ -16,7 +16,7 @@
       --shadow: 0 2px 20px rgba(0,0,0,0.04);
       --grad: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);
       --grad2: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
-      --wa: #25D366; --ok: #10b981; --err: #ef4444; --warn: #f59e0b;
+      --wa: #25D366;
       --radius: 16px; --radius-sm: 10px; --radius-xl: 24px;
     }
     [data-theme="dark"] {
@@ -32,36 +32,35 @@
     input, textarea { font-family: inherit; outline: none; border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; width: 100%; transition: border .2s; }
     input:focus, textarea:focus { border-color: #6366f1; }
     textarea { resize: vertical; min-height: 60px; }
-    .grd { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .grd2 { background: var(--grad2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grd { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grd2 { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-    .nav { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1200px; z-index: 999; background: var(--nav); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; transition: all .3s; }
+    .nav { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1200px; z-index: 999; background: var(--nav); backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; }
     .nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; }
-    .nav .logo .dot { width: 34px; height: 34px; background: var(--grad); border-radius: 10px; display: grid; place-items: center; color: #fff; font-size: 16px; }
+    .nav .logo .dot { width: 34px; height: 34px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); border-radius: 10px; display: grid; place-items: center; color: #fff; font-size: 16px; }
     .nav .links { display: flex; gap: 2px; }
     .nav .links a { padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: .75; transition: all .2s; }
     .nav .links a:hover { opacity: 1; background: var(--border); }
     .nav .actions { display: flex; align-items: center; gap: 8px; }
-    .nav .actions .btn-icon { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; font-size: 14px; transition: all .2s; }
+    .nav .actions .btn-icon { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; font-size: 14px; transition: all .2s; cursor: pointer; }
     .nav .actions .btn-icon:hover { background: var(--border); }
-    .nav .actions .btn-admin { padding: 8px 14px; border-radius: 999px; background: var(--grad2); color: #fff; font-size: 12px; font-weight: 700; transition: all .2s; }
-    .nav .actions .btn-admin:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .nav .actions .btn-admin { padding: 8px 14px; border-radius: 999px; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
     .nav .actions .btn-admin.out { background: #ef4444; }
     @media (max-width: 768px) { .nav .links { display: none; } }
 
     .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; position: relative; overflow: hidden; }
     .hero .bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(99,102,241,.3), rgba(14,165,233,.2)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1400&q=80') center/cover; filter: brightness(.45); }
-    .hero .overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
+    .hero .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
     .hero .content { position: relative; z-index: 2; max-width: 800px; }
     .hero .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: 12px; margin-bottom: 20px; }
     .hero h1 { color: #fff; font-size: clamp(38px, 7vw, 76px); font-weight: 900; line-height: 1.05; margin-bottom: 16px; }
     .hero p { color: rgba(255,255,255,.85); font-size: 16px; max-width: 550px; margin: 0 auto 28px; }
-    .hero .cta { display: inline-flex; align-items: center; gap: 8px; padding: 15px 30px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 8px 30px rgba(99,102,241,.4); transition: all .3s; }
-    .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(99,102,241,.6); }
+    .hero .cta { display: inline-flex; align-items: center; gap: 8px; padding: 15px 30px; border-radius: 999px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 8px 30px rgba(99,102,241,.4); transition: all .3s; }
+    .hero .cta:hover { transform: translateY(-2px); }
 
     .stats { max-width: 1100px; margin: -60px auto 0; padding: 0 20px; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; position: relative; z-index: 5; }
     @media (max-width: 600px) { .stats { grid-template-columns: repeat(2,1fr); } }
-    .stat { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 22px 16px; border-radius: var(--radius-xl); text-align: center; box-shadow: var(--shadow); }
+    .stat { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 22px 16px; border-radius: 24px; text-align: center; box-shadow: 0 2px 20px rgba(0,0,0,0.04); }
     .stat .num { font-size: 28px; font-weight: 900; color: #6366f1; }
     .stat .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text2); margin-top: 4px; }
 
@@ -71,121 +70,101 @@
     .sec .head p { color: var(--text2); font-size: 14px; max-width: 500px; margin: 8px auto 0; }
 
     .search { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 4px 4px 4px 16px; max-width: 500px; margin: 0 auto 20px; }
-    .search input { flex: 1; border: none; background: transparent; padding: 10px; font-size: 13px; }
-    .search button { padding: 8px 18px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 12px; white-space: nowrap; cursor: pointer; }
+    .search input { flex: 1; border: none; background: transparent; padding: 10px; font-size: 13px; color: var(--text); }
+    .search button { padding: 8px 18px; border-radius: 999px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; font-weight: 700; font-size: 12px; cursor: pointer; }
 
     .pills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 24px; }
-    .pill { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); transition: all .2s; background: var(--card); cursor: pointer; }
-    .pill:hover { background: var(--border); }
-    .pill.on { background: var(--grad); color: #fff; border-color: transparent; }
+    .pill { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); cursor: pointer; }
+    .pill.on { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; border-color: transparent; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 20px; display: flex; flex-direction: column; transition: all .3s; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 20px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; display: flex; flex-direction: column; transition: all .3s; }
     .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
-    .card .icon { font-size: 30px; margin-bottom: 8px; }
-    .card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .card .spec { font-size: 11px; color: #0ea5e9; font-weight: 600; margin-bottom: 6px; }
-    .card p { font-size: 12px; color: var(--text2); flex: 1; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .card .badge { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; background: var(--grad2); color: #fff; padding: 4px 8px; border-radius: 999px; margin-bottom: 10px; align-self: flex-start; }
-    .card .btns { display: flex; gap: 6px; }
-    .card .btns a, .card .btns button { flex: 1; padding: 9px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; text-align: center; transition: all .2s; cursor: pointer; text-decoration: none; }
-    .card .btns .wa { background: var(--wa); }
-    .card .btns .det { background: var(--grad); }
+    .card .icon { font-size: 40px; margin-bottom: 12px; }
+    .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .card .spec { font-size: 12px; color: #0ea5e9; font-weight: 600; margin-bottom: 8px; }
+    .card p { font-size: 13px; color: var(--text2); margin-bottom: 12px; line-height: 1.4; }
+    .card .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); color: #fff; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; align-self: flex-start; }
+    .card .btns { display: flex; gap: 8px; }
+    .card .btns a, .card .btns button { flex: 1; padding: 8px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #fff; text-align: center; cursor: pointer; text-decoration: none; }
+    .card .btns .wa { background: #25D366; }
+    .card .btns .det { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); }
 
-    .feat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; }
-    .feat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 24px; text-align: center; transition: all .3s; }
-    .feat:hover { transform: translateY(-4px); }
-    .feat .ic { width: 40px; height: 40px; margin: 0 auto 12px; background: var(--grad); border-radius: 12px; display: grid; place-items: center; color: #fff; font-size: 18px; }
-    .feat h4 { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
-    .feat p { font-size: 12px; color: var(--text2); }
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 20px; }
+    .feat { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 28px 20px; text-align: center; }
+    .feat .ic { width: 50px; height: 50px; margin: 0 auto 16px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); border-radius: 16px; display: grid; place-items: center; color: #fff; font-size: 24px; }
+    .feat h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .feat p { font-size: 13px; color: var(--text2); }
 
-    .contact { display: grid; grid-template-columns: 1fr 1fr; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border); }
+    .contact { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); }
     @media (max-width: 700px) { .contact { grid-template-columns: 1fr; } }
-    .contact .left { padding: 40px 30px; background: var(--grad); color: #fff; }
-    .contact .left h2 { font-size: 30px; font-weight: 900; margin-bottom: 12px; }
-    .contact .left p { opacity: .9; font-size: 14px; margin-bottom: 20px; }
-    .contact .left a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 700; font-size: 13px; text-decoration: none; }
-    .contact .right { padding: 30px; display: flex; flex-direction: column; gap: 10px; background: var(--card); }
-    .contact .right .item { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 14px; font-size: 13px; }
+    .contact .left { padding: 40px 30px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; }
+    .contact .left h2 { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
+    .contact .left p { opacity: .9; font-size: 14px; margin-bottom: 24px; }
+    .contact .left a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; background: #25D366; color: #fff; font-weight: 700; text-decoration: none; }
+    .contact .right { padding: 30px; display: flex; flex-direction: column; gap: 12px; background: var(--card); }
+    .contact .right .item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 16px; font-size: 14px; }
 
     footer { text-align: center; padding: 30px; color: var(--text2); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
-
-    .float { position: fixed; right: 16px; bottom: 16px; width: 48px; height: 48px; background: var(--wa); border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 22px; z-index: 90; box-shadow: 0 8px 30px rgba(37,211,102,.4); text-decoration: none; }
-
-    .modal { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 16px; }
+    .float { position: fixed; right: 20px; bottom: 20px; width: 55px; height: 55px; background: #25D366; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 28px; z-index: 90; box-shadow: 0 4px 15px rgba(37,211,102,.4); text-decoration: none; }
+    .modal { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.7); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 20px; }
     .modal.open { display: flex; }
-    .modal .card { width: 100%; max-width: 500px; max-height: 85vh; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow-y: auto; padding: 24px; position: relative; }
-    .modal .card.wide { max-width: 650px; }
-    .modal .close { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%; background: var(--border); display: grid; place-items: center; font-size: 14px; cursor: pointer; }
-
-    .admin-tabs { display: flex; gap: 4px; background: var(--border); border-radius: 12px; padding: 3px; margin-bottom: 16px; flex-wrap: wrap; }
-    .admin-tabs button { flex: 1; padding: 8px; border-radius: 9px; font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; background: transparent; }
-    .admin-tabs button.on { background: var(--bg2); color: var(--text); }
-
-    .fld { margin-bottom: 10px; }
-    .fld label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; }
-    .fld input, .fld textarea { width: 100%; }
-
-    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid var(--border); padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; z-index: 9999; opacity: 0; pointer-events: none; transition: all .3s; }
+    .modal .card { max-width: 500px; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 28px; padding: 28px; position: relative; }
+    .modal .close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: grid; place-items: center; cursor: pointer; font-size: 16px; }
+    .admin-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .admin-tabs button { padding: 8px 16px; border-radius: 999px; background: var(--border); cursor: pointer; font-size: 13px; font-weight: 600; }
+    .admin-tabs button.on { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; }
+    .fld { margin-bottom: 16px; }
+    .fld label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid var(--border); padding: 10px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; z-index: 9999; opacity: 0; transition: all .3s; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
-
-    .sync { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; padding: 6px; text-align: center; font-size: 12px; font-weight: 600; color: #fff; display: none; }
+    .sync { position: fixed; top: 0; left: 0; right: 0; padding: 8px; text-align: center; font-size: 13px; font-weight: 600; color: #fff; z-index: 10000; display: none; }
     .sync.on { display: block; }
     .sync.load { background: #f59e0b; }
     .sync.ok { background: #10b981; }
     .sync.fail { background: #ef4444; }
+    .loading-spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
 <div class="sync" id="sync"></div>
-
-<nav class="nav" id="nav">
-  <a href="#" class="logo"><span class="dot">⚡</span><span class="grd" id="navName">Rhysco Power</span></a>
+<nav class="nav"><a href="#" class="logo"><span class="dot">⚡</span><span class="grd" id="navName">Rhysco Power</span></a>
   <div class="links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a></div>
-  <div class="actions">
-    <button class="btn-icon" onclick="toggleTheme()">🌓</button>
-    <button class="btn-admin" id="adminBtn">🔑 Admin</button>
-  </div>
+  <div class="actions"><button class="btn-icon" onclick="toggleTheme()">🌓</button><button class="btn-admin" id="adminBtn">🔑 Admin</button></div>
 </nav>
 
-<section class="hero" id="home">
-  <div class="bg"></div><div class="overlay"></div>
-  <div class="content">
-    <span class="badge">⭐ Since 2010 • Trusted Quality</span>
+<section class="hero"><div class="bg"></div><div class="overlay"></div>
+  <div class="content"><span class="badge">⭐ Since 2010 • Trusted Quality</span>
     <h1 id="heroTitle">Complete <span class="grd">Electrical</span> Solutions</h1>
-    <p id="heroSub"></p>
-    <a href="#catalog" class="cta">Explore Products →</a>
+    <p id="heroSub"></p><a href="#catalog" class="cta">Explore Products →</a>
   </div>
 </section>
 
 <div class="stats" id="statsGrid"></div>
-
 <section class="sec" id="catalog">
   <div class="head"><h2>Our <span class="grd">Products</span></h2><p>Premium electrical equipment for professionals</p></div>
-  <div class="search"><span style="color:var(--text2);margin-right:4px">🔍</span><input type="search" id="searchInput" placeholder="Search cables, meters, MC4 connectors…"><button id="clearBtn" style="display:none" onclick="clearSearch()">✕</button></div>
+  <div class="search"><span>🔍</span><input type="search" id="searchInput" placeholder="Search..."><button id="clearBtn" style="display:none" onclick="clearSearch()">✕</button></div>
   <div class="pills" id="pills"></div>
   <div class="grid" id="prodGrid"></div>
 </section>
 
-<section class="sec" id="features">
-  <div class="head"><h2>Why <span class="grd2">Choose Us</span></h2></div>
+<section class="sec" id="features"><div class="head"><h2>Why <span class="grd2">Choose Us</span></h2></div>
   <div class="feat-grid" id="featGrid"></div>
 </section>
 
-<section class="sec" id="contact">
-  <div class="contact">
+<section class="sec" id="contact"><div class="contact">
     <div class="left"><h2>Let's Talk</h2><p>Reach out for enquiries, bulk orders, or technical guidance.</p><a id="contactWa" href="#" target="_blank">💬 Chat on WhatsApp</a></div>
     <div class="right" id="contactRight"></div>
   </div>
 </section>
 
 <footer>© <span id="footerYear"></span> <span id="footerName"></span>. All rights reserved.</footer>
-
 <a class="float" id="floatWa" href="#" target="_blank">💬</a>
 
 <div class="modal" id="prodModal"><div class="card" id="prodModalCard"></div></div>
-<div class="modal" id="adminModal"><div class="card wide"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3>Admin Panel</h3><button class="close" onclick="closeAdmin()">✕</button></div><div class="admin-tabs" id="adminTabs"></div><div id="adminPane"></div></div></div>
+<div class="modal" id="adminModal"><div class="card" style="max-width:650px"><div style="display:flex;justify-content:space-between;margin-bottom:20px"><h3>Admin Panel</h3><button class="close" onclick="closeAdmin()">✕</button></div><div class="admin-tabs" id="adminTabs"></div><div id="adminPane"></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -193,202 +172,38 @@
 
 // ========== DEFAULT DATA ==========
 const DEFAULT_DATA = {
-  cat: [{
-    id: "cat_WAA",
-    name: "WAA Cables",
-    icon: "🔌",
-    prods: [{
-      id: "p_1",
-      name: "4.0 SQMM WAA CABLE RED BLACK",
-      spec: "100 MTR",
-      icon: "🔌",
-      desc: "Premium 100% pure copper flexible cable for industrial use"
-    }]
-  }],
-  com: {
-    name: "Rhysco Power",
-    tag: "Premium Electrical Solutions",
-    ph: "+91 6203691393",
-    em: "bikram.biharelctrometer@gmail.com",
-    wa: "916203691393",
-    ad: "India",
-    ht: "Complete Electrical Solutions",
-    hs: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety"
-  },
-  st: [{n:"15+",l:"Years"},{n:"100+",l:"Products"},{n:"1000+",l:"Clients"},{n:"PAN India",l:"Delivery"}],
-  ft: [{t:"Quality Assured",d:"ISO certified products"},{t:"24/7 Support",d:"Technical assistance anytime"},{t:"Fast Delivery",d:"Nationwide shipping"},{t:"Best Price",d:"Wholesale pricing"},{t:"Trusted Brands",d:"Original grade only"},{t:"Bulk Orders",d:"Project supply expert"}]
+  cat: [{ id: "cat_WAA", name: "WAA Cables", icon: "🔌", prods: [{ id: "p_1", name: "4.0 SQMM WAA CABLE RED BLACK", spec: "100 MTR", icon: "🔌", desc: "Premium 100% pure copper flexible cable" }] }],
+  com: { name: "Rhysco Power", ph: "+91 6203691393", em: "bikram.biharelctrometer@gmail.com", wa: "916203691393", ad: "India", ht: "Complete Electrical Solutions", hs: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety" },
+  st: [{ n: "15+", l: "Years" }, { n: "100+", l: "Products" }, { n: "1000+", l: "Clients" }, { n: "PAN India", l: "Delivery" }],
+  ft: [{ t: "Quality Assured", d: "ISO certified products" }, { t: "24/7 Support", d: "Technical assistance" }, { t: "Fast Delivery", d: "Nationwide shipping" }, { t: "Best Price", d: "Wholesale pricing" }, { t: "Trusted Brands", d: "Original grade" }, { t: "Bulk Orders", d: "Project supply expert" }]
 };
 
 // ========== STATE ==========
 let G = { owner: '', token: '', repo: 'rhysco-data', branch: 'main', path: 'data.json', ok: false };
-try {
-  let s = JSON.parse(localStorage.getItem('rc_git') || '{}');
-  if (s.owner && s.token) {
-    G.owner = s.owner;
-    G.token = s.token;
-    G.repo = s.repo || 'rhysco-data';
-    G.branch = s.branch || 'main';
-    G.ok = true;
-  }
-} catch(e) {}
+try { let s = JSON.parse(localStorage.getItem('rc_git') || '{}'); if (s.owner && s.token) { G.owner = s.owner; G.token = s.token; G.repo = s.repo || 'rhysco-data'; G.ok = true; } } catch(e) {}
 
 let S = {
   cat: JSON.parse(JSON.stringify(DEFAULT_DATA.cat)),
   com: JSON.parse(JSON.stringify(DEFAULT_DATA.com)),
   st: JSON.parse(JSON.stringify(DEFAULT_DATA.st)),
   ft: JSON.parse(JSON.stringify(DEFAULT_DATA.ft)),
-  adm: (function(){ try{ return localStorage.getItem('rc_auth') === '1'; } catch(e){ return false; } })(),
-  acat: 'all',
-  q: '',
-  tab: 'company'
+  adm: (() => { try { return localStorage.getItem('rc_auth') === '1'; } catch(e) { return false; } })(),
+  acat: 'all', q: '', tab: 'company', isLoading: true
 };
 
 let autoTimer = null;
-let searchTimer = null;
 
 // ========== HELPERS ==========
 const wa = (t) => `https://wa.me/${S.com.wa}?text=${encodeURIComponent(t)}`;
-const flat = () => S.cat.flatMap(c => c.prods.map(p => ({...p, cid: c.id, cn: c.name, ci: c.icon})));
+const flat = () => S.cat.flatMap(c => c.prods.map(p => ({ ...p, cid: c.id, cn: c.name, ci: c.icon })));
 
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/[&<>]/g, function(m) {
-    if (m === '&') return '&amp;';
-    if (m === '<') return '&lt;';
-    if (m === '>') return '&gt;';
-    return m;
-  });
-}
-
-function toast(msg, dur=2500) {
-  let t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(window._tt);
-  window._tt = setTimeout(() => t.classList.remove('show'), dur);
-}
-
-function syncStatus(msg, type) {
-  let b = document.getElementById('sync');
-  b.textContent = msg;
-  b.className = 'sync on ' + type;
-  setTimeout(() => b.className = 'sync', type === 'ok' ? 2000 : 4000);
-}
-
-function fullRefresh() {
-  RC(); RSt(); RCat(); RP(); RF();
-}
-
-// ========== THEME ==========
-(function() {
-  let t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch(e) { return 'dark'; } })();
-  document.documentElement.dataset.theme = t;
-})();
-
-function toggleTheme() {
-  let t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('rc_theme', t); } catch(e) {}
-  document.documentElement.dataset.theme = t;
-}
-
-// ========== GITHUB API WITH PROPER UTF-8 ENCODING ==========
-async function gh(ep, method='GET', body=null) {
-  if (!G.token) throw new Error('Token missing');
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15000);
-  try {
-    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(G.owner)}/${encodeURIComponent(G.repo)}${ep}`, {
-      method: method,
-      signal: controller.signal,
-      headers: {
-        'Authorization': `Bearer ${G.token}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: body ? JSON.stringify(body) : null
-    });
-    clearTimeout(timeout);
-    const data = await res.json();
-    if (!res.ok) {
-      if (res.status === 401) throw new Error('Invalid GitHub token');
-      if (res.status === 404) throw new Error('Repository not found');
-      throw new Error(data.message || `Error ${res.status}`);
-    }
-    return data;
-  } catch(e) {
-    clearTimeout(timeout);
-    throw e;
-  }
-}
-
-// FIXED: Proper UTF-8 encoding without corruption
-function utf8ToBase64(str) {
-  // This properly handles emojis and special characters
-  const utf8Bytes = new TextEncoder().encode(str);
-  let binary = '';
-  for (let i = 0; i < utf8Bytes.length; i++) {
-    binary += String.fromCharCode(utf8Bytes[i]);
-  }
-  return btoa(binary);
-}
-
-function base64ToUtf8(base64) {
-  const binary = atob(base64);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.charCodeAt(i);
-  }
-  return new TextDecoder().decode(bytes);
-}
-
-async function gitPush() {
-  const dataToSave = {
-    cat: S.cat,
-    com: S.com,
-    st: S.st,
-    ft: S.ft,
-    lastUpdated: new Date().toISOString()
-  };
-  
-  let sha = null;
-  try {
-    const existing = await gh(`/contents/${G.path}`);
-    sha = existing.sha;
-  } catch(e) {}
-  
-  // Use proper UTF-8 encoding
-  const jsonString = JSON.stringify(dataToSave, null, 2);
-  const content = utf8ToBase64(jsonString);
-  
-  await gh(`/contents/${G.path}`, 'PUT', {
-    message: `Update ${new Date().toLocaleString()}`,
-    content: content,
-    branch: G.branch,
-    ...(sha ? {sha: sha} : {})
-  });
-}
-
-async function gitPull() {
-  try {
-    const res = await gh(`/contents/${G.path}`);
-    const jsonString = base64ToUtf8(res.content);
-    const data = JSON.parse(jsonString);
-    
-    if (data.cat && Array.isArray(data.cat)) S.cat = data.cat;
-    if (data.com && data.com.name) S.com = {...DEFAULT_DATA.com, ...data.com};
-    if (data.st && Array.isArray(data.st)) S.st = data.st;
-    if (data.ft && Array.isArray(data.ft)) S.ft = data.ft;
-    
-    fullRefresh();
-    return true;
-  } catch(e) {
-    console.warn('Git pull failed:', e);
-    return false;
-  }
-}
+function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+function toast(msg, dur = 2500) { let t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), dur); }
+function syncStatus(msg, type) { let b = document.getElementById('sync'); b.innerHTML = type === 'load' ? '<span class="loading-spinner"></span>' + msg : msg; b.className = 'sync on ' + type; setTimeout(() => b.className = 'sync', type === 'ok' ? 2000 : 4000); }
 
 // ========== RENDER FUNCTIONS ==========
-function RC() {
+function fullRefresh() {
+  // Company Info
   document.getElementById('navName').textContent = S.com.name;
   document.getElementById('footerName').textContent = S.com.name;
   document.getElementById('footerYear').textContent = new Date().getFullYear();
@@ -398,308 +213,157 @@ function RC() {
   document.getElementById('floatWa').href = wa('Hi');
   document.getElementById('contactWa').href = wa('Hi, enquiry');
   document.getElementById('contactRight').innerHTML = [
-    {l:'Phone', v:S.com.ph},
-    {l:'WhatsApp', v:'+'+S.com.wa},
-    {l:'Email', v:S.com.em},
-    {l:'Address', v:S.com.ad}
+    { l: 'Phone', v: S.com.ph }, { l: 'WhatsApp', v: '+' + S.com.wa },
+    { l: 'Email', v: S.com.em }, { l: 'Address', v: S.com.ad }
   ].map(i => `<div class="item"><strong>${i.l}</strong>: ${i.v}</div>`).join('');
-}
-
-function RSt() {
+  
+  // Stats
   document.getElementById('statsGrid').innerHTML = S.st.map(s => `<div class="stat"><div class="num">${escapeHtml(s.n)}</div><div class="lbl">${escapeHtml(s.l)}</div></div>`).join('');
-}
-
-function RF() {
+  
+  // Features
   document.getElementById('featGrid').innerHTML = S.ft.map(f => `<div class="feat"><div class="ic">⭐</div><h4>${escapeHtml(f.t)}</h4><p>${escapeHtml(f.d)}</p></div>`).join('');
-}
-
-function RCat() {
-  document.getElementById('pills').innerHTML = '<button class="pill ' + (S.acat === 'all' ? 'on' : '') + '" onclick="setCat(\'all\')">📂 All</button>' + 
-    S.cat.map(c => `<button class="pill ${S.acat === c.id ? 'on' : ''}" onclick="setCat('${c.id}')">${c.icon} ${escapeHtml(c.name)}</button>`).join('');
-}
-
-function RP() {
+  
+  // Categories Pills
+  document.getElementById('pills').innerHTML = '<button class="pill ' + (S.acat === 'all' ? 'on' : '') + '" onclick="setCat(\'all\')">📂 All</button>' + S.cat.map(c => `<button class="pill ${S.acat === c.id ? 'on' : ''}" onclick="setCat('${c.id}')">${c.icon} ${escapeHtml(c.name)}</button>`).join('');
+  
+  // Products Grid
   const all = flat();
   let base = S.acat === 'all' ? all : all.filter(p => p.cid === S.acat);
   const q = S.q.trim().toLowerCase();
-  let filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
-  
+  let filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q)) : base;
   const grid = document.getElementById('prodGrid');
-  if (!filtered.length) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text2)">No products found</div>';
-    return;
-  }
-  
-  grid.innerHTML = filtered.map(p => {
-    const w = wa('Interested in: ' + p.name);
-    return `<div class="card">
-      <div class="icon">${p.icon || '📦'}</div>
-      <h3>${escapeHtml(p.name)}</h3>
-      <div class="spec">📏 ${escapeHtml(p.spec)}</div>
-      <p>${escapeHtml(p.desc)}</p>
-      <span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span>
-      <div class="btns">
-        <a class="wa" href="${w}" target="_blank">💬 Enquiry</a>
-        <button class="det" onclick="openProd('${p.id}')">Details</button>
-      </div>
-    </div>`;
-  }).join('');
+  if (!filtered.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px">No products found</div>'; return; }
+  grid.innerHTML = filtered.map(p => `<div class="card"><div class="icon">${p.icon || '📦'}</div><h3>${escapeHtml(p.name)}</h3><div class="spec">📏 ${escapeHtml(p.spec)}</div><p>${escapeHtml(p.desc)}</p><span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span><div class="btns"><a class="wa" href="${wa('Interested in: ' + p.name)}" target="_blank">💬 Enquiry</a><button class="det" onclick="openProd('${p.id}')">Details</button></div></div>`).join('');
 }
 
-function setCat(id) { S.acat = id; RCat(); RP(); }
-function clearSearch() { S.q = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; RP(); }
-
+function setCat(id) { S.acat = id; fullRefresh(); }
+function clearSearch() { S.q = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; fullRefresh(); }
 function openProd(id) {
-  const p = flat().find(p => p.id === id);
+  let p = flat().find(p => p.id === id);
   if (!p) return;
-  const w = wa('Quote: ' + p.name);
-  document.getElementById('prodModalCard').innerHTML = `
-    <button class="close" onclick="closeProd()">✕</button>
-    <div style="text-align:center">
-      <div style="font-size:48px">${p.icon || '📦'}</div>
-      <span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span>
-      <h2 style="margin:8px 0">${escapeHtml(p.name)}</h2>
-      <div style="color:#0ea5e9;font-weight:600">📏 ${escapeHtml(p.spec)}</div>
-      <p style="color:var(--text2);margin:10px 0">${escapeHtml(p.desc)}</p>
-      <div style="display:flex;gap:8px;margin-top:14px">
-        <a href="${w}" target="_blank" style="flex:1;padding:12px;border-radius:999px;color:#fff;text-align:center;font-weight:700;background:#25D366;text-decoration:none">💬 WhatsApp</a>
-        <a href="tel:${S.com.ph.replace(/\s+/g, '')}" style="flex:1;padding:12px;border-radius:999px;color:#fff;text-align:center;font-weight:700;background:var(--grad);text-decoration:none">📞 Call</a>
-      </div>
-    </div>`;
+  document.getElementById('prodModalCard').innerHTML = `<button class="close" onclick="closeProd()">✕</button><div style="text-align:center"><div style="font-size:60px">${p.icon || '📦'}</div><span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span><h2 style="margin:12px 0">${escapeHtml(p.name)}</h2><div style="color:#0ea5e9;font-weight:600">📏 ${escapeHtml(p.spec)}</div><p style="margin:16px 0">${escapeHtml(p.desc)}</p><div style="display:flex;gap:12px"><a href="${wa('Quote: ' + p.name)}" target="_blank" style="flex:1;padding:12px;border-radius:999px;background:#25D366;color:#fff;text-align:center;font-weight:700;text-decoration:none">💬 WhatsApp</a><a href="tel:${S.com.ph.replace(/\s+/g, '')}" style="flex:1;padding:12px;border-radius:999px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;text-align:center;font-weight:700;text-decoration:none">📞 Call</a></div></div>`;
   document.getElementById('prodModal').classList.add('open');
 }
 function closeProd() { document.getElementById('prodModal').classList.remove('open'); }
 
+// ========== THEME ==========
+(function () { let t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch (e) { return 'dark'; } })(); document.documentElement.dataset.theme = t; })();
+function toggleTheme() { let t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('rc_theme', t); } catch (e) { } document.documentElement.dataset.theme = t; }
+
+// ========== GITHUB API (UTF-8 Safe) ==========
+async function gh(ep, method = 'GET', body = null) {
+  if (!G.token) throw new Error('Token missing');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  try {
+    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(G.owner)}/${encodeURIComponent(G.repo)}${ep}`, {
+      method, signal: controller.signal,
+      headers: { 'Authorization': `Bearer ${G.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : null
+    });
+    clearTimeout(timeout);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || `Error ${res.status}`);
+    return data;
+  } catch (e) { clearTimeout(timeout); throw e; }
+}
+
+function utf8ToBase64(str) { return btoa(unescape(encodeURIComponent(str))); }
+function base64ToUtf8(base64) { return decodeURIComponent(escape(atob(base64))); }
+
+async function gitPush() {
+  const dataToSave = { cat: S.cat, com: S.com, st: S.st, ft: S.ft, lastUpdated: new Date().toISOString() };
+  let sha = null;
+  try { const existing = await gh(`/contents/${G.path}`); sha = existing.sha; } catch (e) { }
+  const content = utf8ToBase64(JSON.stringify(dataToSave, null, 2));
+  await gh(`/contents/${G.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: G.branch, ...(sha ? { sha } : {}) });
+}
+
+async function gitPull() {
+  try {
+    const res = await gh(`/contents/${G.path}`);
+    const jsonString = base64ToUtf8(res.content);
+    const data = JSON.parse(jsonString);
+    if (data.cat && Array.isArray(data.cat)) S.cat = data.cat;
+    if (data.com && data.com.name) S.com = { ...DEFAULT_DATA.com, ...data.com };
+    if (data.st && Array.isArray(data.st)) S.st = data.st;
+    if (data.ft && Array.isArray(data.ft)) S.ft = data.ft;
+    return true;
+  } catch (e) { console.warn('Git pull failed:', e); return false; }
+}
+
+// ========== AUTO SYNC ==========
+function autoSyncToGitHub() {
+  if (!G.ok) return;
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(async () => { try { await gitPush(); } catch (e) { console.warn(e); } }, 2000);
+}
+
 // ========== ADMIN PANEL ==========
 function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
 function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
-
-function updateAdminBtn() {
-  const btn = document.getElementById('adminBtn');
-  if (S.adm) {
-    btn.className = 'btn-admin out';
-    btn.textContent = '🚪 Logout';
-    btn.onclick = logout;
-  } else {
-    btn.className = 'btn-admin';
-    btn.textContent = '🔑 Admin';
-    btn.onclick = openAdmin;
-  }
-}
-
-function login() {
-  const user = document.getElementById('au')?.value?.trim();
-  const pass = document.getElementById('ap')?.value;
-  if (user === 'sunny' && pass === 'admin') {
-    S.adm = true;
-    try { localStorage.setItem('rc_auth', '1'); } catch(e) {}
-    updateAdminBtn();
-    renderAdmin();
-    toast('Welcome Admin!');
-  } else {
-    const err = document.getElementById('le');
-    if (err) err.textContent = 'Invalid credentials';
-  }
-  return false;
-}
-
-function logout() {
-  S.adm = false;
-  try { localStorage.removeItem('rc_auth'); } catch(e) {}
-  updateAdminBtn();
-  closeAdmin();
-  fullRefresh();
-}
+function updateAdminBtn() { let btn = document.getElementById('adminBtn'); if (S.adm) { btn.className = 'btn-admin out'; btn.textContent = '🚪 Logout'; btn.onclick = logout; } else { btn.className = 'btn-admin'; btn.textContent = '🔑 Admin'; btn.onclick = openAdmin; } }
+function login() { if (document.getElementById('au')?.value === 'sunny' && document.getElementById('ap')?.value === 'admin') { S.adm = true; localStorage.setItem('rc_auth', '1'); updateAdminBtn(); renderAdmin(); toast('Welcome Admin!'); } else { document.getElementById('le').textContent = 'Invalid credentials'; } return false; }
+function logout() { S.adm = false; localStorage.removeItem('rc_auth'); updateAdminBtn(); closeAdmin(); fullRefresh(); }
 
 function renderAdmin() {
   if (!S.adm) {
     document.getElementById('adminTabs').innerHTML = '';
-    document.getElementById('adminPane').innerHTML = `
-      <form onsubmit="return login()" style="max-width:280px;margin:20px auto;display:flex;flex-direction:column;gap:12px">
-        <h3 style="text-align:center">Admin Login</h3>
-        <div class="fld"><label>Username</label><input id="au" required></div>
-        <div class="fld"><label>Password</label><input id="ap" type="password" required></div>
-        <div id="le" style="color:#ef4444;font-size:11px;text-align:center"></div>
-        <button style="background:var(--grad);color:#fff;padding:10px;border-radius:10px;font-weight:700">Sign In</button>
-      </form>`;
+    document.getElementById('adminPane').innerHTML = `<form onsubmit="return login()" style="max-width:300px;margin:20px auto"><h3>Admin Login</h3><div class="fld"><label>Username</label><input id="au" required></div><div class="fld"><label>Password</label><input id="ap" type="password" required></div><div id="le" style="color:#ef4444"></div><button style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px;width:100%">Sign In</button></form>`;
     return;
   }
-  
-  document.getElementById('adminTabs').innerHTML = `
-    <button class="${S.tab === 'company' ? 'on' : ''}" onclick="setTab('company')">🏢 Company</button>
-    <button class="${S.tab === 'git' ? 'on' : ''}" onclick="setTab('git')">🔗 GitHub</button>
-    <button class="${S.tab === 'stats' ? 'on' : ''}" onclick="setTab('stats')">📊 Stats</button>
-    <button class="${S.tab === 'features' ? 'on' : ''}" onclick="setTab('features')">⭐ Features</button>`;
+  document.getElementById('adminTabs').innerHTML = `<button class="${S.tab === 'company' ? 'on' : ''}" onclick="setTab('company')">🏢 Company</button><button class="${S.tab === 'git' ? 'on' : ''}" onclick="setTab('git')">🔗 GitHub</button><button class="${S.tab === 'stats' ? 'on' : ''}" onclick="setTab('stats')">📊 Stats</button><button class="${S.tab === 'features' ? 'on' : ''}" onclick="setTab('features')">⭐ Features</button>`;
   renderPane();
 }
-
 function setTab(tab) { S.tab = tab; renderAdmin(); }
-
 function renderPane() {
-  const pane = document.getElementById('adminPane');
-  
-  if (S.tab === 'company') {
-    pane.innerHTML = `
-      <h4>Company Settings</h4>
-      <div class="fld"><label>Company Name</label><input id="compName" value="${escapeHtml(S.com.name)}" oninput="updateCompany('name', this.value)"></div>
-      <div class="fld"><label>Hero Title</label><input id="compHt" value="${escapeHtml(S.com.ht)}" oninput="updateCompany('ht', this.value)"></div>
-      <div class="fld"><label>Hero Subtitle</label><input id="compHs" value="${escapeHtml(S.com.hs)}" oninput="updateCompany('hs', this.value)"></div>
-      <div class="fld"><label>Phone</label><input id="compPh" value="${escapeHtml(S.com.ph)}" oninput="updateCompany('ph', this.value)"></div>
-      <div class="fld"><label>WhatsApp (numbers only)</label><input id="compWa" value="${escapeHtml(S.com.wa)}" oninput="updateCompany('wa', this.value)"></div>
-      <div class="fld"><label>Email</label><input id="compEm" value="${escapeHtml(S.com.em)}" oninput="updateCompany('em', this.value)"></div>
-      <div class="fld"><label>Address</label><input id="compAd" value="${escapeHtml(S.com.ad)}" oninput="updateCompany('ad', this.value)"></div>
-      <button onclick="forceSyncToGitHub()" style="margin-top:12px;padding:10px;background:var(--grad);color:#fff;border-radius:10px;font-weight:700">💾 Save & Sync to GitHub</button>`;
-  }
-  
-  if (S.tab === 'git') {
-    pane.innerHTML = `
-      <h4>GitHub Configuration</h4>
-      <p style="font-size:12px;color:var(--text2);margin-bottom:12px">📌 <a href="https://github.com/settings/tokens" target="_blank" style="color:#0ea5e9">Create token</a> with repo scope</p>
-      <div class="fld"><label>GitHub Username</label><input id="go" value="${escapeHtml(G.owner)}" placeholder="username"></div>
-      <div class="fld"><label>Personal Access Token</label><input id="gt" type="password" value="${G.token}" placeholder="ghp_..."></div>
-      <div class="fld"><label>Repository Name</label><input id="gr" value="${escapeHtml(G.repo)}" placeholder="rhysco-data"></div>
-      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-        <button style="background:var(--grad);color:#fff;padding:10px 16px;border-radius:10px;font-weight:700" onclick="saveGitConfig()">💾 Save & Connect</button>
-        ${G.ok ? `<button style="background:#10b981;color:#fff;padding:10px 16px;border-radius:10px;font-weight:700" onclick="manualPush()">📤 Push to GitHub</button>
-        <button style="background:#10b981;color:#fff;padding:10px 16px;border-radius:10px;font-weight:700" onclick="manualPull()">📥 Pull from GitHub</button>` : ''}
-      </div>
-      <div style="margin-top:12px;padding:8px;border-radius:8px;background:var(--border);font-size:12px">
-        ${G.ok ? '✅ GitHub Connected • Data syncs automatically' : '⚡ Configure GitHub for cloud backup across devices'}
-      </div>`;
-  }
-  
-  if (S.tab === 'stats') {
-    pane.innerHTML = `<h4>Statistics Section</h4><div id="statsEditor"></div>
-      <button onclick="addStat()" style="margin:8px 0;padding:8px;background:var(--grad);color:#fff;border-radius:8px">+ Add Stat</button>
-      <button onclick="forceSyncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px">💾 Save All</button>`;
-    document.getElementById('statsEditor').innerHTML = S.st.map((s, i) => `
-      <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
-        <input value="${escapeHtml(s.n)}" onchange="updateStat(${i}, 'n', this.value)" placeholder="Number" style="flex:1">
-        <input value="${escapeHtml(s.l)}" onchange="updateStat(${i}, 'l', this.value)" placeholder="Label" style="flex:2">
-        <button onclick="removeStat(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button>
-      </div>`).join('');
-  }
-  
-  if (S.tab === 'features') {
-    pane.innerHTML = `<h4>Features Section</h4><div id="featuresEditor"></div>
-      <button onclick="addFeature()" style="margin:8px 0;padding:8px;background:var(--grad);color:#fff;border-radius:8px">+ Add Feature</button>
-      <button onclick="forceSyncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px">💾 Save All</button>`;
-    document.getElementById('featuresEditor').innerHTML = S.ft.map((f, i) => `
-      <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
-        <input value="${escapeHtml(f.t)}" onchange="updateFeature(${i}, 't', this.value)" placeholder="Title" style="flex:1">
-        <input value="${escapeHtml(f.d)}" onchange="updateFeature(${i}, 'd', this.value)" placeholder="Description" style="flex:2">
-        <button onclick="removeFeature(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button>
-      </div>`).join('');
-  }
+  let p = document.getElementById('adminPane');
+  if (S.tab === 'company') p.innerHTML = `<h4>Company Settings</h4><div class="fld"><label>Name</label><input value="${escapeHtml(S.com.name)}" oninput="updateCompany('name',this.value)"></div><div class="fld"><label>Hero Title</label><input value="${escapeHtml(S.com.ht)}" oninput="updateCompany('ht',this.value)"></div><div class="fld"><label>Hero Subtitle</label><input value="${escapeHtml(S.com.hs)}" oninput="updateCompany('hs',this.value)"></div><div class="fld"><label>Phone</label><input value="${escapeHtml(S.com.ph)}" oninput="updateCompany('ph',this.value)"></div><div class="fld"><label>WhatsApp</label><input value="${escapeHtml(S.com.wa)}" oninput="updateCompany('wa',this.value)"></div><div class="fld"><label>Email</label><input value="${escapeHtml(S.com.em)}" oninput="updateCompany('em',this.value)"></div><div class="fld"><label>Address</label><input value="${escapeHtml(S.com.ad)}" oninput="updateCompany('ad',this.value)"></div><button onclick="forceSyncToGitHub()" style="margin-top:12px;padding:10px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:10px">💾 Save & Sync</button>`;
+  if (S.tab === 'git') p.innerHTML = `<h4>GitHub Setup</h4><div class="fld"><label>Username</label><input id="go" value="${escapeHtml(G.owner)}"></div><div class="fld"><label>Token</label><input id="gt" type="password" value="${G.token}"></div><div class="fld"><label>Repository</label><input id="gr" value="${escapeHtml(G.repo)}"></div><button onclick="saveGit()" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px">💾 Save & Connect</button>${G.ok ? `<div style="margin-top:12px;padding:12px;background:#10b98120;border-radius:10px">✅ GitHub Connected</div>` : ''}`;
+  if (S.tab === 'stats') p.innerHTML = `<h4>Statistics</h4><div id="statsEditor"></div><button onclick="addStat()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add</button>`;
+  if (S.tab === 'stats') document.getElementById('statsEditor').innerHTML = S.st.map((s, i) => `<div style="display:flex;gap:8px;margin-bottom:8px"><input value="${escapeHtml(s.n)}" onchange="updateStat(${i},'n',this.value)" placeholder="Number"><input value="${escapeHtml(s.l)}" onchange="updateStat(${i},'l',this.value)" placeholder="Label"><button onclick="removeStat(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button></div>`).join('');
+  if (S.tab === 'features') p.innerHTML = `<h4>Features</h4><div id="featuresEditor"></div><button onclick="addFeature()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add</button>`;
+  if (S.tab === 'features') document.getElementById('featuresEditor').innerHTML = S.ft.map((f, i) => `<div style="display:flex;gap:8px;margin-bottom:8px"><input value="${escapeHtml(f.t)}" onchange="updateFeature(${i},'t',this.value)" placeholder="Title"><input value="${escapeHtml(f.d)}" onchange="updateFeature(${i},'d',this.value)" placeholder="Description"><button onclick="removeFeature(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button></div>`).join('');
 }
+function updateCompany(f, v) { S.com[f] = v; fullRefresh(); autoSyncToGitHub(); }
+function updateStat(i, f, v) { if (S.st[i]) { S.st[i][f] = v; fullRefresh(); autoSyncToGitHub(); } }
+function addStat() { S.st.push({ n: 'New', l: 'Stat' }); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
+function removeStat(i) { S.st.splice(i, 1); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
+function updateFeature(i, f, v) { if (S.ft[i]) { S.ft[i][f] = v; fullRefresh(); autoSyncToGitHub(); } }
+function addFeature() { S.ft.push({ t: 'New', d: 'Description' }); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
+function removeFeature(i) { S.ft.splice(i, 1); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
+async function forceSyncToGitHub() { if (!G.ok) { toast('⚠️ Configure GitHub first'); return; } try { await gitPush(); toast('✅ Saved'); } catch (e) { toast('❌ ' + e.message); } }
+async function saveGit() { let o = document.getElementById('go')?.value?.trim(), t = document.getElementById('gt')?.value?.trim(); if (!o || !t) { toast('Required'); return; } G.owner = o; G.token = t; G.repo = document.getElementById('gr')?.value?.trim() || 'rhysco-data'; try { localStorage.setItem('rc_git', JSON.stringify({ owner: o, token: t, repo: G.repo, branch: 'main' })); G.ok = true; toast('✅ Saved'); await gitPush(); renderAdmin(); } catch (e) { toast('❌ ' + e.message); } }
 
-function updateCompany(field, val) { S.com[field] = val; RC(); autoSyncToGitHub(); }
-function updateStat(idx, field, val) { if (S.st[idx]) { S.st[idx][field] = val; RSt(); autoSyncToGitHub(); } }
-function addStat() { S.st.push({n:'New', l:'Stat'}); renderAdmin(); RSt(); autoSyncToGitHub(); }
-function removeStat(idx) { S.st.splice(idx, 1); renderAdmin(); RSt(); autoSyncToGitHub(); }
-function updateFeature(idx, field, val) { if (S.ft[idx]) { S.ft[idx][field] = val; RF(); autoSyncToGitHub(); } }
-function addFeature() { S.ft.push({t:'New Feature', d:'Description'}); renderAdmin(); RF(); autoSyncToGitHub(); }
-function removeFeature(idx) { S.ft.splice(idx, 1); renderAdmin(); RF(); autoSyncToGitHub(); }
+// ========== SEARCH ==========
+document.getElementById('searchInput').addEventListener('input', e => { S.q = e.target.value; document.getElementById('clearBtn').style.display = S.q ? 'inline-block' : 'none'; fullRefresh(); });
 
-function autoSyncToGitHub() {
-  if (!G.ok) return;
-  clearTimeout(autoTimer);
-  autoTimer = setTimeout(async () => {
-    try {
-      await gitPush();
-    } catch(e) { console.warn('Auto-sync failed:', e); }
-  }, 2000);
-}
-
-async function forceSyncToGitHub() {
-  if (!G.ok) { toast('⚠️ Configure GitHub first'); return; }
-  try {
-    await gitPush();
-    toast('✅ Saved to GitHub');
-  } catch(e) { toast('❌ ' + e.message); }
-}
-
-async function manualPush() {
-  try { await gitPush(); toast('✅ Pushed to GitHub'); } 
-  catch(e) { toast('❌ ' + e.message); }
-}
-
-async function manualPull() {
-  syncStatus('🔄 Pulling from GitHub...', 'load');
-  try {
-    const success = await gitPull();
-    if (success) {
-      syncStatus('✅ Data synced from GitHub', 'ok');
-      toast('✅ Latest data loaded');
-      closeAdmin();
-      fullRefresh();
-    } else {
-      syncStatus('⚠️ Using local data', 'fail');
-    }
-  } catch(e) {
-    syncStatus('❌ ' + e.message, 'fail');
-    toast('❌ ' + e.message);
-  }
-}
-
-async function saveGitConfig() {
-  const owner = document.getElementById('go')?.value?.trim();
-  const token = document.getElementById('gt')?.value?.trim();
-  if (!owner || !token) { toast('⚠️ Username and token required'); return; }
-  
-  G.owner = owner;
-  G.token = token;
-  G.repo = document.getElementById('gr')?.value?.trim() || 'rhysco-data';
-  G.branch = 'main';
-  
-  try {
-    localStorage.setItem('rc_git', JSON.stringify({owner, token, repo: G.repo, branch: 'main'}));
-    G.ok = true;
-    toast('✅ GitHub settings saved');
-    await gitPush();
-    toast('✅ Connected! Data backed up');
-    renderAdmin();
-  } catch(e) {
-    toast('⚠️ Connection failed: ' + e.message);
-    G.ok = false;
-  }
-}
-
-// ========== INITIALIZATION ==========
-document.getElementById('searchInput').addEventListener('input', e => {
-  S.q = e.target.value;
-  document.getElementById('clearBtn').style.display = S.q ? 'inline-block' : 'none';
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(RP, 200);
-});
-
+// ========== INIT - CRITICAL FIX FOR NEW USERS ==========
 (async function init() {
   updateAdminBtn();
+  fullRefresh(); // Show default data immediately (no blank page)
   
-  // CRITICAL: First try to load from GitHub for ALL users (not just admins)
   if (G.ok) {
     syncStatus('🔄 Loading latest data...', 'load');
     try {
       const success = await gitPull();
       if (success) {
+        fullRefresh(); // Re-render with GitHub data
         syncStatus('✅ Latest data loaded', 'ok');
+        toast('Latest data loaded from cloud');
       } else {
-        fullRefresh();
-        syncStatus('⚠️ Using default data', 'fail');
+        syncStatus('⚠️ Using local data', 'fail');
       }
-    } catch(e) {
-      console.warn('Initial load failed:', e);
-      fullRefresh();
-      syncStatus('⚠️ Using local data', 'fail');
+    } catch (e) {
+      console.warn('Git pull error:', e);
+      syncStatus('⚠️ Using default data', 'fail');
     }
-  } else {
-    fullRefresh();
   }
   
-  // Auto-refresh when page becomes visible (for multi-device sync)
+  // Listen for page visibility to auto-sync
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible' && G.ok) {
-      gitPull().catch(() => {});
+      gitPull().then(() => fullRefresh()).catch(() => {});
     }
   });
 })();
