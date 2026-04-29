@@ -170,10 +170,9 @@
 <script>
 'use strict';
 
-// ========== DEFAULT GITHUB CONFIG (HARDCODED FOR ALL VISITORS) ==========
-// YAHAN APNA GITHUB USERNAME AUR REPO NAME DALEN
-const DEFAULT_GITHUB_OWNER = "YOUR_GITHUB_USERNAME";  // <-- CHANGE THIS
-const DEFAULT_GITHUB_REPO = "rhysco-data";             // <-- CHANGE THIS IF NEEDED
+// ========== YOUR GITHUB CONFIG - CHANGE THIS ==========
+const DEFAULT_GITHUB_OWNER = "YOUR_GITHUB_USERNAME";  // 🔴 अपना GitHub username डालें
+const DEFAULT_GITHUB_REPO = "rhysco-data";             // repository name
 
 // ========== DEFAULT DATA ==========
 const DEFAULT_DATA = {
@@ -193,7 +192,7 @@ let G = {
   ok: false 
 };
 
-// Admin ke saved config ko load karo (agar hai to)
+// Admin ke saved config ko load karo
 try { 
   let s = JSON.parse(localStorage.getItem('rc_git') || '{}'); 
   if (s.owner) { 
@@ -215,6 +214,7 @@ let S = {
 };
 
 let autoTimer = null;
+let refreshInterval = null;
 
 // ========== HELPERS ==========
 const wa = (t) => `https://wa.me/${S.com.wa}?text=${encodeURIComponent(t)}`;
@@ -234,9 +234,10 @@ function toast(msg, dur = 2500) {
 
 function syncStatus(msg, type) { 
   let b = document.getElementById('sync'); 
+  if (!msg) { b.className = 'sync'; return; }
   b.innerHTML = type === 'load' ? '<span class="loading-spinner"></span>' + msg : msg; 
   b.className = 'sync on ' + type; 
-  setTimeout(() => b.className = 'sync', type === 'ok' ? 2000 : 4000); 
+  setTimeout(() => { if (b.className !== 'sync') b.className = 'sync'; }, type === 'ok' ? 2000 : 4000); 
 }
 
 // ========== RENDER FUNCTIONS ==========
@@ -312,11 +313,15 @@ function toggleTheme() {
   document.documentElement.dataset.theme = t; 
 }
 
-// ========== GITHUB API - PUBLIC READ (Bina Token Ke Sabke Liye) ==========
+// ========== GITHUB API ==========
 async function fetchPublicGitHubData() {
+  if (!G.owner || G.owner === 'YOUR_GITHUB_USERNAME') {
+    console.warn('Please set your GitHub username in DEFAULT_GITHUB_OWNER');
+    return null;
+  }
   const publicUrl = `https://raw.githubusercontent.com/${G.owner}/${G.repo}/${G.branch}/${G.path}`;
   try {
-    const res = await fetch(publicUrl);
+    const res = await fetch(publicUrl, { cache: 'no-cache' });
     if (res.ok) {
       const data = await res.json();
       return data;
@@ -327,7 +332,6 @@ async function fetchPublicGitHubData() {
   return null;
 }
 
-// Admin ke liye push (token required)
 async function pushToGitHub() {
   if (!G.token) return false;
   const dataToSave = { cat: S.cat, com: S.com, st: S.st, ft: S.ft, updated: new Date().toISOString() };
@@ -358,28 +362,27 @@ async function pushToGitHub() {
   return res.ok;
 }
 
-// ========== DATA LOAD - HAR USER KE LIYE GITHUB SE FETCH ==========
-async function loadDataFromGitHub() {
-  if (!G.owner || !G.repo) {
-    console.warn('No GitHub config');
+// ========== DATA LOAD - AUTO REFRESH HAR 30 SECOND ==========
+async function loadDataFromGitHub(showToast = false) {
+  if (!G.owner || G.owner === 'YOUR_GITHUB_USERNAME') {
     return false;
   }
-  
-  syncStatus('🔄 Loading latest data...', 'load');
   
   const gitData = await fetchPublicGitHubData();
   
   if (gitData) {
-    if (gitData.cat && Array.isArray(gitData.cat)) S.cat = gitData.cat;
-    if (gitData.com && gitData.com.name) S.com = { ...DEFAULT_DATA.com, ...gitData.com };
-    if (gitData.st && Array.isArray(gitData.st)) S.st = gitData.st;
-    if (gitData.ft && Array.isArray(gitData.ft)) S.ft = gitData.ft;
-    fullRefresh();
-    syncStatus('✅ Latest data loaded', 'ok');
+    let changed = false;
+    if (gitData.cat && Array.isArray(gitData.cat)) { S.cat = gitData.cat; changed = true; }
+    if (gitData.com && gitData.com.name) { S.com = { ...DEFAULT_DATA.com, ...gitData.com }; changed = true; }
+    if (gitData.st && Array.isArray(gitData.st)) { S.st = gitData.st; changed = true; }
+    if (gitData.ft && Array.isArray(gitData.ft)) { S.ft = gitData.ft; changed = true; }
+    
+    if (changed) {
+      fullRefresh();
+      if (showToast) toast('✅ Data updated from cloud');
+    }
     return true;
   }
-  
-  syncStatus('', ''); // Hide sync message if no data
   return false;
 }
 
@@ -390,6 +393,7 @@ function autoSyncToGitHub() {
   autoTimer = setTimeout(async () => { 
     try { 
       await pushToGitHub(); 
+      toast('✅ Saved to GitHub');
     } catch (e) { 
       console.warn('Auto-sync failed:', e); 
     } 
@@ -466,8 +470,7 @@ function renderPane() {
     <div class="fld"><label>WhatsApp</label><input value="${escapeHtml(S.com.wa)}" oninput="updateCompany('wa',this.value)"></div>
     <div class="fld"><label>Email</label><input value="${escapeHtml(S.com.em)}" oninput="updateCompany('em',this.value)"></div>
     <div class="fld"><label>Address</label><input value="${escapeHtml(S.com.ad)}" oninput="updateCompany('ad',this.value)"></div>
-    <button onclick="manualSync()" style="margin-top:12px;padding:10px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:10px">💾 Save to GitHub</button>
-    <p style="font-size:11px;color:var(--text2);margin-top:8px">⚠️ Token required for saving</p>`;
+    <button onclick="manualSync()" style="margin-top:12px;padding:10px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:10px">💾 Save to GitHub</button>`;
   
   if (S.tab === 'git') p.innerHTML = `
     <h4>GitHub Settings</h4>
@@ -476,7 +479,7 @@ function renderPane() {
     <div class="fld"><label>Repository Name</label><input id="gr" value="${escapeHtml(G.repo)}" placeholder="rhysco-data"></div>
     <button onclick="saveGitConfig()" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px;width:100%">💾 Save Settings</button>
     <div style="margin-top:12px;padding:12px;background:#10b98120;border-radius:10px;font-size:12px">
-      ✅ Visitors will read data from: raw.githubusercontent.com/${G.owner}/${G.repo}/main/data.json
+      ✅ Auto-refresh every 30 seconds for all visitors
     </div>`;
   
   if (S.tab === 'stats') p.innerHTML = `<h4>Statistics</h4><div id="statsEditor"></div><button onclick="addStat()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add Stat</button>`;
@@ -529,8 +532,7 @@ async function saveGitConfig() {
     if (G.token) {
       await pushToGitHub();
     }
-    // Reload data with new config
-    await loadDataFromGitHub();
+    await loadDataFromGitHub(true);
   } catch (e) { 
     toast('❌ ' + e.message); 
   } 
@@ -550,13 +552,23 @@ document.getElementById('searchInput').addEventListener('input', e => {
   // Pehle default data se render karo
   fullRefresh();
   
-  // GitHub se data load karo (har visitor ke liye)
-  await loadDataFromGitHub();
+  // GitHub se data load karo
+  if (G.owner && G.owner !== 'YOUR_GITHUB_USERNAME') {
+    await loadDataFromGitHub();
+    
+    // 🔴 IMPORTANT: Har 30 second mein auto-refresh - Normal user ke liye bhi!
+    refreshInterval = setInterval(async () => {
+      console.log('Auto-refreshing data from GitHub...');
+      await loadDataFromGitHub(false);
+    }, 30000); // 30 seconds
+  } else {
+    console.warn('⚠️ Please set DEFAULT_GITHUB_OWNER to your GitHub username');
+  }
   
   // Jab page visible ho tab refresh karo
   document.addEventListener('visibilitychange', async () => {
     if (document.visibilityState === 'visible') {
-      await loadDataFromGitHub();
+      await loadDataFromGitHub(false);
     }
   });
 })();
