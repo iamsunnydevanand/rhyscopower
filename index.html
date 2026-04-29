@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Rhysco Power — Complete Electrical Solutions</title>
-  <meta name="description" content="Rhysco Power — Premium electrical solutions distributor since 2010" />
+  <title>Rhysco Power</title>
+  <meta name="description" content="Rhysco Power — Premium electrical solutions" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -215,7 +215,6 @@
     .panel-section h4 { margin: 0 0 10px; font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 5px; }
     .panel-section h4 svg { width: 13px; height: 13px; }
     .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-    .row > input { flex: 1; min-width: 120px; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
 
@@ -240,14 +239,16 @@
     .cat-row { display: flex; gap: 6px; align-items: center; padding: 8px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 6px; }
     .cat-row input.icon-input { width: 50px; text-align: center; }
     .cat-row input.name-input { flex: 1; min-width: 80px; }
-    .cat-row .meta { font-size: 10px; color: var(--text-2); white-space: nowrap; }
+    .cat-row .meta { font-size: 10px; color: var(--text-2); }
 
     .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--bg-2); color: var(--text); border: 1px solid var(--border); padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; box-shadow: 0 14px 40px rgba(0,0,0,0.2); z-index: 300; opacity: 0; pointer-events: none; transition: all .3s ease; }
     .toast.show { opacity: 1; }
 
     .git-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; background: var(--success); color: #fff; font-size: 10px; font-weight: 700; }
-    .git-badge.pending { background: var(--warning); color: #000; }
     .git-badge.error { background: var(--danger); }
+
+    .sync-notice { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: var(--grad); color: #fff; text-align: center; padding: 6px; font-size: 12px; font-weight: 600; display: none; }
+    .sync-notice.show { display: block; }
 
     @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)} }
     @keyframes glow { 0%,100%{box-shadow:0 10px 40px rgba(0,212,255,.3)}50%{box-shadow:0 14px 50px rgba(0,212,255,.5)} }
@@ -257,14 +258,15 @@
   </style>
 </head>
 <body>
+  <div class="sync-notice" id="syncNotice"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="50%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs></svg>
 
   <nav class="nav" id="nav">
     <a href="#home" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="logo-text grad-text" id="navName">Rhysco Power</span></a>
     <div class="nav-links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a></div>
     <div class="nav-actions">
-      <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
-      <button class="admin-btn" id="adminBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg><span id="adminBtnLabel">Admin</span></button>
+      <button class="icon-btn" onclick="toggleTheme()" aria-label="Theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
+      <button class="admin-btn" id="adminBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg><span id="adminBtnLabel">Admin</span></button>
       <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
     </div>
   </nav>
@@ -272,135 +274,59 @@
 
   <section id="home" class="hero">
     <div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-fade"></div>
-    <div class="hero-content"><span class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Since 2010 • Premium Quality</span><h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1><p id="heroSubtitle"></p><a href="#catalog" class="cta">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="hero-content"><span class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Since 2010</span><h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1><p id="heroSubtitle"></p><a href="#catalog" class="cta">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
   </section>
 
   <div class="stats" id="statsGrid"></div>
 
   <section class="block"><a id="catalog" style="position:relative;top:-90px"></a>
-    <div class="section-head"><span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span><h2>Premium <span class="grad-text">Catalog</span></h2><p>Industrial-grade electrical equipment trusted by contractors, electricians and procurement teams across India.</p></div>
+    <div class="section-head"><span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span><h2>Premium <span class="grad-text">Catalog</span></h2><p>Industrial-grade electrical equipment trusted by contractors.</p></div>
     <div class="controls"><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="search" id="searchInput" placeholder="Search products…"><button id="clearBtn" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button></div><div class="pills" id="categoryPills"></div></div>
     <div id="productsGrid" class="grid"></div>
   </section>
 
-  <section id="features" class="block"><div class="section-head"><span class="eyebrow">Why Rhysco Power</span><h2>Built for <span class="grad-text-warm">professionals</span></h2><p>Trusted by electricians, contractors and procurement teams across India for over 15 years.</p></div><div class="features-grid" id="featuresGrid"></div></section>
+  <section id="features" class="block"><div class="section-head"><span class="eyebrow">Why Choose Us</span><h2>Built for <span class="grad-text-warm">professionals</span></h2></div><div class="features-grid" id="featuresGrid"></div></section>
 
-  <section id="contact" class="block"><div class="contact-card"><div class="contact-left"><span class="badge-pill">Get in Touch</span><h2>Let's power your<br>next project.</h2><p>Reach out for product enquiries, bulk orders, or technical guidance — our team responds within minutes on WhatsApp.</p><a id="contactWa" href="#" target="_blank" rel="noopener" class="wa-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a></div><div class="contact-right" id="contactRight"></div></div></section>
+  <section id="contact" class="block"><div class="contact-card"><div class="contact-left"><span class="badge-pill">Get in Touch</span><h2>Let's power your<br>next project.</h2><p>Reach out for product enquiries or bulk orders.</p><a id="contactWa" href="#" target="_blank" rel="noopener" class="wa-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a></div><div class="contact-right" id="contactRight"></div></div></section>
 
-  <footer><div class="footer-card"><div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><div class="grad-text" id="footerName" style="font-weight:800;font-size:14px"></div><div class="footer-text">Since 2010 • Premium Electrical Solutions</div></div></div><div class="footer-text" id="footerText"></div></div></footer>
+  <footer><div class="footer-card"><div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><div class="grad-text" id="footerName" style="font-weight:800;font-size:14px"></div><div class="footer-text">Since 2010</div></div></div><div class="footer-text" id="footerText"></div></div></footer>
 
   <a id="floatWa" href="#" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
   <button class="float-top" id="floatTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
   <div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()"><div class="modal-card" id="productModalCard"></div></div>
-  <div class="modal" id="adminModal" onclick="if(event.target===this)closeAdmin()"><div class="modal-card wide"><div class="admin-head"><div class="h-left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><h3>Admin Panel</h3><div class="h-sub">Manage catalog, company info & settings</div></div></div><button class="modal-close" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="admin-body" id="adminBody"></div></div></div>
+  <div class="modal" id="adminModal" onclick="if(event.target===this)closeAdmin()"><div class="modal-card wide"><div class="admin-head"><div class="h-left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><h3>Admin Panel</h3><div class="h-sub">Manage catalog, company & sync</div></div></div><button class="modal-close" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="admin-body" id="adminBody"></div></div></div>
   <div id="toast" class="toast"></div>
 
 <script>
 'use strict';
+console.log('🚀 Rhysco Power v4 — Auto-Sync Edition');
 
-// ========== DEFAULT DATA (fallback) ==========
-const DEFAULT_CATEGORIES = [
-  { id: 'cat_WAA_Cables', name: 'WAA Cables', icon: '🔌', products: [
-    { id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable' }
-  ]}
-];
-
+// ========== DATA ==========
+const DEFAULT_CATEGORIES = [{ id: 'cat_WAA_Cables', name: 'WAA Cables', icon: '🔌', products: [{ id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable' }] }];
 const DEFAULTS = {
   categories: JSON.parse(JSON.stringify(DEFAULT_CATEGORIES)),
-  company: { name: 'Rhysco Power', tagline: 'Premium Electrical Solutions', since: '2010', phone: '+91 6203691393', email: 'bikram.biharelctrometer@gmail.com', whatsapp: '916203691393', address: 'India (Bihar & NCR)', heroTitle: 'Complete Electrical Solutions', heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories' },
+  company: { name: 'Rhysco Power', tagline: 'Premium Electrical Solutions', since: '2010', phone: '+91 6203691393', email: 'bikram.biharelctrometer@gmail.com', whatsapp: '916203691393', address: 'India', heroTitle: 'Complete Electrical Solutions', heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety' },
   stats: [{ icon: 'trophy', number: '15+', label: 'Years' },{ icon: 'boxes', number: '1', label: 'Products' },{ icon: 'users', number: '1000+', label: 'Clients' },{ icon: 'truck', number: 'PAN India', label: 'Delivery' }],
-  features: [{ icon: 'shield', title: 'Quality Assured', desc: 'ISO certified products' },{ icon: 'headset', title: '24/7 Support', desc: 'Technical assistance anytime' },{ icon: 'truck', title: 'Pan India Supply', desc: 'Fast shipping nationwide' },{ icon: 'rupee', title: 'Best Price', desc: 'Wholesale & dealer pricing' },{ icon: 'award', title: 'Trusted Brands', desc: 'Original grade only' },{ icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply specialist' }]
+  features: [{ icon: 'shield', title: 'Quality Assured', desc: 'ISO certified' },{ icon: 'headset', title: '24/7 Support', desc: 'Always available' },{ icon: 'truck', title: 'Fast Delivery', desc: 'Nationwide' },{ icon: 'rupee', title: 'Best Price', desc: 'Wholesale pricing' },{ icon: 'award', title: 'Trusted', desc: 'Original grade' },{ icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply' }]
 };
 
-// ========== GIT CONFIG ==========
-let gitConfig = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
+// ========== GIT ==========
+let git = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
+let gitConnected = false;
+try { const s = JSON.parse(localStorage.getItem('rc_git') || '{}'); if (s.owner && s.token) { Object.assign(git, s); gitConnected = true; } } catch {}
 
 // ========== STATE ==========
-let state = {
+let S = {
   categories: JSON.parse(JSON.stringify(DEFAULTS.categories)),
   company: { ...DEFAULTS.company },
   stats: JSON.parse(JSON.stringify(DEFAULTS.stats)),
   features: JSON.parse(JSON.stringify(DEFAULTS.features)),
-  admin: false,
-  activeCategory: 'all',
-  query: '',
-  adminTab: 'products',
-  adminCat: null,
-  editingId: null,
-  editDraft: { name: '', spec: '', desc: '', icon: '📦' },
-  gitConnected: false
+  admin: !!(function() { try { return localStorage.getItem('rc_auth') === '1'; } catch { return false; } })(),
+  activeCat: 'all', query: '', adminTab: 'git', adminCat: null, editingId: null,
+  editDraft: { name: '', spec: '', desc: '', icon: '📦' }
 };
-
-let syncTimer = null, searchTimer = null;
-
-// ========== GIT HELPERS ==========
-function loadGitConfig() {
-  try { const s = JSON.parse(localStorage.getItem('rc_git') || '{}'); if (s.owner && s.token) { gitConfig.owner = s.owner; gitConfig.token = s.token; gitConfig.repo = s.repo || 'rhysco-data'; gitConfig.branch = s.branch || 'main'; state.gitConnected = true; return true; } } catch {}
-  return false;
-}
-function saveGitConfigToLS() {
-  try { localStorage.setItem('rc_git', JSON.stringify({ owner: gitConfig.owner, token: gitConfig.token, repo: gitConfig.repo, branch: gitConfig.branch })); } catch {}
-}
-function checkAdminSession() { try { state.admin = localStorage.getItem('rc_auth') === '1'; } catch {} }
-
-// ========== GITHUB API ==========
-async function gitAPI(endpoint, method = 'GET', body = null) {
-  if (!gitConfig.token) throw new Error('No token configured');
-  const ctrl = new AbortController();
-  const to = setTimeout(() => ctrl.abort(), 15000);
-  try {
-    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(gitConfig.owner)}/${encodeURIComponent(gitConfig.repo)}${endpoint}`, {
-      method, signal: ctrl.signal,
-      headers: { 'Authorization': `Bearer ${gitConfig.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-      body: body ? JSON.stringify(body) : null
-    });
-    clearTimeout(to);
-    if (res.status === 401) throw new Error('Invalid token — please regenerate at github.com/settings/tokens');
-    if (res.status === 403) throw new Error('Token needs "repo" permission — regenerate with repo scope');
-    if (res.status === 404) throw new Error('Repository not found — create it on GitHub first');
-    if (!res.ok) throw new Error(`GitHub error ${res.status}: ${(await res.json().catch(()=>({}))).message || ''}`);
-    return res.json();
-  } catch (e) { clearTimeout(to); throw e; }
-}
-
-async function pushToGitHub() {
-  if (!state.gitConnected) return false;
-  const data = { categories: state.categories, company: state.company, stats: state.stats, features: state.features, lastSync: new Date().toISOString() };
-  try {
-    let sha = null;
-    try { sha = (await gitAPI(`/contents/${gitConfig.path}`)).sha; } catch {}
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-    await gitAPI(`/contents/${gitConfig.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: gitConfig.branch, ...(sha ? { sha } : {}) });
-    updateGitBadge();
-    return true;
-  } catch (e) { updateGitBadge(); throw e; }
-}
-
-async function pullFromGitHub() {
-  if (!state.gitConnected) return false;
-  const raw = await gitAPI(`/contents/${gitConfig.path}`);
-  const content = JSON.parse(atob(raw.content));
-  if (content.categories?.length) state.categories = content.categories;
-  if (content.company?.name) state.company = { ...DEFAULTS.company, ...content.company };
-  if (content.stats?.length) state.stats = content.stats;
-  if (content.features?.length) state.features = content.features;
-  refreshAll();
-  updateGitBadge();
-  return true;
-}
-
-function updateGitBadge() {
-  const b = document.getElementById('gitSyncBadge');
-  if (!b) return;
-  if (state.gitConnected) { b.className = 'git-badge'; b.textContent = '✓ Synced'; }
-  else { b.className = 'git-badge error'; b.textContent = '⚡ Not Connected'; }
-}
-
-function persist() {
-  clearTimeout(syncTimer);
-  if (state.gitConnected) syncTimer = setTimeout(() => pushToGitHub().catch(e => toast('Sync: ' + e.message)), 2000);
-}
+let syncTmr, searchTmr;
 
 // ========== ICONS ==========
 const I = {
@@ -417,9 +343,7 @@ const I = {
   moon:'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
   ruler:'<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
   msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-  arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>',
-  chevron:'<polyline points="9 18 15 12 9 6"/>',
-  x:'<path d="M18 6L6 18M6 6l12 12"/>',
+  chevron:'<polyline points="9 18 15 12 9 6"/>', x:'<path d="M18 6L6 18M6 6l12 12"/>',
   check:'<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
   truckS:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
   phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
@@ -429,319 +353,220 @@ const I = {
   plus:'<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
   edit:'<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>',
   trash:'<polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>',
-  save:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',
-  reset:'<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>',
   lock:'<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
   pkg:'<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
   github:'<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',
   cloud:'<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
   download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'
 };
-const S = (n, s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]||''}</svg>`;
+const ic = (n, s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]||''}</svg>`;
 
 // ========== UTILS ==========
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-const escA = s => esc(s);
-const uid = () => 'id_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-const wa = t => `https://wa.me/${state.company.whatsapp}?text=${encodeURIComponent(t)}`;
-const flat = () => state.categories.flatMap(c => c.products.map(p => ({ ...p, categoryId: c.id, categoryName: c.name, categoryIcon: c.icon })));
-const refreshAll = () => { renderCompany(); renderStats(); renderCategories(); renderProducts(); renderFeatures(); };
+const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = () => 'id_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const wa = t => `https://wa.me/${S.company.whatsapp}?text=${encodeURIComponent(t)}`;
+const flat = () => S.categories.flatMap(c => c.products.map(p => ({...p, cid: c.id, cname: c.name, cicon: c.icon})));
+const refresh = () => { RC(); RS(); RCat(); RP(); RF(); };
 
-function toast(msg, dur = 2500) {
+function toast(m, d = 2500) {
   const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(window._tt); window._tt = setTimeout(() => t.classList.remove('show'), dur);
+  t.textContent = m; t.classList.add('show');
+  clearTimeout(window._tt); window._tt = setTimeout(() => t.classList.remove('show'), d);
 }
 
 // ========== THEME ==========
 function applyTheme() {
   const t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch { return 'dark'; } })();
   document.documentElement.dataset.theme = t;
-  try { document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`; } catch {}
+  try { document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${I[t==='dark'?'sun':'moon']}</svg>`; } catch {}
 }
 function toggleTheme() {
-  const cur = document.documentElement.dataset.theme;
-  const next = cur === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('rc_theme', next); } catch {}
+  const n = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('rc_theme', n); } catch {}
   applyTheme();
 }
-
 function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('show'); }
 
+// ========== GITHUB API ==========
+async function gitAPI(ep, m = 'GET', body = null) {
+  if (!git.token) throw new Error('No token');
+  const c = new AbortController();
+  const t = setTimeout(() => c.abort(), 12000);
+  try {
+    const r = await fetch(`https://api.github.com/repos/${encodeURIComponent(git.owner)}/${encodeURIComponent(git.repo)}${ep}`, {
+      method: m, signal: c.signal,
+      headers: {'Authorization':`Bearer ${git.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
+      body: body ? JSON.stringify(body) : null
+    });
+    clearTimeout(t);
+    if (r.status === 401) throw new Error('Invalid token');
+    if (r.status === 404) throw new Error('Repository not found');
+    if (!r.ok) throw new Error('Error ' + r.status);
+    return r.json();
+  } catch(e) { clearTimeout(t); throw e; }
+}
+
+async function gitPush() {
+  const d = { categories: S.categories, company: S.company, stats: S.stats, features: S.features, ts: new Date().toISOString() };
+  let sha = null;
+  try { sha = (await gitAPI(`/contents/${git.path}`)).sha; } catch {}
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(d, null, 2))));
+  await gitAPI(`/contents/${git.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: git.branch, ...(sha?{sha}:{}) });
+}
+
+async function gitPull() {
+  const r = await gitAPI(`/contents/${git.path}`);
+  const d = JSON.parse(atob(r.content));
+  if (d.categories?.length) S.categories = d.categories;
+  if (d.company?.name) S.company = {...DEFAULTS.company, ...d.company};
+  if (d.stats?.length) S.stats = d.stats;
+  if (d.features?.length) S.features = d.features;
+  refresh();
+}
+
 // ========== RENDER ==========
-function renderCompany() {
-  document.getElementById('navName').textContent = state.company.name;
-  document.getElementById('footerName').textContent = state.company.name;
-  document.title = state.company.name + ' — ' + state.company.tagline;
-  document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
-  document.getElementById('footerText').textContent = '© ' + new Date().getFullYear() + ' ' + state.company.name + '. All rights reserved.';
-  const words = state.company.heroTitle.split(' ');
-  document.getElementById('heroTitle').innerHTML = words.map((w, i) => (/electric/i.test(w) ? '<span class="grad-text">' + esc(w) + '</span>' : esc(w)) + (i < words.length - 1 ? ' ' : '')).join('');
-  document.getElementById('floatWa').href = wa('Hi, I have a question.');
-  document.getElementById('contactWa').href = wa("Hi, I'd like to discuss a bulk order.");
+function RC() {
+  document.getElementById('navName').textContent = S.company.name;
+  document.getElementById('footerName').textContent = S.company.name;
+  document.title = S.company.name;
+  document.getElementById('heroSubtitle').textContent = S.company.heroSubtitle;
+  document.getElementById('footerText').textContent = '© '+new Date().getFullYear()+' '+S.company.name;
+  document.getElementById('heroTitle').innerHTML = S.company.heroTitle.split(' ').map((w,i) => (/electric/i.test(w)?'<span class="grad-text">'+esc(w)+'</span>':esc(w))+(i<S.company.heroTitle.split(' ').length-1?' ':'')).join('');
+  document.getElementById('floatWa').href = wa('Hi');
+  document.getElementById('contactWa').href = wa('Hi, bulk order enquiry');
   document.getElementById('contactRight').innerHTML = [
-    { ic: 'phone', l: 'Phone', v: state.company.phone, h: 'tel:' + state.company.phone.replace(/\s+/g, '') },
-    { ic: 'msg', l: 'WhatsApp', v: '+' + state.company.whatsapp, h: wa('Hi'), ext: true },
-    { ic: 'mail', l: 'Email', v: state.company.email, h: 'mailto:' + state.company.email },
-    { ic: 'pin', l: 'Address', v: state.company.address },
-    { ic: 'clock', l: 'Hours', v: 'Mon – Sat • 9 AM to 8 PM' }
+    {i:'phone',l:'Phone',v:S.company.phone,h:'tel:'+S.company.phone.replace(/\s+/g,'')},
+    {i:'msg',l:'WhatsApp',v:'+'+S.company.whatsapp,h:wa('Hi'),x:1},
+    {i:'mail',l:'Email',v:S.company.email,h:'mailto:'+S.company.email},
+    {i:'pin',l:'Address',v:S.company.address}
   ].map(it => {
-    const inner = '<div class="ic">' + S(it.ic, 16) + '</div><div><div class="label">' + it.l + '</div><div class="value">' + esc(it.v) + '</div></div>';
-    return it.h ? '<a href="' + escA(it.h) + '" ' + (it.ext ? 'target="_blank" rel="noopener"' : '') + ' class="contact-item">' + inner + '</a>' : '<div class="contact-item">' + inner + '</div>';
+    const inr = '<div class="ic">'+ic(it.i,16)+'</div><div><div class="label">'+it.l+'</div><div class="value">'+esc(it.v)+'</div></div>';
+    return it.h ? '<a href="'+esc(it.h.replace(/"/g,'&quot;'))+'" '+(it.x?'target="_blank" rel="noopener"':'')+' class="contact-item">'+inr+'</a>' : '<div class="contact-item">'+inr+'</div>';
   }).join('');
 }
-
-function renderStats() {
-  document.getElementById('statsGrid').innerHTML = state.stats.map((s, i) => '<div class="stat" style="animation:fadeIn .3s ease ' + i * .06 + 's both"><div class="stat-icon">' + S(s.icon, 22) + '</div><div class="stat-num">' + esc(s.number) + '</div><div class="stat-label">' + esc(s.label) + '</div></div>').join('');
-}
-
-function renderFeatures() {
-  document.getElementById('featuresGrid').innerHTML = state.features.map((f, i) => '<div class="feat" style="animation:fadeIn .3s ease ' + i * .05 + 's both"><div class="feat-icon">' + S(f.icon, 22) + '</div><h3>' + esc(f.title) + '</h3><p>' + esc(f.desc) + '</p></div>').join('');
-}
-
-function renderCategories() {
+function RS() { document.getElementById('statsGrid').innerHTML = S.stats.map(s => '<div class="stat"><div class="stat-icon">'+ic(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join(''); }
+function RF() { document.getElementById('featuresGrid').innerHTML = S.features.map(f => '<div class="feat"><div class="feat-icon">'+ic(f.icon,22)+'</div><h3>'+esc(f.title)+'</h3><p>'+esc(f.desc)+'</p></div>').join(''); }
+function RCat() {
   const all = flat();
-  document.getElementById('catalogCount').textContent = all.length + ' products in stock';
-  document.getElementById('categoryPills').innerHTML = '<button class="pill ' + (state.activeCategory === 'all' ? 'active' : '') + '" onclick="setCategory(\'all\')">📂 All</button>' + state.categories.map(c => '<button class="pill ' + (state.activeCategory === c.id ? 'active' : '') + '" onclick="setCategory(\'' + c.id + '\')">' + esc(c.icon) + ' ' + esc(c.name) + '</button>').join('');
+  document.getElementById('catalogCount').textContent = all.length+' products';
+  document.getElementById('categoryPills').innerHTML = '<button class="pill '+(S.activeCat==='all'?'active':'')+'" onclick="setCat(\'all\')">📂 All</button>'+S.categories.map(c => '<button class="pill '+(S.activeCat===c.id?'active':'')+'" onclick="setCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('');
 }
-
-function renderProducts() {
-  const grid = document.getElementById('productsGrid');
+function RP() {
+  const g = document.getElementById('productsGrid');
   const all = flat();
-  const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
-  const q = state.query.trim().toLowerCase();
-  const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
-  if (!filtered.length) { grid.innerHTML = '<div class="empty" style="grid-column:1/-1">' + S('pkg', 44) + '<div style="font-size:16px;font-weight:700;margin-top:8px">No products found</div><div style="color:var(--text-2);font-size:13px;margin-top:4px">Try a different search or category.</div></div>'; return; }
-  grid.innerHTML = filtered.map((p, i) => {
-    const w = wa('Hi, I\'m interested in: ' + p.name + ' (' + p.spec + '). Please share availability & price.');
-    return '<div class="card" style="animation:fadeIn .25s ease ' + Math.min(i * .02, .3) + 's both"><div class="icon">' + esc(p.icon) + '</div><h3>' + esc(p.name) + '</h3><div class="spec">' + S('ruler', 11) + ' ' + esc(p.spec) + '</div><p class="desc">' + esc(p.desc) + '</p><span class="cat-badge">' + esc(p.categoryIcon) + ' ' + esc(p.categoryName) + '</span><div class="actions"><a class="btn-wa" href="' + escA(w) + '" target="_blank" rel="noopener">' + S('msg', 13) + ' Enquiry</a><button class="btn-detail" onclick="openProduct(\'' + p.id + '\')">Details ' + S('chevron', 13) + '</button></div></div>';
+  const base = S.activeCat === 'all' ? all : all.filter(p => p.cid === S.activeCat);
+  const q = S.query.trim().toLowerCase();
+  const f = q ? base.filter(p => p.name.toLowerCase().includes(q)||p.spec.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)) : base;
+  if (!f.length) { g.innerHTML = '<div class="empty" style="grid-column:1/-1">'+ic('pkg',44)+'<div style="font-size:16px;font-weight:700;margin-top:8px">No products</div></div>'; return; }
+  g.innerHTML = f.map(p => {
+    const w = wa('Interested in: '+p.name+' ('+p.spec+')');
+    return '<div class="card"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><div class="spec">'+ic('ruler',11)+' '+esc(p.spec)+'</div><p class="desc">'+esc(p.desc)+'</p><span class="cat-badge">'+esc(p.cicon)+' '+esc(p.cname)+'</span><div class="actions"><a class="btn-wa" href="'+esc(w.replace(/"/g,'&quot;'))+'" target="_blank" rel="noopener">'+ic('msg',13)+' Enquiry</a><button class="btn-detail" onclick="openProd(\''+p.id+'\')">Details '+ic('chevron',13)+'</button></div></div>';
   }).join('');
 }
+function setCat(id) { S.activeCat = id; RCat(); RP(); }
+function clearSearch() { S.query = ''; document.getElementById('searchInput').value=''; document.getElementById('clearBtn').style.display='none'; RP(); }
 
-function setCategory(id) { state.activeCategory = id; renderCategories(); renderProducts(); }
-function clearSearch() { state.query = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; renderProducts(); }
-
-function openProduct(id) {
+function openProd(id) {
   const p = flat().find(p => p.id === id);
   if (!p) return;
-  const w = wa("Hi, I'd like a quote for: " + p.name + ' (' + p.spec + ').');
-  document.getElementById('productModalCard').innerHTML = '<button class="modal-close" onclick="closeProduct()">' + S('x', 14) + '</button><div class="pdetail-head"><div class="pdetail-icon">' + esc(p.icon) + '</div><span class="cat-badge">' + esc(p.categoryIcon) + ' ' + esc(p.categoryName) + '</span><div class="pdetail-title">' + esc(p.name) + '</div><div class="pdetail-spec">' + S('ruler', 13) + ' ' + esc(p.spec) + '</div></div><div class="pdetail-body"><p class="pdetail-desc">' + esc(p.desc) + '</p><div class="pdetail-actions"><a class="wa" href="' + escA(w) + '" target="_blank" rel="noopener">' + S('msg', 14) + ' WhatsApp</a><a class="call" href="tel:' + escA(state.company.phone.replace(/\s+/g, '')) + '">' + S('phone', 14) + ' Call Now</a></div></div>';
+  document.getElementById('productModalCard').innerHTML = '<button class="modal-close" onclick="closeProd()">'+ic('x',14)+'</button><div class="pdetail-head"><div class="pdetail-icon">'+esc(p.icon)+'</div><span class="cat-badge">'+esc(p.cicon)+' '+esc(p.cname)+'</span><div class="pdetail-title">'+esc(p.name)+'</div><div class="pdetail-spec">'+ic('ruler',13)+' '+esc(p.spec)+'</div></div><div class="pdetail-body"><p class="pdetail-desc">'+esc(p.desc)+'</p><div class="pdetail-actions"><a class="wa" href="'+esc(wa('Quote: '+p.name).replace(/"/g,'&quot;'))+'" target="_blank" rel="noopener">'+ic('msg',14)+' WhatsApp</a><a class="call" href="tel:'+esc(S.company.phone.replace(/\s+/g,''))+'">'+ic('phone',14)+' Call</a></div></div>';
   document.getElementById('productModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
-function closeProduct() { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow = ''; }
+function closeProd() { document.getElementById('productModal').classList.remove('open'); }
 
 // ========== ADMIN ==========
-function openAdmin() { document.getElementById('adminModal').classList.add('open'); document.body.style.overflow = 'hidden'; renderAdmin(); }
-function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); document.body.style.overflow = ''; }
-
+function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
+function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
 function login() {
-  const u = document.getElementById('adminUser')?.value?.trim();
-  const p = document.getElementById('adminPass')?.value;
-  if (u === 'sunny' && p === 'admin') {
-    state.admin = true; try { localStorage.setItem('rc_auth', '1'); } catch {}
-    updateAdminBtn(); renderAdmin(); toast('Welcome back, admin!');
-  } else {
-    const el = document.getElementById('loginErr'); if (el) el.textContent = 'Invalid credentials. Use sunny / admin';
-  }
+  if (document.getElementById('adminUser')?.value?.trim()==='sunny' && document.getElementById('adminPass')?.value==='admin') {
+    S.admin = true; try { localStorage.setItem('rc_auth','1'); } catch {}
+    updateBtn(); renderAdmin(); toast('Welcome!');
+  } else { const e = document.getElementById('loginErr'); if (e) e.textContent = 'Invalid'; }
   return false;
 }
-function logout() { state.admin = false; try { localStorage.removeItem('rc_auth'); } catch {} updateAdminBtn(); closeAdmin(); toast('Logged out'); }
-function updateAdminBtn() {
+function logout() { S.admin = false; try { localStorage.removeItem('rc_auth'); } catch {} updateBtn(); closeAdmin(); toast('Logged out'); }
+function updateBtn() {
   const b = document.getElementById('adminBtn'), l = document.getElementById('adminBtnLabel');
-  if (state.admin) { b.classList.add('danger'); l.textContent = 'Logout'; b.onclick = logout; }
+  if (S.admin) { b.classList.add('danger'); l.textContent = 'Logout'; b.onclick = logout; }
   else { b.classList.remove('danger'); l.textContent = 'Admin'; b.onclick = openAdmin; }
 }
-
 function renderAdmin() {
-  if (!state.admin) {
-    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">' + S('lock', 22) + '</div><h3>Admin Login</h3><div class="hint">Default: <code>sunny</code> / <code>admin</code></div><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center;font-weight:600"></div><button type="submit" class="btn btn-primary">Sign In</button></form>';
+  if (!S.admin) {
+    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">'+ic('lock',22)+'</div><h3>Admin Login</h3><div class="field"><label>Username</label><input id="adminUser" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center"></div><button class="btn btn-primary">Sign In</button></form>';
     return;
   }
-  document.getElementById('adminBody').innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div class="tabs" style="margin-bottom:0"><button class="' + (state.adminTab === 'products' ? 'active' : '') + '" onclick="setAdminTab(\'products\')">Products</button><button class="' + (state.adminTab === 'categories' ? 'active' : '') + '" onclick="setAdminTab(\'categories\')">Categories</button><button class="' + (state.adminTab === 'company' ? 'active' : '') + '" onclick="setAdminTab(\'company\')">Company</button><button class="' + (state.adminTab === 'git' ? 'active' : '') + '" onclick="setAdminTab(\'git\')">' + S('github', 12) + ' Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>';
-  renderAdminPane(); updateGitBadge();
+  document.getElementById('adminBody').innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div class="tabs"><button class="'+(S.adminTab==='products'?'active':'')+'" onclick="setTab(\'products\')">Products</button><button class="'+(S.adminTab==='categories'?'active':'')+'" onclick="setTab(\'categories\')">Categories</button><button class="'+(S.adminTab==='company'?'active':'')+'" onclick="setTab(\'company\')">Company</button><button class="'+(S.adminTab==='git'?'active':'')+'" onclick="setTab(\'git\')">'+ic('github',12)+' Git</button></div><span class="git-badge'+(gitConnected?'':' error')+'" id="gitBadge">'+(gitConnected?'✓ Synced':'⚡ Offline')+'</span></div><div id="adminPane"></div>';
+  renderPane();
 }
-function setAdminTab(t) { state.adminTab = t; renderAdmin(); }
-
-function renderAdminPane() {
+function setTab(t) { S.adminTab = t; renderAdmin(); }
+function renderPane() {
   const p = document.getElementById('adminPane');
-  if (state.adminTab === 'products') p.innerHTML = paneProducts();
-  else if (state.adminTab === 'categories') p.innerHTML = paneCategories();
-  else if (state.adminTab === 'company') p.innerHTML = paneCompany();
-  else if (state.adminTab === 'git') p.innerHTML = paneGit();
+  if (S.adminTab === 'company') p.innerHTML = '<div class="panel-section"><div class="grid-2">'+[['name','Name'],['tagline','Tagline'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m]) => '<div class="field" style="'+(m?'grid-column:1/-1':'')+'"><label>'+l+'</label>'+(m?'<textarea oninput="updComp(\''+k+'\',this.value)">'+esc(S.company[k]||'')+'</textarea>':'<input value="'+esc(S.company[k]||'')+'" oninput="updComp(\''+k+'\',this.value)">')+'</div>').join('')+'</div></div>';
+  else if (S.adminTab === 'git') p.innerHTML = paneGit();
 }
-
-function paneProducts() {
-  if (!state.categories.length) return '<p style="color:var(--text-2)">Add a category first.</p>';
-  if (!state.adminCat || !state.categories.find(c => c.id === state.adminCat)) state.adminCat = state.categories[0].id;
-  const cat = state.categories.find(c => c.id === state.adminCat);
-  const d = state.editDraft;
-  return '<div class="row" style="margin-bottom:12px">' + state.categories.map(c => '<button class="cat-pill-admin ' + (c.id === state.adminCat ? 'active' : '') + '" onclick="adminPickCat(\'' + c.id + '\')">' + esc(c.icon) + ' ' + esc(c.name) + '</button>').join('') + '</div><div class="panel-section"><h4>' + (state.editingId ? S('edit', 13) + ' Edit product' : S('plus', 13) + ' Add new product to ' + esc(cat.name)) + '</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="' + escA(d.icon) + '" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name *</label><input maxlength="200" value="' + escA(d.name) + '" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Specification</label><input maxlength="100" value="' + escA(d.spec) + '" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Description</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">' + esc(d.desc) + '</textarea></div></div><div class="row" style="margin-top:10px"><button class="btn btn-primary" onclick="saveProduct()">' + S('save', 13) + ' ' + (state.editingId ? 'Update' : 'Add Product') + '</button>' + (state.editingId ? '<button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>' : '') + '</div></div><div class="item-list">' + (cat.products.map(p => '<div class="li"><div class="lico">' + esc(p.icon) + '</div><div class="lbody"><div class="ln">' + esc(p.name) + '</div><div class="ls">' + esc(p.spec) + '</div><div class="ld">' + esc(p.desc) + '</div></div><div class="lact"><button class="edit" onclick="editProduct(\'' + p.id + '\')">' + S('edit', 12) + '</button><button class="del" onclick="deleteProduct(\'' + p.id + '\')">' + S('trash', 12) + '</button></div></div>').join('') || '<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:20px">No products in this category yet.</p>') + '</div>';
-}
-function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' }; renderAdminPane(); }
-function saveProduct() {
-  const d = state.editDraft;
-  if (!d.name.trim()) return toast('⚠️ Name is required');
-  if (d.name.length > 200) return toast('⚠️ Name too long');
-  const cat = state.categories.find(c => c.id === state.adminCat);
-  if (state.editingId) {
-    const p = cat.products.find(p => p.id === state.editingId);
-    if (p) Object.assign(p, { name: d.name.trim(), spec: d.spec.trim(), desc: d.desc.trim(), icon: d.icon || '📦' });
-    toast('Product updated');
-  } else {
-    cat.products.push({ id: uid(), name: d.name.trim(), spec: d.spec.trim(), desc: d.desc.trim(), icon: d.icon || '📦' });
-    toast('Product added');
-  }
-  state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' };
-  persist(); renderAdminPane(); renderCategories(); renderProducts();
-}
-function editProduct(id) {
-  const cat = state.categories.find(c => c.id === state.adminCat);
-  const p = cat?.products.find(p => p.id === id);
-  if (!p) return;
-  state.editingId = id; state.editDraft = { name: p.name, spec: p.spec, desc: p.desc, icon: p.icon };
-  renderAdminPane();
-}
-function cancelEdit() { state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' }; renderAdminPane(); }
-function deleteProduct(id) {
-  const cat = state.categories.find(c => c.id === state.adminCat);
-  const p = cat?.products.find(p => p.id === id);
-  if (!p || !confirm('Delete "' + p.name + '"?')) return;
-  cat.products = cat.products.filter(x => x.id !== id);
-  persist(); renderAdminPane(); renderCategories(); renderProducts();
-  toast('Product deleted');
-}
-
-function paneCategories() {
-  return '<div class="panel-section"><h4>' + S('plus', 13) + ' Add new category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Category name" maxlength="50"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>' + state.categories.map(c => '<div class="cat-row"><input class="icon-input" maxlength="4" value="' + escA(c.icon) + '" oninput="updateCat(\'' + c.id + '\',\'icon\',this.value)"><input class="name-input" value="' + escA(c.name) + '" maxlength="50" oninput="updateCat(\'' + c.id + '\',\'name\',this.value)"><span class="meta">' + c.products.length + ' items</span><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat(\'' + c.id + '\')">' + S('trash', 12) + '</button></div>').join('') + '<div style="margin-top:12px"><button class="btn btn-danger" onclick="resetAll()">' + S('reset', 13) + ' Reset everything to defaults</button></div>';
-}
-function addCat() {
-  const n = document.getElementById('newCatName')?.value?.trim();
-  if (!n) return toast('⚠️ Category name required');
-  state.categories.push({ id: uid(), name: n, icon: document.getElementById('newCatIcon')?.value?.trim() || '📁', products: [] });
-  persist(); renderAdminPane(); renderCategories(); toast('Category added');
-}
-function updateCat(id, k, v) { const c = state.categories.find(c => c.id === id); if (c) { c[k] = v; persist(); renderCategories(); } }
-function deleteCat(id) {
-  const c = state.categories.find(c => c.id === id);
-  if (!c || !confirm('Delete category "' + c.name + '" and ' + c.products.length + ' products?')) return;
-  state.categories = state.categories.filter(x => x.id !== id);
-  if (state.activeCategory === id) state.activeCategory = 'all';
-  if (state.adminCat === id) state.adminCat = state.categories[0]?.id || null;
-  persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Category deleted');
-}
-function resetAll() {
-  if (!confirm('Reset ALL data to defaults? This cannot be undone.')) return;
-  state.categories = JSON.parse(JSON.stringify(DEFAULTS.categories));
-  state.company = { ...DEFAULTS.company };
-  state.stats = JSON.parse(JSON.stringify(DEFAULTS.stats));
-  state.features = JSON.parse(JSON.stringify(DEFAULTS.features));
-  state.activeCategory = 'all'; state.adminCat = null;
-  persist(); renderAdmin(); refreshAll(); toast('Reset to defaults');
-}
-
-function paneCompany() {
-  const c = state.company;
-  const fields = [['name', 'Company Name'], ['tagline', 'Tagline'], ['phone', 'Phone'], ['whatsapp', 'WhatsApp number'], ['email', 'Email'], ['address', 'Address', true], ['heroTitle', 'Hero Title'], ['heroSubtitle', 'Hero Subtitle', true]];
-  return '<div class="grid-2">' + fields.map(([k, l, m]) => '<div class="field" style="' + (m ? 'grid-column:1/-1' : '') + '"><label>' + l + '</label>' + (m ? '<textarea maxlength="200" oninput="updateCompany(\'' + k + '\',this.value)">' + esc(c[k] || '') + '</textarea>' : '<input maxlength="100" value="' + escA(c[k] || '') + '" oninput="updateCompany(\'' + k + '\',this.value)">') + '</div>').join('') + '</div>';
-}
-function updateCompany(k, v) { state.company[k] = v; persist(); renderCompany(); }
+function updComp(k, v) { S.company[k] = v; RC(); clearTimeout(syncTmr); if (gitConnected) syncTmr = setTimeout(() => gitPush().catch(e => toast('Sync: '+e.message)), 2000); }
 
 function paneGit() {
-  return '<div class="panel-section"><h4>' + S('github', 14) + ' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:14px">Connect to sync across all devices. Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → Generate token → select <strong>repo</strong> scope.</p><div class="grid-2"><div class="field"><label>GitHub Username</label><input id="gitOwner" value="' + escA(gitConfig.owner) + '" placeholder="your-username"></div><div class="field"><label>Repository</label><input id="gitRepo" value="' + escA(gitConfig.repo) + '" placeholder="rhysco-data"></div><div class="field"><label>Branch</label><input id="gitBranch" value="' + escA(gitConfig.branch) + '" placeholder="main"></div><div class="field" style="grid-column:1/-1"><label>Personal Access Token</label><input id="gitToken" type="password" value="' + escA(gitConfig.token) + '" placeholder="ghp_..."></div></div><div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitAndConnect()">' + S('save', 13) + ' Save & Connect</button>' + (state.gitConnected ? '<button class="btn btn-success" onclick="pushToGitHub().then(()=>toast(\'✅ Pushed\')).catch(e=>toast(\'❌ \'+e.message))">' + S('cloud', 13) + ' Push</button><button class="btn btn-success" onclick="pullFromGitHub().then(()=>toast(\'✅ Loaded\')).catch(e=>toast(\'❌ \'+e.message))">' + S('download', 13) + ' Pull</button><button class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>' : '') + '</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>' + (state.gitConnected ? '✅ Connected to ' + gitConfig.owner + '/' + gitConfig.repo : '⚡ Not connected') + '</strong></div></div>';
+  return '<div class="panel-section"><h4>'+ic('github',14)+' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → <strong>repo</strong> scope</p><div class="grid-2"><div class="field"><label>Username</label><input id="gitOwner" value="'+esc(git.owner)+'" placeholder="github-username"></div><div class="field"><label>Token</label><input id="gitToken" type="password" value="'+esc(git.token)+'" placeholder="ghp_..."></div></div><div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" onclick="saveGit()">💾 Save & Sync</button>'+(gitConnected?'<button class="btn btn-success" onclick="gitPush().then(()=>toast(\'✅ Pushed\')).catch(e=>toast(\'❌ \'+e.message))">📤 Push</button><button class="btn btn-success" onclick="gitPull().then(()=>toast(\'✅ Loaded\')).catch(e=>toast(\'❌ \'+e.message))">📥 Pull</button><button class="btn btn-danger" onclick="discGit()">🔌 Disconnect</button>':'')+'</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">'+(gitConnected?'✅ Connected — All devices sync':'⚡ Not connected')+'</div></div>';
 }
 
-// ========== GIT SAVE ==========
-async function saveGitAndConnect() {
-  const owner = document.getElementById('gitOwner')?.value?.trim();
-  const token = document.getElementById('gitToken')?.value?.trim();
-  const repo = document.getElementById('gitRepo')?.value?.trim() || 'rhysco-data';
-  const branch = document.getElementById('gitBranch')?.value?.trim() || 'main';
-
-  if (!owner || !token) return toast('⚠️ Username and token are required');
-
-  gitConfig.owner = owner;
-  gitConfig.token = token;
-  gitConfig.repo = repo;
-  gitConfig.branch = branch;
-  saveGitConfigToLS();
-  state.gitConnected = true;
-
-  toast('🔄 Testing & syncing...');
-
-  try {
-    await pushToGitHub();
-    toast('✅ Connected & synced! Changes now visible on all devices.');
-    setAdminTab('git'); // Refresh git tab
-  } catch (e) {
-    toast('⚠️ ' + e.message, 4000);
-    // Still connected - will retry on next save
-  }
+async function saveGit() {
+  const o = document.getElementById('gitOwner')?.value?.trim();
+  const t = document.getElementById('gitToken')?.value?.trim();
+  if (!o || !t) return toast('⚠️ Username & token required');
+  git.owner = o; git.token = t; gitConnected = true;
+  try { localStorage.setItem('rc_git', JSON.stringify({owner:o,token:t,repo:'rhysco-data',branch:'main'})); } catch {}
+  try { await gitPush(); toast('✅ Synced! All devices will see changes.'); } catch(e) { toast('⚠️ '+e.message); }
+  renderAdmin();
 }
-
-function disconnectGit() {
-  if (!confirm('Disconnect GitHub?')) return;
-  gitConfig.token = ''; gitConfig.owner = '';
-  try { localStorage.removeItem('rc_git'); } catch {}
-  state.gitConnected = false;
-  updateGitBadge();
-  setAdminTab('git');
-  toast('🔌 Disconnected');
-}
+function discGit() { if (!confirm('Disconnect?')) return; git.token=''; git.owner=''; gitConnected=false; try { localStorage.removeItem('rc_git'); } catch {} renderAdmin(); toast('🔌 Disconnected'); }
 
 // ========== EVENTS ==========
 document.getElementById('searchInput').addEventListener('input', e => {
-  state.query = e.target.value;
-  document.getElementById('clearBtn').style.display = state.query ? 'inline-flex' : 'none';
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(renderProducts, 200);
+  S.query = e.target.value;
+  document.getElementById('clearBtn').style.display = S.query ? 'inline-flex' : 'none';
+  clearTimeout(searchTmr); searchTmr = setTimeout(RP, 200);
 });
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
   document.getElementById('floatTop').classList.toggle('visible', window.scrollY > 400);
 }, { passive: true });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProd(); closeAdmin(); } });
 document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
-// ========== REPLACE INIT SECTION WITH THIS ==========
+
+// ========== INIT — AUTO PULL FROM GITHUB ==========
 applyTheme();
-loadGitConfig();
-checkAdminSession();
 
-// 🔥 FIX: Har bar page load pe GitHub se data fetch karo
-(async () => {
-  if (state.gitConnected) {
-    console.log('🔄 Fetching latest data from GitHub...');
-    try {
-      const data = await pullFromGitHub();
-      if (data) {
-        console.log('✅ Latest data loaded from GitHub');
-        toast('✅ Latest data loaded', 1500);
-      }
-    } catch (e) {
-      console.warn('⚠️ Using cached data —', e.message);
-      refreshAll();
-    }
+(function init() {
+  if (gitConnected) {
+    document.getElementById('syncNotice').textContent = '🔄 Syncing latest data...';
+    document.getElementById('syncNotice').classList.add('show');
+    
+    gitPull()
+      .then(() => {
+        console.log('✅ Data loaded from GitHub');
+        document.getElementById('syncNotice').textContent = '✅ Latest data loaded';
+        setTimeout(() => document.getElementById('syncNotice').classList.remove('show'), 1500);
+      })
+      .catch(e => {
+        console.warn('⚠️ Using defaults:', e.message);
+        refresh();
+        document.getElementById('syncNotice').textContent = '⚠️ Offline — using cached data';
+        setTimeout(() => document.getElementById('syncNotice').classList.remove('show'), 2000);
+      });
   } else {
-    refreshAll();
+    refresh();
   }
-  updateAdminBtn();
-  updateGitBadge();
+  
+  updateBtn();
+  
+  // Refresh on tab focus
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && gitConnected) {
+      gitPull().catch(() => {});
+    }
+  });
 })();
-
-// Force refresh on page show (mobile/tab switch)
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && state.gitConnected) {
-    console.log('🔄 Tab active — refreshing data...');
-    pullFromGitHub().catch(() => {});
-  }
-});
-
-// Force refresh on window focus (desktop)
-window.addEventListener('focus', () => {
-  if (state.gitConnected) {
-    setTimeout(() => pullFromGitHub().catch(() => {}), 500);
-  }
-});
 </script>
 </body>
 </html>
