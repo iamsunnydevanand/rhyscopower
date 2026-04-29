@@ -3,13 +3,13 @@
     {
       "id": "cat1",
       "name": "WAA Cables",
-      "icon": "ð",
+      "icon": "Ã°ÂÂÂ",
       "products": [
         {
           "id": "p1",
           "name": "WAA CABLE 4.00SQMM RED BLACK",
           "spec": "100 MTR",
-          "icon": "ð",
+          "icon": "Ã°ÂÂÂ",
           "desc": "100% pure copper"
         }
       ]
@@ -17,13 +17,13 @@
     {
       "id": "cat2",
       "name": "Solar & MC4",
-      "icon": "âï¸",
+      "icon": "Ã¢ÂÂÃ¯Â¸Â",
       "products": [
         {
           "id": "p2",
           "name": "SOLAR DC CABLE",
           "spec": "500MTR",
-          "icon": "âï¸",
+          "icon": "Ã¢ÂÂÃ¯Â¸Â",
           "desc": "UV protected"
         }
       ]
@@ -31,13 +31,13 @@
     {
       "id": "cat3",
       "name": "Meters",
-      "icon": "ð",
+      "icon": "Ã°ÂÂÂ",
       "products": [
         {
           "id": "p3",
           "name": "SINGLE PHASE METER",
           "spec": "5/30A",
-          "icon": "ð",
+          "icon": "Ã°ÂÂÂ",
           "desc": "Bi-directional"
         }
       ]
@@ -64,9 +64,9 @@
     "whatsapp": "916203691393",
     "address": "India (Bihar & NCR) | Global Shipping Available",
     "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables â¢ Meters â¢ Solar â¢ Earthing â¢ Fire Safety â¢ Accessories",
+    "heroSubtitle": "WAA Cables Ã¢ÂÂ¢ Meters Ã¢ÂÂ¢ Solar Ã¢ÂÂ¢ Earthing Ã¢ÂÂ¢ Fire Safety Ã¢ÂÂ¢ Accessories",
     "catalogTitle": "Our Premium Catalog",
-    "footer": "Â© 2026 Rhysco Power - All Rights Reserved"
+    "footer": "ÃÂ© 2026 Rhysco Power - All Rights Reserved"
   },
   "stats": [
     {
@@ -122,5 +122,5 @@
       "desc": "Project supply specialist"
     }
   ],
-  "lastSync": "2026-04-29T15:27:05.560Z"
+  "lastSync": "2026-04-29T15:27:08.673Z"
 }
