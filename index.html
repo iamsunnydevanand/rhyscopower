@@ -5,137 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>Rhysco Power</title>
   <meta name="description" content="Premium electrical solutions" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --bg: #f8f9fc; --bg2: #fff; --text: #1a1a2e; --text2: #5a5a7a;
       --border: rgba(0,0,0,0.06); --card: rgba(255,255,255,0.85);
-      --nav: rgba(255,255,255,0.8); --hero-overlay: rgba(0,0,0,0.5);
-      --shadow: 0 2px 20px rgba(0,0,0,0.04);
+      --nav: rgba(255,255,255,0.8);
       --grad: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);
       --grad2: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
       --wa: #25D366;
-      --radius: 16px; --radius-sm: 10px; --radius-xl: 24px;
     }
     [data-theme="dark"] {
       --bg: #06060c; --bg2: #0f0f18; --text: #f0f0f5; --text2: #8888a0;
       --border: rgba(255,255,255,0.06); --card: rgba(18,18,30,0.8);
-      --nav: rgba(10,10,18,0.8); --hero-overlay: rgba(0,0,0,0.7);
+      --nav: rgba(10,10,18,0.8);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: all .3s; min-height: 100vh; }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; font-size: inherit; }
-    input, textarea { font-family: inherit; outline: none; border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; width: 100%; transition: border .2s; }
-    input:focus, textarea:focus { border-color: #6366f1; }
-    textarea { resize: vertical; min-height: 60px; }
-    .grd { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .grd2 { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); transition: all .3s; }
+    button, [onclick] { cursor: pointer; }
+    input, textarea { font-family: inherit; outline: none; border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 10px; padding: 10px 12px; font-size: 13px; width: 100%; }
+    .grd { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    
     .nav { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1200px; z-index: 999; background: var(--nav); backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; }
-    .nav .logo .dot { width: 34px; height: 34px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); border-radius: 10px; display: grid; place-items: center; color: #fff; font-size: 16px; }
-    .nav .links { display: flex; gap: 2px; }
-    .nav .links a { padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: .75; transition: all .2s; }
-    .nav .links a:hover { opacity: 1; background: var(--border); }
-    .nav .actions { display: flex; align-items: center; gap: 8px; }
-    .nav .actions .btn-icon { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; font-size: 14px; transition: all .2s; cursor: pointer; }
-    .nav .actions .btn-icon:hover { background: var(--border); }
-    .nav .actions .btn-admin { padding: 8px 14px; border-radius: 999px; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .nav .logo .dot { width: 34px; height: 34px; background: var(--grad); border-radius: 10px; display: grid; place-items: center; color: #fff; }
+    .nav .links a { padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: .75; text-decoration: none; color: inherit; }
+    .nav .actions { display: flex; gap: 8px; }
+    .nav .actions .btn-icon { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; background: transparent; }
+    .nav .actions .btn-admin { padding: 8px 14px; border-radius: 999px; background: var(--grad2); color: #fff; font-size: 12px; font-weight: 700; border: none; }
     .nav .actions .btn-admin.out { background: #ef4444; }
     @media (max-width: 768px) { .nav .links { display: none; } }
-
-    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; position: relative; overflow: hidden; }
+    
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; position: relative; }
     .hero .bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(99,102,241,.3), rgba(14,165,233,.2)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1400&q=80') center/cover; filter: brightness(.45); }
-    .hero .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
     .hero .content { position: relative; z-index: 2; max-width: 800px; }
-    .hero .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: 12px; margin-bottom: 20px; }
+    .hero .badge { display: inline-flex; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: 12px; margin-bottom: 20px; }
     .hero h1 { color: #fff; font-size: clamp(38px, 7vw, 76px); font-weight: 900; line-height: 1.05; margin-bottom: 16px; }
-    .hero p { color: rgba(255,255,255,.85); font-size: 16px; max-width: 550px; margin: 0 auto 28px; }
-    .hero .cta { display: inline-flex; align-items: center; gap: 8px; padding: 15px 30px; border-radius: 999px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 8px 30px rgba(99,102,241,.4); transition: all .3s; }
-    .hero .cta:hover { transform: translateY(-2px); }
-
+    .hero p { color: rgba(255,255,255,.85); font-size: 16px; margin-bottom: 28px; }
+    .hero .cta { display: inline-flex; padding: 15px 30px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; text-decoration: none; }
+    
     .stats { max-width: 1100px; margin: -60px auto 0; padding: 0 20px; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; position: relative; z-index: 5; }
     @media (max-width: 600px) { .stats { grid-template-columns: repeat(2,1fr); } }
-    .stat { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 22px 16px; border-radius: 24px; text-align: center; box-shadow: 0 2px 20px rgba(0,0,0,0.04); }
+    .stat { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 22px 16px; border-radius: 24px; text-align: center; }
     .stat .num { font-size: 28px; font-weight: 900; color: #6366f1; }
-    .stat .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text2); margin-top: 4px; }
-
+    .stat .lbl { font-size: 11px; text-transform: uppercase; color: var(--text2); margin-top: 4px; }
+    
     .sec { max-width: 1100px; margin: 0 auto; padding: 70px 20px; }
     .sec .head { text-align: center; margin-bottom: 40px; }
     .sec .head h2 { font-size: clamp(28px,4.5vw,44px); font-weight: 900; }
-    .sec .head p { color: var(--text2); font-size: 14px; max-width: 500px; margin: 8px auto 0; }
-
+    
     .search { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 4px 4px 4px 16px; max-width: 500px; margin: 0 auto 20px; }
-    .search input { flex: 1; border: none; background: transparent; padding: 10px; font-size: 13px; color: var(--text); }
-    .search button { padding: 8px 18px; border-radius: 999px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; font-weight: 700; font-size: 12px; cursor: pointer; }
-
-    .pills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 24px; }
-    .pill { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); cursor: pointer; }
-    .pill.on { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; border-color: transparent; }
-
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 20px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; display: flex; flex-direction: column; transition: all .3s; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .search input { flex: 1; border: none; background: transparent; padding: 10px; }
+    .search button { padding: 8px 18px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; cursor: pointer; }
+    
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 30px; }
+    .pill { padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 500; border: 1px solid var(--border); background: var(--card); cursor: pointer; }
+    .pill.on { background: var(--grad); color: #fff; border-color: transparent; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 20px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px; transition: all .3s; }
+    .card:hover { transform: translateY(-3px); }
     .card .icon { font-size: 40px; margin-bottom: 12px; }
     .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
     .card .spec { font-size: 12px; color: #0ea5e9; font-weight: 600; margin-bottom: 8px; }
-    .card p { font-size: 13px; color: var(--text2); margin-bottom: 12px; line-height: 1.4; }
-    .card .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); color: #fff; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; align-self: flex-start; }
+    .card p { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+    .card .badge { display: inline-block; font-size: 10px; font-weight: 700; background: var(--grad2); color: #fff; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
     .card .btns { display: flex; gap: 8px; }
-    .card .btns a, .card .btns button { flex: 1; padding: 8px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #fff; text-align: center; cursor: pointer; text-decoration: none; }
-    .card .btns .wa { background: #25D366; }
-    .card .btns .det { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); }
-
+    .card .btns a, .card .btns button { flex: 1; padding: 8px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #fff; text-align: center; text-decoration: none; cursor: pointer; }
+    .card .btns .wa { background: var(--wa); }
+    .card .btns .det { background: var(--grad); }
+    
     .feat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 20px; }
     .feat { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 28px 20px; text-align: center; }
-    .feat .ic { width: 50px; height: 50px; margin: 0 auto 16px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); border-radius: 16px; display: grid; place-items: center; color: #fff; font-size: 24px; }
+    .feat .ic { width: 50px; height: 50px; margin: 0 auto 16px; background: var(--grad); border-radius: 16px; display: grid; place-items: center; color: #fff; font-size: 24px; }
     .feat h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
     .feat p { font-size: 13px; color: var(--text2); }
-
+    
     .contact { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); }
     @media (max-width: 700px) { .contact { grid-template-columns: 1fr; } }
-    .contact .left { padding: 40px 30px; background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; }
+    .contact .left { padding: 40px 30px; background: var(--grad); color: #fff; }
     .contact .left h2 { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
-    .contact .left p { opacity: .9; font-size: 14px; margin-bottom: 24px; }
-    .contact .left a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; background: #25D366; color: #fff; font-weight: 700; text-decoration: none; }
+    .contact .left a { display: inline-flex; gap: 8px; padding: 12px 24px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 700; margin-top: 20px; text-decoration: none; }
     .contact .right { padding: 30px; display: flex; flex-direction: column; gap: 12px; background: var(--card); }
-    .contact .right .item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 16px; font-size: 14px; }
-
+    .contact .right .item { display: flex; gap: 12px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 16px; }
+    
     footer { text-align: center; padding: 30px; color: var(--text2); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
-    .float { position: fixed; right: 20px; bottom: 20px; width: 55px; height: 55px; background: #25D366; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 28px; z-index: 90; box-shadow: 0 4px 15px rgba(37,211,102,.4); text-decoration: none; }
+    .float { position: fixed; right: 20px; bottom: 20px; width: 55px; height: 55px; background: var(--wa); border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 28px; z-index: 90; text-decoration: none; }
     .modal { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.7); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 20px; }
     .modal.open { display: flex; }
-    .modal .card { max-width: 500px; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 28px; padding: 28px; position: relative; }
-    .modal .close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: grid; place-items: center; cursor: pointer; font-size: 16px; }
+    .modal .card { max-width: 500px; width: 100%; background: var(--bg2); border-radius: 28px; padding: 28px; position: relative; }
+    .modal .close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: grid; place-items: center; cursor: pointer; }
     .admin-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-    .admin-tabs button { padding: 8px 16px; border-radius: 999px; background: var(--border); cursor: pointer; font-size: 13px; font-weight: 600; }
-    .admin-tabs button.on { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); color: #fff; }
+    .admin-tabs button { padding: 8px 16px; border-radius: 999px; background: var(--border); cursor: pointer; }
+    .admin-tabs button.on { background: var(--grad); color: #fff; }
     .fld { margin-bottom: 16px; }
     .fld label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
     .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid var(--border); padding: 10px 20px; border-radius: 12px; font-size: 13px; font-weight: 600; z-index: 9999; opacity: 0; transition: all .3s; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
-    .sync { position: fixed; top: 0; left: 0; right: 0; padding: 8px; text-align: center; font-size: 13px; font-weight: 600; color: #fff; z-index: 10000; display: none; }
-    .sync.on { display: block; }
-    .sync.load { background: #f59e0b; }
-    .sync.ok { background: #10b981; }
-    .sync.fail { background: #ef4444; }
-    .loading-spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .sync-bar { position: fixed; top: 0; left: 0; right: 0; padding: 8px; text-align: center; font-size: 13px; font-weight: 600; color: #fff; z-index: 10000; display: none; }
+    .sync-bar.show { display: block; }
+    .sync-bar.load { background: #f59e0b; }
+    .sync-bar.ok { background: #10b981; }
   </style>
 </head>
 <body>
 
-<div class="sync" id="sync"></div>
+<div class="sync-bar" id="syncBar"></div>
 <nav class="nav"><a href="#" class="logo"><span class="dot">⚡</span><span class="grd" id="navName">Rhysco Power</span></a>
   <div class="links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a></div>
   <div class="actions"><button class="btn-icon" onclick="toggleTheme()">🌓</button><button class="btn-admin" id="adminBtn">🔑 Admin</button></div>
 </nav>
 
-<section class="hero"><div class="bg"></div><div class="overlay"></div>
+<section class="hero"><div class="bg"></div>
   <div class="content"><span class="badge">⭐ Since 2010 • Trusted Quality</span>
     <h1 id="heroTitle">Complete <span class="grd">Electrical</span> Solutions</h1>
     <p id="heroSub"></p><a href="#catalog" class="cta">Explore Products →</a>
@@ -170,38 +151,22 @@
 <script>
 'use strict';
 
-// ========== YOUR GITHUB CONFIG - CHANGE THIS ==========
-const DEFAULT_GITHUB_OWNER = "YOUR_GITHUB_USERNAME";  // 🔴 अपना GitHub username डालें
-const DEFAULT_GITHUB_REPO = "rhysco-data";             // repository name
+// ========== 🔴🔴🔴 IMPORTANT: YAHAN APNA GITHUB USERNAME DALEN 🔴🔴🔴 ==========
+const GITHUB_USERNAME = "bikram1234";  // <-- APNA USERNAME YAHAN CHANGE KAREIN
+const GITHUB_REPO = "rhysco-data";
+const GITHUB_PATH = "data.json";
+const GITHUB_BRANCH = "main";
 
-// ========== DEFAULT DATA ==========
+// GitHub Raw URL (public access - bina token ke)
+const GITHUB_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_PATH}`;
+
+// ========== DEFAULT DATA (Fallback) ==========
 const DEFAULT_DATA = {
   cat: [{ id: "cat_WAA", name: "WAA Cables", icon: "🔌", prods: [{ id: "p_1", name: "4.0 SQMM WAA CABLE RED BLACK", spec: "100 MTR", icon: "🔌", desc: "Premium 100% pure copper flexible cable for industrial use" }] }],
   com: { name: "Rhysco Power", ph: "+91 6203691393", em: "bikram.biharelctrometer@gmail.com", wa: "916203691393", ad: "India", ht: "Complete Electrical Solutions", hs: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety" },
   st: [{ n: "15+", l: "Years" }, { n: "100+", l: "Products" }, { n: "1000+", l: "Clients" }, { n: "PAN India", l: "Delivery" }],
   ft: [{ t: "Quality Assured", d: "ISO certified products" }, { t: "24/7 Support", d: "Technical assistance anytime" }, { t: "Fast Delivery", d: "Nationwide shipping" }, { t: "Best Price", d: "Wholesale pricing" }, { t: "Trusted Brands", d: "Original grade only" }, { t: "Bulk Orders", d: "Project supply expert" }]
 };
-
-// ========== GITHUB CONFIG ==========
-let G = { 
-  owner: DEFAULT_GITHUB_OWNER, 
-  token: '', 
-  repo: DEFAULT_GITHUB_REPO, 
-  branch: 'main', 
-  path: 'data.json', 
-  ok: false 
-};
-
-// Admin ke saved config ko load karo
-try { 
-  let s = JSON.parse(localStorage.getItem('rc_git') || '{}'); 
-  if (s.owner) { 
-    G.owner = s.owner; 
-    G.token = s.token || ''; 
-    G.repo = s.repo || DEFAULT_GITHUB_REPO; 
-  } 
-  if (G.token) G.ok = true;
-} catch(e) {}
 
 // ========== APP STATE ==========
 let S = {
@@ -213,34 +178,21 @@ let S = {
   acat: 'all', q: '', tab: 'company'
 };
 
-let autoTimer = null;
+// Admin ke liye GitHub token (save karne ke liye)
+let G = { token: '', ok: false };
+try { let s = JSON.parse(localStorage.getItem('rc_git') || '{}'); if (s.token) { G.token = s.token; G.ok = true; } } catch(e) {}
+
 let refreshInterval = null;
 
 // ========== HELPERS ==========
 const wa = (t) => `https://wa.me/${S.com.wa}?text=${encodeURIComponent(t)}`;
 const flat = () => S.cat.flatMap(c => c.prods.map(p => ({ ...p, cid: c.id, cn: c.name, ci: c.icon })));
 
-function escapeHtml(str) { 
-  if (!str) return ''; 
-  return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); 
-}
+function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+function toast(msg, dur = 2500) { let t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), dur); }
+function showSync(msg, type) { let b = document.getElementById('syncBar'); b.innerHTML = msg; b.className = `sync-bar show ${type}`; setTimeout(() => b.className = 'sync-bar', 2000); }
 
-function toast(msg, dur = 2500) { 
-  let t = document.getElementById('toast'); 
-  t.textContent = msg; 
-  t.classList.add('show'); 
-  setTimeout(() => t.classList.remove('show'), dur); 
-}
-
-function syncStatus(msg, type) { 
-  let b = document.getElementById('sync'); 
-  if (!msg) { b.className = 'sync'; return; }
-  b.innerHTML = type === 'load' ? '<span class="loading-spinner"></span>' + msg : msg; 
-  b.className = 'sync on ' + type; 
-  setTimeout(() => { if (b.className !== 'sync') b.className = 'sync'; }, type === 'ok' ? 2000 : 4000); 
-}
-
-// ========== RENDER FUNCTIONS ==========
+// ========== RENDER ==========
 function fullRefresh() {
   document.getElementById('navName').textContent = S.com.name;
   document.getElementById('footerName').textContent = S.com.name;
@@ -262,9 +214,9 @@ function fullRefresh() {
   const all = flat();
   let base = S.acat === 'all' ? all : all.filter(p => p.cid === S.acat);
   const q = S.q.trim().toLowerCase();
-  let filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
+  let filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q)) : base;
   const grid = document.getElementById('prodGrid');
-  if (!filtered.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px">No products found</div>'; return; }
+  if (!filtered.length) { grid.innerHTML = '<div style="text-align:center;padding:40px">No products found</div>'; return; }
   grid.innerHTML = filtered.map(p => `<div class="card">
     <div class="icon">${p.icon || '📦'}</div>
     <h3>${escapeHtml(p.name)}</h3>
@@ -294,7 +246,7 @@ function openProd(id) {
       <p style="margin:16px 0">${escapeHtml(p.desc)}</p>
       <div style="display:flex;gap:12px">
         <a href="${wa('Quote: ' + p.name)}" target="_blank" style="flex:1;padding:12px;border-radius:999px;background:#25D366;color:#fff;text-align:center;font-weight:700;text-decoration:none">💬 WhatsApp</a>
-        <a href="tel:${S.com.ph.replace(/\s+/g, '')}" style="flex:1;padding:12px;border-radius:999px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;text-align:center;font-weight:700;text-decoration:none">📞 Call</a>
+        <a href="tel:${S.com.ph.replace(/\s+/g, '')}" style="flex:1;padding:12px;border-radius:999px;background:var(--grad);color:#fff;text-align:center;font-weight:700;text-decoration:none">📞 Call</a>
       </div>
     </div>`;
   document.getElementById('prodModal').classList.add('open');
@@ -302,42 +254,51 @@ function openProd(id) {
 function closeProd() { document.getElementById('prodModal').classList.remove('open'); }
 
 // ========== THEME ==========
-(function () { 
-  let t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch (e) { return 'dark'; } })(); 
-  document.documentElement.dataset.theme = t; 
-})();
+(function () { let t = localStorage.getItem('rc_theme') || 'dark'; document.documentElement.dataset.theme = t; })();
+function toggleTheme() { let t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('rc_theme', t); document.documentElement.dataset.theme = t; }
 
-function toggleTheme() { 
-  let t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; 
-  try { localStorage.setItem('rc_theme', t); } catch (e) { } 
-  document.documentElement.dataset.theme = t; 
-}
-
-// ========== GITHUB API ==========
-async function fetchPublicGitHubData() {
-  if (!G.owner || G.owner === 'YOUR_GITHUB_USERNAME') {
-    console.warn('Please set your GitHub username in DEFAULT_GITHUB_OWNER');
-    return null;
-  }
-  const publicUrl = `https://raw.githubusercontent.com/${G.owner}/${G.repo}/${G.branch}/${G.path}`;
+// ========== GITHUB FETCH (BINA TOKEN KE - SABKE LIYE) ==========
+async function fetchDataFromGitHub() {
   try {
-    const res = await fetch(publicUrl, { cache: 'no-cache' });
+    const res = await fetch(GITHUB_RAW_URL, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       return data;
     }
   } catch(e) {
-    console.warn('Public fetch failed:', e);
+    console.warn('Fetch failed:', e);
   }
   return null;
 }
 
-async function pushToGitHub() {
-  if (!G.token) return false;
+async function loadAndApplyData(showMsg = false) {
+  const gitData = await fetchDataFromGitHub();
+  
+  if (gitData) {
+    let changed = false;
+    if (gitData.cat && Array.isArray(gitData.cat)) { S.cat = gitData.cat; changed = true; }
+    if (gitData.com && gitData.com.name) { S.com = { ...DEFAULT_DATA.com, ...gitData.com }; changed = true; }
+    if (gitData.st && Array.isArray(gitData.st)) { S.st = gitData.st; changed = true; }
+    if (gitData.ft && Array.isArray(gitData.ft)) { S.ft = gitData.ft; changed = true; }
+    
+    if (changed) {
+      fullRefresh();
+      if (showMsg) toast('✅ Data updated from cloud');
+    }
+    return true;
+  }
+  return false;
+}
+
+// ========== GITHUB SAVE (SIRF ADMIN KE LIYE - TOKEN REQUIRED) ==========
+async function saveToGitHub() {
+  if (!G.token) { toast('⚠️ GitHub token required for saving'); return false; }
+  
   const dataToSave = { cat: S.cat, com: S.com, st: S.st, ft: S.ft, updated: new Date().toISOString() };
   let sha = null;
+  
   try {
-    const existing = await fetch(`https://api.github.com/repos/${G.owner}/${G.repo}/contents/${G.path}`, {
+    const existing = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${GITHUB_PATH}`, {
       headers: { 'Authorization': `Bearer ${G.token}`, 'Accept': 'application/vnd.github.v3+json' }
     });
     if (existing.ok) {
@@ -349,55 +310,19 @@ async function pushToGitHub() {
   const jsonStr = JSON.stringify(dataToSave, null, 2);
   const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
   
-  const res = await fetch(`https://api.github.com/repos/${G.owner}/${G.repo}/contents/${G.path}`, {
+  const res = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${GITHUB_PATH}`, {
     method: 'PUT',
     headers: { 'Authorization': `Bearer ${G.token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-      message: `Update ${new Date().toLocaleString()}`, 
-      content: base64Content, 
-      branch: G.branch, 
-      ...(sha ? { sha } : {}) 
-    })
+    body: JSON.stringify({ message: `Update ${new Date().toLocaleString()}`, content: base64Content, branch: GITHUB_BRANCH, ...(sha ? { sha } : {}) })
   });
-  return res.ok;
-}
-
-// ========== DATA LOAD - AUTO REFRESH HAR 30 SECOND ==========
-async function loadDataFromGitHub(showToast = false) {
-  if (!G.owner || G.owner === 'YOUR_GITHUB_USERNAME') {
+  
+  if (res.ok) {
+    toast('✅ Saved to GitHub');
+    return true;
+  } else {
+    toast('❌ Save failed');
     return false;
   }
-  
-  const gitData = await fetchPublicGitHubData();
-  
-  if (gitData) {
-    let changed = false;
-    if (gitData.cat && Array.isArray(gitData.cat)) { S.cat = gitData.cat; changed = true; }
-    if (gitData.com && gitData.com.name) { S.com = { ...DEFAULT_DATA.com, ...gitData.com }; changed = true; }
-    if (gitData.st && Array.isArray(gitData.st)) { S.st = gitData.st; changed = true; }
-    if (gitData.ft && Array.isArray(gitData.ft)) { S.ft = gitData.ft; changed = true; }
-    
-    if (changed) {
-      fullRefresh();
-      if (showToast) toast('✅ Data updated from cloud');
-    }
-    return true;
-  }
-  return false;
-}
-
-// ========== AUTO SYNC (Sirf Admin ke liye) ==========
-function autoSyncToGitHub() {
-  if (!G.token) return;
-  clearTimeout(autoTimer);
-  autoTimer = setTimeout(async () => { 
-    try { 
-      await pushToGitHub(); 
-      toast('✅ Saved to GitHub');
-    } catch (e) { 
-      console.warn('Auto-sync failed:', e); 
-    } 
-  }, 2000);
 }
 
 // ========== ADMIN PANEL ==========
@@ -445,13 +370,13 @@ function renderAdmin() {
       <div class="fld"><label>Username</label><input id="au" required></div>
       <div class="fld"><label>Password</label><input id="ap" type="password" required></div>
       <div id="le" style="color:#ef4444"></div>
-      <button style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px;width:100%">Sign In</button>
+      <button style="background:var(--grad);color:#fff;padding:10px;border-radius:10px;width:100%">Sign In</button>
     </form>`;
     return;
   }
   document.getElementById('adminTabs').innerHTML = `
     <button class="${S.tab === 'company' ? 'on' : ''}" onclick="setTab('company')">🏢 Company</button>
-    <button class="${S.tab === 'git' ? 'on' : ''}" onclick="setTab('git')">🔗 GitHub</button>
+    <button class="${S.tab === 'git' ? 'on' : ''}" onclick="setTab('git')">🔗 GitHub Token</button>
     <button class="${S.tab === 'stats' ? 'on' : ''}" onclick="setTab('stats')">📊 Stats</button>
     <button class="${S.tab === 'features' ? 'on' : ''}" onclick="setTab('features')">⭐ Features</button>`;
   renderPane();
@@ -470,19 +395,18 @@ function renderPane() {
     <div class="fld"><label>WhatsApp</label><input value="${escapeHtml(S.com.wa)}" oninput="updateCompany('wa',this.value)"></div>
     <div class="fld"><label>Email</label><input value="${escapeHtml(S.com.em)}" oninput="updateCompany('em',this.value)"></div>
     <div class="fld"><label>Address</label><input value="${escapeHtml(S.com.ad)}" oninput="updateCompany('ad',this.value)"></div>
-    <button onclick="manualSync()" style="margin-top:12px;padding:10px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:10px">💾 Save to GitHub</button>`;
+    <button onclick="manualSave()" style="margin-top:12px;padding:10px;background:var(--grad);color:#fff;border-radius:10px">💾 Save to GitHub</button>`;
   
   if (S.tab === 'git') p.innerHTML = `
-    <h4>GitHub Settings</h4>
-    <div class="fld"><label>GitHub Username</label><input id="go" value="${escapeHtml(G.owner)}" placeholder="username"></div>
-    <div class="fld"><label>Personal Access Token (for saving)</label><input id="gt" type="password" value="${G.token}" placeholder="ghp_..."></div>
-    <div class="fld"><label>Repository Name</label><input id="gr" value="${escapeHtml(G.repo)}" placeholder="rhysco-data"></div>
-    <button onclick="saveGitConfig()" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px;width:100%">💾 Save Settings</button>
+    <h4>GitHub Token (For Saving Only)</h4>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Token needed only to save changes. Reading data works without token.</p>
+    <div class="fld"><label>GitHub Personal Access Token</label><input id="gt" type="password" value="${G.token}" placeholder="ghp_xxxxxx"></div>
+    <button onclick="saveToken()" style="background:var(--grad);color:#fff;padding:10px;border-radius:10px;width:100%">💾 Save Token</button>
     <div style="margin-top:12px;padding:12px;background:#10b98120;border-radius:10px;font-size:12px">
-      ✅ Auto-refresh every 30 seconds for all visitors
+      ✅ Data will auto-refresh every 30 seconds for all visitors
     </div>`;
   
-  if (S.tab === 'stats') p.innerHTML = `<h4>Statistics</h4><div id="statsEditor"></div><button onclick="addStat()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add Stat</button>`;
+  if (S.tab === 'stats') p.innerHTML = `<h4>Statistics</h4><div id="statsEditor"></div><button onclick="addStat()" style="margin-top:8px;padding:8px 16px;background:var(--grad);color:#fff;border-radius:8px">+ Add Stat</button>`;
   if (S.tab === 'stats') document.getElementById('statsEditor').innerHTML = S.st.map((s, i) => `
     <div style="display:flex;gap:8px;margin-bottom:8px">
       <input value="${escapeHtml(s.n)}" onchange="updateStat(${i},'n',this.value)" placeholder="Number">
@@ -490,7 +414,7 @@ function renderPane() {
       <button onclick="removeStat(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button>
     </div>`).join('');
   
-  if (S.tab === 'features') p.innerHTML = `<h4>Features</h4><div id="featuresEditor"></div><button onclick="addFeature()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add Feature</button>`;
+  if (S.tab === 'features') p.innerHTML = `<h4>Features</h4><div id="featuresEditor"></div><button onclick="addFeature()" style="margin-top:8px;padding:8px 16px;background:var(--grad);color:#fff;border-radius:8px">+ Add Feature</button>`;
   if (S.tab === 'features') document.getElementById('featuresEditor').innerHTML = S.ft.map((f, i) => `
     <div style="display:flex;gap:8px;margin-bottom:8px">
       <input value="${escapeHtml(f.t)}" onchange="updateFeature(${i},'t',this.value)" placeholder="Title">
@@ -499,42 +423,31 @@ function renderPane() {
     </div>`).join('');
 }
 
-function updateCompany(f, v) { S.com[f] = v; fullRefresh(); autoSyncToGitHub(); }
-function updateStat(i, f, v) { if (S.st[i]) { S.st[i][f] = v; fullRefresh(); autoSyncToGitHub(); } }
-function addStat() { S.st.push({ n: 'New', l: 'Stat' }); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
-function removeStat(i) { S.st.splice(i, 1); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
-function updateFeature(i, f, v) { if (S.ft[i]) { S.ft[i][f] = v; fullRefresh(); autoSyncToGitHub(); } }
-function addFeature() { S.ft.push({ t: 'New Feature', d: 'Description' }); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
-function removeFeature(i) { S.ft.splice(i, 1); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
-
-async function manualSync() { 
-  if (!G.token) { toast('⚠️ GitHub token required for saving'); return; }
-  try { 
-    await pushToGitHub(); 
-    toast('✅ Saved to GitHub'); 
-  } catch (e) { 
-    toast('❌ ' + e.message); 
-  } 
+let autoSaveTimer = null;
+function autoSync() {
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(() => { if (G.token) saveToGitHub(); }, 2000);
 }
 
-async function saveGitConfig() { 
-  let o = document.getElementById('go')?.value?.trim(); 
+function updateCompany(f, v) { S.com[f] = v; fullRefresh(); autoSync(); }
+function updateStat(i, f, v) { if (S.st[i]) { S.st[i][f] = v; fullRefresh(); autoSync(); } }
+function addStat() { S.st.push({ n: 'New', l: 'Stat' }); renderAdmin(); fullRefresh(); autoSync(); }
+function removeStat(i) { S.st.splice(i, 1); renderAdmin(); fullRefresh(); autoSync(); }
+function updateFeature(i, f, v) { if (S.ft[i]) { S.ft[i][f] = v; fullRefresh(); autoSync(); } }
+function addFeature() { S.ft.push({ t: 'New Feature', d: 'Description' }); renderAdmin(); fullRefresh(); autoSync(); }
+function removeFeature(i) { S.ft.splice(i, 1); renderAdmin(); fullRefresh(); autoSync(); }
+
+async function manualSave() { await saveToGitHub(); }
+async function saveToken() { 
   let t = document.getElementById('gt')?.value?.trim(); 
-  if (!o) { toast('Username required'); return; } 
-  G.owner = o; 
-  G.token = t || ''; 
-  G.repo = document.getElementById('gr')?.value?.trim() || DEFAULT_GITHUB_REPO; 
-  try { 
-    localStorage.setItem('rc_git', JSON.stringify({ owner: G.owner, token: G.token, repo: G.repo, branch: 'main' })); 
-    if (G.token) G.ok = true;
-    toast('✅ Settings saved'); 
+  if (t) { 
+    G.token = t; 
+    G.ok = true; 
+    localStorage.setItem('rc_git', JSON.stringify({ token: t })); 
+    toast('✅ Token saved'); 
     renderAdmin(); 
-    if (G.token) {
-      await pushToGitHub();
-    }
-    await loadDataFromGitHub(true);
-  } catch (e) { 
-    toast('❌ ' + e.message); 
+  } else { 
+    toast('❌ Token required'); 
   } 
 }
 
@@ -545,7 +458,7 @@ document.getElementById('searchInput').addEventListener('input', e => {
   fullRefresh(); 
 });
 
-// ========== MAIN INIT ==========
+// ========== INIT ==========
 (async function init() {
   updateAdminBtn();
   
@@ -553,22 +466,20 @@ document.getElementById('searchInput').addEventListener('input', e => {
   fullRefresh();
   
   // GitHub se data load karo
-  if (G.owner && G.owner !== 'YOUR_GITHUB_USERNAME') {
-    await loadDataFromGitHub();
-    
-    // 🔴 IMPORTANT: Har 30 second mein auto-refresh - Normal user ke liye bhi!
-    refreshInterval = setInterval(async () => {
-      console.log('Auto-refreshing data from GitHub...');
-      await loadDataFromGitHub(false);
-    }, 30000); // 30 seconds
-  } else {
-    console.warn('⚠️ Please set DEFAULT_GITHUB_OWNER to your GitHub username');
-  }
+  showSync('🔄 Loading data...', 'load');
+  await loadAndApplyData(true);
+  showSync('✅ Ready', 'ok');
+  
+  // 🔴 HAR 30 SECOND MEIN AUTO REFRESH - NORMAL USER KE LIYE BHI!
+  refreshInterval = setInterval(async () => {
+    console.log('Auto-refreshing data from GitHub...');
+    await loadAndApplyData(false);
+  }, 30000);
   
   // Jab page visible ho tab refresh karo
   document.addEventListener('visibilitychange', async () => {
     if (document.visibilityState === 'visible') {
-      await loadDataFromGitHub(false);
+      await loadAndApplyData(false);
     }
   });
 })();
