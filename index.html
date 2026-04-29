@@ -121,6 +121,7 @@
     .admin-tabs { display: flex; gap: 4px; background: var(--border); border-radius: 12px; padding: 3px; margin-bottom: 16px; flex-wrap: wrap; }
     .admin-tabs button { flex: 1; padding: 8px; border-radius: 9px; font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; background: transparent; }
     .admin-tabs button.on { background: var(--bg2); color: var(--text); }
+
     .fld { margin-bottom: 10px; }
     .fld label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; }
     .fld input, .fld textarea { width: 100%; }
@@ -133,8 +134,6 @@
     .sync.load { background: #f59e0b; }
     .sync.ok { background: #10b981; }
     .sync.fail { background: #ef4444; }
-    
-    button, .btn, [onclick] { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -192,38 +191,36 @@
 <script>
 'use strict';
 
-// ========== DEFAULT DATA (UTF-8 Correct) ==========
-const DEFCAT = [{
-  id: 'cat_WAA', 
-  name: 'WAA Cables', 
-  icon: '🔌', 
-  prods: [{
-    id: 'p_1', 
-    name: '4.0 SQMM WAA CABLE RED BLACK', 
-    spec: '100 MTR', 
-    icon: '🔌', 
-    desc: 'Premium 100% pure copper flexible cable for industrial use'
-  }]
-}];
-
-const DEF = {
-  cat: JSON.parse(JSON.stringify(DEFCAT)),
+// ========== DEFAULT DATA ==========
+const DEFAULT_DATA = {
+  cat: [{
+    id: "cat_WAA",
+    name: "WAA Cables",
+    icon: "🔌",
+    prods: [{
+      id: "p_1",
+      name: "4.0 SQMM WAA CABLE RED BLACK",
+      spec: "100 MTR",
+      icon: "🔌",
+      desc: "Premium 100% pure copper flexible cable for industrial use"
+    }]
+  }],
   com: {
-    name: 'Rhysco Power',
-    tag: 'Premium Electrical Solutions',
-    ph: '+91 6203691393',
-    em: 'bikram.biharelctrometer@gmail.com',
-    wa: '916203691393',
-    ad: 'India',
-    ht: 'Complete Electrical Solutions',
-    hs: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety'
+    name: "Rhysco Power",
+    tag: "Premium Electrical Solutions",
+    ph: "+91 6203691393",
+    em: "bikram.biharelctrometer@gmail.com",
+    wa: "916203691393",
+    ad: "India",
+    ht: "Complete Electrical Solutions",
+    hs: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety"
   },
-  st: [{n:'15+',l:'Years'},{n:'100+',l:'Products'},{n:'1000+',l:'Clients'},{n:'PAN India',l:'Delivery'}],
-  ft: [{t:'Quality Assured',d:'ISO certified products'},{t:'24/7 Support',d:'Technical assistance anytime'},{t:'Fast Delivery',d:'Nationwide shipping'},{t:'Best Price',d:'Wholesale pricing'},{t:'Trusted Brands',d:'Original grade only'},{t:'Bulk Orders',d:'Project supply expert'}]
+  st: [{n:"15+",l:"Years"},{n:"100+",l:"Products"},{n:"1000+",l:"Clients"},{n:"PAN India",l:"Delivery"}],
+  ft: [{t:"Quality Assured",d:"ISO certified products"},{t:"24/7 Support",d:"Technical assistance anytime"},{t:"Fast Delivery",d:"Nationwide shipping"},{t:"Best Price",d:"Wholesale pricing"},{t:"Trusted Brands",d:"Original grade only"},{t:"Bulk Orders",d:"Project supply expert"}]
 };
 
 // ========== STATE ==========
-let G = {owner:'', token:'', repo:'rhysco-data', branch:'main', path:'data.json', ok: false};
+let G = { owner: '', token: '', repo: 'rhysco-data', branch: 'main', path: 'data.json', ok: false };
 try {
   let s = JSON.parse(localStorage.getItem('rc_git') || '{}');
   if (s.owner && s.token) {
@@ -236,35 +233,23 @@ try {
 } catch(e) {}
 
 let S = {
-  cat: JSON.parse(JSON.stringify(DEF.cat)),
-  com: {...DEF.com},
-  st: JSON.parse(JSON.stringify(DEF.st)),
-  ft: JSON.parse(JSON.stringify(DEF.ft)),
+  cat: JSON.parse(JSON.stringify(DEFAULT_DATA.cat)),
+  com: JSON.parse(JSON.stringify(DEFAULT_DATA.com)),
+  st: JSON.parse(JSON.stringify(DEFAULT_DATA.st)),
+  ft: JSON.parse(JSON.stringify(DEFAULT_DATA.ft)),
   adm: (function(){ try{ return localStorage.getItem('rc_auth') === '1'; } catch(e){ return false; } })(),
   acat: 'all',
   q: '',
   tab: 'company'
 };
 
-let stTimer, searchTimer;
+let autoTimer = null;
+let searchTimer = null;
 
 // ========== HELPERS ==========
 const wa = (t) => `https://wa.me/${S.com.wa}?text=${encodeURIComponent(t)}`;
 const flat = () => S.cat.flatMap(c => c.prods.map(p => ({...p, cid: c.id, cn: c.name, ci: c.icon})));
-function fullRefresh() { RC(); RSt(); RCat(); RP(); RF(); }
-function toast(msg, dur=2500) {
-  let t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(window._tt);
-  window._tt = setTimeout(() => t.classList.remove('show'), dur);
-}
-function syncStatus(msg, type) {
-  let b = document.getElementById('sync');
-  b.textContent = msg;
-  b.className = 'sync on ' + type;
-  setTimeout(() => b.className = 'sync', type === 'ok' ? 2000 : 4000);
-}
+
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/[&<>]/g, function(m) {
@@ -275,18 +260,38 @@ function escapeHtml(str) {
   });
 }
 
+function toast(msg, dur=2500) {
+  let t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => t.classList.remove('show'), dur);
+}
+
+function syncStatus(msg, type) {
+  let b = document.getElementById('sync');
+  b.textContent = msg;
+  b.className = 'sync on ' + type;
+  setTimeout(() => b.className = 'sync', type === 'ok' ? 2000 : 4000);
+}
+
+function fullRefresh() {
+  RC(); RSt(); RCat(); RP(); RF();
+}
+
 // ========== THEME ==========
 (function() {
   let t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch(e) { return 'dark'; } })();
   document.documentElement.dataset.theme = t;
 })();
+
 function toggleTheme() {
   let t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
   try { localStorage.setItem('rc_theme', t); } catch(e) {}
   document.documentElement.dataset.theme = t;
 }
 
-// ========== GITHUB API (IMPROVED) ==========
+// ========== GITHUB API WITH PROPER UTF-8 ENCODING ==========
 async function gh(ep, method='GET', body=null) {
   if (!G.token) throw new Error('Token missing');
   const controller = new AbortController();
@@ -316,21 +321,45 @@ async function gh(ep, method='GET', body=null) {
   }
 }
 
+// FIXED: Proper UTF-8 encoding without corruption
+function utf8ToBase64(str) {
+  // This properly handles emojis and special characters
+  const utf8Bytes = new TextEncoder().encode(str);
+  let binary = '';
+  for (let i = 0; i < utf8Bytes.length; i++) {
+    binary += String.fromCharCode(utf8Bytes[i]);
+  }
+  return btoa(binary);
+}
+
+function base64ToUtf8(base64) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return new TextDecoder().decode(bytes);
+}
+
 async function gitPush() {
-  const data = {
+  const dataToSave = {
     cat: S.cat,
     com: S.com,
     st: S.st,
     ft: S.ft,
     lastUpdated: new Date().toISOString()
   };
+  
   let sha = null;
   try {
     const existing = await gh(`/contents/${G.path}`);
     sha = existing.sha;
   } catch(e) {}
   
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  // Use proper UTF-8 encoding
+  const jsonString = JSON.stringify(dataToSave, null, 2);
+  const content = utf8ToBase64(jsonString);
+  
   await gh(`/contents/${G.path}`, 'PUT', {
     message: `Update ${new Date().toLocaleString()}`,
     content: content,
@@ -342,12 +371,11 @@ async function gitPush() {
 async function gitPull() {
   try {
     const res = await gh(`/contents/${G.path}`);
-    const decoded = atob(res.content);
-    const data = JSON.parse(decoded);
+    const jsonString = base64ToUtf8(res.content);
+    const data = JSON.parse(jsonString);
     
-    // Update all data from GitHub
     if (data.cat && Array.isArray(data.cat)) S.cat = data.cat;
-    if (data.com && data.com.name) S.com = {...DEF.com, ...data.com};
+    if (data.com && data.com.name) S.com = {...DEFAULT_DATA.com, ...data.com};
     if (data.st && Array.isArray(data.st)) S.st = data.st;
     if (data.ft && Array.isArray(data.ft)) S.ft = data.ft;
     
@@ -446,6 +474,19 @@ function closeProd() { document.getElementById('prodModal').classList.remove('op
 function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
 function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
 
+function updateAdminBtn() {
+  const btn = document.getElementById('adminBtn');
+  if (S.adm) {
+    btn.className = 'btn-admin out';
+    btn.textContent = '🚪 Logout';
+    btn.onclick = logout;
+  } else {
+    btn.className = 'btn-admin';
+    btn.textContent = '🔑 Admin';
+    btn.onclick = openAdmin;
+  }
+}
+
 function login() {
   const user = document.getElementById('au')?.value?.trim();
   const pass = document.getElementById('ap')?.value;
@@ -468,19 +509,6 @@ function logout() {
   updateAdminBtn();
   closeAdmin();
   fullRefresh();
-}
-
-function updateAdminBtn() {
-  const btn = document.getElementById('adminBtn');
-  if (S.adm) {
-    btn.className = 'btn-admin out';
-    btn.textContent = '🚪 Logout';
-    btn.onclick = logout;
-  } else {
-    btn.className = 'btn-admin';
-    btn.textContent = '🔑 Admin';
-    btn.onclick = openAdmin;
-  }
 }
 
 function renderAdmin() {
@@ -513,24 +541,23 @@ function renderPane() {
   if (S.tab === 'company') {
     pane.innerHTML = `
       <h4>Company Settings</h4>
-      <div class="fld"><label>Company Name</label><input id="compName" value="${escapeAttr(S.com.name)}" oninput="updateCompany('name', this.value)"></div>
-      <div class="fld"><label>Hero Title</label><input id="compHt" value="${escapeAttr(S.com.ht)}" oninput="updateCompany('ht', this.value)"></div>
-      <div class="fld"><label>Hero Subtitle</label><input id="compHs" value="${escapeAttr(S.com.hs)}" oninput="updateCompany('hs', this.value)"></div>
-      <div class="fld"><label>Phone</label><input id="compPh" value="${escapeAttr(S.com.ph)}" oninput="updateCompany('ph', this.value)"></div>
-      <div class="fld"><label>WhatsApp (numbers only)</label><input id="compWa" value="${escapeAttr(S.com.wa)}" oninput="updateCompany('wa', this.value)"></div>
-      <div class="fld"><label>Email</label><input id="compEm" value="${escapeAttr(S.com.em)}" oninput="updateCompany('em', this.value)"></div>
-      <div class="fld"><label>Address</label><input id="compAd" value="${escapeAttr(S.com.ad)}" oninput="updateCompany('ad', this.value)"></div>
-      <button onclick="forceSyncToGitHub()" style="margin-top:12px;padding:10px;background:var(--grad);color:#fff;border-radius:10px;font-weight:700">💾 Save & Sync to GitHub</button>
-      <div style="margin-top:8px;font-size:11px;color:var(--text2)">✅ Changes auto-save after 2 seconds if GitHub is connected</div>`;
+      <div class="fld"><label>Company Name</label><input id="compName" value="${escapeHtml(S.com.name)}" oninput="updateCompany('name', this.value)"></div>
+      <div class="fld"><label>Hero Title</label><input id="compHt" value="${escapeHtml(S.com.ht)}" oninput="updateCompany('ht', this.value)"></div>
+      <div class="fld"><label>Hero Subtitle</label><input id="compHs" value="${escapeHtml(S.com.hs)}" oninput="updateCompany('hs', this.value)"></div>
+      <div class="fld"><label>Phone</label><input id="compPh" value="${escapeHtml(S.com.ph)}" oninput="updateCompany('ph', this.value)"></div>
+      <div class="fld"><label>WhatsApp (numbers only)</label><input id="compWa" value="${escapeHtml(S.com.wa)}" oninput="updateCompany('wa', this.value)"></div>
+      <div class="fld"><label>Email</label><input id="compEm" value="${escapeHtml(S.com.em)}" oninput="updateCompany('em', this.value)"></div>
+      <div class="fld"><label>Address</label><input id="compAd" value="${escapeHtml(S.com.ad)}" oninput="updateCompany('ad', this.value)"></div>
+      <button onclick="forceSyncToGitHub()" style="margin-top:12px;padding:10px;background:var(--grad);color:#fff;border-radius:10px;font-weight:700">💾 Save & Sync to GitHub</button>`;
   }
   
   if (S.tab === 'git') {
     pane.innerHTML = `
       <h4>GitHub Configuration</h4>
       <p style="font-size:12px;color:var(--text2);margin-bottom:12px">📌 <a href="https://github.com/settings/tokens" target="_blank" style="color:#0ea5e9">Create token</a> with repo scope</p>
-      <div class="fld"><label>GitHub Username</label><input id="go" value="${escapeAttr(G.owner)}" placeholder="username"></div>
+      <div class="fld"><label>GitHub Username</label><input id="go" value="${escapeHtml(G.owner)}" placeholder="username"></div>
       <div class="fld"><label>Personal Access Token</label><input id="gt" type="password" value="${G.token}" placeholder="ghp_..."></div>
-      <div class="fld"><label>Repository Name</label><input id="gr" value="${escapeAttr(G.repo)}" placeholder="rhysco-data"></div>
+      <div class="fld"><label>Repository Name</label><input id="gr" value="${escapeHtml(G.repo)}" placeholder="rhysco-data"></div>
       <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
         <button style="background:var(--grad);color:#fff;padding:10px 16px;border-radius:10px;font-weight:700" onclick="saveGitConfig()">💾 Save & Connect</button>
         ${G.ok ? `<button style="background:#10b981;color:#fff;padding:10px 16px;border-radius:10px;font-weight:700" onclick="manualPush()">📤 Push to GitHub</button>
@@ -544,12 +571,11 @@ function renderPane() {
   if (S.tab === 'stats') {
     pane.innerHTML = `<h4>Statistics Section</h4><div id="statsEditor"></div>
       <button onclick="addStat()" style="margin:8px 0;padding:8px;background:var(--grad);color:#fff;border-radius:8px">+ Add Stat</button>
-      <button onclick="forceSyncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px">💾 Save All</button>
-      <div style="margin-top:16px;font-size:12px;color:var(--text2)">💡 Stats appear below hero section</div>`;
+      <button onclick="forceSyncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px">💾 Save All</button>`;
     document.getElementById('statsEditor').innerHTML = S.st.map((s, i) => `
       <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
-        <input value="${escapeAttr(s.n)}" onchange="updateStat(${i}, 'n', this.value)" placeholder="Number" style="flex:1">
-        <input value="${escapeAttr(s.l)}" onchange="updateStat(${i}, 'l', this.value)" placeholder="Label" style="flex:2">
+        <input value="${escapeHtml(s.n)}" onchange="updateStat(${i}, 'n', this.value)" placeholder="Number" style="flex:1">
+        <input value="${escapeHtml(s.l)}" onchange="updateStat(${i}, 'l', this.value)" placeholder="Label" style="flex:2">
         <button onclick="removeStat(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button>
       </div>`).join('');
   }
@@ -557,18 +583,15 @@ function renderPane() {
   if (S.tab === 'features') {
     pane.innerHTML = `<h4>Features Section</h4><div id="featuresEditor"></div>
       <button onclick="addFeature()" style="margin:8px 0;padding:8px;background:var(--grad);color:#fff;border-radius:8px">+ Add Feature</button>
-      <button onclick="forceSyncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px">💾 Save All</button>
-      <div style="margin-top:16px;font-size:12px;color:var(--text2)">💡 Features appear in "Why Choose Us" section</div>`;
+      <button onclick="forceSyncToGitHub()" style="margin-left:8px;padding:8px;background:var(--grad2);color:#fff;border-radius:8px">💾 Save All</button>`;
     document.getElementById('featuresEditor').innerHTML = S.ft.map((f, i) => `
       <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
-        <input value="${escapeAttr(f.t)}" onchange="updateFeature(${i}, 't', this.value)" placeholder="Title" style="flex:1">
-        <input value="${escapeAttr(f.d)}" onchange="updateFeature(${i}, 'd', this.value)" placeholder="Description" style="flex:2">
+        <input value="${escapeHtml(f.t)}" onchange="updateFeature(${i}, 't', this.value)" placeholder="Title" style="flex:1">
+        <input value="${escapeHtml(f.d)}" onchange="updateFeature(${i}, 'd', this.value)" placeholder="Description" style="flex:2">
         <button onclick="removeFeature(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button>
       </div>`).join('');
   }
 }
-
-function escapeAttr(str) { if (!str) return ''; return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
 function updateCompany(field, val) { S.com[field] = val; RC(); autoSyncToGitHub(); }
 function updateStat(idx, field, val) { if (S.st[idx]) { S.st[idx][field] = val; RSt(); autoSyncToGitHub(); } }
@@ -578,14 +601,12 @@ function updateFeature(idx, field, val) { if (S.ft[idx]) { S.ft[idx][field] = va
 function addFeature() { S.ft.push({t:'New Feature', d:'Description'}); renderAdmin(); RF(); autoSyncToGitHub(); }
 function removeFeature(idx) { S.ft.splice(idx, 1); renderAdmin(); RF(); autoSyncToGitHub(); }
 
-let autoTimer = null;
 function autoSyncToGitHub() {
   if (!G.ok) return;
   clearTimeout(autoTimer);
   autoTimer = setTimeout(async () => {
     try {
       await gitPush();
-      console.log('Auto-sync completed');
     } catch(e) { console.warn('Auto-sync failed:', e); }
   }, 2000);
 }
@@ -609,11 +630,11 @@ async function manualPull() {
     const success = await gitPull();
     if (success) {
       syncStatus('✅ Data synced from GitHub', 'ok');
-      toast('✅ Data loaded from GitHub');
+      toast('✅ Latest data loaded');
       closeAdmin();
       fullRefresh();
     } else {
-      syncStatus('⚠️ Pull failed, using local data', 'fail');
+      syncStatus('⚠️ Using local data', 'fail');
     }
   } catch(e) {
     syncStatus('❌ ' + e.message, 'fail');
@@ -635,10 +656,8 @@ async function saveGitConfig() {
     localStorage.setItem('rc_git', JSON.stringify({owner, token, repo: G.repo, branch: 'main'}));
     G.ok = true;
     toast('✅ GitHub settings saved');
-    
-    // Test connection by pushing current data
     await gitPush();
-    toast('✅ Connected! Data backed up to GitHub');
+    toast('✅ Connected! Data backed up');
     renderAdmin();
   } catch(e) {
     toast('⚠️ Connection failed: ' + e.message);
@@ -646,7 +665,7 @@ async function saveGitConfig() {
   }
 }
 
-// ========== INITIAL LOAD (RELIABLE SYNC) ==========
+// ========== INITIALIZATION ==========
 document.getElementById('searchInput').addEventListener('input', e => {
   S.q = e.target.value;
   document.getElementById('clearBtn').style.display = S.q ? 'inline-block' : 'none';
@@ -657,20 +676,19 @@ document.getElementById('searchInput').addEventListener('input', e => {
 (async function init() {
   updateAdminBtn();
   
-  // Always try to pull from GitHub first if configured
+  // CRITICAL: First try to load from GitHub for ALL users (not just admins)
   if (G.ok) {
-    syncStatus('🔄 Syncing data from cloud...', 'load');
+    syncStatus('🔄 Loading latest data...', 'load');
     try {
-      const pulled = await gitPull();
-      if (pulled) {
+      const success = await gitPull();
+      if (success) {
         syncStatus('✅ Latest data loaded', 'ok');
       } else {
-        // Use local data if pull fails
         fullRefresh();
-        syncStatus('⚠️ Using cached data', 'fail');
+        syncStatus('⚠️ Using default data', 'fail');
       }
     } catch(e) {
-      console.warn('Initial pull failed:', e);
+      console.warn('Initial load failed:', e);
       fullRefresh();
       syncStatus('⚠️ Using local data', 'fail');
     }
