@@ -1,93 +1,51 @@
 {
   "categories": [
     {
-      "id": "cat1",
+      "id": "cat_WAA_Cables",
       "name": "WAA Cables",
-      "icon": "Ã°ÂÂÂ",
+      "icon": "🔌",
       "products": [
         {
-          "id": "p1",
-          "name": "WAA CABLE 4.00SQMM RED BLACK",
+          "id": "p_1",
+          "name": "4.00SQMM WAA CABLE RED BLACK",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "100% pure copper"
+          "icon": "🔌",
+          "desc": "Premium 100% pure copper flexible cable"
         }
       ]
-    },
-    {
-      "id": "cat2",
-      "name": "Solar & MC4",
-      "icon": "Ã¢ÂÂÃ¯Â¸Â",
-      "products": [
-        {
-          "id": "p2",
-          "name": "SOLAR DC CABLE",
-          "spec": "500MTR",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
-          "desc": "UV protected"
-        }
-      ]
-    },
-    {
-      "id": "cat3",
-      "name": "Meters",
-      "icon": "Ã°ÂÂÂ",
-      "products": [
-        {
-          "id": "p3",
-          "name": "SINGLE PHASE METER",
-          "spec": "5/30A",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "Bi-directional"
-        }
-      ]
-    },
-    {
-      "id": "1777302419354ktuubg",
-      "name": "a",
-      "icon": "a",
-      "products": []
-    },
-    {
-      "id": "1777305739734y1uq0i",
-      "name": "a++",
-      "icon": "sd",
-      "products": []
     }
   ],
   "company": {
-    "name": "sunny",
+    "name": "nilss",
     "tagline": "Premium Electrical Solutions",
     "since": "2010",
     "phone": "+91 6203691393",
     "email": "bikram.biharelctrometer@gmail.com",
     "whatsapp": "916203691393",
-    "address": "India (Bihar & NCR) | Global Shipping Available",
+    "address": "India (Bihar & NCR)",
     "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables Ã¢ÂÂ¢ Meters Ã¢ÂÂ¢ Solar Ã¢ÂÂ¢ Earthing Ã¢ÂÂ¢ Fire Safety Ã¢ÂÂ¢ Accessories",
-    "catalogTitle": "Our Premium Catalog",
-    "footer": "ÃÂ© 2026 Rhysco Power - All Rights Reserved"
+    "heroSubtitle": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories"
   },
   "stats": [
     {
-      "icon": "fas fa-trophy",
+      "icon": "trophy",
       "number": "15+",
-      "label": "Years Experience"
+      "label": "Years"
     },
     {
-      "icon": "fas fa-boxes",
-      "number": "500+",
-      "label": "Premium Products"
+      "icon": "boxes",
+      "number": "1",
+      "label": "Products"
     },
     {
-      "icon": "fas fa-users",
+      "icon": "users",
       "number": "1000+",
-      "label": "Happy Clients"
+      "label": "Clients"
     },
     {
-      "icon": "fas fa-truck",
+      "icon": "truck",
       "number": "PAN India",
-      "label": "Fast Delivery"
+      "label": "Delivery"
     }
   ],
   "features": [
@@ -122,5 +80,5 @@
       "desc": "Project supply specialist"
     }
   ],
-  "lastSync": "2026-04-29T15:27:08.673Z"
+  "lastSync": "2026-04-29T15:27:55.572Z"
 }
