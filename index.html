@@ -702,21 +702,46 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
 document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
-
-// ========== INIT ==========
+// ========== REPLACE INIT SECTION WITH THIS ==========
 applyTheme();
 loadGitConfig();
 checkAdminSession();
 
+// 🔥 FIX: Har bar page load pe GitHub se data fetch karo
 (async () => {
   if (state.gitConnected) {
-    try { await pullFromGitHub(); console.log('✅ Loaded from GitHub'); } catch (e) { console.warn('⚠️ Using defaults — ' + e.message); refreshAll(); }
+    console.log('🔄 Fetching latest data from GitHub...');
+    try {
+      const data = await pullFromGitHub();
+      if (data) {
+        console.log('✅ Latest data loaded from GitHub');
+        toast('✅ Latest data loaded', 1500);
+      }
+    } catch (e) {
+      console.warn('⚠️ Using cached data —', e.message);
+      refreshAll();
+    }
   } else {
     refreshAll();
   }
   updateAdminBtn();
   updateGitBadge();
 })();
+
+// Force refresh on page show (mobile/tab switch)
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && state.gitConnected) {
+    console.log('🔄 Tab active — refreshing data...');
+    pullFromGitHub().catch(() => {});
+  }
+});
+
+// Force refresh on window focus (desktop)
+window.addEventListener('focus', () => {
+  if (state.gitConnected) {
+    setTimeout(() => pullFromGitHub().catch(() => {}), 500);
+  }
+});
 </script>
 </body>
 </html>
