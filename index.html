@@ -28,7 +28,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; line-height: 1.5; }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
     input, textarea { font-family: inherit; }
@@ -205,6 +205,7 @@
     .git-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; background: var(--success); color: #fff; font-size: 10px; font-weight: 700; }
     .git-badge.pending { background: var(--warning); color: #000; }
     .git-badge.error { background: var(--danger); }
+    .sync-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: var(--grad); color: #fff; text-align: center; padding: 4px; font-size: 11px; font-weight: 600; display: none; }
     @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)} }
     @keyframes glow { 0%,100%{box-shadow:0 10px 40px rgba(0,212,255,.3)}50%{box-shadow:0 14px 50px rgba(0,212,255,.5)} }
     @keyframes glow-wa { 0%,100%{box-shadow:0 14px 30px rgba(37,211,102,.4)}50%{box-shadow:0 18px 40px rgba(37,211,102,.6)} }
@@ -213,6 +214,7 @@
   </style>
 </head>
 <body>
+  <div class="sync-bar" id="syncBar"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="50%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs></svg>
 
   <nav class="nav" id="nav">
@@ -255,14 +257,14 @@
 <script>
 'use strict';
 
-// ========== ONLY 1 PRODUCT FOR TESTING ==========
+// ========== DATA ==========
 const DEFAULT_CATEGORIES = [
   {
     id: 'cat_WAA_Cables',
     name: 'WAA Cables',
     icon: '🔌',
     products: [
-      { id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable - Testing product' }
+      { id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable' }
     ]
   }
 ];
@@ -277,10 +279,10 @@ const DEFAULTS = {
 // ========== STORAGE ==========
 const LS = {
   get(k, fb) { try { const v = localStorage.getItem('rc_' + k); return v ? JSON.parse(v) : fb; } catch { return fb; } },
-  set(k, v) { try { localStorage.setItem('rc_' + k, JSON.stringify(v)); } catch(e) { if (e.name === 'QuotaExceededError') toast('Storage full!'); } }
+  set(k, v) { try { localStorage.setItem('rc_' + k, JSON.stringify(v)); } catch(e) { toast('Storage full!'); } }
 };
 
-// ========== GIT CONFIG ==========
+// ========== GIT ==========
 const GIT = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
 Object.assign(GIT, LS.get('git_cfg', {}));
 
@@ -303,12 +305,6 @@ let state = {
 
 let syncTimer = null, searchTimer = null;
 
-// FIX: localStorage se data GitHub se load hone ke baad bhi sahi rahe
-if (state.categories.length === 0) state.categories = DEFAULTS.categories;
-if (!state.company.name) state.company = { ...DEFAULTS.company };
-if (state.stats.length === 0) state.stats = DEFAULTS.stats;
-if (state.features.length === 0) state.features = DEFAULTS.features;
-
 function persist() {
   LS.set('cat', state.categories);
   LS.set('com', state.company);
@@ -318,7 +314,15 @@ function persist() {
   state.syncPending = true;
   LS.set('sync', true);
   clearTimeout(syncTimer);
-  syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub(); }, 3000);
+  syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub(); }, 2000);
+}
+
+// ========== SYNC BAR ==========
+function showSyncBar(msg) {
+  const bar = document.getElementById('syncBar');
+  bar.textContent = msg;
+  bar.style.display = 'block';
+  setTimeout(() => { bar.style.display = 'none'; }, 3000);
 }
 
 // ========== GITHUB API ==========
@@ -333,13 +337,9 @@ async function gitAPI(endpoint, method = 'GET', body = null) {
       body: body ? JSON.stringify(body) : null
     });
     clearTimeout(to);
-    if (res.status === 401 || res.status === 403) {
-      state.gitConnected = false;
-      updateGitBadge();
-      throw new Error('Invalid token');
-    }
-    if (res.status === 404) throw new Error('Repository not found. Check repo name.');
-    if (!res.ok) throw new Error((await res.json().catch(()=>({}))).message || 'Error ' + res.status);
+    if (res.status === 401 || res.status === 403) throw new Error('Invalid token');
+    if (res.status === 404) throw new Error('Repo not found');
+    if (!res.ok) throw new Error('Error ' + res.status);
     return res.json();
   } catch (e) { clearTimeout(to); throw e; }
 }
@@ -359,31 +359,41 @@ async function syncToGitHub() {
     return true;
   } catch (e) {
     console.warn('Sync failed:', e.message);
-    if (e.message.includes('409')) { try { await loadFromGitHub(); return syncToGitHub(); } catch {} }
     updateGitBadge();
     return false;
   }
 }
 
+// ===== FIX: Load from GitHub with localStorage override =====
 async function loadFromGitHub() {
   if (!state.gitConnected) return false;
   try {
     const raw = await gitAPI(`/contents/${GIT.path}`);
     const content = JSON.parse(atob(raw.content));
-    if (content.categories) state.categories = content.categories;
-    if (content.company) state.company = { ...DEFAULTS.company, ...content.company };
-    if (content.stats) state.stats = content.stats;
-    if (content.features) state.features = content.features;
-    // IMPORTANT: Save to localStorage after loading from GitHub
-    LS.set('cat', state.categories);
-    LS.set('com', state.company);
-    LS.set('stat', state.stats);
-    LS.set('feat', state.features);
+    
+    // FIX: GitHub data ko localStorage me SAVE karo
+    if (content.categories && content.categories.length > 0) {
+      state.categories = content.categories;
+      LS.set('cat', state.categories);
+    }
+    if (content.company && content.company.name) {
+      state.company = { ...DEFAULTS.company, ...content.company };
+      LS.set('com', state.company);
+    }
+    if (content.stats && content.stats.length > 0) {
+      state.stats = content.stats;
+      LS.set('stat', state.stats);
+    }
+    if (content.features && content.features.length > 0) {
+      state.features = content.features;
+      LS.set('feat', state.features);
+    }
     state.syncPending = false;
     LS.set('sync', false);
     refreshAll();
     updateGitBadge();
-    console.log('✅ Loaded from GitHub');
+    showSyncBar('✅ Latest data loaded from GitHub');
+    console.log('✅ Loaded from GitHub:', state.company.name, state.categories.length, 'categories');
     return true;
   } catch (e) {
     console.warn('Load failed:', e.message);
@@ -409,8 +419,12 @@ function saveGitConfig() {
   GIT.branch = document.getElementById('gitBranch').value.trim() || 'main';
   LS.set('git_cfg', GIT);
   state.gitConnected = true;
-  toast('✅ Connecting...');
-  syncToGitHub().then(ok => toast(ok ? '✅ Connected & synced!' : '⚠️ Saved but sync failed'));
+  toast('✅ Connecting to GitHub...');
+  // FIX: Connect hote hi turant data load karo
+  loadFromGitHub().then(ok => {
+    if (ok) toast('✅ Data loaded from GitHub!');
+    else toast('⚠️ Connected but no data found. Make changes & Push.');
+  });
   updateGitBadge();
 }
 
@@ -423,7 +437,7 @@ function disconnectGit() {
   toast('🔌 Disconnected'); updateGitBadge();
 }
 
-// ========== SVG ICONS ==========
+// ========== SVG ==========
 const I = {
   trophy:'<polyline points="6 9 6 4 18 4 18 9"/><path d="M6 9a6 6 0 0 0 12 0"/><path d="M6 9H3a3 3 0 0 0 3 3"/><path d="M18 9h3a3 3 0 0 1-3 3"/><path d="M9 22h6"/><path d="M12 17v5"/>',
   boxes:'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
@@ -476,7 +490,7 @@ function toast(m) {
 function applyTheme() {
   const t = LS.get('theme', 'dark');
   document.documentElement.dataset.theme = t;
-  document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`;
+  try { document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`; } catch {}
 }
 function toggleTheme() { LS.set('theme', document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'); applyTheme(); }
 
@@ -490,7 +504,7 @@ function renderCompany() {
   document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
   document.getElementById('footerText').textContent = '© ' + new Date().getFullYear() + ' ' + state.company.name;
   const words = state.company.heroTitle.split(' ');
-  document.getElementById('heroTitle').innerHTML = words.map((w,i) => (/electric/i.test(w)?'<span class="grad-text">'+esc(w)+'</span>':esc(w)) + (i<words.length-1?' ':'')).join('');
+  document.getElementById('heroTitle').innerHTML = words.map((w,i) => (/electric/i.test(w)?'<span class="grad-text">'+esc(w)+'</span>':esc(w))+(i<words.length-1?' ':'')).join('');
   document.getElementById('floatWa').href = wa('Hi, I have a question.');
   document.getElementById('contactWa').href = wa('Hi, I\'d like to discuss a bulk order.');
   document.getElementById('contactRight').innerHTML = [
@@ -506,17 +520,17 @@ function renderCompany() {
 }
 
 function renderStats() {
-  document.getElementById('statsGrid').innerHTML = state.stats.map((s,i) => '<div class="stat" style="animation:fadeIn .3s ease '+i*.06+'s both"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
+  document.getElementById('statsGrid').innerHTML = state.stats.map((s,i) => '<div class="stat"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
 }
 
 function renderFeatures() {
-  document.getElementById('featuresGrid').innerHTML = state.features.map((f,i) => '<div class="feat" style="animation:fadeIn .3s ease '+i*.05+'s both"><div class="feat-icon">'+S(f.icon,22)+'</div><h3>'+esc(f.title)+'</h3><p>'+esc(f.desc)+'</p></div>').join('');
+  document.getElementById('featuresGrid').innerHTML = state.features.map(f => '<div class="feat"><div class="feat-icon">'+S(f.icon,22)+'</div><h3>'+esc(f.title)+'</h3><p>'+esc(f.desc)+'</p></div>').join('');
 }
 
 function renderCategories() {
   const all = flat();
-  document.getElementById('catalogCount').textContent = all.length + ' products in stock';
-  document.getElementById('categoryPills').innerHTML = '<button class="pill '+((state.activeCategory==='all')?'active':'')+'" onclick="setCategory(\'all\')">📂 All</button>' + state.categories.map(c => '<button class="pill '+((state.activeCategory===c.id)?'active':'')+'" onclick="setCategory(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('');
+  document.getElementById('catalogCount').textContent = all.length + ' products';
+  document.getElementById('categoryPills').innerHTML = '<button class="pill '+(state.activeCategory==='all'?'active':'')+'" onclick="setCategory(\'all\')">📂 All</button>' + state.categories.map(c => '<button class="pill '+(state.activeCategory===c.id?'active':'')+'" onclick="setCategory(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('');
 }
 
 function renderProducts() {
@@ -525,13 +539,10 @@ function renderProducts() {
   const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
   const q = state.query.trim().toLowerCase();
   const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="empty" style="grid-column:1/-1">'+S('pkg',44)+'<div style="font-size:16px;font-weight:700;margin-top:8px">No products found</div></div>';
-    return;
-  }
+  if (!filtered.length) { grid.innerHTML = '<div class="empty" style="grid-column:1/-1">'+S('pkg',44)+'<div style="font-size:16px;font-weight:700;margin-top:8px">No products</div></div>'; return; }
   grid.innerHTML = filtered.map(p => {
-    const w = wa('Hi, I\'m interested in: ' + p.name + ' (' + p.spec + ')');
-    return '<div class="card" style="animation:fadeIn .25s ease both"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><div class="spec">'+S('ruler',11)+' '+esc(p.spec)+'</div><p class="desc">'+esc(p.desc)+'</p><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="actions"><a class="btn-wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',13)+' Enquiry</a><button class="btn-detail" onclick="openProduct(\''+p.id+'\')">Details '+S('chevron',13)+'</button></div></div>';
+    const w = wa('Interested in: ' + p.name + ' (' + p.spec + ')');
+    return '<div class="card"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><div class="spec">'+S('ruler',11)+' '+esc(p.spec)+'</div><p class="desc">'+esc(p.desc)+'</p><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="actions"><a class="btn-wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',13)+' Enquiry</a><button class="btn-detail" onclick="openProduct(\''+p.id+'\')">Details '+S('chevron',13)+'</button></div></div>';
   }).join('');
 }
 
@@ -541,26 +552,20 @@ function clearSearch() { state.query = ''; document.getElementById('searchInput'
 function openProduct(id) {
   const p = flat().find(p => p.id === id);
   if (!p) return;
-  const w = wa('I\'d like a quote for: ' + p.name + ' (' + p.spec + ')');
+  const w = wa('Quote for: ' + p.name);
   document.getElementById('productModalCard').innerHTML = '<button class="modal-close" onclick="closeProduct()">'+S('x',14)+'</button><div class="pdetail-head"><div class="pdetail-icon">'+esc(p.icon)+'</div><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="pdetail-title">'+esc(p.name)+'</div><div class="pdetail-spec">'+S('ruler',13)+' '+esc(p.spec)+'</div></div><div class="pdetail-body"><p class="pdetail-desc">'+esc(p.desc)+'</p><div class="pdetail-actions"><a class="wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',14)+' WhatsApp</a><a class="call" href="tel:'+escA(state.company.phone.replace(/\s+/g,''))+'">'+S('phone',14)+' Call</a></div></div>';
   document.getElementById('productModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
-function closeProduct() { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow = ''; }
+function closeProduct() { document.getElementById('productModal').classList.remove('open'); }
 
 // ========== ADMIN ==========
-function openAdmin() { document.getElementById('adminModal').classList.add('open'); document.body.style.overflow = 'hidden'; renderAdmin(); }
-function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); document.body.style.overflow = ''; }
+function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
+function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
 
 function login() {
-  const u = document.getElementById('adminUser').value.trim();
-  const p = document.getElementById('adminPass').value;
-  if (u === 'sunny' && p === 'admin') {
-    state.isAdmin = true; persist(); updateAdminBtn(); renderAdmin();
-    toast('Welcome back!');
-  } else {
-    document.getElementById('loginErr').textContent = 'Invalid credentials';
-  }
+  if (document.getElementById('adminUser').value.trim() === 'sunny' && document.getElementById('adminPass').value === 'admin') {
+    state.isAdmin = true; persist(); updateAdminBtn(); renderAdmin(); toast('Welcome!');
+  } else { document.getElementById('loginErr').textContent = 'Invalid credentials'; }
   return false;
 }
 function logout() { state.isAdmin = false; persist(); updateAdminBtn(); closeAdmin(); toast('Logged out'); }
@@ -572,10 +577,10 @@ function updateAdminBtn() {
 
 function renderAdmin() {
   if (!state.isAdmin) {
-    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">'+S('lock',22)+'</div><h3>Admin Login</h3><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center;font-weight:600"></div><button type="submit" class="btn btn-primary">Sign In</button></form>';
+    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">'+S('lock',22)+'</div><h3>Admin Login</h3><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center"></div><button type="submit" class="btn btn-primary">Sign In</button></form>';
     return;
   }
-  document.getElementById('adminBody').innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px"><div class="tabs" style="margin-bottom:0"><button class="'+(state.adminTab==='products'?'active':'')+'" onclick="setAdminTab(\'products\')">Products</button><button class="'+(state.adminTab==='categories'?'active':'')+'" onclick="setAdminTab(\'categories\')">Categories</button><button class="'+(state.adminTab==='company'?'active':'')+'" onclick="setAdminTab(\'company\')">Company</button><button class="'+(state.adminTab==='content'?'active':'')+'" onclick="setAdminTab(\'content\')">Content</button><button class="'+(state.adminTab==='git'?'active':'')+'" onclick="setAdminTab(\'git\')">'+S('github',12)+' Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>';
+  document.getElementById('adminBody').innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px"><div class="tabs"><button class="'+(state.adminTab==='products'?'active':'')+'" onclick="setAdminTab(\'products\')">Products</button><button class="'+(state.adminTab==='categories'?'active':'')+'" onclick="setAdminTab(\'categories\')">Categories</button><button class="'+(state.adminTab==='company'?'active':'')+'" onclick="setAdminTab(\'company\')">Company</button><button class="'+(state.adminTab==='git'?'active':'')+'" onclick="setAdminTab(\'git\')">'+S('github',12)+' Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>';
   renderAdminPane(); updateGitBadge();
 }
 function setAdminTab(t) { state.adminTab = t; renderAdmin(); }
@@ -585,16 +590,15 @@ function renderAdminPane() {
   if (state.adminTab === 'products') p.innerHTML = paneProducts();
   else if (state.adminTab === 'categories') p.innerHTML = paneCategories();
   else if (state.adminTab === 'company') p.innerHTML = paneCompany();
-  else if (state.adminTab === 'content') p.innerHTML = paneContent();
   else if (state.adminTab === 'git') p.innerHTML = paneGit();
 }
 
 function paneProducts() {
-  if (!state.categories.length) return '<p style="color:var(--text-2)">Add a category first.</p>';
+  if (!state.categories.length) return '<p>Add a category first.</p>';
   if (!state.adminCat || !state.categories.find(c=>c.id===state.adminCat)) state.adminCat = state.categories[0].id;
   const cat = state.categories.find(c=>c.id===state.adminCat);
   const d = state.editDraft;
-  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name *</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><div class="row" style="margin-top:10px"><button class="btn btn-primary" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?'<button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div></div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div><div style="font-size:10px;color:var(--text-2)">'+esc(p.desc)+'</div></div><div class="lact"><button class="edit" onclick="editProduct(\''+p.id+'\')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct(\''+p.id+'\')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:20px">No products</p>')+'</div>';
+  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' Product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><button class="btn btn-primary" style="margin-top:8px" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?' <button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div></div><div class="lact"><button class="edit" onclick="editProduct(\''+p.id+'\')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct(\''+p.id+'\')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="text-align:center;color:var(--text-2);grid-column:1/-1">No products</p>')+'</div>';
 }
 function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
 function saveProduct() {
@@ -622,15 +626,13 @@ function editProduct(id) {
 function cancelEdit() { state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
 function deleteProduct(id) {
   const cat = state.categories.find(c=>c.id===state.adminCat);
-  const p = cat?.products.find(p=>p.id===id);
-  if (!p || !confirm('Delete "'+p.name+'"?')) return;
+  if (!cat || !confirm('Delete?')) return;
   cat.products = cat.products.filter(x=>x.id!==id);
-  persist(); renderAdminPane(); renderCategories(); renderProducts();
-  toast('Deleted');
+  persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
 }
 
 function paneCategories() {
-  return '<div class="panel-section"><h4>'+S('plus',13)+' Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name" maxlength="50"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>'+state.categories.map(c=>'<div class="cat-row"><input style="width:50px;text-align:center" maxlength="4" value="'+escA(c.icon)+'" oninput="updateCat(\''+c.id+'\',\'icon\',this.value)"><input style="flex:1" value="'+escA(c.name)+'" maxlength="50" oninput="updateCat(\''+c.id+'\',\'name\',this.value)"><span style="font-size:10px;color:var(--text-2)">'+c.products.length+'</span><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat(\''+c.id+'\')">'+S('trash',12)+'</button></div>').join('')+'<div style="margin-top:12px"><button class="btn btn-danger" onclick="resetAll()">'+S('reset',13)+' Reset All</button></div>';
+  return '<div class="panel-section"><h4>Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>'+state.categories.map(c=>'<div class="cat-row"><input style="width:50px;text-align:center" maxlength="4" value="'+escA(c.icon)+'" oninput="updateCat(\''+c.id+'\',\'icon\',this.value)"><input style="flex:1" value="'+escA(c.name)+'" oninput="updateCat(\''+c.id+'\',\'name\',this.value)"><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat(\''+c.id+'\')">'+S('trash',12)+'</button></div>').join('');
 }
 function addCat() {
   const n = document.getElementById('newCatName').value.trim();
@@ -640,37 +642,20 @@ function addCat() {
 }
 function updateCat(id, k, v) { const c = state.categories.find(c=>c.id===id); if (c) { c[k] = v; persist(); renderCategories(); } }
 function deleteCat(id) {
-  const c = state.categories.find(c=>c.id===id);
-  if (!c || !confirm('Delete "'+c.name+'"?')) return;
+  if (!confirm('Delete?')) return;
   state.categories = state.categories.filter(x=>x.id!==id);
   if (state.activeCategory === id) state.activeCategory = 'all';
-  if (state.adminCat === id) state.adminCat = state.categories[0]?.id || null;
   persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
-}
-function resetAll() {
-  if (!confirm('Reset ALL?')) return;
-  state.categories = JSON.parse(JSON.stringify(DEFAULTS.categories));
-  state.company = { ...DEFAULTS.company };
-  state.stats = JSON.parse(JSON.stringify(DEFAULTS.stats));
-  state.features = JSON.parse(JSON.stringify(DEFAULTS.features));
-  state.activeCategory = 'all'; state.adminCat = null;
-  persist(); renderAdmin(); refreshAll(); toast('Reset');
 }
 
 function paneCompany() {
   const c = state.company;
-  return '<div class="grid-2">'+[['name','Name'],['tagline','Tagline'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m])=>'<div class="field" style="'+(m?'grid-column:1/-1':'')+'"><label>'+l+'</label>'+(m?'<textarea maxlength="200" oninput="updateCompany(\''+k+'\',this.value)">'+esc(c[k]||'')+'</textarea>':'<input maxlength="100" value="'+escA(c[k]||'')+'" oninput="updateCompany(\''+k+'\',this.value)">')+'</div>').join('')+'</div>';
+  return '<div class="grid-2">'+[['name','Company Name'],['tagline','Tagline'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m])=>'<div class="field" style="'+(m?'grid-column:1/-1':'')+'"><label>'+l+'</label>'+(m?'<textarea oninput="updateCompany(\''+k+'\',this.value)">'+esc(c[k]||'')+'</textarea>':'<input value="'+escA(c[k]||'')+'" oninput="updateCompany(\''+k+'\',this.value)">')+'</div>').join('')+'</div>';
 }
 function updateCompany(k, v) { state.company[k] = v; persist(); renderCompany(); }
 
-function paneContent() {
-  return '<div class="panel-section"><h4>Stats</h4><div class="grid-2">'+state.stats.map((s,i)=>'<div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:8px;display:grid;gap:5px"><div class="grid-2"><input maxlength="20" value="'+escA(s.number)+'" oninput="updateStat('+i+',\'number\',this.value)"><input maxlength="30" value="'+escA(s.icon)+'" oninput="updateStat('+i+',\'icon\',this.value)"></div><input maxlength="30" value="'+escA(s.label)+'" oninput="updateStat('+i+',\'label\',this.value)"></div>').join('')+'</div></div><div class="panel-section"><h4>Features</h4><div class="grid-2">'+state.features.map((f,i)=>'<div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:8px;display:grid;gap:5px"><div class="grid-2"><input maxlength="50" value="'+escA(f.title)+'" oninput="updateFeature('+i+',\'title\',this.value)"><input maxlength="30" value="'+escA(f.icon)+'" oninput="updateFeature('+i+',\'icon\',this.value)"></div><textarea maxlength="200" oninput="updateFeature('+i+',\'desc\',this.value)">'+esc(f.desc)+'</textarea></div>').join('')+'</div></div>';
-}
-function updateStat(i, k, v) { state.stats[i][k] = v; persist(); renderStats(); }
-function updateFeature(i, k, v) { state.features[i][k] = v; persist(); renderFeatures(); }
-
 function paneGit() {
-  return '<div class="panel-section"><h4>'+S('github',14)+' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Connect to sync data across all devices. Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → Generate token → select <strong>repo</strong> scope.</p><div class="grid-2"><div class="field"><label>GitHub Username</label><input id="gitOwner" value="'+escA(GIT.owner)+'" placeholder="username"></div><div class="field"><label>Repository</label><input id="gitRepo" value="'+escA(GIT.repo)+'" placeholder="rhysco-data"></div><div class="field"><label>Branch</label><input id="gitBranch" value="'+escA(GIT.branch)+'" placeholder="main"></div><div class="field" style="grid-column:1/-1"><label>Personal Access Token</label><input id="gitToken" type="password" value="'+escA(GIT.token)+'" placeholder="ghp_..."></div></div><div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitConfig()">'+S('save',13)+' Save & Connect</button>'+(state.gitConnected?'<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?\'✅ Synced\':\'❌ Failed\'))">'+S('cloud',13)+' Push</button><button class="btn btn-success" onclick="loadFromGitHub().then(s=>toast(s?\'✅ Loaded\':\'❌ Failed\')).catch(()=>toast(\'❌ Error\'))">'+S('download',13)+' Pull</button><button class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>':'')+'</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>'+(state.gitConnected?'✅ '+GIT.owner+'/'+GIT.repo:'⚡ Not connected')+'</strong> '+(state.syncPending?'| ⏳ Pending':'')+'</div></div>';
+  return '<div class="panel-section"><h4>'+S('github',14)+' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → repo scope</p><div class="grid-2"><div class="field"><label>Username</label><input id="gitOwner" value="'+escA(GIT.owner)+'" placeholder="github-username"></div><div class="field"><label>Token</label><input id="gitToken" type="password" value="'+escA(GIT.token)+'" placeholder="ghp_..."></div></div><div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitConfig()">Save & Load</button>'+(state.gitConnected?'<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?\'✅ Pushed\':\'❌ Failed\'))">Push</button><button class="btn btn-success" onclick="loadFromGitHub().then(s=>toast(s?\'✅ Loaded\':\'❌ Failed\'))">Pull</button><button class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>':'')+'</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">'+(state.gitConnected?'✅ Connected':'⚡ Not connected')+' '+(state.syncPending?'| ⏳ Pending':'')+'</div></div>';
 }
 
 // ========== EVENTS ==========
@@ -687,12 +672,14 @@ window.addEventListener('scroll', () => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
 document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
 
-// ========== INIT ==========
+// ========== INIT: GitHub se data load karo ==========
 applyTheme();
 (async () => {
-  // FIX: GitHub data ko priority do, sirf agar connected hai
+  // FIX: Har page load pe GitHub check karo
   if (state.gitConnected) {
-    await loadFromGitHub().catch(() => refreshAll());
+    showSyncBar('🔄 Checking GitHub for updates...');
+    const ok = await loadFromGitHub().catch(() => false);
+    if (!ok) refreshAll();
   } else {
     refreshAll();
   }
