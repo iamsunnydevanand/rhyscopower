@@ -4,317 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>Rhysco Power — Complete Electrical Solutions</title>
-  <meta name="description" content="Rhysco Power — Premium electrical solutions distributor since 2010. WAA cables, solar & MC4, meters, earthing, fire safety and more." />
+  <meta name="description" content="Rhysco Power — Premium electrical solutions distributor since 2010" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f5f5f7;
-      --bg-2: #ffffff;
-      --text: #1a1a2e;
-      --text-2: #4a4a6a;
-      --border: rgba(0,0,0,0.08);
-      --card-bg: rgba(255,255,255,0.7);
+      --bg: #f5f5f7; --bg-2: #ffffff; --text: #1a1a2e; --text-2: #4a4a6a;
+      --border: rgba(0,0,0,0.08); --card-bg: rgba(255,255,255,0.7);
       --nav-bg: rgba(255,255,255,0.78);
       --hero-overlay: linear-gradient(135deg, rgba(20,20,40,0.55), rgba(124,58,237,0.35));
       --shadow: 0 8px 30px rgba(0,0,0,0.06);
       --grad: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
       --grad-warm: linear-gradient(135deg, #f97316 0%, #ff2d75 100%);
-      --wa: #25D366;
-      --success: #10b981;
-      --danger: #ef4444;
-      --warning: #f59e0b;
+      --wa: #25D366; --success: #10b981; --danger: #ef4444; --warning: #f59e0b;
     }
     [data-theme="dark"] {
-      --bg: #0a0a0f;
-      --bg-2: #111118;
-      --text: #ffffff;
-      --text-2: #a0a0b0;
-      --border: rgba(255,255,255,0.08);
-      --card-bg: rgba(18,18,28,0.72);
+      --bg: #0a0a0f; --bg-2: #111118; --text: #ffffff; --text-2: #a0a0b0;
+      --border: rgba(255,255,255,0.08); --card-bg: rgba(18,18,28,0.72);
       --nav-bg: rgba(10,10,18,0.72);
       --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.78), rgba(124,58,237,0.42));
       --shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      transition: background .3s ease, color .3s ease;
-      line-height: 1.5;
-    }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
     input, textarea { font-family: inherit; }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .grad-text-warm { background: var(--grad-warm); -webkit-background-clip: text; background-clip: text; color: transparent; }
-
-    /* NAVBAR */
-    .nav {
-      position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
-      width: 94%; max-width: 1300px; z-index: 100;
-      background: var(--nav-bg);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border); border-radius: 999px;
-      padding: 8px 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
-      transition: all .3s ease;
-    }
+    .nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); width: 94%; max-width: 1300px; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; transition: all .3s; }
     .nav.scrolled { top: 6px; padding: 6px 12px; }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .logo-mark {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: var(--grad); display: grid; place-items: center;
-      box-shadow: 0 4px 18px rgba(0,212,255,0.3);
-      animation: float 3.2s ease-in-out infinite;
-    }
+    .logo-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 4px 18px rgba(0,212,255,0.3); animation: float 3.2s ease-in-out infinite; }
     .logo-mark svg { width: 18px; height: 18px; color: #fff; }
     .logo-text { font-size: 16px; }
     .nav-links { display: flex; gap: 4px; }
     .nav-links a { font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; color: var(--text); opacity: .8; transition: all .2s; }
     .nav-links a:hover { opacity: 1; background: var(--border); }
     .nav-actions { display: flex; align-items: center; gap: 6px; }
-    .icon-btn {
-      width: 36px; height: 36px; display: grid; place-items: center;
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: 999px;
-      transition: all .2s;
-    }
+    .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 999px; }
     .icon-btn:hover { background: var(--border); }
     .icon-btn svg { width: 15px; height: 15px; }
-    .admin-btn {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 8px 12px; border-radius: 999px;
-      background: var(--grad-warm); color: #fff;
-      font-size: 11px; font-weight: 700;
-      box-shadow: 0 4px 14px rgba(249,115,22,0.3);
-      transition: all .2s;
-    }
-    .admin-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .admin-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; border-radius: 999px; background: var(--grad-warm); color: #fff; font-size: 11px; font-weight: 700; box-shadow: 0 4px 14px rgba(249,115,22,0.3); transition: all .2s; }
+    .admin-btn:hover { filter: brightness(1.1); }
     .admin-btn svg { width: 13px; height: 13px; }
     .admin-btn.danger { background: linear-gradient(135deg, #ef4444, #b91c1c); box-shadow: 0 4px 14px rgba(239,68,68,0.3); }
-
-    /* MOBILE MENU */
     .hamburger { display: none; width: 36px; height: 36px; place-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 999px; }
     .hamburger svg { width: 18px; height: 18px; }
-    .mobile-menu {
-      display: none; position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
-      width: 90%; max-width: 400px; z-index: 99;
-      background: var(--card-bg); backdrop-filter: blur(30px);
-      border: 1px solid var(--border); border-radius: 24px;
-      padding: 12px; flex-direction: column; gap: 4px;
-    }
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; z-index: 99; background: var(--card-bg); backdrop-filter: blur(30px); border: 1px solid var(--border); border-radius: 24px; padding: 12px; flex-direction: column; gap: 4px; }
     .mobile-menu.show { display: flex; }
     .mobile-menu a { padding: 12px 16px; border-radius: 14px; font-weight: 500; font-size: 14px; }
     .mobile-menu a:hover { background: var(--border); }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: grid; }
-    }
-
-    /* HERO */
-    .hero {
-      position: relative; min-height: 100vh; min-height: 100svh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 120px 20px 80px; text-align: center; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(0,212,255,0.25)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1200&q=80');
-      background-size: cover; background-position: center;
-      filter: brightness(0.55);
-    }
+    @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: grid; } }
+    .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 80px; text-align: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(0,212,255,0.25)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1200&q=80'); background-size: cover; background-position: center; filter: brightness(0.55); }
     .hero-overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
     .hero-fade { position: absolute; left: 0; right: 0; bottom: -1px; height: 140px; pointer-events: none; background: linear-gradient(to bottom, transparent, var(--bg) 95%); }
     .hero-content { position: relative; z-index: 2; max-width: 900px; }
-    .badge-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 999px;
-      background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff; font-size: 12px; font-weight: 500; margin-bottom: 20px;
-    }
+    .badge-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 12px; font-weight: 500; margin-bottom: 20px; }
     .badge-pill svg { width: 13px; height: 13px; color: #67e8f9; }
     .hero h1 { color: #fff; font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 18px; }
     .hero p { color: rgba(255,255,255,0.85); font-size: clamp(14px, 1.4vw, 17px); max-width: 600px; margin: 0 auto 32px; }
-    .cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; border-radius: 999px;
-      background: var(--grad); color: #fff; font-weight: 700; font-size: 15px;
-      box-shadow: 0 10px 40px rgba(0,212,255,0.3);
-      transition: all .3s;
-      animation: glow 2.4s ease-in-out infinite;
-    }
-    .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 50px rgba(0,212,255,0.5); }
+    .cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 10px 40px rgba(0,212,255,0.3); animation: glow 2.4s ease-in-out infinite; }
+    .cta:hover { transform: translateY(-2px); }
     .cta svg { width: 16px; height: 16px; }
-
-    /* STATS */
-    .stats {
-      position: relative; z-index: 5;
-      max-width: 1200px; margin: -70px auto 0; padding: 0 16px;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-    }
+    .stats { position: relative; z-index: 5; max-width: 1200px; margin: -70px auto 0; padding: 0 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-    .stat {
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); padding: 20px 16px; border-radius: 22px; text-align: center;
-      box-shadow: var(--shadow); transition: transform .25s ease;
-    }
-    .stat:hover { transform: translateY(-4px); }
+    .stat { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 20px 16px; border-radius: 22px; text-align: center; box-shadow: var(--shadow); }
     .stat-icon { width: 42px; height: 42px; margin: 0 auto 10px; border-radius: 12px; display: grid; place-items: center; background: rgba(0,212,255,0.08); }
     .stat-icon svg { width: 22px; height: 22px; }
     .stat-num { font-size: clamp(22px, 2.5vw, 30px); font-weight: 900; letter-spacing: -0.02em; }
     .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-top: 4px; }
-
-    /* SECTIONS */
     section.block { max-width: 1200px; margin: 0 auto; padding: 70px 16px; }
     .section-head { text-align: center; margin-bottom: 36px; }
     .eyebrow { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: var(--border); font-size: 11px; font-weight: 600; color: var(--text-2); margin-bottom: 12px; }
     .section-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.02em; }
     .section-head p { color: var(--text-2); font-size: 14px; max-width: 520px; margin: 10px auto 0; }
-
-    /* SEARCH & PILLS */
     .controls { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
-    .search-wrap {
-      position: relative; background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); border-radius: 999px;
-      display: flex; align-items: center; padding: 4px 4px 4px 14px;
-    }
+    .search-wrap { position: relative; background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: 999px; display: flex; align-items: center; padding: 4px 4px 4px 14px; }
     .search-wrap svg { width: 15px; height: 15px; color: var(--text-2); flex-shrink: 0; }
-    .search-wrap input {
-      flex: 1; padding: 10px 10px; border: none; background: transparent;
-      font-size: 13px; outline: none; color: var(--text); min-width: 0;
-    }
+    .search-wrap input { flex: 1; padding: 10px 10px; border: none; background: transparent; font-size: 13px; outline: none; color: var(--text); }
     .search-wrap input::placeholder { color: var(--text-2); opacity: .7; }
-    .clear-btn { padding: 7px 16px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 11px; transition: all .2s; }
+    .clear-btn { padding: 7px 16px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 11px; }
     .clear-btn:hover { filter: brightness(1.1); }
     .pills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-    .pill {
-      padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500;
-      background: var(--card-bg); border: 1px solid var(--border); color: var(--text);
-      transition: all .2s ease;
-    }
-    .pill:hover { transform: translateY(-1px); background: var(--border); }
+    .pill { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); transition: all .2s; }
+    .pill:hover { background: var(--border); }
     .pill.active { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 6px 20px rgba(0,212,255,0.25); }
-
-    /* PRODUCT GRID */
     .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
-    .card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); border-radius: 22px; padding: 20px;
-      display: flex; flex-direction: column; transition: all .3s ease;
-    }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.2); }
+    .card { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: 22px; padding: 20px; display: flex; flex-direction: column; transition: all .3s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,212,255,0.1); }
     .card .icon { font-size: 32px; line-height: 1; margin-bottom: 8px; }
     .card h3 { font-size: 14px; font-weight: 700; line-height: 1.3; margin: 0 0 4px; }
     .card .spec { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #06b6d4; margin-bottom: 6px; }
     [data-theme="dark"] .card .spec { color: #22d3ee; }
     .card .spec svg { width: 11px; height: 11px; }
     .card .desc { font-size: 12px; color: var(--text-2); line-height: 1.5; margin: 0 0 12px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .card .cat-badge { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: var(--grad-warm); color: #fff; padding: 4px 8px; border-radius: 999px; margin-bottom: 10px; align-self: flex-start; }
+    .card .cat-badge { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; background: var(--grad-warm); color: #fff; padding: 4px 8px; border-radius: 999px; margin-bottom: 10px; align-self: flex-start; }
     .card .actions { display: flex; gap: 6px; }
-    .btn-wa, .btn-detail {
-      flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px;
-      padding: 9px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff;
-      transition: all .2s;
-    }
+    .btn-wa, .btn-detail { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 9px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; }
     .btn-wa { background: var(--wa); }
     .btn-wa:hover { filter: brightness(1.1); }
     .btn-detail { background: var(--grad); }
     .btn-detail:hover { filter: brightness(1.1); }
     .btn-wa svg, .btn-detail svg { width: 13px; height: 13px; }
-
-    /* EMPTY STATE */
     .empty { text-align: center; padding: 50px 20px; border-radius: 22px; background: var(--card-bg); border: 1px solid var(--border); }
     .empty svg { width: 44px; height: 44px; color: var(--text-2); margin: 0 auto 10px; display: block; }
-
-    /* FEATURES */
     .features-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-    .feat {
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); padding: 24px; border-radius: 22px;
-      transition: transform .25s ease;
-    }
+    .feat { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 24px; border-radius: 22px; }
     .feat:hover { transform: translateY(-4px); }
-    .feat .feat-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--grad); display: grid; place-items: center; margin-bottom: 14px; box-shadow: 0 8px 22px rgba(0,212,255,0.25); }
+    .feat .feat-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--grad); display: grid; place-items: center; margin-bottom: 14px; }
     .feat .feat-icon svg { width: 22px; height: 22px; color: #fff; }
-    .feat h3 { font-size: 16px; font-weight: 800; margin: 0 0 5px; letter-spacing: -0.01em; }
-    .feat p { font-size: 13px; color: var(--text-2); margin: 0; line-height: 1.5; }
-
-    /* CONTACT */
-    .contact-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); border-radius: 28px; overflow: hidden;
-      display: grid; grid-template-columns: 1fr 1fr;
-    }
+    .feat h3 { font-size: 16px; font-weight: 800; margin: 0 0 5px; }
+    .feat p { font-size: 13px; color: var(--text-2); }
+    .contact-card { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: 28px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
     @media (max-width: 768px) { .contact-card { grid-template-columns: 1fr; } }
     .contact-left { position: relative; padding: 36px 32px; background: var(--grad); color: #fff; }
-    .contact-left::before {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.4), transparent 40%), radial-gradient(circle at 80% 80%, rgba(255,255,255,.3), transparent 40%);
-      mix-blend-mode: overlay; opacity: .3;
-    }
+    .contact-left::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.4), transparent 40%), radial-gradient(circle at 80% 80%, rgba(255,255,255,.3), transparent 40%); mix-blend-mode: overlay; opacity: .3; }
     .contact-left > * { position: relative; }
     .contact-left .badge-pill { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.25); }
     .contact-left h2 { font-size: clamp(26px, 3.5vw, 38px); font-weight: 900; letter-spacing: -0.02em; margin: 0 0 12px; }
-    .contact-left p { color: rgba(255,255,255,0.9); font-size: 14px; margin: 0; max-width: 380px; }
-    .wa-cta {
-      display: inline-flex; align-items: center; gap: 7px; margin-top: 22px;
-      padding: 12px 22px; border-radius: 999px; background: var(--wa); color: #fff;
-      font-weight: 700; font-size: 13px; box-shadow: 0 14px 30px rgba(37,211,102,0.4);
-      transition: all .2s;
-    }
-    .wa-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .contact-left p { color: rgba(255,255,255,0.9); font-size: 14px; }
+    .wa-cta { display: inline-flex; align-items: center; gap: 7px; margin-top: 22px; padding: 12px 22px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 700; font-size: 13px; }
+    .wa-cta:hover { filter: brightness(1.1); }
     .wa-cta svg { width: 15px; height: 15px; }
     .contact-right { padding: 36px 32px; display: flex; flex-direction: column; gap: 10px; }
-    .contact-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 16px; transition: all .2s; }
+    .contact-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 16px; }
     a.contact-item:hover { background: var(--border); }
     .contact-item .ic { width: 38px; height: 38px; border-radius: 12px; background: var(--grad); display: grid; place-items: center; flex-shrink: 0; }
     .contact-item .ic svg { width: 16px; height: 16px; color: #fff; }
     .contact-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-2); font-weight: 600; }
     .contact-item .value { font-size: 13px; font-weight: 500; word-break: break-word; }
-
-    /* FOOTER */
     footer { padding: 24px 16px 32px; }
-    .footer-card {
-      max-width: 1200px; margin: 0 auto; padding: 20px 24px; border-radius: 22px;
-      background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px);
-      display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
-    }
+    .footer-card { max-width: 1200px; margin: 0 auto; padding: 20px 24px; border-radius: 22px; background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
     .footer-text { font-size: 11px; color: var(--text-2); }
-
-    /* FLOATING BUTTONS */
-    .float-wa, .float-top {
-      position: fixed; right: 16px; z-index: 80; border-radius: 999px;
-      display: grid; place-items: center; color: #fff; transition: all .3s;
-    }
+    .float-wa, .float-top { position: fixed; right: 16px; z-index: 80; border-radius: 999px; display: grid; place-items: center; color: #fff; }
     .float-wa { bottom: 16px; width: 50px; height: 50px; background: var(--wa); box-shadow: 0 14px 30px rgba(37,211,102,0.4); animation: glow-wa 2.4s ease-in-out infinite; }
     .float-wa svg { width: 22px; height: 22px; }
-    .float-top { bottom: 80px; width: 42px; height: 42px; background: var(--grad); box-shadow: 0 10px 24px rgba(0,212,255,0.3); opacity: 0; pointer-events: none; }
+    .float-top { bottom: 80px; width: 42px; height: 42px; background: var(--grad); opacity: 0; pointer-events: none; transition: all .3s; }
     .float-top.visible { opacity: 1; pointer-events: auto; }
     .float-top svg { width: 18px; height: 18px; }
-
-    /* MODALS */
     .modal { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 16px; }
     .modal.open { display: flex; animation: fadeIn .2s ease; }
     .modal-card { width: 100%; max-width: 500px; max-height: 90vh; background: var(--bg-2); border: 1px solid var(--border); border-radius: 24px; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.4); animation: slideUp .25s ease; }
     .modal-card.wide { max-width: 680px; }
-    .modal-close { position: absolute; top: 12px; right: 12px; z-index: 5; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); display: grid; place-items: center; color: #fff; transition: all .2s; }
-    .modal-close:hover { background: rgba(255,255,255,0.25); }
+    .modal-close { position: absolute; top: 12px; right: 12px; z-index: 5; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.15); display: grid; place-items: center; color: #fff; }
     .modal-close svg { width: 14px; height: 14px; }
     .pdetail-head { position: relative; padding: 40px 20px 24px; text-align: center; background: linear-gradient(to bottom, rgba(0,212,255,0.15), rgba(124,58,237,0.1), transparent); }
-    .pdetail-icon { font-size: 56px; line-height: 1; margin-bottom: 10px; }
-    .pdetail-title { font-size: 20px; font-weight: 900; letter-spacing: -0.01em; margin: 4px 0 2px; }
-    .pdetail-spec { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: #06b6d4; }
+    .pdetail-icon { font-size: 56px; margin-bottom: 10px; }
+    .pdetail-title { font-size: 20px; font-weight: 900; }
+    .pdetail-spec { font-size: 12px; font-weight: 700; color: #06b6d4; }
     [data-theme="dark"] .pdetail-spec { color: #22d3ee; }
-    .pdetail-spec svg { width: 13px; height: 13px; }
     .pdetail-body { padding: 0 20px 20px; }
     .pdetail-desc { color: var(--text-2); font-size: 13px; line-height: 1.6; margin: 0 0 14px; }
     .pdetail-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
@@ -322,101 +164,47 @@
     .pdetail-badge svg { width: 16px; height: 16px; margin: 0 auto 3px; display: block; }
     .pdetail-badge .lbl { font-size: 10px; font-weight: 700; }
     .pdetail-actions { display: flex; gap: 6px; }
-    .pdetail-actions a { flex: 1; padding: 12px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; transition: all .2s; }
-    .pdetail-actions a:hover { filter: brightness(1.1); }
-    .pdetail-actions svg { width: 14px; height: 14px; }
+    .pdetail-actions a { flex: 1; padding: 12px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 12px; text-align: center; }
     .pdetail-actions a.wa { background: var(--wa); }
     .pdetail-actions a.call { background: var(--grad); }
-
-    /* ADMIN */
     .admin-head { padding: 16px 20px; background: var(--grad-warm); color: #fff; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 2; }
-    .admin-head .h-left { display: flex; align-items: center; gap: 8px; }
-    .admin-head h3 { margin: 0; font-size: 15px; font-weight: 800; }
-    .admin-head .h-sub { font-size: 10px; opacity: .9; }
-    .admin-head svg { width: 18px; height: 18px; }
+    .admin-head h3 { font-size: 15px; font-weight: 800; }
     .admin-body { padding: 16px 20px; overflow-y: auto; flex: 1; }
-
     .login-form { max-width: 300px; margin: 16px auto; display: flex; flex-direction: column; gap: 12px; }
-    .login-icon { width: 48px; height: 48px; margin: 0 auto; border-radius: 16px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 12px 30px rgba(0,212,255,0.35); }
+    .login-icon { width: 48px; height: 48px; margin: 0 auto; border-radius: 16px; background: var(--grad); display: grid; place-items: center; }
     .login-icon svg { width: 22px; height: 22px; color: #fff; }
-    .login-form h3 { text-align: center; font-size: 20px; margin: 0; font-weight: 900; }
-    .login-form .hint { text-align: center; font-size: 11px; color: var(--text-2); }
-
+    .login-form h3 { text-align: center; font-size: 20px; font-weight: 900; }
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field label { font-size: 11px; font-weight: 600; }
-    .field input, .field textarea, .field select { padding: 9px 11px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); color: var(--text); font-size: 13px; outline: none; width: 100%; transition: border .2s; }
+    .field input, .field textarea { padding: 9px 11px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); color: var(--text); font-size: 13px; outline: none; width: 100%; }
     .field input:focus, .field textarea:focus { border-color: #06b6d4; }
-    .field textarea { resize: vertical; min-height: 50px; }
-
-    .btn { padding: 9px 15px; border-radius: 10px; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; transition: all .2s; }
-    .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; filter: none; }
-    .btn svg { width: 13px; height: 13px; }
+    .btn { padding: 9px 15px; border-radius: 10px; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+    .btn:hover { filter: brightness(1.1); }
     .btn-primary { background: var(--grad); color: #fff; }
     .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
     .btn-danger { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
     .btn-success { background: var(--success); color: #fff; }
-
-    .tabs { display: flex; gap: 3px; padding: 3px; background: var(--border); border-radius: 12px; margin-bottom: 14px; flex-wrap: wrap; }
-    .tabs button { flex: 1; padding: 8px 6px; border-radius: 9px; font-weight: 600; font-size: 12px; color: var(--text-2); transition: all .2s; min-width: 70px; }
-    .tabs button.active { background: var(--bg-2); color: var(--text); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-
+    .tabs { display: flex; gap: 3px; padding: 3px; background: var(--border); border-radius: 12px; margin-bottom: 14px; }
+    .tabs button { flex: 1; padding: 8px 6px; border-radius: 9px; font-weight: 600; font-size: 12px; color: var(--text-2); }
+    .tabs button.active { background: var(--bg-2); color: var(--text); }
     .panel-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
-    .panel-section h4 { margin: 0 0 10px; font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 5px; }
-    .panel-section h4 svg { width: 13px; height: 13px; }
     .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
-
     .item-list { display: grid; gap: 6px; grid-template-columns: 1fr 1fr; }
     @media (max-width: 600px) { .item-list { grid-template-columns: 1fr; } }
     .li { display: flex; gap: 8px; padding: 8px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; }
-    .li .lico { font-size: 20px; flex-shrink: 0; }
-    .li .lbody { flex: 1; min-width: 0; }
-    .li .lbody .ln { font-weight: 700; font-size: 12px; }
-    .li .lbody .ls { font-size: 10px; color: #06b6d4; font-weight: 700; }
-    .li .lbody .ld { font-size: 11px; color: var(--text-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .li .lact { display: flex; flex-direction: column; gap: 3px; }
+    .li .lbody { flex: 1; }
+    .li .ln { font-weight: 700; font-size: 12px; }
+    .li .ls { font-size: 10px; color: #06b6d4; font-weight: 700; }
     .li .lact button { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; }
     .li .lact button.edit { background: rgba(6,182,212,0.12); color: #06b6d4; }
     .li .lact button.del { background: rgba(239,68,68,0.12); color: #ef4444; }
-    .li .lact svg { width: 12px; height: 12px; }
-
-    .cat-pill-admin { padding: 6px 11px; border-radius: 999px; font-size: 11px; font-weight: 600; background: var(--card-bg); border: 1px solid var(--border); transition: all .2s; }
-    .cat-pill-admin:hover { background: var(--border); }
-    .cat-pill-admin.active { background: var(--grad); color: #fff; border-color: transparent; }
-
-    .cat-row { display: flex; gap: 6px; align-items: center; padding: 8px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 6px; }
-    .cat-row input.icon-input { width: 50px; text-align: center; }
-    .cat-row input.name-input { flex: 1; min-width: 80px; }
-    .cat-row .meta { font-size: 10px; color: var(--text-2); }
-
-    /* GIT BADGE — was missing in original */
-    .git-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px 10px; border-radius: 999px;
-      font-size: 10px; font-weight: 700;
-      background: rgba(16,185,129,0.15); color: #10b981;
-      border: 1px solid rgba(16,185,129,0.3);
-    }
-    .git-badge.error { background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.3); }
-    .git-badge.pending { background: rgba(245,158,11,0.15); color: #f59e0b; border-color: rgba(245,158,11,0.3); }
-
-    /* TOAST */
-    .toast {
-      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-      background: var(--bg-2); color: var(--text); border: 1px solid var(--border);
-      padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 600;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.2); z-index: 300;
-      opacity: 0; pointer-events: none; transition: all .3s ease;
-      max-width: 90vw; text-align: center;
-    }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--bg-2); color: var(--text); border: 1px solid var(--border); padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; z-index: 300; opacity: 0; pointer-events: none; transition: all .3s; }
     .toast.show { opacity: 1; }
-
-    /* SKELETON */
-    .skeleton { background: linear-gradient(90deg, var(--border) 25%, transparent 50%, var(--border) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
+    .git-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; background: var(--success); color: #fff; font-size: 10px; font-weight: 700; }
+    .git-badge.pending { background: var(--warning); color: #000; }
+    .git-badge.error { background: var(--danger); }
     @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)} }
     @keyframes glow { 0%,100%{box-shadow:0 10px 40px rgba(0,212,255,.3)}50%{box-shadow:0 14px 50px rgba(0,212,255,.5)} }
     @keyframes glow-wa { 0%,100%{box-shadow:0 14px 30px rgba(37,211,102,.4)}50%{box-shadow:0 18px 40px rgba(37,211,102,.6)} }
@@ -425,864 +213,492 @@
   </style>
 </head>
 <body>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#00d4ff"/>
-        <stop offset="50%" stop-color="#7c3aed"/>
-        <stop offset="100%" stop-color="#ec4899"/>
-      </linearGradient>
-    </defs>
-  </svg>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="50%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs></svg>
 
-  <!-- NAVBAR -->
-  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
-    <a href="#home" class="logo">
-      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-      <span class="logo-text grad-text" id="navName">Rhysco Power</span>
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#catalog">Products</a>
-      <a href="#features">Features</a>
-      <a href="#contact">Contact</a>
-    </div>
+  <nav class="nav" id="nav">
+    <a href="#home" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="logo-text grad-text" id="navName">Rhysco Power</span></a>
+    <div class="nav-links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a></div>
     <div class="nav-actions">
-      <button class="icon-btn" type="button" onclick="toggleTheme()" aria-label="Toggle theme">
-        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      </button>
-      <button class="admin-btn" type="button" id="adminBtn" onclick="openAdmin()" aria-label="Admin panel">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg>
-        <span id="adminBtnLabel">Admin</span>
-      </button>
-      <button class="hamburger" type="button" onclick="toggleMobileMenu()" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-      </button>
+      <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
+      <button class="admin-btn" id="adminBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg><span id="adminBtnLabel">Admin</span></button>
+      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
     </div>
   </nav>
+  <div class="mobile-menu" id="mobileMenu"><a href="#home" onclick="toggleMobileMenu()">Home</a><a href="#catalog" onclick="toggleMobileMenu()">Products</a><a href="#features" onclick="toggleMobileMenu()">Features</a><a href="#contact" onclick="toggleMobileMenu()">Contact</a></div>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#home" onclick="toggleMobileMenu()">Home</a>
-    <a href="#catalog" onclick="toggleMobileMenu()">Products</a>
-    <a href="#features" onclick="toggleMobileMenu()">Features</a>
-    <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
-  </div>
-
-  <!-- HERO -->
   <section id="home" class="hero">
     <div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-fade"></div>
-    <div class="hero-content">
-      <span class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Since 2010 • Premium Quality</span>
-      <h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1>
-      <p id="heroSubtitle"></p>
-      <a href="#catalog" class="cta">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
+    <div class="hero-content"><span class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Since 2010 • Premium Quality</span><h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1><p id="heroSubtitle"></p><a href="#catalog" class="cta">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
   </section>
 
-  <!-- STATS -->
   <div class="stats" id="statsGrid"></div>
 
-  <!-- CATALOG -->
   <section class="block"><a id="catalog" style="position:relative;top:-90px"></a>
-    <div class="section-head">
-      <span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span>
-      <h2>Premium <span class="grad-text">Catalog</span></h2>
-      <p>Industrial-grade electrical equipment trusted by contractors, electricians and procurement teams across India.</p>
-    </div>
-    <div class="controls">
-      <div class="search-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="search" id="searchInput" placeholder="Search cables, meters, MC4 connectors…" aria-label="Search products" />
-        <button id="clearBtn" type="button" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button>
-      </div>
-      <div class="pills" id="categoryPills"></div>
-    </div>
+    <div class="section-head"><span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span><h2>Premium <span class="grad-text">Catalog</span></h2><p>Industrial-grade electrical equipment trusted by contractors, electricians and procurement teams across India.</p></div>
+    <div class="controls"><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="search" id="searchInput" placeholder="Search products…"><button id="clearBtn" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button></div><div class="pills" id="categoryPills"></div></div>
     <div id="productsGrid" class="grid"></div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features" class="block">
-    <div class="section-head"><span class="eyebrow">Why Rhysco Power</span><h2>Built for <span class="grad-text-warm">professionals</span></h2><p>Trusted by electricians, contractors and procurement teams across India for over 15 years.</p></div>
-    <div class="features-grid" id="featuresGrid"></div>
-  </section>
+  <section id="features" class="block"><div class="section-head"><span class="eyebrow">Why Rhysco Power</span><h2>Built for <span class="grad-text-warm">professionals</span></h2><p>Trusted by electricians, contractors and procurement teams across India for over 15 years.</p></div><div class="features-grid" id="featuresGrid"></div></section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="block">
-    <div class="contact-card">
-      <div class="contact-left">
-        <span class="badge-pill">Get in Touch</span><h2>Let's power your<br>next project.</h2>
-        <p>Reach out for product enquiries, bulk orders, or technical guidance — our team responds within minutes on WhatsApp.</p>
-        <a id="contactWa" href="#" target="_blank" rel="noopener" class="wa-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a>
-      </div>
-      <div class="contact-right" id="contactRight"></div>
-    </div>
-  </section>
+  <section id="contact" class="block"><div class="contact-card"><div class="contact-left"><span class="badge-pill">Get in Touch</span><h2>Let's power your<br>next project.</h2><p>Reach out for product enquiries, bulk orders, or technical guidance.</p><a id="contactWa" href="#" target="_blank" rel="noopener" class="wa-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a></div><div class="contact-right" id="contactRight"></div></div></section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-card">
-      <div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><div class="grad-text" id="footerName" style="font-weight:800;font-size:14px"></div><div class="footer-text">Since 2010 • Premium Electrical Solutions</div></div></div>
-      <div class="footer-text" id="footerText"></div>
-    </div>
-  </footer>
+  <footer><div class="footer-card"><div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><div class="grad-text" id="footerName" style="font-weight:800;font-size:14px"></div><div class="footer-text">Since 2010 • Premium Electrical Solutions</div></div></div><div class="footer-text" id="footerText"></div></div></footer>
 
-  <!-- FLOATING -->
-  <a id="floatWa" href="#" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
-  <button class="float-top" type="button" id="floatTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <a id="floatWa" href="#" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+  <button class="float-top" id="floatTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
-  <!-- PRODUCT MODAL -->
-  <div class="modal" id="productModal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeProduct()">
-    <div class="modal-card" id="productModalCard"></div>
-  </div>
+  <div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()"><div class="modal-card" id="productModalCard"></div></div>
+  <div class="modal" id="adminModal" onclick="if(event.target===this)closeAdmin()"><div class="modal-card wide"><div class="admin-head"><div style="display:flex;align-items:center;gap:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><h3>Admin Panel</h3><div style="font-size:10px;opacity:.9">Manage catalog & settings</div></div></div><button class="modal-close" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="admin-body" id="adminBody"></div></div></div>
+  <div id="toast" class="toast"></div>
 
-  <!-- ADMIN MODAL -->
-  <div class="modal" id="adminModal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeAdmin()">
-    <div class="modal-card wide">
-      <div class="admin-head">
-        <div class="h-left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h0"/></svg><div><h3>Admin Panel</h3><div class="h-sub">Manage catalog, company info & site stats</div></div></div>
-        <button class="modal-close" type="button" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()" aria-label="Close admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-      </div>
-      <div class="admin-body" id="adminBody"></div>
-    </div>
-  </div>
+<script>
+'use strict';
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+// ========== ONLY 1 PRODUCT FOR TESTING ==========
+const DEFAULT_CATEGORIES = [
+  {
+    id: 'cat_WAA_Cables',
+    name: 'WAA Cables',
+    icon: '🔌',
+    products: [
+      { id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable - Testing product' }
+    ]
+  }
+];
 
-  <script>
-  'use strict';
+const DEFAULTS = {
+  categories: DEFAULT_CATEGORIES,
+  company: { name: 'Rhysco Power', tagline: 'Premium Electrical Solutions', since: '2010', phone: '+91 6203691393', email: 'bikram.biharelctrometer@gmail.com', whatsapp: '916203691393', address: 'India (Bihar & NCR)', heroTitle: 'Complete Electrical Solutions', heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories' },
+  stats: [{ icon: 'trophy', number: '15+', label: 'Years' }, { icon: 'boxes', number: '1', label: 'Products' }, { icon: 'users', number: '1000+', label: 'Clients' }, { icon: 'truck', number: 'PAN India', label: 'Delivery' }],
+  features: [{ icon: 'shield', title: 'Quality Assured', desc: 'ISO certified products' }, { icon: 'headset', title: '24/7 Support', desc: 'Technical assistance anytime' }, { icon: 'truck', title: 'Pan India Supply', desc: 'Fast shipping nationwide' }, { icon: 'rupee', title: 'Best Price', desc: 'Wholesale & dealer pricing' }, { icon: 'award', title: 'Trusted Brands', desc: 'Original grade only' }, { icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply specialist' }]
+};
 
-  /* ============== DATA ============== */
-  const RAW_PRODUCTS = [
-    "4.00SQMM WAA CABLE RED BLACK,100 MTR,WAA Cables,🔌,Premium 100% pure copper flexible cable",
-    "4.00SQMM WAA CABLE BLACK,100 MTR,WAA Cables,⚡,Heavy duty industrial grade cable",
-    "WAA CABLE RED BLACK,500 MTR,WAA Cables,🔌,Long length roll for large projects",
-    "WAA CABLE BLACK,500 MTR,WAA Cables,⚡,Bulk packing industrial cable",
-    "6MM WAA CABLE BLACK,500 MTR,WAA Cables,🔌,6 sqmm heavy duty power cable",
-    "6MM WAA CABLE RED BLACK,500 MTR,WAA Cables,⚡,Red & Black pair 6mm²",
-    "6MM WAA CABLE BLACK,100 MTR,WAA Cables,🔌,6mm² flexible cable",
-    "6MM WAA CABLE RED BLACK,100 MTR,WAA Cables,⚡,6mm² twin core cable",
-    "4 CORE 6.00SQMM,100 MTR,WAA Cables,🔌,4 core control cable industrial",
-    "4 CORE 4.00SQMM,100 MTR,WAA Cables,🔌,4 core multi-core cable",
-    "2 CORE 6.00SQMM,100 MTR,WAA Cables,⚡,Twin core heavy duty",
-    "4 CORE 2.50SQMM,100 MTR,WAA Cables,🔌,4 core 2.5mm² flexible",
-    "2 CORE 4.00SQMM,100 MTR,WAA Cables,⚡,2 core 4mm² power cable",
-    "3 CORE 1.50SQMM,100 MTR,WAA Cables,🔌,3 core 1.5mm² cable",
-    "3 CORE 2.50SQMM,100 MTR,WAA Cables,🔌,3 core 2.5mm² flexible",
-    "3 CORE 2.50SQMM,500 MTR,WAA Cables,🔌,3 core 2.5mm² bulk roll",
-    "2 CORE 0.75SQMM,100 MTR,WAA Cables,⚡,2 core 0.75mm² thin cable",
-    "2 CORE 1.50SQMM,100 MTR,WAA Cables,⚡,2 core 1.5mm² cable",
-    "2 CORE 1.00SQMM,100 MTR,WAA Cables,⚡,2 core 1mm² cable",
-    "RG 6,100 MTR,WAA Cables,📡,Coaxial cable RG6",
-    "2 CORE 1.00SQMM SPEAKER WIRE,100 MTR,WAA Cables,🔊,Speaker wire oxygen free",
-    "2 CORE 2.50SQMM,100 MTR,WAA Cables,⚡,2 core 2.5mm² cable",
-    "CCTV CABLE,Standard,WAA Cables,📹,CCTV power video combo",
-    "AIDEO VIDEO 1+4,Standard,WAA Cables,📺,Video+power cable 1+4",
-    "AIDEO VIDEO 1+3,Standard,WAA Cables,📺,Video+power cable 1+3",
-    "CAT 6,305 MTR,WAA Cables,🌐,Pure copper network cable",
-    "SOLAR DC 4.00SQMM RED,500 MTR,Solar & MC4,☀️,RHEIN solar DC cable UV protected",
-    "SOLAR DC 4.00SQMM BLACK,500 MTR,Solar & MC4,☀️,TUV approved solar cable",
-    "MC4 CONNECTOR,Pair,Solar & MC4,🔌,IP67 rated original grade",
-    "MC4 CONNECTOR 2 IN 1,Branch,Solar & MC4,🔌,2 to 1 solar combiner",
-    "MC4 CONNECTOR 3 IN 1,Branch,Solar & MC4,🔌,3 to 1 solar combiner",
-    "MC4 CONNECTOR 4 IN 1,Branch,Solar & MC4,🔌,4 to 1 heavy combiner",
-    "MC4 CONNECTOR 3IN 1OUT,Branch,Solar & MC4,🔌,3 input 1 output",
-    "MC4 CONNECTOR 2IN 1OUT,Branch,Solar & MC4,🔌,2 input 1 output",
-    "SINGLE PHASE NET METER WITH BOX 5/30,5/30A,Meters,📊,Bi-directional net meter with box",
-    "SINGLE PHASE NORMAL METER WITH BOX 5/30,5/30A,Meters,📊,Standard single phase meter",
-    "SINGLE CABLE METER,Standard,Meters,📊,Single cable meter",
-    "SINGLE PHASE NET METER WITH BOX 10/60,10/60A,Meters,📊,Net meter high capacity",
-    "3 PHASE METER,Standard,Meters,📈,Three phase meter",
-    "WHOLE CURRENT NET MTR 10/60A,10/60A,Meters,📈,Net meter 3 phase",
-    "WHOLE CURRENT NORMAL MTR 10/60A,10/60A,Meters,📈,Normal 3 phase meter",
-    "SARAL 10-100,10-100A,Meters,📊,Saral series meter",
-    "WHOLE CURRENT 305 NET MTR 10/100A,10/100A,Meters,📈,305 net meter",
-    "WHOLE CURRENT 305 NORMAL MTR 10/100A,10/100A,Meters,📈,305 normal meter",
-    "LTCT TRIVECTORE MTR 600/5A,600/5A,Meters,⚙️,Trivector meter with CT",
-    "LTCT METER,Standard,Meters,⚙️,LTCT meter only",
-    "LTCT TRAVACTOR NORMAL METER 200/5,200/5A,Meters,⚙️,Travector normal",
-    "LTCT NET METER 200/5,200/5A,Meters,⚙️,LTCT net meter",
-    "HT NET 33KV METER,33kV,Meters,⚡,High tension 33kV meter",
-    "HT NET 11KV METER,11kV,Meters,⚡,High tension 11kV meter",
-    "PANEL METER DPM96I100-1,96x96,Panel Meters,📊,Digital panel meter ammeter",
-    "DPM 96M 310-2,96x96,Panel Meters,📊,Multifunction meter",
-    "DPM 96V 300-2,96x96,Panel Meters,📊,Voltmeter panel",
-    "DPM 96I 300-2,96x96,Panel Meters,📊,Ammeter panel",
-    "ELITE 307-2,Standard,Panel Meters,⚙️,Elite series meter",
-    "ELITE 103-2,Standard,Panel Meters,⚙️,Elite 103-2 meter",
-    "ELITE 30B-2,Standard,Panel Meters,⚙️,Elite 30B-2",
-    "ELITE 440-443,Standard,Panel Meters,⚙️,Elite multi-function",
-    "APEX-100,Standard,Panel Meters,⚡,Apex series meter",
-    "CURRENT TRANSFORMER 600/5A,600/5A,Accessories,⚙️,Precision CT for metering",
-    "CURRENT TRANSFORMER 200/5A,200/5A,Accessories,⚙️,CT 200/5A class 1",
-    "ACDB,Standard,Accessories,📦,Solar AC distribution box",
-    "T,Standard,Accessories,🔧,T connector electrical",
-    "T-BAND,Standard,Accessories,🔧,T-band clamp",
-    "L,Standard,Accessories,🔧,L-elbow conduit",
-    "L-ELBOW,Standard,Accessories,🔧,L shape elbow",
-    "SADEL 25MM,PKT,Accessories,🔧,Saddle clamp 25mm",
-    "GITTY,PKT,Accessories,🔧,Gitties / cable clip",
-    "PVC PIPE,PKT,Accessories,🔧,PVC conduit pipe",
-    "CABLE TIE,PKT,Accessories,🔧,Nylon cable ties",
-    "SPN 8 WAY,Standard,Accessories,📦,Single phase DB 8 way",
-    "PIT COVER,Standard,Accessories,🛡️,Inspection pit cover",
-    "SPIKE GARDE BLACK,Standard,Accessories,⚡,Spike guard surge protector",
-    "MODEM SKYLINE E90,GPRS,Accessories,📡,Remote meter reading modem",
-    "APEX MODEM,Standard,Accessories,📡,APEX communication modem",
-    "HT BOX ONLY,Standard,Accessories,📦,HT meter box",
-    "LTCT BOX ONLY,Standard,Accessories,📦,LTCT meter enclosure",
-    "BAG 15KG,15KG,Accessories,👜,Carry bag",
-    "4Cx16.00SQMM ROUND,100 MTR,Accessories,🔌,4 core 16mm round cable",
-    "LIGHTNING ARRESTER 1 MTR,1 MTR,Earthing & Lightning,🌩️,Copper bonded LA",
-    "LIGHTNING ARRESTER 2 MTR,2 MTR,Earthing & Lightning,🌩️,Heavy duty LA",
-    "LIGHTNING ARRESTER 3 MTR,3 MTR,Earthing & Lightning,🌩️,Industrial LA",
-    "EARTHING ROD 1 MTR,1 MTR,Earthing & Lightning,⛰️,Pure copper coated rod",
-    "EARTHING ROD 2 MTR,2 MTR,Earthing & Lightning,⛰️,2 meter earthing rod",
-    "EARTHING ROD 3 MTR,3 MTR,Earthing & Lightning,⛰️,3 meter heavy rod",
-    "FIRE EXTINGUISHER 2KG,2KG ABC,Fire Safety,🔥,ISI marked dry powder",
-    "FIRE BUCKET,Red,Fire Safety,🧯,Emergency fire bucket",
-    "FIRE SPRAYE 2 KG,2KG,Fire Safety,🧯,Fire spray extinguisher",
-    "SOLAR DC 4.00SQMM RED-500MTR RHEIN,500MTR,Solar & MC4,☀️,RHEIN brand solar cable",
-    "SOLAR DC 4.00SQMM BLACK-500MTR RHEIN,500MTR,Solar & MC4,☀️,RHEIN black solar cable"
-  ];
+// ========== STORAGE ==========
+const LS = {
+  get(k, fb) { try { const v = localStorage.getItem('rc_' + k); return v ? JSON.parse(v) : fb; } catch { return fb; } },
+  set(k, v) { try { localStorage.setItem('rc_' + k, JSON.stringify(v)); } catch(e) { if (e.name === 'QuotaExceededError') toast('Storage full!'); } }
+};
 
-  const buildDefaults = () => {
-    const map = new Map();
-    let id = 1;
-    RAW_PRODUCTS.forEach(line => {
-      const [name, spec, catName, icon, desc] = line.split(',');
-      if (!map.has(catName)) map.set(catName, { id: 'cat_' + catName.replace(/[^a-zA-Z0-9]/g, '_'), name: catName, icon: icon || '📁', products: [] });
-      map.get(catName).products.push({ id: 'p_' + (id++), name: name.trim(), spec: spec.trim(), icon: icon || '🔌', desc: (desc || 'Premium quality electrical product').trim() });
+// ========== GIT CONFIG ==========
+const GIT = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
+Object.assign(GIT, LS.get('git_cfg', {}));
+
+// ========== STATE ==========
+let state = {
+  categories: LS.get('cat', DEFAULTS.categories),
+  company: { ...DEFAULTS.company, ...LS.get('com', {}) },
+  stats: LS.get('stat', DEFAULTS.stats),
+  features: LS.get('feat', DEFAULTS.features),
+  isAdmin: false,
+  activeCategory: 'all',
+  query: '',
+  adminTab: 'products',
+  adminCat: null,
+  editingId: null,
+  editDraft: { name: '', spec: '', desc: '', icon: '📦' },
+  syncPending: false,
+  gitConnected: !!(GIT.token && GIT.owner)
+};
+
+let syncTimer = null, searchTimer = null;
+
+// FIX: localStorage se data GitHub se load hone ke baad bhi sahi rahe
+if (state.categories.length === 0) state.categories = DEFAULTS.categories;
+if (!state.company.name) state.company = { ...DEFAULTS.company };
+if (state.stats.length === 0) state.stats = DEFAULTS.stats;
+if (state.features.length === 0) state.features = DEFAULTS.features;
+
+function persist() {
+  LS.set('cat', state.categories);
+  LS.set('com', state.company);
+  LS.set('stat', state.stats);
+  LS.set('feat', state.features);
+  LS.set('auth', state.isAdmin);
+  state.syncPending = true;
+  LS.set('sync', true);
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub(); }, 3000);
+}
+
+// ========== GITHUB API ==========
+async function gitAPI(endpoint, method = 'GET', body = null) {
+  if (!GIT.token) throw new Error('No token');
+  const ctrl = new AbortController();
+  const to = setTimeout(() => ctrl.abort(), 15000);
+  try {
+    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(GIT.owner)}/${encodeURIComponent(GIT.repo)}${endpoint}`, {
+      method, signal: ctrl.signal,
+      headers: { 'Authorization': `Bearer ${GIT.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : null
     });
-    return Array.from(map.values());
-  };
+    clearTimeout(to);
+    if (res.status === 401 || res.status === 403) {
+      state.gitConnected = false;
+      updateGitBadge();
+      throw new Error('Invalid token');
+    }
+    if (res.status === 404) throw new Error('Repository not found. Check repo name.');
+    if (!res.ok) throw new Error((await res.json().catch(()=>({}))).message || 'Error ' + res.status);
+    return res.json();
+  } catch (e) { clearTimeout(to); throw e; }
+}
 
-  const DEFAULTS = Object.freeze({
-    categories: buildDefaults(),
-    company: Object.freeze({ name: 'Rhysco Power', tagline: 'Premium Electrical Solutions', since: '2010', phone: '+91 6203691393', email: 'bikram.biharelctrometer@gmail.com', whatsapp: '916203691393', address: 'India (Bihar & NCR)', heroTitle: 'Complete Electrical Solutions', heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories' }),
-    stats: Object.freeze([{ icon: 'trophy', number: '15+', label: 'Years' }, { icon: 'boxes', number: '85+', label: 'Products' }, { icon: 'users', number: '1000+', label: 'Clients' }, { icon: 'truck', number: 'PAN India', label: 'Delivery' }]),
-    features: Object.freeze([{ icon: 'shield', title: 'Quality Assured', desc: 'ISO certified products' }, { icon: 'headset', title: '24/7 Support', desc: 'Technical assistance anytime' }, { icon: 'truck', title: 'Pan India Supply', desc: 'Fast shipping nationwide' }, { icon: 'rupee', title: 'Best Price', desc: 'Wholesale & dealer pricing' }, { icon: 'award', title: 'Trusted Brands', desc: 'Original grade only' }, { icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply specialist' }])
-  });
+async function syncToGitHub() {
+  if (!state.gitConnected) return false;
+  const data = { categories: state.categories, company: state.company, stats: state.stats, features: state.features, lastSync: new Date().toISOString() };
+  try {
+    let sha = null;
+    try { sha = (await gitAPI(`/contents/${GIT.path}`)).sha; } catch {}
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    await gitAPI(`/contents/${GIT.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: GIT.branch, ...(sha ? { sha } : {}) });
+    state.syncPending = false;
+    LS.set('sync', false);
+    updateGitBadge();
+    console.log('✅ Synced to GitHub');
+    return true;
+  } catch (e) {
+    console.warn('Sync failed:', e.message);
+    if (e.message.includes('409')) { try { await loadFromGitHub(); return syncToGitHub(); } catch {} }
+    updateGitBadge();
+    return false;
+  }
+}
 
-  /* ============== STORAGE ============== */
-  const LS = {
-    get(k, fb) { try { const v = localStorage.getItem('rc_' + k); return v ? JSON.parse(v) : fb; } catch { return fb; } },
-    set(k, v) { try { localStorage.setItem('rc_' + k, JSON.stringify(v)); } catch(e) { if (e.name === 'QuotaExceededError') toast('⚠️ Storage full!'); } },
-    del(k) { try { localStorage.removeItem('rc_' + k); } catch {} }
-  };
-
-  const GIT = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
-  Object.assign(GIT, LS.get('git_cfg', {}));
-  // Ensure required defaults are restored after merge
-  if (!GIT.repo) GIT.repo = 'rhysco-data';
-  if (!GIT.branch) GIT.branch = 'main';
-  if (!GIT.path) GIT.path = 'data.json';
-
-  let state = {
-    categories: LS.get('cat', DEFAULTS.categories),
-    company: { ...DEFAULTS.company, ...LS.get('com', {}) },
-    stats: LS.get('stat', DEFAULTS.stats),
-    features: LS.get('features', DEFAULTS.features),
-    isAdmin: LS.get('auth', false),
-    activeCategory: 'all',
-    query: '',
-    adminTab: 'products',
-    adminCat: null,
-    editingId: null,
-    editDraft: { name: '', spec: '', desc: '', icon: '📦' },
-    syncPending: LS.get('sync', false),
-    gitConnected: !!(GIT.token && GIT.owner),
-    gitBusy: false
-  };
-
-  let syncTimer = null, searchTimer = null;
-
-  function persist() {
+async function loadFromGitHub() {
+  if (!state.gitConnected) return false;
+  try {
+    const raw = await gitAPI(`/contents/${GIT.path}`);
+    const content = JSON.parse(atob(raw.content));
+    if (content.categories) state.categories = content.categories;
+    if (content.company) state.company = { ...DEFAULTS.company, ...content.company };
+    if (content.stats) state.stats = content.stats;
+    if (content.features) state.features = content.features;
+    // IMPORTANT: Save to localStorage after loading from GitHub
     LS.set('cat', state.categories);
     LS.set('com', state.company);
     LS.set('stat', state.stats);
-    LS.set('features', state.features);
-    LS.set('auth', state.isAdmin);
-    state.syncPending = true;
-    LS.set('sync', true);
-    updateGitBadge();
-    clearTimeout(syncTimer);
-    syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub().catch(() => {}); }, 3000);
-  }
-
-  /* ============== UTF-8 SAFE BASE64 ============== */
-  function b64Encode(str) {
-    const bytes = new TextEncoder().encode(str);
-    let bin = '';
-    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-    return btoa(bin);
-  }
-  function b64Decode(b64) {
-    // GitHub returns base64 with newlines — strip whitespace before decoding
-    const clean = String(b64 || '').replace(/\s+/g, '');
-    const bin = atob(clean);
-    const bytes = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    return new TextDecoder().decode(bytes);
-  }
-
-  /* ============== GITHUB API ============== */
-  async function gitAPI(endpoint, method = 'GET', body = null) {
-    if (!GIT.token) throw Object.assign(new Error('No token configured'), { code: 'NO_TOKEN' });
-    if (!GIT.owner) throw Object.assign(new Error('No GitHub username configured'), { code: 'NO_OWNER' });
-
-    const controller = new AbortController();
-    const to = setTimeout(() => controller.abort(), 15000);
-    const headers = {
-      'Authorization': `Bearer ${GIT.token}`,
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28'
-    };
-    if (body) headers['Content-Type'] = 'application/json';
-
-    let res;
-    try {
-      res = await fetch(`https://api.github.com/repos/${encodeURIComponent(GIT.owner)}/${encodeURIComponent(GIT.repo)}${endpoint}`, {
-        method, signal: controller.signal, headers,
-        body: body ? JSON.stringify(body) : undefined
-      });
-    } catch (e) {
-      clearTimeout(to);
-      if (e.name === 'AbortError') throw Object.assign(new Error('Request timed out — check your internet connection'), { code: 'TIMEOUT' });
-      throw Object.assign(new Error('Network error: ' + e.message), { code: 'NETWORK' });
-    }
-    clearTimeout(to);
-
-    if (res.status === 401) {
-      state.gitConnected = false;
-      LS.set('git_cfg', { ...GIT, token: '' });
-      GIT.token = '';
-      updateGitBadge();
-      throw Object.assign(new Error('Invalid token. Please update in Git settings.'), { code: 'AUTH', status: 401 });
-    }
-    if (res.status === 403) {
-      throw Object.assign(new Error('Permission denied. Token needs the "repo" scope.'), { code: 'FORBIDDEN', status: 403 });
-    }
-    if (res.status === 404) {
-      throw Object.assign(new Error('Not found'), { code: 'NOT_FOUND', status: 404 });
-    }
-    if (res.status === 409) {
-      throw Object.assign(new Error('Conflict — remote changed'), { code: 'CONFLICT', status: 409 });
-    }
-    if (!res.ok) {
-      let msg = 'Error ' + res.status;
-      try { const j = await res.json(); if (j && j.message) msg = j.message; } catch {}
-      throw Object.assign(new Error(msg), { status: res.status });
-    }
-    if (res.status === 204) return null;
-    return res.json();
-  }
-
-  async function syncToGitHub(retry = 0) {
-    if (!state.gitConnected) return false;
-    if (retry > 2) return false;
-
-    state.gitBusy = true; updateGitBadge();
-    try {
-      let sha = null;
-      try {
-        const fi = await gitAPI(`/contents/${encodeURIComponent(GIT.path)}?ref=${encodeURIComponent(GIT.branch)}`);
-        sha = fi && fi.sha;
-      } catch (e) {
-        if (e.code !== 'NOT_FOUND') throw e;
-        // First push — file doesn't exist yet, that's fine
-      }
-
-      const data = {
-        categories: state.categories,
-        company: state.company,
-        stats: state.stats,
-        features: state.features,
-        lastSync: new Date().toISOString()
-      };
-      const content = b64Encode(JSON.stringify(data, null, 2));
-      const payload = {
-        message: `Update site data — ${new Date().toLocaleString()}`,
-        content,
-        branch: GIT.branch
-      };
-      if (sha) payload.sha = sha;
-
-      await gitAPI(`/contents/${encodeURIComponent(GIT.path)}`, 'PUT', payload);
-      state.syncPending = false;
-      LS.set('sync', false);
-      return true;
-    } catch (e) {
-      if (e.code === 'CONFLICT' && retry < 2) {
-        // Remote changed mid-write: pull then push again with fresh sha
-        try { await loadFromGitHub({ silent: true }); } catch {}
-        return syncToGitHub(retry + 1);
-      }
-      console.warn('Sync failed:', e.message);
-      throw e;
-    } finally {
-      state.gitBusy = false;
-      updateGitBadge();
-    }
-  }
-
-  async function loadFromGitHub(opts = {}) {
-    if (!state.gitConnected) return false;
-    state.gitBusy = true; updateGitBadge();
-    try {
-      const data = await gitAPI(`/contents/${encodeURIComponent(GIT.path)}?ref=${encodeURIComponent(GIT.branch)}`);
-      const content = JSON.parse(b64Decode(data.content));
-
-      if (Array.isArray(content.categories) && content.categories.length) state.categories = content.categories;
-      if (content.company && typeof content.company === 'object') state.company = { ...DEFAULTS.company, ...content.company };
-      if (Array.isArray(content.stats) && content.stats.length) state.stats = content.stats;
-      if (Array.isArray(content.features) && content.features.length) state.features = content.features;
-
-      LS.set('cat', state.categories);
-      LS.set('com', state.company);
-      LS.set('stat', state.stats);
-      LS.set('features', state.features);
-      state.syncPending = false;
-      LS.set('sync', false);
-      refreshAll();
-      return true;
-    } catch (e) {
-      if (e.code === 'NOT_FOUND') {
-        if (!opts.silent) toast('ℹ️ No data file on GitHub yet. Push to create one.');
-        return false;
-      }
-      throw e;
-    } finally {
-      state.gitBusy = false;
-      updateGitBadge();
-    }
-  }
-
-  async function checkRepoExists() {
-    try {
-      await gitAPI('');
-      return true;
-    } catch (e) {
-      if (e.code === 'NOT_FOUND') return false;
-      throw e;
-    }
-  }
-
-  function updateGitBadge() {
-    const b = document.getElementById('gitSyncBadge');
-    if (!b) return;
-    if (!state.gitConnected) { b.className = 'git-badge error'; b.textContent = '⚡ Not Connected'; }
-    else if (state.gitBusy) { b.className = 'git-badge pending'; b.textContent = '⏳ Syncing…'; }
-    else if (state.syncPending) { b.className = 'git-badge pending'; b.textContent = '⏳ Pending'; }
-    else { b.className = 'git-badge'; b.textContent = '✓ Synced'; }
-  }
-
-  async function saveGitConfig() {
-    const owner = document.getElementById('gitOwner').value.trim();
-    const token = document.getElementById('gitToken').value.trim();
-    if (!owner) return toast('⚠️ GitHub username is required');
-    if (!token) return toast('⚠️ Personal access token is required');
-
-    const repo = document.getElementById('gitRepo').value.trim() || 'rhysco-data';
-    const branch = document.getElementById('gitBranch').value.trim() || 'main';
-
-    const btn = document.getElementById('gitSaveBtn');
-    if (btn) { btn.disabled = true; btn.textContent = 'Connecting…'; }
-
-    // Stage values onto GIT so gitAPI uses them for the test
-    const prev = { ...GIT };
-    Object.assign(GIT, { owner, repo, branch, token, path: 'data.json' });
-
-    try {
-      const exists = await checkRepoExists();
-      if (!exists) {
-        Object.assign(GIT, prev);
-        toast(`❌ Repo "${owner}/${repo}" not found. Create it on GitHub first.`);
-        return;
-      }
-      // Connection is valid — save config
-      LS.set('git_cfg', GIT);
-      state.gitConnected = true;
-      updateGitBadge();
-
-      // Try to load existing data first; if none, push current data
-      const loaded = await loadFromGitHub({ silent: true }).catch(() => false);
-      if (loaded) {
-        toast('✅ Connected — data pulled from GitHub');
-      } else {
-        const pushed = await syncToGitHub().catch(() => false);
-        toast(pushed ? '✅ Connected & data pushed to GitHub' : '⚠️ Connected, but push failed');
-      }
-      if (state.adminTab === 'git') renderAdminPane();
-    } catch (e) {
-      Object.assign(GIT, prev);
-      state.gitConnected = !!(GIT.token && GIT.owner);
-      LS.set('git_cfg', GIT);
-      updateGitBadge();
-      toast('❌ ' + (e.message || 'Connection failed'));
-    } finally {
-      if (btn) { btn.disabled = false; btn.innerHTML = `${S('save',13)} Save & Connect`; }
-    }
-  }
-
-  function disconnectGit() {
-    if (!confirm('Disconnect GitHub? Local data will be kept.')) return;
-    GIT.token = ''; GIT.owner = '';
-    LS.set('git_cfg', {});
-    state.gitConnected = false;
+    LS.set('feat', state.features);
     state.syncPending = false;
     LS.set('sync', false);
-    toast('🔌 Disconnected');
+    refreshAll();
     updateGitBadge();
-    if (state.adminTab === 'git') renderAdminPane();
-  }
-
-  async function manualPush() {
-    try {
-      const ok = await syncToGitHub();
-      toast(ok ? '✅ Pushed to GitHub' : '⚠️ Push failed');
-    } catch (e) {
-      toast('❌ ' + e.message);
-    }
-  }
-  async function manualPull() {
-    try {
-      const ok = await loadFromGitHub();
-      if (ok) toast('✅ Pulled from GitHub');
-    } catch (e) {
-      toast('❌ ' + e.message);
-    }
-  }
-
-  /* ============== SVG ICONS ============== */
-  const I = {
-    trophy: '<polyline points="6 9 6 4 18 4 18 9"/><path d="M6 9a6 6 0 0 0 12 0"/><path d="M6 9H3a3 3 0 0 0 3 3"/><path d="M18 9h3a3 3 0 0 1-3 3"/><path d="M9 22h6"/><path d="M12 17v5"/>',
-    boxes: '<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
-    users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-    truck: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
-    shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',
-    award: '<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
-    rupee: '<path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/>',
-    headset: '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
-    'boxes-feat': '<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
-    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
-    moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
-    ruler: '<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
-    msg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-    arrow: '<path d="M5 12h14M12 5l7 7-7 7"/>',
-    chevron: '<polyline points="9 18 15 12 9 6"/>',
-    search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
-    x: '<path d="M18 6L6 18M6 6l12 12"/>',
-    check: '<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-    truckS: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
-    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
-    mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
-    pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
-    clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
-    plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
-    edit: '<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>',
-    trash: '<polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>',
-    save: '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',
-    reset: '<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>',
-    lock: '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
-    folder: '<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>',
-    logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
-    pkg: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
-    github: '<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',
-    cloud: '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
-    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'
-  };
-  const S = (n, s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]||''}</svg>`;
-
-  /* ============== UTIL ============== */
-  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const escA = s => esc(s);
-  const uid = () => 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 6);
-  const wa = t => `https://wa.me/${state.company.whatsapp}?text=${encodeURIComponent(t)}`;
-  const flat = () => state.categories.flatMap(c => c.products.map(p => ({ ...p, categoryId: c.id, categoryName: c.name, categoryIcon: c.icon })));
-  const refreshAll = () => { renderCompany(); renderStats(); renderCategories(); renderProducts(); renderFeatures(); };
-
-  function toast(m) {
-    const t = document.getElementById('toast');
-    if (!t) return;
-    t.textContent = m; t.classList.add('show');
-    clearTimeout(window._t); window._t = setTimeout(() => t.classList.remove('show'), 2800);
-  }
-
-  /* ============== THEME ============== */
-  function applyTheme() {
-    const t = LS.get('theme', 'dark');
-    document.documentElement.dataset.theme = t;
-    const ti = document.getElementById('themeIcon');
-    if (ti) ti.outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`;
-  }
-  function toggleTheme() { LS.set('theme', document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'); applyTheme(); }
-
-  /* ============== MOBILE MENU ============== */
-  function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('show'); }
-
-  /* ============== RENDER FUNCTIONS ============== */
-  function renderCompany() {
-    document.getElementById('navName').textContent = state.company.name;
-    document.getElementById('footerName').textContent = state.company.name;
-    document.title = state.company.name + ' — ' + state.company.tagline;
-    document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
-    document.getElementById('footerText').textContent = `© ${new Date().getFullYear()} ${state.company.name}. All rights reserved.`;
-    const words = String(state.company.heroTitle || '').split(' ');
-    document.getElementById('heroTitle').innerHTML = words.map((w, i) => (/electric/i.test(w) ? `<span class="grad-text">${esc(w)}</span>` : esc(w)) + (i < words.length - 1 ? ' ' : '')).join('');
-    document.getElementById('floatWa').href = wa(`Hi ${state.company.name}, I have a quick question.`);
-    document.getElementById('contactWa').href = wa(`Hi ${state.company.name}, I'd like to discuss a bulk order.`);
-    document.getElementById('contactRight').innerHTML = [
-      { ic: 'phone', l: 'Phone', v: state.company.phone, h: 'tel:' + String(state.company.phone || '').replace(/\s+/g, '') },
-      { ic: 'msg', l: 'WhatsApp', v: '+' + state.company.whatsapp, h: wa(`Hi ${state.company.name}`), ext: true },
-      { ic: 'mail', l: 'Email', v: state.company.email, h: 'mailto:' + state.company.email },
-      { ic: 'pin', l: 'Address', v: state.company.address },
-      { ic: 'clock', l: 'Hours', v: 'Mon – Sat • 9 AM to 8 PM' }
-    ].map(it => {
-      const inner = `<div class="ic">${S(it.ic, 16)}</div><div><div class="label">${it.l}</div><div class="value">${esc(it.v)}</div></div>`;
-      return it.h ? `<a href="${escA(it.h)}" ${it.ext?'target="_blank" rel="noopener"':''} class="contact-item">${inner}</a>` : `<div class="contact-item">${inner}</div>`;
-    }).join('');
-  }
-
-  function renderStats() {
-    document.getElementById('statsGrid').innerHTML = state.stats.map((s, i) => `<div class="stat" style="animation:fadeIn .3s ease ${i*.06}s both"><div class="stat-icon">${S(s.icon, 22)}</div><div class="stat-num">${esc(s.number)}</div><div class="stat-label">${esc(s.label)}</div></div>`).join('');
-  }
-
-  function renderFeatures() {
-    document.getElementById('featuresGrid').innerHTML = state.features.map((f, i) => `<div class="feat" style="animation:fadeIn .3s ease ${i*.05}s both"><div class="feat-icon">${S(f.icon, 22)}</div><h3>${esc(f.title)}</h3><p>${esc(f.desc)}</p></div>`).join('');
-  }
-
-  function renderCategories() {
-    const all = flat();
-    document.getElementById('catalogCount').textContent = `${all.length} products in stock`;
-    document.getElementById('categoryPills').innerHTML = `<button type="button" class="pill ${state.activeCategory==='all'?'active':''}" onclick="setCategory('all')">📂 All</button>` + state.categories.map(c => `<button type="button" class="pill ${state.activeCategory===c.id?'active':''}" onclick="setCategory('${c.id}')">${esc(c.icon)} ${esc(c.name)}</button>`).join('');
-  }
-
-  function renderProducts() {
-    const grid = document.getElementById('productsGrid');
-    const all = flat();
-    const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
-    const q = state.query.trim().toLowerCase();
-    const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || (p.spec || '').toLowerCase().includes(q) || (p.desc || '').toLowerCase().includes(q)) : base;
-    if (!filtered.length) { grid.innerHTML = `<div class="empty" style="grid-column:1/-1">${S('pkg',44)}<div style="font-size:16px;font-weight:700;margin-top:8px">No products found</div><div style="color:var(--text-2);font-size:13px">Try a different search or category.</div></div>`; return; }
-    grid.innerHTML = filtered.map(p => {
-      const w = wa(`Hi ${state.company.name}, I'm interested in: ${p.name} (${p.spec}). Please share availability & price.`);
-      return `<div class="card" style="animation:fadeIn .25s ease both"><div class="icon">${esc(p.icon)}</div><h3>${esc(p.name)}</h3><div class="spec">${S('ruler',11)} ${esc(p.spec)}</div><p class="desc">${esc(p.desc)}</p><span class="cat-badge">${esc(p.categoryIcon)} ${esc(p.categoryName)}</span><div class="actions"><a class="btn-wa" href="${escA(w)}" target="_blank" rel="noopener">${S('msg',13)} Enquiry</a><button type="button" class="btn-detail" onclick="openProduct('${p.id}')">Details ${S('chevron',13)}</button></div></div>`;
-    }).join('');
-  }
-
-  function setCategory(id) { state.activeCategory = id; renderCategories(); renderProducts(); }
-  function clearSearch() { state.query = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; renderProducts(); }
-
-  /* ============== PRODUCT MODAL ============== */
-  function openProduct(id) {
-    const p = flat().find(p => p.id === id);
-    if (!p) return;
-    const w = wa(`Hi ${state.company.name}, I'd like a quote for: ${p.name} (${p.spec}).`);
-    document.getElementById('productModalCard').innerHTML = `<button type="button" class="modal-close" onclick="closeProduct()" aria-label="Close">${S('x',14)}</button><div class="pdetail-head"><div class="pdetail-icon">${esc(p.icon)}</div><span class="cat-badge">${esc(p.categoryIcon)} ${esc(p.categoryName)}</span><div class="pdetail-title">${esc(p.name)}</div><div class="pdetail-spec">${S('ruler',13)} ${esc(p.spec)}</div></div><div class="pdetail-body"><p class="pdetail-desc">${esc(p.desc)}</p><div class="pdetail-badges"><div class="pdetail-badge">${S('check',16)}<div class="lbl">In Stock</div></div><div class="pdetail-badge">${S('shield',16)}<div class="lbl">Quality</div></div><div class="pdetail-badge">${S('truckS',16)}<div class="lbl">Fast Ship</div></div></div><div class="pdetail-actions"><a class="wa" href="${escA(w)}" target="_blank" rel="noopener">${S('msg',14)} WhatsApp</a><a class="call" href="tel:${escA(String(state.company.phone||'').replace(/\s+/g,''))}">${S('phone',14)} Call</a></div></div>`;
-    document.getElementById('productModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeProduct() { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow = ''; }
-
-  /* ============== ADMIN ============== */
-  function openAdmin() { document.getElementById('adminModal').classList.add('open'); document.body.style.overflow = 'hidden'; renderAdmin(); }
-  function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); document.body.style.overflow = ''; }
-
-  function login(ev) {
-    if (ev) ev.preventDefault();
-    const u = document.getElementById('adminUser').value.trim();
-    const p = document.getElementById('adminPass').value;
-    // Default credentials (kept simple by design — this is a client-side admin gate)
-    if (u === 'sunny' && p === 'admin') {
-      state.isAdmin = true; persist(); updateAdminBtn(); renderAdmin();
-      toast('Welcome back, admin');
-    } else {
-      const err = document.getElementById('loginErr');
-      if (err) err.textContent = 'Invalid credentials';
-    }
+    console.log('✅ Loaded from GitHub');
+    return true;
+  } catch (e) {
+    console.warn('Load failed:', e.message);
+    updateGitBadge();
     return false;
   }
-  function logout() { state.isAdmin = false; persist(); updateAdminBtn(); closeAdmin(); toast('Logged out'); }
-  function updateAdminBtn() {
-    const b = document.getElementById('adminBtn'), l = document.getElementById('adminBtnLabel');
-    if (!b || !l) return;
-    if (state.isAdmin) { b.classList.add('danger'); l.textContent = 'Logout'; b.onclick = logout; }
-    else { b.classList.remove('danger'); l.textContent = 'Admin'; b.onclick = openAdmin; }
-  }
+}
 
-  function renderAdmin() {
-    if (!state.isAdmin) {
-      document.getElementById('adminBody').innerHTML = `<form class="login-form" onsubmit="return login(event)"><div class="login-icon">${S('lock',22)}</div><h3>Admin Login</h3><div class="hint">Default: sunny / admin</div><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center;font-weight:600"></div><button type="submit" class="btn btn-primary">Sign In</button></form>`;
-      return;
-    }
-    document.getElementById('adminBody').innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div class="tabs" style="margin-bottom:0"><button type="button" class="${state.adminTab==='products'?'active':''}" onclick="setAdminTab('products')">Products</button><button type="button" class="${state.adminTab==='categories'?'active':''}" onclick="setAdminTab('categories')">Categories</button><button type="button" class="${state.adminTab==='company'?'active':''}" onclick="setAdminTab('company')">Company</button><button type="button" class="${state.adminTab==='content'?'active':''}" onclick="setAdminTab('content')">Content</button><button type="button" class="${state.adminTab==='git'?'active':''}" onclick="setAdminTab('git')">${S('github',12)} Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>`;
-    renderAdminPane();
-    updateGitBadge();
-  }
-  function setAdminTab(t) { state.adminTab = t; renderAdmin(); }
+function updateGitBadge() {
+  const b = document.getElementById('gitSyncBadge');
+  if (!b) return;
+  b.className = 'git-badge' + (!state.gitConnected ? ' error' : state.syncPending ? ' pending' : '');
+  b.textContent = !state.gitConnected ? '⚡ Not Connected' : state.syncPending ? '⏳ Pending' : '✓ Synced';
+}
 
-  function renderAdminPane() {
-    const p = document.getElementById('adminPane');
-    if (!p) return;
-    if (state.adminTab === 'products') p.innerHTML = paneProducts();
-    else if (state.adminTab === 'categories') p.innerHTML = paneCategories();
-    else if (state.adminTab === 'company') p.innerHTML = paneCompany();
-    else if (state.adminTab === 'content') p.innerHTML = paneContent();
-    else if (state.adminTab === 'git') p.innerHTML = paneGit();
-    updateGitBadge();
-  }
+function saveGitConfig() {
+  const owner = document.getElementById('gitOwner').value.trim();
+  const token = document.getElementById('gitToken').value.trim();
+  if (!owner || !token) return toast('⚠️ Username and token required');
+  GIT.owner = owner;
+  GIT.token = token;
+  GIT.repo = document.getElementById('gitRepo').value.trim() || 'rhysco-data';
+  GIT.branch = document.getElementById('gitBranch').value.trim() || 'main';
+  LS.set('git_cfg', GIT);
+  state.gitConnected = true;
+  toast('✅ Connecting...');
+  syncToGitHub().then(ok => toast(ok ? '✅ Connected & synced!' : '⚠️ Saved but sync failed'));
+  updateGitBadge();
+}
 
-  function paneProducts() {
-    if (!state.categories.length) return '<p style="color:var(--text-2)">Add a category first.</p>';
-    if (!state.adminCat || !state.categories.find(c => c.id === state.adminCat)) state.adminCat = state.categories[0].id;
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    const d = state.editDraft;
-    return `<div class="row" style="margin-bottom:12px">${state.categories.map(c => `<button type="button" class="cat-pill-admin ${c.id===state.adminCat?'active':''}" onclick="adminPickCat('${c.id}')">${esc(c.icon)} ${esc(c.name)}</button>`).join('')}</div>
-    <div class="panel-section"><h4>${state.editingId?S('edit',13)+' Edit':'Add'} product in ${esc(cat.name)}</h4>
-    <div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="${escA(d.icon)}" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name *</label><input maxlength="200" value="${escA(d.name)}" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Specification</label><input maxlength="100" value="${escA(d.spec)}" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Description</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">${esc(d.desc)}</textarea></div></div>
-    <div class="row" style="margin-top:10px"><button type="button" class="btn btn-primary" onclick="saveProduct()">${S('save',13)} ${state.editingId?'Update':'Add'}</button>${state.editingId?'<button type="button" class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':''}</div></div>
-    <div class="item-list">${cat.products.map(p => `<div class="li"><div class="lico">${esc(p.icon)}</div><div class="lbody"><div class="ln">${esc(p.name)}</div><div class="ls">${esc(p.spec)}</div><div class="ld">${esc(p.desc)}</div></div><div class="lact"><button type="button" class="edit" onclick="editProduct('${p.id}')">${S('edit',12)}</button><button type="button" class="del" onclick="deleteProduct('${p.id}')">${S('trash',12)}</button></div></div>`).join('')||'<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:20px">No products yet.</p>'}</div>`;
-  }
-  function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' }; renderAdminPane(); }
-  function saveProduct() {
-    const d = state.editDraft;
-    if (!d.name.trim() || d.name.length > 200) return toast('⚠️ Valid name required (max 200 chars)');
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    if (!cat) return toast('⚠️ Category missing');
-    if (state.editingId) {
-      const p = cat.products.find(p => p.id === state.editingId);
-      if (p) Object.assign(p, { name: d.name.trim(), spec: d.spec.trim(), desc: d.desc.trim(), icon: d.icon || '📦' });
-      toast('Updated');
-    } else {
-      cat.products.push({ id: uid(), name: d.name.trim(), spec: d.spec.trim(), desc: d.desc.trim(), icon: d.icon || '📦' });
-      toast('Added');
-    }
-    state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' };
-    persist(); renderAdminPane(); renderCategories(); renderProducts();
-  }
-  function editProduct(id) {
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    const p = cat && cat.products.find(p => p.id === id);
-    if (!p) return;
-    state.editingId = id; state.editDraft = { name: p.name, spec: p.spec, desc: p.desc, icon: p.icon };
-    renderAdminPane();
-  }
-  function cancelEdit() { state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' }; renderAdminPane(); }
-  function deleteProduct(id) {
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    const p = cat && cat.products.find(p => p.id === id);
-    if (!p || !confirm(`Delete "${p.name}"?`)) return;
-    cat.products = cat.products.filter(x => x.id !== id);
-    persist(); renderAdminPane(); renderCategories(); renderProducts();
-    toast('Deleted');
-  }
+function disconnectGit() {
+  if (!confirm('Disconnect GitHub?')) return;
+  GIT.token = ''; GIT.owner = '';
+  LS.set('git_cfg', {});
+  state.gitConnected = false; state.syncPending = false;
+  LS.set('sync', false);
+  toast('🔌 Disconnected'); updateGitBadge();
+}
 
-  function paneCategories() {
-    return `<div class="panel-section"><h4>${S('plus',13)} Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name" maxlength="50"><button type="button" class="btn btn-primary" onclick="addCat()">Add</button></div></div>
-    ${state.categories.map(c => `<div class="cat-row"><input class="icon-input" maxlength="4" value="${escA(c.icon)}" oninput="updateCat('${c.id}','icon',this.value)"><input class="name-input" value="${escA(c.name)}" maxlength="50" oninput="updateCat('${c.id}','name',this.value)"><span class="meta">${c.products.length}</span><button type="button" class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat('${c.id}')">${S('trash',12)}</button></div>`).join('')}
-    <div style="margin-top:12px"><button type="button" class="btn btn-danger" onclick="resetAll()">${S('reset',13)} Reset All</button></div>`;
+// ========== SVG ICONS ==========
+const I = {
+  trophy:'<polyline points="6 9 6 4 18 4 18 9"/><path d="M6 9a6 6 0 0 0 12 0"/><path d="M6 9H3a3 3 0 0 0 3 3"/><path d="M18 9h3a3 3 0 0 1-3 3"/><path d="M9 22h6"/><path d="M12 17v5"/>',
+  boxes:'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
+  users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  truck:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
+  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',
+  award:'<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+  rupee:'<path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/>',
+  headset:'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
+  'boxes-feat':'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
+  moon:'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+  ruler:'<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
+  msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  chevron:'<polyline points="9 18 15 12 9 6"/>',x:'<path d="M18 6L6 18M6 6l12 12"/>',
+  check:'<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  truckS:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
+  phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  mail:'<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+  pin:'<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+  clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  plus:'<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
+  edit:'<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>',
+  trash:'<polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/>',
+  save:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',
+  reset:'<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  pkg:'<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+  github:'<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',
+  cloud:'<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+  download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'
+};
+const S = (n, s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]||''}</svg>`;
+
+// ========== UTILS ==========
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const escA = s => esc(s);
+const uid = () => 'id_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+const wa = t => `https://wa.me/${state.company.whatsapp}?text=${encodeURIComponent(t)}`;
+const flat = () => state.categories.flatMap(c => c.products.map(p => ({ ...p, categoryId: c.id, categoryName: c.name, categoryIcon: c.icon })));
+const refreshAll = () => { renderCompany(); renderStats(); renderCategories(); renderProducts(); renderFeatures(); };
+
+function toast(m) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  clearTimeout(window._t); window._t = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ========== THEME ==========
+function applyTheme() {
+  const t = LS.get('theme', 'dark');
+  document.documentElement.dataset.theme = t;
+  document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`;
+}
+function toggleTheme() { LS.set('theme', document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'); applyTheme(); }
+
+function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('show'); }
+
+// ========== RENDER ==========
+function renderCompany() {
+  document.getElementById('navName').textContent = state.company.name;
+  document.getElementById('footerName').textContent = state.company.name;
+  document.title = state.company.name + ' — ' + state.company.tagline;
+  document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
+  document.getElementById('footerText').textContent = '© ' + new Date().getFullYear() + ' ' + state.company.name;
+  const words = state.company.heroTitle.split(' ');
+  document.getElementById('heroTitle').innerHTML = words.map((w,i) => (/electric/i.test(w)?'<span class="grad-text">'+esc(w)+'</span>':esc(w)) + (i<words.length-1?' ':'')).join('');
+  document.getElementById('floatWa').href = wa('Hi, I have a question.');
+  document.getElementById('contactWa').href = wa('Hi, I\'d like to discuss a bulk order.');
+  document.getElementById('contactRight').innerHTML = [
+    { ic:'phone', l:'Phone', v:state.company.phone, h:'tel:'+state.company.phone.replace(/\s+/g,'') },
+    { ic:'msg', l:'WhatsApp', v:'+'+state.company.whatsapp, h:wa('Hi'), ext:true },
+    { ic:'mail', l:'Email', v:state.company.email, h:'mailto:'+state.company.email },
+    { ic:'pin', l:'Address', v:state.company.address },
+    { ic:'clock', l:'Hours', v:'Mon – Sat • 9 AM to 8 PM' }
+  ].map(it => {
+    const inner = '<div class="ic">'+S(it.ic,16)+'</div><div><div class="label">'+it.l+'</div><div class="value">'+esc(it.v)+'</div></div>';
+    return it.h ? '<a href="'+escA(it.h)+'" '+(it.ext?'target="_blank" rel="noopener"':'')+' class="contact-item">'+inner+'</a>' : '<div class="contact-item">'+inner+'</div>';
+  }).join('');
+}
+
+function renderStats() {
+  document.getElementById('statsGrid').innerHTML = state.stats.map((s,i) => '<div class="stat" style="animation:fadeIn .3s ease '+i*.06+'s both"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
+}
+
+function renderFeatures() {
+  document.getElementById('featuresGrid').innerHTML = state.features.map((f,i) => '<div class="feat" style="animation:fadeIn .3s ease '+i*.05+'s both"><div class="feat-icon">'+S(f.icon,22)+'</div><h3>'+esc(f.title)+'</h3><p>'+esc(f.desc)+'</p></div>').join('');
+}
+
+function renderCategories() {
+  const all = flat();
+  document.getElementById('catalogCount').textContent = all.length + ' products in stock';
+  document.getElementById('categoryPills').innerHTML = '<button class="pill '+((state.activeCategory==='all')?'active':'')+'" onclick="setCategory(\'all\')">📂 All</button>' + state.categories.map(c => '<button class="pill '+((state.activeCategory===c.id)?'active':'')+'" onclick="setCategory(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('');
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  const all = flat();
+  const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
+  const q = state.query.trim().toLowerCase();
+  const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1">'+S('pkg',44)+'<div style="font-size:16px;font-weight:700;margin-top:8px">No products found</div></div>';
+    return;
   }
-  function addCat() {
-    const n = document.getElementById('newCatName').value.trim();
-    if (!n || n.length > 50) return toast('⚠️ Valid name required');
-    state.categories.push({ id: uid(), name: n, icon: document.getElementById('newCatIcon').value.trim() || '📁', products: [] });
-    persist(); renderAdminPane(); renderCategories(); toast('Added');
+  grid.innerHTML = filtered.map(p => {
+    const w = wa('Hi, I\'m interested in: ' + p.name + ' (' + p.spec + ')');
+    return '<div class="card" style="animation:fadeIn .25s ease both"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><div class="spec">'+S('ruler',11)+' '+esc(p.spec)+'</div><p class="desc">'+esc(p.desc)+'</p><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="actions"><a class="btn-wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',13)+' Enquiry</a><button class="btn-detail" onclick="openProduct(\''+p.id+'\')">Details '+S('chevron',13)+'</button></div></div>';
+  }).join('');
+}
+
+function setCategory(id) { state.activeCategory = id; renderCategories(); renderProducts(); }
+function clearSearch() { state.query = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; renderProducts(); }
+
+function openProduct(id) {
+  const p = flat().find(p => p.id === id);
+  if (!p) return;
+  const w = wa('I\'d like a quote for: ' + p.name + ' (' + p.spec + ')');
+  document.getElementById('productModalCard').innerHTML = '<button class="modal-close" onclick="closeProduct()">'+S('x',14)+'</button><div class="pdetail-head"><div class="pdetail-icon">'+esc(p.icon)+'</div><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="pdetail-title">'+esc(p.name)+'</div><div class="pdetail-spec">'+S('ruler',13)+' '+esc(p.spec)+'</div></div><div class="pdetail-body"><p class="pdetail-desc">'+esc(p.desc)+'</p><div class="pdetail-actions"><a class="wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',14)+' WhatsApp</a><a class="call" href="tel:'+escA(state.company.phone.replace(/\s+/g,''))+'">'+S('phone',14)+' Call</a></div></div>';
+  document.getElementById('productModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeProduct() { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow = ''; }
+
+// ========== ADMIN ==========
+function openAdmin() { document.getElementById('adminModal').classList.add('open'); document.body.style.overflow = 'hidden'; renderAdmin(); }
+function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); document.body.style.overflow = ''; }
+
+function login() {
+  const u = document.getElementById('adminUser').value.trim();
+  const p = document.getElementById('adminPass').value;
+  if (u === 'sunny' && p === 'admin') {
+    state.isAdmin = true; persist(); updateAdminBtn(); renderAdmin();
+    toast('Welcome back!');
+  } else {
+    document.getElementById('loginErr').textContent = 'Invalid credentials';
   }
-  function updateCat(id, k, v) { const c = state.categories.find(c => c.id === id); if (c) { c[k] = v; persist(); renderCategories(); } }
-  function deleteCat(id) {
-    const c = state.categories.find(c => c.id === id);
-    if (!c || !confirm(`Delete "${c.name}"?`)) return;
-    state.categories = state.categories.filter(x => x.id !== id);
-    if (state.activeCategory === id) state.activeCategory = 'all';
-    if (state.adminCat === id) state.adminCat = state.categories[0] ? state.categories[0].id : null;
-    persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
+  return false;
+}
+function logout() { state.isAdmin = false; persist(); updateAdminBtn(); closeAdmin(); toast('Logged out'); }
+function updateAdminBtn() {
+  const b = document.getElementById('adminBtn'), l = document.getElementById('adminBtnLabel');
+  if (state.isAdmin) { b.classList.add('danger'); l.textContent = 'Logout'; b.onclick = logout; }
+  else { b.classList.remove('danger'); l.textContent = 'Admin'; b.onclick = openAdmin; }
+}
+
+function renderAdmin() {
+  if (!state.isAdmin) {
+    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">'+S('lock',22)+'</div><h3>Admin Login</h3><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center;font-weight:600"></div><button type="submit" class="btn btn-primary">Sign In</button></form>';
+    return;
   }
-  function resetAll() {
-    if (!confirm('Reset ALL data?')) return;
-    state.categories = JSON.parse(JSON.stringify(DEFAULTS.categories));
-    state.company = { ...DEFAULTS.company };
-    state.stats = JSON.parse(JSON.stringify(DEFAULTS.stats));
-    state.features = JSON.parse(JSON.stringify(DEFAULTS.features));
-    state.activeCategory = 'all'; state.adminCat = null;
-    persist(); renderAdmin(); refreshAll(); toast('Reset complete');
+  document.getElementById('adminBody').innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px"><div class="tabs" style="margin-bottom:0"><button class="'+(state.adminTab==='products'?'active':'')+'" onclick="setAdminTab(\'products\')">Products</button><button class="'+(state.adminTab==='categories'?'active':'')+'" onclick="setAdminTab(\'categories\')">Categories</button><button class="'+(state.adminTab==='company'?'active':'')+'" onclick="setAdminTab(\'company\')">Company</button><button class="'+(state.adminTab==='content'?'active':'')+'" onclick="setAdminTab(\'content\')">Content</button><button class="'+(state.adminTab==='git'?'active':'')+'" onclick="setAdminTab(\'git\')">'+S('github',12)+' Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>';
+  renderAdminPane(); updateGitBadge();
+}
+function setAdminTab(t) { state.adminTab = t; renderAdmin(); }
+
+function renderAdminPane() {
+  const p = document.getElementById('adminPane');
+  if (state.adminTab === 'products') p.innerHTML = paneProducts();
+  else if (state.adminTab === 'categories') p.innerHTML = paneCategories();
+  else if (state.adminTab === 'company') p.innerHTML = paneCompany();
+  else if (state.adminTab === 'content') p.innerHTML = paneContent();
+  else if (state.adminTab === 'git') p.innerHTML = paneGit();
+}
+
+function paneProducts() {
+  if (!state.categories.length) return '<p style="color:var(--text-2)">Add a category first.</p>';
+  if (!state.adminCat || !state.categories.find(c=>c.id===state.adminCat)) state.adminCat = state.categories[0].id;
+  const cat = state.categories.find(c=>c.id===state.adminCat);
+  const d = state.editDraft;
+  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name *</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><div class="row" style="margin-top:10px"><button class="btn btn-primary" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?'<button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div></div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div><div style="font-size:10px;color:var(--text-2)">'+esc(p.desc)+'</div></div><div class="lact"><button class="edit" onclick="editProduct(\''+p.id+'\')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct(\''+p.id+'\')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:20px">No products</p>')+'</div>';
+}
+function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
+function saveProduct() {
+  const d = state.editDraft;
+  if (!d.name.trim()) return toast('Name required');
+  const cat = state.categories.find(c=>c.id===state.adminCat);
+  if (state.editingId) {
+    const p = cat.products.find(p=>p.id===state.editingId);
+    if (p) Object.assign(p, { name:d.name.trim(), spec:d.spec.trim(), desc:d.desc.trim(), icon:d.icon||'📦' });
+    toast('Updated');
+  } else {
+    cat.products.push({ id:uid(), name:d.name.trim(), spec:d.spec.trim(), desc:d.desc.trim(), icon:d.icon||'📦' });
+    toast('Added');
   }
+  state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' };
+  persist(); renderAdminPane(); renderCategories(); renderProducts();
+}
+function editProduct(id) {
+  const cat = state.categories.find(c=>c.id===state.adminCat);
+  const p = cat?.products.find(p=>p.id===id);
+  if (!p) return;
+  state.editingId = id; state.editDraft = { name:p.name, spec:p.spec, desc:p.desc, icon:p.icon };
+  renderAdminPane();
+}
+function cancelEdit() { state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
+function deleteProduct(id) {
+  const cat = state.categories.find(c=>c.id===state.adminCat);
+  const p = cat?.products.find(p=>p.id===id);
+  if (!p || !confirm('Delete "'+p.name+'"?')) return;
+  cat.products = cat.products.filter(x=>x.id!==id);
+  persist(); renderAdminPane(); renderCategories(); renderProducts();
+  toast('Deleted');
+}
 
-  function paneCompany() {
-    const c = state.company;
-    return `<div class="grid-2">${[['name','Name'],['tagline','Tagline'],['since','Since'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m]) => `<div class="field" style="${m?'grid-column:1/-1':''}"><label>${l}</label>${m?`<textarea maxlength="200" oninput="updateCompany('${k}',this.value)">${esc(c[k]||'')}</textarea>`:`<input maxlength="100" value="${escA(c[k]||'')}" oninput="updateCompany('${k}',this.value)">`}</div>`).join('')}</div>`;
+function paneCategories() {
+  return '<div class="panel-section"><h4>'+S('plus',13)+' Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name" maxlength="50"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>'+state.categories.map(c=>'<div class="cat-row"><input style="width:50px;text-align:center" maxlength="4" value="'+escA(c.icon)+'" oninput="updateCat(\''+c.id+'\',\'icon\',this.value)"><input style="flex:1" value="'+escA(c.name)+'" maxlength="50" oninput="updateCat(\''+c.id+'\',\'name\',this.value)"><span style="font-size:10px;color:var(--text-2)">'+c.products.length+'</span><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat(\''+c.id+'\')">'+S('trash',12)+'</button></div>').join('')+'<div style="margin-top:12px"><button class="btn btn-danger" onclick="resetAll()">'+S('reset',13)+' Reset All</button></div>';
+}
+function addCat() {
+  const n = document.getElementById('newCatName').value.trim();
+  if (!n) return toast('Name required');
+  state.categories.push({ id:uid(), name:n, icon:document.getElementById('newCatIcon').value.trim()||'📁', products:[] });
+  persist(); renderAdminPane(); renderCategories(); toast('Added');
+}
+function updateCat(id, k, v) { const c = state.categories.find(c=>c.id===id); if (c) { c[k] = v; persist(); renderCategories(); } }
+function deleteCat(id) {
+  const c = state.categories.find(c=>c.id===id);
+  if (!c || !confirm('Delete "'+c.name+'"?')) return;
+  state.categories = state.categories.filter(x=>x.id!==id);
+  if (state.activeCategory === id) state.activeCategory = 'all';
+  if (state.adminCat === id) state.adminCat = state.categories[0]?.id || null;
+  persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
+}
+function resetAll() {
+  if (!confirm('Reset ALL?')) return;
+  state.categories = JSON.parse(JSON.stringify(DEFAULTS.categories));
+  state.company = { ...DEFAULTS.company };
+  state.stats = JSON.parse(JSON.stringify(DEFAULTS.stats));
+  state.features = JSON.parse(JSON.stringify(DEFAULTS.features));
+  state.activeCategory = 'all'; state.adminCat = null;
+  persist(); renderAdmin(); refreshAll(); toast('Reset');
+}
+
+function paneCompany() {
+  const c = state.company;
+  return '<div class="grid-2">'+[['name','Name'],['tagline','Tagline'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m])=>'<div class="field" style="'+(m?'grid-column:1/-1':'')+'"><label>'+l+'</label>'+(m?'<textarea maxlength="200" oninput="updateCompany(\''+k+'\',this.value)">'+esc(c[k]||'')+'</textarea>':'<input maxlength="100" value="'+escA(c[k]||'')+'" oninput="updateCompany(\''+k+'\',this.value)">')+'</div>').join('')+'</div>';
+}
+function updateCompany(k, v) { state.company[k] = v; persist(); renderCompany(); }
+
+function paneContent() {
+  return '<div class="panel-section"><h4>Stats</h4><div class="grid-2">'+state.stats.map((s,i)=>'<div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:8px;display:grid;gap:5px"><div class="grid-2"><input maxlength="20" value="'+escA(s.number)+'" oninput="updateStat('+i+',\'number\',this.value)"><input maxlength="30" value="'+escA(s.icon)+'" oninput="updateStat('+i+',\'icon\',this.value)"></div><input maxlength="30" value="'+escA(s.label)+'" oninput="updateStat('+i+',\'label\',this.value)"></div>').join('')+'</div></div><div class="panel-section"><h4>Features</h4><div class="grid-2">'+state.features.map((f,i)=>'<div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:8px;display:grid;gap:5px"><div class="grid-2"><input maxlength="50" value="'+escA(f.title)+'" oninput="updateFeature('+i+',\'title\',this.value)"><input maxlength="30" value="'+escA(f.icon)+'" oninput="updateFeature('+i+',\'icon\',this.value)"></div><textarea maxlength="200" oninput="updateFeature('+i+',\'desc\',this.value)">'+esc(f.desc)+'</textarea></div>').join('')+'</div></div>';
+}
+function updateStat(i, k, v) { state.stats[i][k] = v; persist(); renderStats(); }
+function updateFeature(i, k, v) { state.features[i][k] = v; persist(); renderFeatures(); }
+
+function paneGit() {
+  return '<div class="panel-section"><h4>'+S('github',14)+' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Connect to sync data across all devices. Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → Generate token → select <strong>repo</strong> scope.</p><div class="grid-2"><div class="field"><label>GitHub Username</label><input id="gitOwner" value="'+escA(GIT.owner)+'" placeholder="username"></div><div class="field"><label>Repository</label><input id="gitRepo" value="'+escA(GIT.repo)+'" placeholder="rhysco-data"></div><div class="field"><label>Branch</label><input id="gitBranch" value="'+escA(GIT.branch)+'" placeholder="main"></div><div class="field" style="grid-column:1/-1"><label>Personal Access Token</label><input id="gitToken" type="password" value="'+escA(GIT.token)+'" placeholder="ghp_..."></div></div><div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitConfig()">'+S('save',13)+' Save & Connect</button>'+(state.gitConnected?'<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?\'✅ Synced\':\'❌ Failed\'))">'+S('cloud',13)+' Push</button><button class="btn btn-success" onclick="loadFromGitHub().then(s=>toast(s?\'✅ Loaded\':\'❌ Failed\')).catch(()=>toast(\'❌ Error\'))">'+S('download',13)+' Pull</button><button class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>':'')+'</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>'+(state.gitConnected?'✅ '+GIT.owner+'/'+GIT.repo:'⚡ Not connected')+'</strong> '+(state.syncPending?'| ⏳ Pending':'')+'</div></div>';
+}
+
+// ========== EVENTS ==========
+document.getElementById('searchInput').addEventListener('input', e => {
+  state.query = e.target.value;
+  document.getElementById('clearBtn').style.display = state.query ? 'inline-flex' : 'none';
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(renderProducts, 200);
+});
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+  document.getElementById('floatTop').classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
+document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
+
+// ========== INIT ==========
+applyTheme();
+(async () => {
+  // FIX: GitHub data ko priority do, sirf agar connected hai
+  if (state.gitConnected) {
+    await loadFromGitHub().catch(() => refreshAll());
+  } else {
+    refreshAll();
   }
-  function updateCompany(k, v) { state.company[k] = v; persist(); renderCompany(); }
-
-  function paneContent() {
-    return `<div class="panel-section"><h4>Stats</h4><div class="grid-2">${state.stats.map((s,i) => `<div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:8px;display:grid;gap:5px"><div class="grid-2"><input maxlength="20" value="${escA(s.number)}" oninput="updateStat(${i},'number',this.value)"><input maxlength="30" value="${escA(s.icon)}" oninput="updateStat(${i},'icon',this.value)"></div><input maxlength="30" value="${escA(s.label)}" oninput="updateStat(${i},'label',this.value)"></div>`).join('')}</div></div>
-    <div class="panel-section"><h4>Features</h4><div class="grid-2">${state.features.map((f,i) => `<div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:8px;display:grid;gap:5px"><div class="grid-2"><input maxlength="50" value="${escA(f.title)}" oninput="updateFeature(${i},'title',this.value)"><input maxlength="30" value="${escA(f.icon)}" oninput="updateFeature(${i},'icon',this.value)"></div><textarea maxlength="200" oninput="updateFeature(${i},'desc',this.value)">${esc(f.desc)}</textarea></div>`).join('')}</div></div>`;
-  }
-  function updateStat(i, k, v) { state.stats[i][k] = v; persist(); renderStats(); }
-  function updateFeature(i, k, v) { state.features[i][k] = v; persist(); renderFeatures(); }
-
-  function paneGit() {
-    return `<div class="panel-section"><h4>${S('github',14)} GitHub Sync</h4>
-    <p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Sync your data across all devices via a private GitHub repo.<br>
-    <strong>Setup:</strong> 1) Create a repo on GitHub (public or private). 2) Generate a token at
-    <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" style="color:#06b6d4">github.com/settings/tokens</a>
-    → "Generate new token (classic)" → check the <strong>repo</strong> scope → copy the token.</p>
-    <div class="grid-2">
-      <div class="field"><label>GitHub Username *</label><input id="gitOwner" value="${escA(GIT.owner)}" placeholder="your-username" autocomplete="off"></div>
-      <div class="field"><label>Repository *</label><input id="gitRepo" value="${escA(GIT.repo)}" placeholder="rhysco-data" autocomplete="off"></div>
-      <div class="field"><label>Branch</label><input id="gitBranch" value="${escA(GIT.branch)}" placeholder="main" autocomplete="off"></div>
-      <div class="field" style="grid-column:1/-1"><label>Personal Access Token *</label><input id="gitToken" type="password" value="${escA(GIT.token)}" placeholder="ghp_... or github_pat_..." autocomplete="off" spellcheck="false"></div>
-    </div>
-    <div class="row" style="margin-top:12px">
-      <button type="button" class="btn btn-primary" id="gitSaveBtn" onclick="saveGitConfig()">${S('save',13)} Save & Connect</button>
-      ${state.gitConnected ? `
-        <button type="button" class="btn btn-success" onclick="manualPush()">${S('cloud',13)} Push</button>
-        <button type="button" class="btn btn-success" onclick="manualPull()">${S('download',13)} Pull</button>
-        <button type="button" class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>` : ''}
-    </div>
-    <div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>${state.gitConnected ? `✅ ${esc(GIT.owner)}/${esc(GIT.repo)} (${esc(GIT.branch)})` : '⚡ Not connected'}</strong> ${state.syncPending?'| ⏳ Pending':''}</div>
-    </div>`;
-  }
-
-  /* ============== EVENTS ============== */
-  document.getElementById('searchInput').addEventListener('input', e => {
-    state.query = e.target.value;
-    document.getElementById('clearBtn').style.display = state.query ? 'inline-flex' : 'none';
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(renderProducts, 200);
-  });
-
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
-    document.getElementById('floatTop').classList.toggle('visible', window.scrollY > 400);
-  }, { passive: true });
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
-  document.addEventListener('click', e => {
-    const mm = document.getElementById('mobileMenu');
-    if (!mm) return;
-    if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) mm.classList.remove('show');
-  });
-
-  // Expose required functions to window for inline handlers
-  Object.assign(window, {
-    toggleTheme, toggleMobileMenu, openAdmin, closeAdmin, openProduct, closeProduct,
-    setCategory, clearSearch, login, logout, setAdminTab, adminPickCat, saveProduct,
-    editProduct, cancelEdit, deleteProduct, addCat, updateCat, deleteCat, resetAll,
-    updateCompany, updateStat, updateFeature, saveGitConfig, disconnectGit, manualPush, manualPull,
-    state
-  });
-
-  /* ============== INIT ============== */
-  applyTheme();
   updateAdminBtn();
-  refreshAll();
-  (async () => {
-    if (state.gitConnected) {
-      try { await loadFromGitHub({ silent: true }); } catch (e) { console.warn('Initial load failed:', e.message); }
-    }
-    updateGitBadge();
-  })();
-  </script>
+  updateGitBadge();
+})();
+</script>
 </body>
 </html>
