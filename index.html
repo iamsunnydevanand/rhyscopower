@@ -350,14 +350,15 @@
 
     .btn { padding: 9px 15px; border-radius: 10px; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; transition: all .2s; }
     .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; filter: none; }
     .btn svg { width: 13px; height: 13px; }
     .btn-primary { background: var(--grad); color: #fff; }
     .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
     .btn-danger { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
     .btn-success { background: var(--success); color: #fff; }
 
-    .tabs { display: flex; gap: 3px; padding: 3px; background: var(--border); border-radius: 12px; margin-bottom: 14px; }
-    .tabs button { flex: 1; padding: 8px 6px; border-radius: 9px; font-weight: 600; font-size: 12px; color: var(--text-2); transition: all .2s; }
+    .tabs { display: flex; gap: 3px; padding: 3px; background: var(--border); border-radius: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .tabs button { flex: 1; padding: 8px 6px; border-radius: 9px; font-weight: 600; font-size: 12px; color: var(--text-2); transition: all .2s; min-width: 70px; }
     .tabs button.active { background: var(--bg-2); color: var(--text); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
 
     .panel-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
@@ -390,6 +391,17 @@
     .cat-row input.name-input { flex: 1; min-width: 80px; }
     .cat-row .meta { font-size: 10px; color: var(--text-2); }
 
+    /* GIT BADGE — was missing in original */
+    .git-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 999px;
+      font-size: 10px; font-weight: 700;
+      background: rgba(16,185,129,0.15); color: #10b981;
+      border: 1px solid rgba(16,185,129,0.3);
+    }
+    .git-badge.error { background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.3); }
+    .git-badge.pending { background: rgba(245,158,11,0.15); color: #f59e0b; border-color: rgba(245,158,11,0.3); }
+
     /* TOAST */
     .toast {
       position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
@@ -397,6 +409,7 @@
       padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 600;
       box-shadow: 0 14px 40px rgba(0,0,0,0.2); z-index: 300;
       opacity: 0; pointer-events: none; transition: all .3s ease;
+      max-width: 90vw; text-align: center;
     }
     .toast.show { opacity: 1; }
 
@@ -435,14 +448,14 @@
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-actions">
-      <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <button class="icon-btn" type="button" onclick="toggleTheme()" aria-label="Toggle theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
-      <button class="admin-btn" id="adminBtn" aria-label="Admin panel">
+      <button class="admin-btn" type="button" id="adminBtn" onclick="openAdmin()" aria-label="Admin panel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg>
         <span id="adminBtnLabel">Admin</span>
       </button>
-      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <button class="hamburger" type="button" onclick="toggleMobileMenu()" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
       </button>
     </div>
@@ -481,7 +494,7 @@
       <div class="search-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" id="searchInput" placeholder="Search cables, meters, MC4 connectors…" aria-label="Search products" />
-        <button id="clearBtn" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button>
+        <button id="clearBtn" type="button" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button>
       </div>
       <div class="pills" id="categoryPills"></div>
     </div>
@@ -516,7 +529,7 @@
 
   <!-- FLOATING -->
   <a id="floatWa" href="#" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
-  <button class="float-top" id="floatTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <button class="float-top" type="button" id="floatTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
   <!-- PRODUCT MODAL -->
   <div class="modal" id="productModal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeProduct()">
@@ -528,7 +541,7 @@
     <div class="modal-card wide">
       <div class="admin-head">
         <div class="h-left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h0"/></svg><div><h3>Admin Panel</h3><div class="h-sub">Manage catalog, company info & site stats</div></div></div>
-        <button class="modal-close" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()" aria-label="Close admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+        <button class="modal-close" type="button" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()" aria-label="Close admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
       </div>
       <div class="admin-body" id="adminBody"></div>
     </div>
@@ -538,7 +551,7 @@
 
   <script>
   'use strict';
-  
+
   /* ============== DATA ============== */
   const RAW_PRODUCTS = [
     "4.00SQMM WAA CABLE RED BLACK,100 MTR,WAA Cables,🔌,Premium 100% pure copper flexible cable",
@@ -654,19 +667,22 @@
   /* ============== STORAGE ============== */
   const LS = {
     get(k, fb) { try { const v = localStorage.getItem('rc_' + k); return v ? JSON.parse(v) : fb; } catch { return fb; } },
-    set(k, v) { try { localStorage.setItem('rc_' + k, JSON.stringify(v)); } catch(e) { if (e.name === 'QuotaExceededError') toast('⚠️ Storage full!'); } }
+    set(k, v) { try { localStorage.setItem('rc_' + k, JSON.stringify(v)); } catch(e) { if (e.name === 'QuotaExceededError') toast('⚠️ Storage full!'); } },
+    del(k) { try { localStorage.removeItem('rc_' + k); } catch {} }
   };
 
   const GIT = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
   Object.assign(GIT, LS.get('git_cfg', {}));
-
-  const ADMIN_HASH = 'f7c3bc1d808e04732adf679965ccc34ca7ae3441'; // SHA1 of "sunny:admin"
+  // Ensure required defaults are restored after merge
+  if (!GIT.repo) GIT.repo = 'rhysco-data';
+  if (!GIT.branch) GIT.branch = 'main';
+  if (!GIT.path) GIT.path = 'data.json';
 
   let state = {
     categories: LS.get('cat', DEFAULTS.categories),
     company: { ...DEFAULTS.company, ...LS.get('com', {}) },
     stats: LS.get('stat', DEFAULTS.stats),
-    features: LS.get('feat', DEFAULTS.features),
+    features: LS.get('features', DEFAULTS.features),
     isAdmin: LS.get('auth', false),
     activeCategory: 'all',
     query: '',
@@ -675,7 +691,8 @@
     editingId: null,
     editDraft: { name: '', spec: '', desc: '', icon: '📦' },
     syncPending: LS.get('sync', false),
-    gitConnected: !!(GIT.token && GIT.owner)
+    gitConnected: !!(GIT.token && GIT.owner),
+    gitBusy: false
   };
 
   let syncTimer = null, searchTimer = null;
@@ -684,111 +701,257 @@
     LS.set('cat', state.categories);
     LS.set('com', state.company);
     LS.set('stat', state.stats);
-    LS.set('feat', state.features);
+    LS.set('features', state.features);
     LS.set('auth', state.isAdmin);
     state.syncPending = true;
     LS.set('sync', true);
+    updateGitBadge();
     clearTimeout(syncTimer);
     syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub().catch(() => {}); }, 3000);
   }
 
+  /* ============== UTF-8 SAFE BASE64 ============== */
+  function b64Encode(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = '';
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+  function b64Decode(b64) {
+    // GitHub returns base64 with newlines — strip whitespace before decoding
+    const clean = String(b64 || '').replace(/\s+/g, '');
+    const bin = atob(clean);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+
   /* ============== GITHUB API ============== */
   async function gitAPI(endpoint, method = 'GET', body = null) {
-    if (!GIT.token) throw new Error('No token');
+    if (!GIT.token) throw Object.assign(new Error('No token configured'), { code: 'NO_TOKEN' });
+    if (!GIT.owner) throw Object.assign(new Error('No GitHub username configured'), { code: 'NO_OWNER' });
+
     const controller = new AbortController();
-    const to = setTimeout(() => controller.abort(), 12000);
+    const to = setTimeout(() => controller.abort(), 15000);
+    const headers = {
+      'Authorization': `Bearer ${GIT.token}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+    if (body) headers['Content-Type'] = 'application/json';
+
+    let res;
     try {
-      const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(GIT.owner)}/${encodeURIComponent(GIT.repo)}${endpoint}`, {
-        method, signal: controller.signal,
-        headers: { 'Authorization': `Bearer ${GIT.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-        body: body ? JSON.stringify(body) : null
+      res = await fetch(`https://api.github.com/repos/${encodeURIComponent(GIT.owner)}/${encodeURIComponent(GIT.repo)}${endpoint}`, {
+        method, signal: controller.signal, headers,
+        body: body ? JSON.stringify(body) : undefined
       });
-      clearTimeout(to);
-      if (res.status === 401 || res.status === 403) {
-        state.gitConnected = false;
-        LS.set('git_cfg', { ...GIT, token: '' });
-        updateGitBadge();
-        throw new Error('Invalid or expired token. Please update in Git settings.');
-      }
-      if (!res.ok) throw new Error((await res.json().catch(() => ({}))).message || `Error ${res.status}`);
-      return res.json();
     } catch (e) {
       clearTimeout(to);
-      throw e;
+      if (e.name === 'AbortError') throw Object.assign(new Error('Request timed out — check your internet connection'), { code: 'TIMEOUT' });
+      throw Object.assign(new Error('Network error: ' + e.message), { code: 'NETWORK' });
     }
+    clearTimeout(to);
+
+    if (res.status === 401) {
+      state.gitConnected = false;
+      LS.set('git_cfg', { ...GIT, token: '' });
+      GIT.token = '';
+      updateGitBadge();
+      throw Object.assign(new Error('Invalid token. Please update in Git settings.'), { code: 'AUTH', status: 401 });
+    }
+    if (res.status === 403) {
+      throw Object.assign(new Error('Permission denied. Token needs the "repo" scope.'), { code: 'FORBIDDEN', status: 403 });
+    }
+    if (res.status === 404) {
+      throw Object.assign(new Error('Not found'), { code: 'NOT_FOUND', status: 404 });
+    }
+    if (res.status === 409) {
+      throw Object.assign(new Error('Conflict — remote changed'), { code: 'CONFLICT', status: 409 });
+    }
+    if (!res.ok) {
+      let msg = 'Error ' + res.status;
+      try { const j = await res.json(); if (j && j.message) msg = j.message; } catch {}
+      throw Object.assign(new Error(msg), { status: res.status });
+    }
+    if (res.status === 204) return null;
+    return res.json();
   }
 
-  async function syncToGitHub() {
+  async function syncToGitHub(retry = 0) {
     if (!state.gitConnected) return false;
-    const data = { categories: state.categories, company: state.company, stats: state.stats, features: state.features, lastSync: new Date().toISOString() };
+    if (retry > 2) return false;
+
+    state.gitBusy = true; updateGitBadge();
     try {
       let sha = null;
-      try { const fi = await gitAPI(`/contents/${GIT.path}`); sha = fi.sha; } catch {}
-      const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-      await gitAPI(`/contents/${GIT.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: GIT.branch, ...(sha ? { sha } : {}) });
+      try {
+        const fi = await gitAPI(`/contents/${encodeURIComponent(GIT.path)}?ref=${encodeURIComponent(GIT.branch)}`);
+        sha = fi && fi.sha;
+      } catch (e) {
+        if (e.code !== 'NOT_FOUND') throw e;
+        // First push — file doesn't exist yet, that's fine
+      }
+
+      const data = {
+        categories: state.categories,
+        company: state.company,
+        stats: state.stats,
+        features: state.features,
+        lastSync: new Date().toISOString()
+      };
+      const content = b64Encode(JSON.stringify(data, null, 2));
+      const payload = {
+        message: `Update site data — ${new Date().toLocaleString()}`,
+        content,
+        branch: GIT.branch
+      };
+      if (sha) payload.sha = sha;
+
+      await gitAPI(`/contents/${encodeURIComponent(GIT.path)}`, 'PUT', payload);
       state.syncPending = false;
       LS.set('sync', false);
-      updateGitBadge();
       return true;
     } catch (e) {
-      console.warn('Sync failed:', e.message);
-      if (e.message.includes('409')) {
-        try { await loadFromGitHub(); return syncToGitHub(); } catch {}
+      if (e.code === 'CONFLICT' && retry < 2) {
+        // Remote changed mid-write: pull then push again with fresh sha
+        try { await loadFromGitHub({ silent: true }); } catch {}
+        return syncToGitHub(retry + 1);
       }
+      console.warn('Sync failed:', e.message);
+      throw e;
+    } finally {
+      state.gitBusy = false;
       updateGitBadge();
-      return false;
     }
   }
 
-  async function loadFromGitHub() {
+  async function loadFromGitHub(opts = {}) {
     if (!state.gitConnected) return false;
-    const data = await gitAPI(`/contents/${GIT.path}`);
-    const content = JSON.parse(atob(data.content));
-    state.categories = content.categories || DEFAULTS.categories;
-    state.company = { ...DEFAULTS.company, ...(content.company || {}) };
-    state.stats = content.stats || DEFAULTS.stats;
-    state.features = content.features || DEFAULTS.features;
-    LS.set('cat', state.categories);
-    LS.set('com', state.company);
-    LS.set('stat', state.stats);
-    LS.set('feat', state.features);
-    state.syncPending = false;
-    LS.set('sync', false);
-    refreshAll();
-    updateGitBadge();
-    return true;
+    state.gitBusy = true; updateGitBadge();
+    try {
+      const data = await gitAPI(`/contents/${encodeURIComponent(GIT.path)}?ref=${encodeURIComponent(GIT.branch)}`);
+      const content = JSON.parse(b64Decode(data.content));
+
+      if (Array.isArray(content.categories) && content.categories.length) state.categories = content.categories;
+      if (content.company && typeof content.company === 'object') state.company = { ...DEFAULTS.company, ...content.company };
+      if (Array.isArray(content.stats) && content.stats.length) state.stats = content.stats;
+      if (Array.isArray(content.features) && content.features.length) state.features = content.features;
+
+      LS.set('cat', state.categories);
+      LS.set('com', state.company);
+      LS.set('stat', state.stats);
+      LS.set('features', state.features);
+      state.syncPending = false;
+      LS.set('sync', false);
+      refreshAll();
+      return true;
+    } catch (e) {
+      if (e.code === 'NOT_FOUND') {
+        if (!opts.silent) toast('ℹ️ No data file on GitHub yet. Push to create one.');
+        return false;
+      }
+      throw e;
+    } finally {
+      state.gitBusy = false;
+      updateGitBadge();
+    }
+  }
+
+  async function checkRepoExists() {
+    try {
+      await gitAPI('');
+      return true;
+    } catch (e) {
+      if (e.code === 'NOT_FOUND') return false;
+      throw e;
+    }
   }
 
   function updateGitBadge() {
     const b = document.getElementById('gitSyncBadge');
     if (!b) return;
     if (!state.gitConnected) { b.className = 'git-badge error'; b.textContent = '⚡ Not Connected'; }
+    else if (state.gitBusy) { b.className = 'git-badge pending'; b.textContent = '⏳ Syncing…'; }
     else if (state.syncPending) { b.className = 'git-badge pending'; b.textContent = '⏳ Pending'; }
     else { b.className = 'git-badge'; b.textContent = '✓ Synced'; }
   }
 
-  function saveGitConfig() {
+  async function saveGitConfig() {
     const owner = document.getElementById('gitOwner').value.trim();
     const token = document.getElementById('gitToken').value.trim();
-    if (!owner || !token) return toast('⚠️ Username and token required');
+    if (!owner) return toast('⚠️ GitHub username is required');
+    if (!token) return toast('⚠️ Personal access token is required');
+
     const repo = document.getElementById('gitRepo').value.trim() || 'rhysco-data';
     const branch = document.getElementById('gitBranch').value.trim() || 'main';
+
+    const btn = document.getElementById('gitSaveBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Connecting…'; }
+
+    // Stage values onto GIT so gitAPI uses them for the test
+    const prev = { ...GIT };
     Object.assign(GIT, { owner, repo, branch, token, path: 'data.json' });
-    LS.set('git_cfg', GIT);
-    state.gitConnected = true;
-    toast('✅ Connecting...');
-    syncToGitHub().then(ok => toast(ok ? '✅ Connected & synced!' : '⚠️ Config saved, sync failed. Check token permissions.'));
-    updateGitBadge();
+
+    try {
+      const exists = await checkRepoExists();
+      if (!exists) {
+        Object.assign(GIT, prev);
+        toast(`❌ Repo "${owner}/${repo}" not found. Create it on GitHub first.`);
+        return;
+      }
+      // Connection is valid — save config
+      LS.set('git_cfg', GIT);
+      state.gitConnected = true;
+      updateGitBadge();
+
+      // Try to load existing data first; if none, push current data
+      const loaded = await loadFromGitHub({ silent: true }).catch(() => false);
+      if (loaded) {
+        toast('✅ Connected — data pulled from GitHub');
+      } else {
+        const pushed = await syncToGitHub().catch(() => false);
+        toast(pushed ? '✅ Connected & data pushed to GitHub' : '⚠️ Connected, but push failed');
+      }
+      if (state.adminTab === 'git') renderAdminPane();
+    } catch (e) {
+      Object.assign(GIT, prev);
+      state.gitConnected = !!(GIT.token && GIT.owner);
+      LS.set('git_cfg', GIT);
+      updateGitBadge();
+      toast('❌ ' + (e.message || 'Connection failed'));
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = `${S('save',13)} Save & Connect`; }
+    }
   }
 
   function disconnectGit() {
-    if (!confirm('Disconnect GitHub?')) return;
+    if (!confirm('Disconnect GitHub? Local data will be kept.')) return;
     GIT.token = ''; GIT.owner = '';
     LS.set('git_cfg', {});
-    state.gitConnected = false; state.syncPending = false;
+    state.gitConnected = false;
+    state.syncPending = false;
     LS.set('sync', false);
-    toast('🔌 Disconnected'); updateGitBadge();
+    toast('🔌 Disconnected');
+    updateGitBadge();
     if (state.adminTab === 'git') renderAdminPane();
+  }
+
+  async function manualPush() {
+    try {
+      const ok = await syncToGitHub();
+      toast(ok ? '✅ Pushed to GitHub' : '⚠️ Push failed');
+    } catch (e) {
+      toast('❌ ' + e.message);
+    }
+  }
+  async function manualPull() {
+    try {
+      const ok = await loadFromGitHub();
+      if (ok) toast('✅ Pulled from GitHub');
+    } catch (e) {
+      toast('❌ ' + e.message);
+    }
   }
 
   /* ============== SVG ICONS ============== */
@@ -841,15 +1004,17 @@
 
   function toast(m) {
     const t = document.getElementById('toast');
+    if (!t) return;
     t.textContent = m; t.classList.add('show');
-    clearTimeout(window._t); window._t = setTimeout(() => t.classList.remove('show'), 2500);
+    clearTimeout(window._t); window._t = setTimeout(() => t.classList.remove('show'), 2800);
   }
 
   /* ============== THEME ============== */
   function applyTheme() {
     const t = LS.get('theme', 'dark');
     document.documentElement.dataset.theme = t;
-    document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`;
+    const ti = document.getElementById('themeIcon');
+    if (ti) ti.outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`;
   }
   function toggleTheme() { LS.set('theme', document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'); applyTheme(); }
 
@@ -863,12 +1028,12 @@
     document.title = state.company.name + ' — ' + state.company.tagline;
     document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
     document.getElementById('footerText').textContent = `© ${new Date().getFullYear()} ${state.company.name}. All rights reserved.`;
-    const words = state.company.heroTitle.split(' ');
+    const words = String(state.company.heroTitle || '').split(' ');
     document.getElementById('heroTitle').innerHTML = words.map((w, i) => (/electric/i.test(w) ? `<span class="grad-text">${esc(w)}</span>` : esc(w)) + (i < words.length - 1 ? ' ' : '')).join('');
     document.getElementById('floatWa').href = wa(`Hi ${state.company.name}, I have a quick question.`);
     document.getElementById('contactWa').href = wa(`Hi ${state.company.name}, I'd like to discuss a bulk order.`);
     document.getElementById('contactRight').innerHTML = [
-      { ic: 'phone', l: 'Phone', v: state.company.phone, h: 'tel:' + state.company.phone.replace(/\s+/g, '') },
+      { ic: 'phone', l: 'Phone', v: state.company.phone, h: 'tel:' + String(state.company.phone || '').replace(/\s+/g, '') },
       { ic: 'msg', l: 'WhatsApp', v: '+' + state.company.whatsapp, h: wa(`Hi ${state.company.name}`), ext: true },
       { ic: 'mail', l: 'Email', v: state.company.email, h: 'mailto:' + state.company.email },
       { ic: 'pin', l: 'Address', v: state.company.address },
@@ -890,7 +1055,7 @@
   function renderCategories() {
     const all = flat();
     document.getElementById('catalogCount').textContent = `${all.length} products in stock`;
-    document.getElementById('categoryPills').innerHTML = `<button class="pill ${state.activeCategory==='all'?'active':''}" onclick="setCategory('all')">📂 All </button>` + state.categories.map(c => `<button class="pill ${state.activeCategory===c.id?'active':''}" onclick="setCategory('${c.id}')">${esc(c.icon)} ${esc(c.name)}</button>`).join('');
+    document.getElementById('categoryPills').innerHTML = `<button type="button" class="pill ${state.activeCategory==='all'?'active':''}" onclick="setCategory('all')">📂 All</button>` + state.categories.map(c => `<button type="button" class="pill ${state.activeCategory===c.id?'active':''}" onclick="setCategory('${c.id}')">${esc(c.icon)} ${esc(c.name)}</button>`).join('');
   }
 
   function renderProducts() {
@@ -898,11 +1063,11 @@
     const all = flat();
     const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
     const q = state.query.trim().toLowerCase();
-    const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
+    const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || (p.spec || '').toLowerCase().includes(q) || (p.desc || '').toLowerCase().includes(q)) : base;
     if (!filtered.length) { grid.innerHTML = `<div class="empty" style="grid-column:1/-1">${S('pkg',44)}<div style="font-size:16px;font-weight:700;margin-top:8px">No products found</div><div style="color:var(--text-2);font-size:13px">Try a different search or category.</div></div>`; return; }
     grid.innerHTML = filtered.map(p => {
       const w = wa(`Hi ${state.company.name}, I'm interested in: ${p.name} (${p.spec}). Please share availability & price.`);
-      return `<div class="card" style="animation:fadeIn .25s ease both"><div class="icon">${esc(p.icon)}</div><h3>${esc(p.name)}</h3><div class="spec">${S('ruler',11)} ${esc(p.spec)}</div><p class="desc">${esc(p.desc)}</p><span class="cat-badge">${esc(p.categoryIcon)} ${esc(p.categoryName)}</span><div class="actions"><a class="btn-wa" href="${escA(w)}" target="_blank" rel="noopener">${S('msg',13)} Enquiry</a><button class="btn-detail" onclick="openProduct('${p.id}')">Details ${S('chevron',13)}</button></div></div>`;
+      return `<div class="card" style="animation:fadeIn .25s ease both"><div class="icon">${esc(p.icon)}</div><h3>${esc(p.name)}</h3><div class="spec">${S('ruler',11)} ${esc(p.spec)}</div><p class="desc">${esc(p.desc)}</p><span class="cat-badge">${esc(p.categoryIcon)} ${esc(p.categoryName)}</span><div class="actions"><a class="btn-wa" href="${escA(w)}" target="_blank" rel="noopener">${S('msg',13)} Enquiry</a><button type="button" class="btn-detail" onclick="openProduct('${p.id}')">Details ${S('chevron',13)}</button></div></div>`;
     }).join('');
   }
 
@@ -914,7 +1079,7 @@
     const p = flat().find(p => p.id === id);
     if (!p) return;
     const w = wa(`Hi ${state.company.name}, I'd like a quote for: ${p.name} (${p.spec}).`);
-    document.getElementById('productModalCard').innerHTML = `<button class="modal-close" onclick="closeProduct()" aria-label="Close">${S('x',14)}</button><div class="pdetail-head"><div class="pdetail-icon">${esc(p.icon)}</div><span class="cat-badge">${esc(p.categoryIcon)} ${esc(p.categoryName)}</span><div class="pdetail-title">${esc(p.name)}</div><div class="pdetail-spec">${S('ruler',13)} ${esc(p.spec)}</div></div><div class="pdetail-body"><p class="pdetail-desc">${esc(p.desc)}</p><div class="pdetail-badges"><div class="pdetail-badge">${S('check',16)}<div class="lbl">In Stock</div></div><div class="pdetail-badge">${S('shield',16)}<div class="lbl">Quality</div></div><div class="pdetail-badge">${S('truckS',16)}<div class="lbl">Fast Ship</div></div></div><div class="pdetail-actions"><a class="wa" href="${escA(w)}" target="_blank" rel="noopener">${S('msg',14)} WhatsApp</a><a class="call" href="tel:${escA(state.company.phone.replace(/\s+/g,''))}">${S('phone',14)} Call</a></div></div>`;
+    document.getElementById('productModalCard').innerHTML = `<button type="button" class="modal-close" onclick="closeProduct()" aria-label="Close">${S('x',14)}</button><div class="pdetail-head"><div class="pdetail-icon">${esc(p.icon)}</div><span class="cat-badge">${esc(p.categoryIcon)} ${esc(p.categoryName)}</span><div class="pdetail-title">${esc(p.name)}</div><div class="pdetail-spec">${S('ruler',13)} ${esc(p.spec)}</div></div><div class="pdetail-body"><p class="pdetail-desc">${esc(p.desc)}</p><div class="pdetail-badges"><div class="pdetail-badge">${S('check',16)}<div class="lbl">In Stock</div></div><div class="pdetail-badge">${S('shield',16)}<div class="lbl">Quality</div></div><div class="pdetail-badge">${S('truckS',16)}<div class="lbl">Fast Ship</div></div></div><div class="pdetail-actions"><a class="wa" href="${escA(w)}" target="_blank" rel="noopener">${S('msg',14)} WhatsApp</a><a class="call" href="tel:${escA(String(state.company.phone||'').replace(/\s+/g,''))}">${S('phone',14)} Call</a></div></div>`;
     document.getElementById('productModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -923,32 +1088,35 @@
   /* ============== ADMIN ============== */
   function openAdmin() { document.getElementById('adminModal').classList.add('open'); document.body.style.overflow = 'hidden'; renderAdmin(); }
   function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); document.body.style.overflow = ''; }
-  function hash(s) { let h = 0; for (let i = 0; i < s.length; i++) h = ((h << 5) - h) + s.charCodeAt(i), h |= 0; return Math.abs(h).toString(16); }
 
-  function login() {
+  function login(ev) {
+    if (ev) ev.preventDefault();
     const u = document.getElementById('adminUser').value.trim();
     const p = document.getElementById('adminPass').value;
-    if (hash(u + ':' + p) === ADMIN_HASH || (u === 'sunny' && p === 'admin')) {
+    // Default credentials (kept simple by design — this is a client-side admin gate)
+    if (u === 'sunny' && p === 'admin') {
       state.isAdmin = true; persist(); updateAdminBtn(); renderAdmin();
       toast('Welcome back, admin');
     } else {
-      document.getElementById('loginErr').textContent = 'Invalid credentials';
+      const err = document.getElementById('loginErr');
+      if (err) err.textContent = 'Invalid credentials';
     }
     return false;
   }
   function logout() { state.isAdmin = false; persist(); updateAdminBtn(); closeAdmin(); toast('Logged out'); }
   function updateAdminBtn() {
     const b = document.getElementById('adminBtn'), l = document.getElementById('adminBtnLabel');
+    if (!b || !l) return;
     if (state.isAdmin) { b.classList.add('danger'); l.textContent = 'Logout'; b.onclick = logout; }
     else { b.classList.remove('danger'); l.textContent = 'Admin'; b.onclick = openAdmin; }
   }
 
   function renderAdmin() {
     if (!state.isAdmin) {
-      document.getElementById('adminBody').innerHTML = `<form class="login-form" onsubmit="return login()"><div class="login-icon">${S('lock',22)}</div><h3>Admin Login</h3><div class="hint">Default: sunny / admin</div><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center;font-weight:600"></div><button type="submit" class="btn btn-primary">Sign In</button></form>`;
+      document.getElementById('adminBody').innerHTML = `<form class="login-form" onsubmit="return login(event)"><div class="login-icon">${S('lock',22)}</div><h3>Admin Login</h3><div class="hint">Default: sunny / admin</div><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center;font-weight:600"></div><button type="submit" class="btn btn-primary">Sign In</button></form>`;
       return;
     }
-    document.getElementById('adminBody').innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div class="tabs" style="margin-bottom:0"><button class="${state.adminTab==='products'?'active':''}" onclick="setAdminTab('products')">Products</button><button class="${state.adminTab==='categories'?'active':''}" onclick="setAdminTab('categories')">Categories</button><button class="${state.adminTab==='company'?'active':''}" onclick="setAdminTab('company')">Company</button><button class="${state.adminTab==='content'?'active':''}" onclick="setAdminTab('content')">Content</button><button class="${state.adminTab==='git'?'active':''}" onclick="setAdminTab('git')">${S('github',12)} Git</button></div><span id="gitSyncBadge" class="git-badge" style="font-size:10px"></span></div><div id="adminPane"></div>`;
+    document.getElementById('adminBody').innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px"><div class="tabs" style="margin-bottom:0"><button type="button" class="${state.adminTab==='products'?'active':''}" onclick="setAdminTab('products')">Products</button><button type="button" class="${state.adminTab==='categories'?'active':''}" onclick="setAdminTab('categories')">Categories</button><button type="button" class="${state.adminTab==='company'?'active':''}" onclick="setAdminTab('company')">Company</button><button type="button" class="${state.adminTab==='content'?'active':''}" onclick="setAdminTab('content')">Content</button><button type="button" class="${state.adminTab==='git'?'active':''}" onclick="setAdminTab('git')">${S('github',12)} Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>`;
     renderAdminPane();
     updateGitBadge();
   }
@@ -956,11 +1124,13 @@
 
   function renderAdminPane() {
     const p = document.getElementById('adminPane');
+    if (!p) return;
     if (state.adminTab === 'products') p.innerHTML = paneProducts();
     else if (state.adminTab === 'categories') p.innerHTML = paneCategories();
     else if (state.adminTab === 'company') p.innerHTML = paneCompany();
     else if (state.adminTab === 'content') p.innerHTML = paneContent();
     else if (state.adminTab === 'git') p.innerHTML = paneGit();
+    updateGitBadge();
   }
 
   function paneProducts() {
@@ -968,17 +1138,18 @@
     if (!state.adminCat || !state.categories.find(c => c.id === state.adminCat)) state.adminCat = state.categories[0].id;
     const cat = state.categories.find(c => c.id === state.adminCat);
     const d = state.editDraft;
-    return `<div class="row" style="margin-bottom:12px">${state.categories.map(c => `<button class="cat-pill-admin ${c.id===state.adminCat?'active':''}" onclick="adminPickCat('${c.id}')">${esc(c.icon)} ${esc(c.name)}</button>`).join('')}</div>
+    return `<div class="row" style="margin-bottom:12px">${state.categories.map(c => `<button type="button" class="cat-pill-admin ${c.id===state.adminCat?'active':''}" onclick="adminPickCat('${c.id}')">${esc(c.icon)} ${esc(c.name)}</button>`).join('')}</div>
     <div class="panel-section"><h4>${state.editingId?S('edit',13)+' Edit':'Add'} product in ${esc(cat.name)}</h4>
     <div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="${escA(d.icon)}" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name *</label><input maxlength="200" value="${escA(d.name)}" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Specification</label><input maxlength="100" value="${escA(d.spec)}" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Description</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">${esc(d.desc)}</textarea></div></div>
-    <div class="row" style="margin-top:10px"><button class="btn btn-primary" onclick="saveProduct()">${S('save',13)} ${state.editingId?'Update':'Add'}</button>${state.editingId?'<button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':''}</div></div>
-    <div class="item-list">${cat.products.map(p => `<div class="li"><div class="lico">${esc(p.icon)}</div><div class="lbody"><div class="ln">${esc(p.name)}</div><div class="ls">${esc(p.spec)}</div><div class="ld">${esc(p.desc)}</div></div><div class="lact"><button class="edit" onclick="editProduct('${p.id}')">${S('edit',12)}</button><button class="del" onclick="deleteProduct('${p.id}')">${S('trash',12)}</button></div></div>`).join('')||'<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:20px">No products yet.</p>'}</div>`;
+    <div class="row" style="margin-top:10px"><button type="button" class="btn btn-primary" onclick="saveProduct()">${S('save',13)} ${state.editingId?'Update':'Add'}</button>${state.editingId?'<button type="button" class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':''}</div></div>
+    <div class="item-list">${cat.products.map(p => `<div class="li"><div class="lico">${esc(p.icon)}</div><div class="lbody"><div class="ln">${esc(p.name)}</div><div class="ls">${esc(p.spec)}</div><div class="ld">${esc(p.desc)}</div></div><div class="lact"><button type="button" class="edit" onclick="editProduct('${p.id}')">${S('edit',12)}</button><button type="button" class="del" onclick="deleteProduct('${p.id}')">${S('trash',12)}</button></div></div>`).join('')||'<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:20px">No products yet.</p>'}</div>`;
   }
   function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' }; renderAdminPane(); }
   function saveProduct() {
     const d = state.editDraft;
     if (!d.name.trim() || d.name.length > 200) return toast('⚠️ Valid name required (max 200 chars)');
     const cat = state.categories.find(c => c.id === state.adminCat);
+    if (!cat) return toast('⚠️ Category missing');
     if (state.editingId) {
       const p = cat.products.find(p => p.id === state.editingId);
       if (p) Object.assign(p, { name: d.name.trim(), spec: d.spec.trim(), desc: d.desc.trim(), icon: d.icon || '📦' });
@@ -992,7 +1163,7 @@
   }
   function editProduct(id) {
     const cat = state.categories.find(c => c.id === state.adminCat);
-    const p = cat?.products.find(p => p.id === id);
+    const p = cat && cat.products.find(p => p.id === id);
     if (!p) return;
     state.editingId = id; state.editDraft = { name: p.name, spec: p.spec, desc: p.desc, icon: p.icon };
     renderAdminPane();
@@ -1000,7 +1171,7 @@
   function cancelEdit() { state.editingId = null; state.editDraft = { name: '', spec: '', desc: '', icon: '📦' }; renderAdminPane(); }
   function deleteProduct(id) {
     const cat = state.categories.find(c => c.id === state.adminCat);
-    const p = cat?.products.find(p => p.id === id);
+    const p = cat && cat.products.find(p => p.id === id);
     if (!p || !confirm(`Delete "${p.name}"?`)) return;
     cat.products = cat.products.filter(x => x.id !== id);
     persist(); renderAdminPane(); renderCategories(); renderProducts();
@@ -1008,9 +1179,9 @@
   }
 
   function paneCategories() {
-    return `<div class="panel-section"><h4>${S('plus',13)} Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name" maxlength="50"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>
-    ${state.categories.map(c => `<div class="cat-row"><input class="icon-input" maxlength="4" value="${escA(c.icon)}" oninput="updateCat('${c.id}','icon',this.value)"><input class="name-input" value="${escA(c.name)}" maxlength="50" oninput="updateCat('${c.id}','name',this.value)"><span class="meta">${c.products.length}</span><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat('${c.id}')">${S('trash',12)}</button></div>`).join('')}
-    <div style="margin-top:12px"><button class="btn btn-danger" onclick="resetAll()">${S('reset',13)} Reset All</button></div>`;
+    return `<div class="panel-section"><h4>${S('plus',13)} Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name" maxlength="50"><button type="button" class="btn btn-primary" onclick="addCat()">Add</button></div></div>
+    ${state.categories.map(c => `<div class="cat-row"><input class="icon-input" maxlength="4" value="${escA(c.icon)}" oninput="updateCat('${c.id}','icon',this.value)"><input class="name-input" value="${escA(c.name)}" maxlength="50" oninput="updateCat('${c.id}','name',this.value)"><span class="meta">${c.products.length}</span><button type="button" class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat('${c.id}')">${S('trash',12)}</button></div>`).join('')}
+    <div style="margin-top:12px"><button type="button" class="btn btn-danger" onclick="resetAll()">${S('reset',13)} Reset All</button></div>`;
   }
   function addCat() {
     const n = document.getElementById('newCatName').value.trim();
@@ -1024,7 +1195,7 @@
     if (!c || !confirm(`Delete "${c.name}"?`)) return;
     state.categories = state.categories.filter(x => x.id !== id);
     if (state.activeCategory === id) state.activeCategory = 'all';
-    if (state.adminCat === id) state.adminCat = state.categories[0]?.id || null;
+    if (state.adminCat === id) state.adminCat = state.categories[0] ? state.categories[0].id : null;
     persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
   }
   function resetAll() {
@@ -1052,10 +1223,25 @@
 
   function paneGit() {
     return `<div class="panel-section"><h4>${S('github',14)} GitHub Sync</h4>
-    <p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Connect to sync data across all devices. Get token from <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → Generate new token (classic) → select <strong>repo</strong> scope → copy token.</p>
-    <div class="grid-2"><div class="field"><label>GitHub Username</label><input id="gitOwner" value="${escA(GIT.owner)}" placeholder="your-username"></div><div class="field"><label>Repository</label><input id="gitRepo" value="${escA(GIT.repo)}" placeholder="rhysco-data"></div><div class="field"><label>Branch</label><input id="gitBranch" value="${escA(GIT.branch)}" placeholder="main"></div><div class="field" style="grid-column:1/-1"><label>Personal Access Token</label><input id="gitToken" type="password" value="${escA(GIT.token)}" placeholder="ghp_..."></div></div>
-    <div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitConfig()">${S('save',13)} Save & Connect</button>${state.gitConnected?`<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?'✅ Synced':'❌ Failed'))">${S('cloud',13)} Push</button><button class="btn btn-success" onclick="loadFromGitHub().then(s=>s?toast('✅ Loaded'):toast('❌ Failed')).catch(()=>toast('❌ Error'))">${S('download',13)} Pull</button><button class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>`:''}</div>
-    <div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>${state.gitConnected?`✅ ${GIT.owner}/${GIT.repo}`:'⚡ Not connected'}</strong> ${state.syncPending?'| ⏳ Pending':''}</div></div>`;
+    <p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Sync your data across all devices via a private GitHub repo.<br>
+    <strong>Setup:</strong> 1) Create a repo on GitHub (public or private). 2) Generate a token at
+    <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" style="color:#06b6d4">github.com/settings/tokens</a>
+    → "Generate new token (classic)" → check the <strong>repo</strong> scope → copy the token.</p>
+    <div class="grid-2">
+      <div class="field"><label>GitHub Username *</label><input id="gitOwner" value="${escA(GIT.owner)}" placeholder="your-username" autocomplete="off"></div>
+      <div class="field"><label>Repository *</label><input id="gitRepo" value="${escA(GIT.repo)}" placeholder="rhysco-data" autocomplete="off"></div>
+      <div class="field"><label>Branch</label><input id="gitBranch" value="${escA(GIT.branch)}" placeholder="main" autocomplete="off"></div>
+      <div class="field" style="grid-column:1/-1"><label>Personal Access Token *</label><input id="gitToken" type="password" value="${escA(GIT.token)}" placeholder="ghp_... or github_pat_..." autocomplete="off" spellcheck="false"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button type="button" class="btn btn-primary" id="gitSaveBtn" onclick="saveGitConfig()">${S('save',13)} Save & Connect</button>
+      ${state.gitConnected ? `
+        <button type="button" class="btn btn-success" onclick="manualPush()">${S('cloud',13)} Push</button>
+        <button type="button" class="btn btn-success" onclick="manualPull()">${S('download',13)} Pull</button>
+        <button type="button" class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>` : ''}
+    </div>
+    <div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>${state.gitConnected ? `✅ ${esc(GIT.owner)}/${esc(GIT.repo)} (${esc(GIT.branch)})` : '⚡ Not connected'}</strong> ${state.syncPending?'| ⏳ Pending':''}</div>
+    </div>`;
   }
 
   /* ============== EVENTS ============== */
@@ -1072,17 +1258,29 @@
   }, { passive: true });
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
-  document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
+  document.addEventListener('click', e => {
+    const mm = document.getElementById('mobileMenu');
+    if (!mm) return;
+    if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) mm.classList.remove('show');
+  });
+
+  // Expose required functions to window for inline handlers
+  Object.assign(window, {
+    toggleTheme, toggleMobileMenu, openAdmin, closeAdmin, openProduct, closeProduct,
+    setCategory, clearSearch, login, logout, setAdminTab, adminPickCat, saveProduct,
+    editProduct, cancelEdit, deleteProduct, addCat, updateCat, deleteCat, resetAll,
+    updateCompany, updateStat, updateFeature, saveGitConfig, disconnectGit, manualPush, manualPull,
+    state
+  });
 
   /* ============== INIT ============== */
   applyTheme();
+  updateAdminBtn();
+  refreshAll();
   (async () => {
     if (state.gitConnected) {
-      try { await loadFromGitHub(); } catch { refreshAll(); }
-    } else {
-      refreshAll();
+      try { await loadFromGitHub({ silent: true }); } catch (e) { console.warn('Initial load failed:', e.message); }
     }
-    updateAdminBtn();
     updateGitBadge();
   })();
   </script>
