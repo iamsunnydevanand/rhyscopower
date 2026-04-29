@@ -1,84 +1,62 @@
 {
-  "categories": [
+  "company": {
+    "name": "Rhysco Power",
+    "tagline": "Premium Electrical Solutions",
+    "phone": "+91 6203691393",
+    "email": "test@test.com",
+    "whatsapp": "916203691393",
+    "address": "India",
+    "heroTitle": "Complete Electrical Solutions",
+    "heroSubtitle": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories"
+  },
+  "products": [
     {
-      "id": "cat_WAA_Cables",
-      "name": "WAA Cables",
-      "icon": "Ã°ÂÂÂ",
-      "products": [
-        {
-          "id": "p_1",
-          "name": "4.00SQMM WAA CABLE RED BLACK",
-          "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "Premium 100% pure copper flexible cable - Testing product"
-        }
-      ]
+      "id": "p1",
+      "name": "4.00SQMM WAA CABLE RED BLACK",
+      "spec": "100 MTR",
+      "icon": "🔌",
+      "desc": "Premium 100% pure copper flexible cable",
+      "category": "WAA Cables"
     }
   ],
-  "company": {
-    "name": "dev",
-    "tagline": "Premium Electrical Solutions",
-    "since": "2010",
-    "phone": "+91 6203691393",
-    "email": "bikram.biharelctrometer@gmail.com",
-    "whatsapp": "916203691393",
-    "address": "India (Bihar & NCR)",
-    "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables Ã¢ÂÂ¢ Solar & MC4 Ã¢ÂÂ¢ Meters Ã¢ÂÂ¢ Earthing Ã¢ÂÂ¢ Fire Safety Ã¢ÂÂ¢ Accessories"
-  },
   "stats": [
     {
-      "icon": "trophy",
+      "icon": "⭐",
       "number": "15+",
       "label": "Years"
     },
     {
-      "icon": "boxes",
+      "icon": "📦",
       "number": "1",
       "label": "Products"
     },
     {
-      "icon": "users",
+      "icon": "👥",
       "number": "1000+",
       "label": "Clients"
     },
     {
-      "icon": "truck",
+      "icon": "🚚",
       "number": "PAN India",
       "label": "Delivery"
     }
   ],
   "features": [
     {
-      "icon": "shield",
+      "icon": "🛡️",
       "title": "Quality Assured",
-      "desc": "ISO certified products"
+      "desc": "ISO certified"
     },
     {
-      "icon": "headset",
+      "icon": "🎧",
       "title": "24/7 Support",
-      "desc": "Technical assistance anytime"
+      "desc": "Always available"
     },
     {
-      "icon": "truck",
-      "title": "Pan India Supply",
-      "desc": "Fast shipping nationwide"
-    },
-    {
-      "icon": "rupee",
-      "title": "Best Price",
-      "desc": "Wholesale & dealer pricing"
-    },
-    {
-      "icon": "award",
-      "title": "Trusted Brands",
-      "desc": "Original grade only"
-    },
-    {
-      "icon": "boxes-feat",
-      "title": "Bulk Orders",
-      "desc": "Project supply specialist"
+      "icon": "🚚",
+      "title": "Fast Delivery",
+      "desc": "Nationwide"
     }
   ],
-  "lastSync": "2026-04-29T14:38:50.159Z"
+  "lastSync": "2026-04-29T15:07:52.780Z"
 }
