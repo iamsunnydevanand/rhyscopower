@@ -172,23 +172,32 @@
 
 // ========== DEFAULT DATA ==========
 const DEFAULT_DATA = {
-  cat: [{ id: "cat_WAA", name: "WAA Cables", icon: "🔌", prods: [{ id: "p_1", name: "4.0 SQMM WAA CABLE RED BLACK", spec: "100 MTR", icon: "🔌", desc: "Premium 100% pure copper flexible cable" }] }],
+  cat: [{ id: "cat_WAA", name: "WAA Cables", icon: "🔌", prods: [{ id: "p_1", name: "4.0 SQMM WAA CABLE RED BLACK", spec: "100 MTR", icon: "🔌", desc: "Premium 100% pure copper flexible cable for industrial use" }] }],
   com: { name: "Rhysco Power", ph: "+91 6203691393", em: "bikram.biharelctrometer@gmail.com", wa: "916203691393", ad: "India", ht: "Complete Electrical Solutions", hs: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety" },
   st: [{ n: "15+", l: "Years" }, { n: "100+", l: "Products" }, { n: "1000+", l: "Clients" }, { n: "PAN India", l: "Delivery" }],
-  ft: [{ t: "Quality Assured", d: "ISO certified products" }, { t: "24/7 Support", d: "Technical assistance" }, { t: "Fast Delivery", d: "Nationwide shipping" }, { t: "Best Price", d: "Wholesale pricing" }, { t: "Trusted Brands", d: "Original grade" }, { t: "Bulk Orders", d: "Project supply expert" }]
+  ft: [{ t: "Quality Assured", d: "ISO certified products" }, { t: "24/7 Support", d: "Technical assistance anytime" }, { t: "Fast Delivery", d: "Nationwide shipping" }, { t: "Best Price", d: "Wholesale pricing" }, { t: "Trusted Brands", d: "Original grade only" }, { t: "Bulk Orders", d: "Project supply expert" }]
 };
 
-// ========== STATE ==========
+// ========== GITHUB CONFIG (Admin ke liye) ==========
 let G = { owner: '', token: '', repo: 'rhysco-data', branch: 'main', path: 'data.json', ok: false };
-try { let s = JSON.parse(localStorage.getItem('rc_git') || '{}'); if (s.owner && s.token) { G.owner = s.owner; G.token = s.token; G.repo = s.repo || 'rhysco-data'; G.ok = true; } } catch(e) {}
+try { 
+  let s = JSON.parse(localStorage.getItem('rc_git') || '{}'); 
+  if (s.owner && s.token) { 
+    G.owner = s.owner; 
+    G.token = s.token; 
+    G.repo = s.repo || 'rhysco-data'; 
+    G.ok = true; 
+  } 
+} catch(e) {}
 
+// ========== APP STATE ==========
 let S = {
   cat: JSON.parse(JSON.stringify(DEFAULT_DATA.cat)),
   com: JSON.parse(JSON.stringify(DEFAULT_DATA.com)),
   st: JSON.parse(JSON.stringify(DEFAULT_DATA.st)),
   ft: JSON.parse(JSON.stringify(DEFAULT_DATA.ft)),
   adm: (() => { try { return localStorage.getItem('rc_auth') === '1'; } catch(e) { return false; } })(),
-  acat: 'all', q: '', tab: 'company', isLoading: true
+  acat: 'all', q: '', tab: 'company'
 };
 
 let autoTimer = null;
@@ -197,9 +206,24 @@ let autoTimer = null;
 const wa = (t) => `https://wa.me/${S.com.wa}?text=${encodeURIComponent(t)}`;
 const flat = () => S.cat.flatMap(c => c.prods.map(p => ({ ...p, cid: c.id, cn: c.name, ci: c.icon })));
 
-function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
-function toast(msg, dur = 2500) { let t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), dur); }
-function syncStatus(msg, type) { let b = document.getElementById('sync'); b.innerHTML = type === 'load' ? '<span class="loading-spinner"></span>' + msg : msg; b.className = 'sync on ' + type; setTimeout(() => b.className = 'sync', type === 'ok' ? 2000 : 4000); }
+function escapeHtml(str) { 
+  if (!str) return ''; 
+  return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); 
+}
+
+function toast(msg, dur = 2500) { 
+  let t = document.getElementById('toast'); 
+  t.textContent = msg; 
+  t.classList.add('show'); 
+  setTimeout(() => t.classList.remove('show'), dur); 
+}
+
+function syncStatus(msg, type) { 
+  let b = document.getElementById('sync'); 
+  b.innerHTML = type === 'load' ? '<span class="loading-spinner"></span>' + msg : msg; 
+  b.className = 'sync on ' + type; 
+  setTimeout(() => b.className = 'sync', type === 'ok' ? 2000 : 4000); 
+}
 
 // ========== RENDER FUNCTIONS ==========
 function fullRefresh() {
@@ -213,8 +237,10 @@ function fullRefresh() {
   document.getElementById('floatWa').href = wa('Hi');
   document.getElementById('contactWa').href = wa('Hi, enquiry');
   document.getElementById('contactRight').innerHTML = [
-    { l: 'Phone', v: S.com.ph }, { l: 'WhatsApp', v: '+' + S.com.wa },
-    { l: 'Email', v: S.com.em }, { l: 'Address', v: S.com.ad }
+    { l: 'Phone', v: S.com.ph }, 
+    { l: 'WhatsApp', v: '+' + S.com.wa },
+    { l: 'Email', v: S.com.em }, 
+    { l: 'Address', v: S.com.ad }
   ].map(i => `<div class="item"><strong>${i.l}</strong>: ${i.v}</div>`).join('');
   
   // Stats
@@ -224,146 +250,338 @@ function fullRefresh() {
   document.getElementById('featGrid').innerHTML = S.ft.map(f => `<div class="feat"><div class="ic">⭐</div><h4>${escapeHtml(f.t)}</h4><p>${escapeHtml(f.d)}</p></div>`).join('');
   
   // Categories Pills
-  document.getElementById('pills').innerHTML = '<button class="pill ' + (S.acat === 'all' ? 'on' : '') + '" onclick="setCat(\'all\')">📂 All</button>' + S.cat.map(c => `<button class="pill ${S.acat === c.id ? 'on' : ''}" onclick="setCat('${c.id}')">${c.icon} ${escapeHtml(c.name)}</button>`).join('');
+  document.getElementById('pills').innerHTML = '<button class="pill ' + (S.acat === 'all' ? 'on' : '') + '" onclick="setCat(\'all\')">📂 All</button>' + 
+    S.cat.map(c => `<button class="pill ${S.acat === c.id ? 'on' : ''}" onclick="setCat('${c.id}')">${c.icon} ${escapeHtml(c.name)}</button>`).join('');
   
   // Products Grid
   const all = flat();
   let base = S.acat === 'all' ? all : all.filter(p => p.cid === S.acat);
   const q = S.q.trim().toLowerCase();
-  let filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q)) : base;
+  let filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
   const grid = document.getElementById('prodGrid');
-  if (!filtered.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px">No products found</div>'; return; }
-  grid.innerHTML = filtered.map(p => `<div class="card"><div class="icon">${p.icon || '📦'}</div><h3>${escapeHtml(p.name)}</h3><div class="spec">📏 ${escapeHtml(p.spec)}</div><p>${escapeHtml(p.desc)}</p><span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span><div class="btns"><a class="wa" href="${wa('Interested in: ' + p.name)}" target="_blank">💬 Enquiry</a><button class="det" onclick="openProd('${p.id}')">Details</button></div></div>`).join('');
+  if (!filtered.length) { 
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px">No products found</div>'; 
+    return; 
+  }
+  grid.innerHTML = filtered.map(p => `<div class="card">
+    <div class="icon">${p.icon || '📦'}</div>
+    <h3>${escapeHtml(p.name)}</h3>
+    <div class="spec">📏 ${escapeHtml(p.spec)}</div>
+    <p>${escapeHtml(p.desc)}</p>
+    <span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span>
+    <div class="btns">
+      <a class="wa" href="${wa('Interested in: ' + p.name)}" target="_blank">💬 Enquiry</a>
+      <button class="det" onclick="openProd('${p.id}')">Details</button>
+    </div>
+  </div>`).join('');
 }
 
 function setCat(id) { S.acat = id; fullRefresh(); }
 function clearSearch() { S.q = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; fullRefresh(); }
+
 function openProd(id) {
   let p = flat().find(p => p.id === id);
   if (!p) return;
-  document.getElementById('prodModalCard').innerHTML = `<button class="close" onclick="closeProd()">✕</button><div style="text-align:center"><div style="font-size:60px">${p.icon || '📦'}</div><span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span><h2 style="margin:12px 0">${escapeHtml(p.name)}</h2><div style="color:#0ea5e9;font-weight:600">📏 ${escapeHtml(p.spec)}</div><p style="margin:16px 0">${escapeHtml(p.desc)}</p><div style="display:flex;gap:12px"><a href="${wa('Quote: ' + p.name)}" target="_blank" style="flex:1;padding:12px;border-radius:999px;background:#25D366;color:#fff;text-align:center;font-weight:700;text-decoration:none">💬 WhatsApp</a><a href="tel:${S.com.ph.replace(/\s+/g, '')}" style="flex:1;padding:12px;border-radius:999px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;text-align:center;font-weight:700;text-decoration:none">📞 Call</a></div></div>`;
+  document.getElementById('prodModalCard').innerHTML = `
+    <button class="close" onclick="closeProd()">✕</button>
+    <div style="text-align:center">
+      <div style="font-size:60px">${p.icon || '📦'}</div>
+      <span class="badge">${escapeHtml(p.ci)} ${escapeHtml(p.cn)}</span>
+      <h2 style="margin:12px 0">${escapeHtml(p.name)}</h2>
+      <div style="color:#0ea5e9;font-weight:600">📏 ${escapeHtml(p.spec)}</div>
+      <p style="margin:16px 0">${escapeHtml(p.desc)}</p>
+      <div style="display:flex;gap:12px">
+        <a href="${wa('Quote: ' + p.name)}" target="_blank" style="flex:1;padding:12px;border-radius:999px;background:#25D366;color:#fff;text-align:center;font-weight:700;text-decoration:none">💬 WhatsApp</a>
+        <a href="tel:${S.com.ph.replace(/\s+/g, '')}" style="flex:1;padding:12px;border-radius:999px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;text-align:center;font-weight:700;text-decoration:none">📞 Call</a>
+      </div>
+    </div>`;
   document.getElementById('prodModal').classList.add('open');
 }
 function closeProd() { document.getElementById('prodModal').classList.remove('open'); }
 
 // ========== THEME ==========
-(function () { let t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch (e) { return 'dark'; } })(); document.documentElement.dataset.theme = t; })();
-function toggleTheme() { let t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('rc_theme', t); } catch (e) { } document.documentElement.dataset.theme = t; }
+(function () { 
+  let t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch (e) { return 'dark'; } })(); 
+  document.documentElement.dataset.theme = t; 
+})();
 
-// ========== GITHUB API (UTF-8 Safe) ==========
-async function gh(ep, method = 'GET', body = null) {
-  if (!G.token) throw new Error('Token missing');
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15000);
+function toggleTheme() { 
+  let t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; 
+  try { localStorage.setItem('rc_theme', t); } catch (e) { } 
+  document.documentElement.dataset.theme = t; 
+}
+
+// ========== GITHUB API - PUBLIC READ (Bina Token Ke) ==========
+// YEH SABSE IMPORTANT FUNCTION HAI - NORMAL USER BINA TOKEN KE BHI DATA FETCH KAR SAKTA HAI
+async function fetchPublicGitHubData() {
+  // Pehle public repo se fetch karne ki koshish (bina token)
+  const publicUrl = `https://raw.githubusercontent.com/${G.owner}/${G.repo}/${G.branch}/${G.path}`;
   try {
-    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(G.owner)}/${encodeURIComponent(G.repo)}${ep}`, {
-      method, signal: controller.signal,
-      headers: { 'Authorization': `Bearer ${G.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-      body: body ? JSON.stringify(body) : null
+    const res = await fetch(publicUrl);
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+  } catch(e) {
+    console.warn('Public fetch failed:', e);
+  }
+  return null;
+}
+
+// Admin ke liye (token ke saath push karne ke liye)
+async function fetchWithToken() {
+  if (!G.token) return null;
+  const url = `https://api.github.com/repos/${G.owner}/${G.repo}/contents/${G.path}`;
+  try {
+    const res = await fetch(url, {
+      headers: { 'Authorization': `Bearer ${G.token}`, 'Accept': 'application/vnd.github.v3+json' }
     });
-    clearTimeout(timeout);
+    if (!res.ok) throw new Error('API error');
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message || `Error ${res.status}`);
-    return data;
-  } catch (e) { clearTimeout(timeout); throw e; }
+    const decoded = atob(data.content);
+    const jsonStr = decodeURIComponent(escape(decoded));
+    return JSON.parse(jsonStr);
+  } catch(e) {
+    console.warn('Token fetch failed:', e);
+    return null;
+  }
 }
 
-function utf8ToBase64(str) { return btoa(unescape(encodeURIComponent(str))); }
-function base64ToUtf8(base64) { return decodeURIComponent(escape(atob(base64))); }
-
-async function gitPush() {
-  const dataToSave = { cat: S.cat, com: S.com, st: S.st, ft: S.ft, lastUpdated: new Date().toISOString() };
+async function pushToGitHub() {
+  if (!G.ok || !G.token) return false;
+  const dataToSave = { cat: S.cat, com: S.com, st: S.st, ft: S.ft, updated: new Date().toISOString() };
   let sha = null;
-  try { const existing = await gh(`/contents/${G.path}`); sha = existing.sha; } catch (e) { }
-  const content = utf8ToBase64(JSON.stringify(dataToSave, null, 2));
-  await gh(`/contents/${G.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: G.branch, ...(sha ? { sha } : {}) });
-}
-
-async function gitPull() {
   try {
-    const res = await gh(`/contents/${G.path}`);
-    const jsonString = base64ToUtf8(res.content);
-    const data = JSON.parse(jsonString);
-    if (data.cat && Array.isArray(data.cat)) S.cat = data.cat;
-    if (data.com && data.com.name) S.com = { ...DEFAULT_DATA.com, ...data.com };
-    if (data.st && Array.isArray(data.st)) S.st = data.st;
-    if (data.ft && Array.isArray(data.ft)) S.ft = data.ft;
-    return true;
-  } catch (e) { console.warn('Git pull failed:', e); return false; }
+    const existing = await fetch(`https://api.github.com/repos/${G.owner}/${G.repo}/contents/${G.path}`, {
+      headers: { 'Authorization': `Bearer ${G.token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (existing.ok) {
+      const existingData = await existing.json();
+      sha = existingData.sha;
+    }
+  } catch(e) {}
+  
+  const jsonStr = JSON.stringify(dataToSave, null, 2);
+  const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
+  
+  const res = await fetch(`https://api.github.com/repos/${G.owner}/${G.repo}/contents/${G.path}`, {
+    method: 'PUT',
+    headers: { 'Authorization': `Bearer ${G.token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      message: `Update ${new Date().toLocaleString()}`, 
+      content: base64Content, 
+      branch: G.branch, 
+      ...(sha ? { sha } : {}) 
+    })
+  });
+  return res.ok;
 }
 
-// ========== AUTO SYNC ==========
+// ========== DATA LOAD - SABSE IMPORTANT: HAR USER KE LIYE GITHUB SE FETCH ==========
+async function loadDataFromGitHub() {
+  if (!G.owner || !G.repo) return false;
+  
+  syncStatus('🔄 Loading latest data...', 'load');
+  
+  // Pehle public fetch try karo (bina token - normal users ke liye)
+  let gitData = await fetchPublicGitHubData();
+  
+  // Agar public fetch fail ho aur token hai to token wala fetch try karo
+  if (!gitData && G.token) {
+    gitData = await fetchWithToken();
+  }
+  
+  if (gitData) {
+    if (gitData.cat && Array.isArray(gitData.cat)) S.cat = gitData.cat;
+    if (gitData.com && gitData.com.name) S.com = { ...DEFAULT_DATA.com, ...gitData.com };
+    if (gitData.st && Array.isArray(gitData.st)) S.st = gitData.st;
+    if (gitData.ft && Array.isArray(gitData.ft)) S.ft = gitData.ft;
+    fullRefresh();
+    syncStatus('✅ Latest data loaded', 'ok');
+    return true;
+  }
+  
+  syncStatus('⚠️ Using default data', 'fail');
+  return false;
+}
+
+// ========== AUTO SYNC (Sirf Admin ke liye) ==========
 function autoSyncToGitHub() {
-  if (!G.ok) return;
+  if (!G.ok || !G.token) return;
   clearTimeout(autoTimer);
-  autoTimer = setTimeout(async () => { try { await gitPush(); } catch (e) { console.warn(e); } }, 2000);
+  autoTimer = setTimeout(async () => { 
+    try { 
+      await pushToGitHub(); 
+    } catch (e) { 
+      console.warn('Auto-sync failed:', e); 
+    } 
+  }, 2000);
 }
 
 // ========== ADMIN PANEL ==========
 function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
 function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
-function updateAdminBtn() { let btn = document.getElementById('adminBtn'); if (S.adm) { btn.className = 'btn-admin out'; btn.textContent = '🚪 Logout'; btn.onclick = logout; } else { btn.className = 'btn-admin'; btn.textContent = '🔑 Admin'; btn.onclick = openAdmin; } }
-function login() { if (document.getElementById('au')?.value === 'sunny' && document.getElementById('ap')?.value === 'admin') { S.adm = true; localStorage.setItem('rc_auth', '1'); updateAdminBtn(); renderAdmin(); toast('Welcome Admin!'); } else { document.getElementById('le').textContent = 'Invalid credentials'; } return false; }
-function logout() { S.adm = false; localStorage.removeItem('rc_auth'); updateAdminBtn(); closeAdmin(); fullRefresh(); }
+
+function updateAdminBtn() { 
+  let btn = document.getElementById('adminBtn'); 
+  if (S.adm) { 
+    btn.className = 'btn-admin out'; 
+    btn.textContent = '🚪 Logout'; 
+    btn.onclick = logout; 
+  } else { 
+    btn.className = 'btn-admin'; 
+    btn.textContent = '🔑 Admin'; 
+    btn.onclick = openAdmin; 
+  } 
+}
+
+function login() { 
+  if (document.getElementById('au')?.value === 'sunny' && document.getElementById('ap')?.value === 'admin') { 
+    S.adm = true; 
+    localStorage.setItem('rc_auth', '1'); 
+    updateAdminBtn(); 
+    renderAdmin(); 
+    toast('Welcome Admin!'); 
+  } else { 
+    document.getElementById('le').textContent = 'Invalid credentials'; 
+  } 
+  return false; 
+}
+
+function logout() { 
+  S.adm = false; 
+  localStorage.removeItem('rc_auth'); 
+  updateAdminBtn(); 
+  closeAdmin(); 
+}
 
 function renderAdmin() {
   if (!S.adm) {
     document.getElementById('adminTabs').innerHTML = '';
-    document.getElementById('adminPane').innerHTML = `<form onsubmit="return login()" style="max-width:300px;margin:20px auto"><h3>Admin Login</h3><div class="fld"><label>Username</label><input id="au" required></div><div class="fld"><label>Password</label><input id="ap" type="password" required></div><div id="le" style="color:#ef4444"></div><button style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px;width:100%">Sign In</button></form>`;
+    document.getElementById('adminPane').innerHTML = `<form onsubmit="return login()" style="max-width:300px;margin:20px auto">
+      <h3>Admin Login</h3>
+      <div class="fld"><label>Username</label><input id="au" required></div>
+      <div class="fld"><label>Password</label><input id="ap" type="password" required></div>
+      <div id="le" style="color:#ef4444"></div>
+      <button style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px;width:100%">Sign In</button>
+    </form>`;
     return;
   }
-  document.getElementById('adminTabs').innerHTML = `<button class="${S.tab === 'company' ? 'on' : ''}" onclick="setTab('company')">🏢 Company</button><button class="${S.tab === 'git' ? 'on' : ''}" onclick="setTab('git')">🔗 GitHub</button><button class="${S.tab === 'stats' ? 'on' : ''}" onclick="setTab('stats')">📊 Stats</button><button class="${S.tab === 'features' ? 'on' : ''}" onclick="setTab('features')">⭐ Features</button>`;
+  document.getElementById('adminTabs').innerHTML = `
+    <button class="${S.tab === 'company' ? 'on' : ''}" onclick="setTab('company')">🏢 Company</button>
+    <button class="${S.tab === 'git' ? 'on' : ''}" onclick="setTab('git')">🔗 GitHub</button>
+    <button class="${S.tab === 'stats' ? 'on' : ''}" onclick="setTab('stats')">📊 Stats</button>
+    <button class="${S.tab === 'features' ? 'on' : ''}" onclick="setTab('features')">⭐ Features</button>`;
   renderPane();
 }
+
 function setTab(tab) { S.tab = tab; renderAdmin(); }
+
 function renderPane() {
   let p = document.getElementById('adminPane');
-  if (S.tab === 'company') p.innerHTML = `<h4>Company Settings</h4><div class="fld"><label>Name</label><input value="${escapeHtml(S.com.name)}" oninput="updateCompany('name',this.value)"></div><div class="fld"><label>Hero Title</label><input value="${escapeHtml(S.com.ht)}" oninput="updateCompany('ht',this.value)"></div><div class="fld"><label>Hero Subtitle</label><input value="${escapeHtml(S.com.hs)}" oninput="updateCompany('hs',this.value)"></div><div class="fld"><label>Phone</label><input value="${escapeHtml(S.com.ph)}" oninput="updateCompany('ph',this.value)"></div><div class="fld"><label>WhatsApp</label><input value="${escapeHtml(S.com.wa)}" oninput="updateCompany('wa',this.value)"></div><div class="fld"><label>Email</label><input value="${escapeHtml(S.com.em)}" oninput="updateCompany('em',this.value)"></div><div class="fld"><label>Address</label><input value="${escapeHtml(S.com.ad)}" oninput="updateCompany('ad',this.value)"></div><button onclick="forceSyncToGitHub()" style="margin-top:12px;padding:10px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:10px">💾 Save & Sync</button>`;
-  if (S.tab === 'git') p.innerHTML = `<h4>GitHub Setup</h4><div class="fld"><label>Username</label><input id="go" value="${escapeHtml(G.owner)}"></div><div class="fld"><label>Token</label><input id="gt" type="password" value="${G.token}"></div><div class="fld"><label>Repository</label><input id="gr" value="${escapeHtml(G.repo)}"></div><button onclick="saveGit()" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px">💾 Save & Connect</button>${G.ok ? `<div style="margin-top:12px;padding:12px;background:#10b98120;border-radius:10px">✅ GitHub Connected</div>` : ''}`;
-  if (S.tab === 'stats') p.innerHTML = `<h4>Statistics</h4><div id="statsEditor"></div><button onclick="addStat()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add</button>`;
-  if (S.tab === 'stats') document.getElementById('statsEditor').innerHTML = S.st.map((s, i) => `<div style="display:flex;gap:8px;margin-bottom:8px"><input value="${escapeHtml(s.n)}" onchange="updateStat(${i},'n',this.value)" placeholder="Number"><input value="${escapeHtml(s.l)}" onchange="updateStat(${i},'l',this.value)" placeholder="Label"><button onclick="removeStat(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button></div>`).join('');
-  if (S.tab === 'features') p.innerHTML = `<h4>Features</h4><div id="featuresEditor"></div><button onclick="addFeature()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add</button>`;
-  if (S.tab === 'features') document.getElementById('featuresEditor').innerHTML = S.ft.map((f, i) => `<div style="display:flex;gap:8px;margin-bottom:8px"><input value="${escapeHtml(f.t)}" onchange="updateFeature(${i},'t',this.value)" placeholder="Title"><input value="${escapeHtml(f.d)}" onchange="updateFeature(${i},'d',this.value)" placeholder="Description"><button onclick="removeFeature(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button></div>`).join('');
+  if (S.tab === 'company') p.innerHTML = `
+    <h4>Company Settings</h4>
+    <div class="fld"><label>Name</label><input value="${escapeHtml(S.com.name)}" oninput="updateCompany('name',this.value)"></div>
+    <div class="fld"><label>Hero Title</label><input value="${escapeHtml(S.com.ht)}" oninput="updateCompany('ht',this.value)"></div>
+    <div class="fld"><label>Hero Subtitle</label><input value="${escapeHtml(S.com.hs)}" oninput="updateCompany('hs',this.value)"></div>
+    <div class="fld"><label>Phone</label><input value="${escapeHtml(S.com.ph)}" oninput="updateCompany('ph',this.value)"></div>
+    <div class="fld"><label>WhatsApp</label><input value="${escapeHtml(S.com.wa)}" oninput="updateCompany('wa',this.value)"></div>
+    <div class="fld"><label>Email</label><input value="${escapeHtml(S.com.em)}" oninput="updateCompany('em',this.value)"></div>
+    <div class="fld"><label>Address</label><input value="${escapeHtml(S.com.ad)}" oninput="updateCompany('ad',this.value)"></div>
+    <button onclick="manualSync()" style="margin-top:12px;padding:10px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:10px">💾 Save to GitHub</button>`;
+  
+  if (S.tab === 'git') p.innerHTML = `
+    <h4>GitHub Setup (Admin Only)</h4>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">⚠️ Normal users will read data from GitHub without token. Only admin needs token to save changes.</p>
+    <div class="fld"><label>GitHub Username</label><input id="go" value="${escapeHtml(G.owner)}" placeholder="username"></div>
+    <div class="fld"><label>Personal Access Token</label><input id="gt" type="password" value="${G.token}" placeholder="ghp_... (for saving only)"></div>
+    <div class="fld"><label>Repository Name</label><input id="gr" value="${escapeHtml(G.repo)}" placeholder="rhysco-data"></div>
+    <button onclick="saveGitConfig()" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:10px;border-radius:10px;width:100%">💾 Save Configuration</button>
+    ${G.owner ? `<div style="margin-top:12px;padding:12px;background:#10b98120;border-radius:10px">✅ GitHub configured: ${G.owner}/${G.repo}</div>` : ''}`;
+  
+  if (S.tab === 'stats') p.innerHTML = `<h4>Statistics</h4><div id="statsEditor"></div><button onclick="addStat()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add Stat</button>`;
+  if (S.tab === 'stats') document.getElementById('statsEditor').innerHTML = S.st.map((s, i) => `
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <input value="${escapeHtml(s.n)}" onchange="updateStat(${i},'n',this.value)" placeholder="Number">
+      <input value="${escapeHtml(s.l)}" onchange="updateStat(${i},'l',this.value)" placeholder="Label">
+      <button onclick="removeStat(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button>
+    </div>`).join('');
+  
+  if (S.tab === 'features') p.innerHTML = `<h4>Features</h4><div id="featuresEditor"></div><button onclick="addFeature()" style="margin-top:8px;padding:8px 16px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:8px">+ Add Feature</button>`;
+  if (S.tab === 'features') document.getElementById('featuresEditor').innerHTML = S.ft.map((f, i) => `
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <input value="${escapeHtml(f.t)}" onchange="updateFeature(${i},'t',this.value)" placeholder="Title">
+      <input value="${escapeHtml(f.d)}" onchange="updateFeature(${i},'d',this.value)" placeholder="Description">
+      <button onclick="removeFeature(${i})" style="background:#ef4444;color:#fff;padding:6px 12px;border-radius:6px">🗑️</button>
+    </div>`).join('');
 }
+
 function updateCompany(f, v) { S.com[f] = v; fullRefresh(); autoSyncToGitHub(); }
 function updateStat(i, f, v) { if (S.st[i]) { S.st[i][f] = v; fullRefresh(); autoSyncToGitHub(); } }
 function addStat() { S.st.push({ n: 'New', l: 'Stat' }); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
 function removeStat(i) { S.st.splice(i, 1); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
 function updateFeature(i, f, v) { if (S.ft[i]) { S.ft[i][f] = v; fullRefresh(); autoSyncToGitHub(); } }
-function addFeature() { S.ft.push({ t: 'New', d: 'Description' }); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
+function addFeature() { S.ft.push({ t: 'New Feature', d: 'Description' }); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
 function removeFeature(i) { S.ft.splice(i, 1); renderAdmin(); fullRefresh(); autoSyncToGitHub(); }
-async function forceSyncToGitHub() { if (!G.ok) { toast('⚠️ Configure GitHub first'); return; } try { await gitPush(); toast('✅ Saved'); } catch (e) { toast('❌ ' + e.message); } }
-async function saveGit() { let o = document.getElementById('go')?.value?.trim(), t = document.getElementById('gt')?.value?.trim(); if (!o || !t) { toast('Required'); return; } G.owner = o; G.token = t; G.repo = document.getElementById('gr')?.value?.trim() || 'rhysco-data'; try { localStorage.setItem('rc_git', JSON.stringify({ owner: o, token: t, repo: G.repo, branch: 'main' })); G.ok = true; toast('✅ Saved'); await gitPush(); renderAdmin(); } catch (e) { toast('❌ ' + e.message); } }
+
+async function manualSync() { 
+  if (!G.owner || !G.repo) { toast('⚠️ Configure GitHub first'); return; } 
+  if (!G.token) { toast('⚠️ Token required for saving'); return; }
+  try { 
+    await pushToGitHub(); 
+    toast('✅ Saved to GitHub'); 
+  } catch (e) { 
+    toast('❌ ' + e.message); 
+  } 
+}
+
+async function saveGitConfig() { 
+  let o = document.getElementById('go')?.value?.trim(); 
+  let t = document.getElementById('gt')?.value?.trim(); 
+  if (!o) { toast('Username required'); return; } 
+  G.owner = o; 
+  G.token = t || ''; 
+  G.repo = document.getElementById('gr')?.value?.trim() || 'rhysco-data'; 
+  try { 
+    localStorage.setItem('rc_git', JSON.stringify({ owner: G.owner, token: G.token, repo: G.repo, branch: 'main' })); 
+    G.ok = !!G.token;
+    toast('✅ Configuration saved'); 
+    renderAdmin(); 
+    // Save current data to GitHub if token exists
+    if (G.token) {
+      await pushToGitHub();
+    }
+  } catch (e) { 
+    toast('❌ ' + e.message); 
+  } 
+}
 
 // ========== SEARCH ==========
-document.getElementById('searchInput').addEventListener('input', e => { S.q = e.target.value; document.getElementById('clearBtn').style.display = S.q ? 'inline-block' : 'none'; fullRefresh(); });
+document.getElementById('searchInput').addEventListener('input', e => { 
+  S.q = e.target.value; 
+  document.getElementById('clearBtn').style.display = S.q ? 'inline-block' : 'none'; 
+  fullRefresh(); 
+});
 
-// ========== INIT - CRITICAL FIX FOR NEW USERS ==========
+// ========== MAIN INIT - HAR USER KE LIYE GITHUB SE DATA FETCH ==========
 (async function init() {
   updateAdminBtn();
-  fullRefresh(); // Show default data immediately (no blank page)
   
-  if (G.ok) {
-    syncStatus('🔄 Loading latest data...', 'load');
-    try {
-      const success = await gitPull();
-      if (success) {
-        fullRefresh(); // Re-render with GitHub data
-        syncStatus('✅ Latest data loaded', 'ok');
-        toast('Latest data loaded from cloud');
-      } else {
-        syncStatus('⚠️ Using local data', 'fail');
-      }
-    } catch (e) {
-      console.warn('Git pull error:', e);
-      syncStatus('⚠️ Using default data', 'fail');
-    }
+  // Pehle default data se render karo (taaki page khali na dikhe)
+  fullRefresh();
+  
+  // GitHub se data load karo - YEH SABSE IMPORTANT HAI
+  // Ab chahe admin ho ya normal user, data GitHub se fetch hoga
+  if (G.owner && G.repo) {
+    await loadDataFromGitHub();
+  } else {
+    syncStatus('⚠️ GitHub not configured', 'fail');
   }
   
-  // Listen for page visibility to auto-sync
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && G.ok) {
-      gitPull().then(() => fullRefresh()).catch(() => {});
+  // Jab page visible ho tab auto-refresh (taaki dusre device se kiye changes dikhe)
+  document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState === 'visible' && G.owner && G.repo) {
+      await loadDataFromGitHub();
     }
   });
 })();
