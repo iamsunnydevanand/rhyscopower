@@ -12,8 +12,7 @@
     :root {
       --bg: #f5f5f7; --bg-2: #ffffff; --text: #1a1a2e; --text-2: #4a4a6a;
       --border: rgba(0,0,0,0.08); --card-bg: rgba(255,255,255,0.7);
-      --nav-bg: rgba(255,255,255,0.78);
-      --hero-overlay: linear-gradient(135deg, rgba(20,20,40,0.55), rgba(124,58,237,0.35));
+      --nav-bg: rgba(255,255,255,0.78); --hero-overlay: linear-gradient(135deg, rgba(20,20,40,0.55), rgba(124,58,237,0.35));
       --shadow: 0 8px 30px rgba(0,0,0,0.06);
       --grad: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
       --grad-warm: linear-gradient(135deg, #f97316 0%, #ff2d75 100%);
@@ -22,8 +21,7 @@
     [data-theme="dark"] {
       --bg: #0a0a0f; --bg-2: #111118; --text: #ffffff; --text-2: #a0a0b0;
       --border: rgba(255,255,255,0.08); --card-bg: rgba(18,18,28,0.72);
-      --nav-bg: rgba(10,10,18,0.72);
-      --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.78), rgba(124,58,237,0.42));
+      --nav-bg: rgba(10,10,18,0.72); --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.78), rgba(124,58,237,0.42));
       --shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,6 +32,13 @@
     input, textarea { font-family: inherit; }
     .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .grad-text-warm { background: var(--grad-warm); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* LOADING OVERLAY */
+    .loading-overlay { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    .loading-overlay.hidden { display: none; }
+    .loading-spinner { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: #06b6d4; border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     .nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); width: 94%; max-width: 1300px; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; transition: all .3s; }
     .nav.scrolled { top: 6px; padding: 6px 12px; }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; }
@@ -109,9 +114,7 @@
     .btn-wa:hover { filter: brightness(1.1); }
     .btn-detail { background: var(--grad); }
     .btn-detail:hover { filter: brightness(1.1); }
-    .btn-wa svg, .btn-detail svg { width: 13px; height: 13px; }
     .empty { text-align: center; padding: 50px 20px; border-radius: 22px; background: var(--card-bg); border: 1px solid var(--border); }
-    .empty svg { width: 44px; height: 44px; color: var(--text-2); margin: 0 auto 10px; display: block; }
     .features-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
     .feat { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 24px; border-radius: 22px; }
     .feat:hover { transform: translateY(-4px); }
@@ -123,13 +126,12 @@
     @media (max-width: 768px) { .contact-card { grid-template-columns: 1fr; } }
     .contact-left { position: relative; padding: 36px 32px; background: var(--grad); color: #fff; }
     .contact-left::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.4), transparent 40%), radial-gradient(circle at 80% 80%, rgba(255,255,255,.3), transparent 40%); mix-blend-mode: overlay; opacity: .3; }
-    .contact-left > * { position: relative; }
+    .contact-left>* { position: relative; }
     .contact-left .badge-pill { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.25); }
     .contact-left h2 { font-size: clamp(26px, 3.5vw, 38px); font-weight: 900; letter-spacing: -0.02em; margin: 0 0 12px; }
     .contact-left p { color: rgba(255,255,255,0.9); font-size: 14px; }
     .wa-cta { display: inline-flex; align-items: center; gap: 7px; margin-top: 22px; padding: 12px 22px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 700; font-size: 13px; }
     .wa-cta:hover { filter: brightness(1.1); }
-    .wa-cta svg { width: 15px; height: 15px; }
     .contact-right { padding: 36px 32px; display: flex; flex-direction: column; gap: 10px; }
     .contact-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 16px; }
     a.contact-item:hover { background: var(--border); }
@@ -158,11 +160,6 @@
     .pdetail-spec { font-size: 12px; font-weight: 700; color: #06b6d4; }
     [data-theme="dark"] .pdetail-spec { color: #22d3ee; }
     .pdetail-body { padding: 0 20px 20px; }
-    .pdetail-desc { color: var(--text-2); font-size: 13px; line-height: 1.6; margin: 0 0 14px; }
-    .pdetail-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
-    .pdetail-badge { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 10px 6px; text-align: center; }
-    .pdetail-badge svg { width: 16px; height: 16px; margin: 0 auto 3px; display: block; }
-    .pdetail-badge .lbl { font-size: 10px; font-weight: 700; }
     .pdetail-actions { display: flex; gap: 6px; }
     .pdetail-actions a { flex: 1; padding: 12px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 12px; text-align: center; }
     .pdetail-actions a.wa { background: var(--wa); }
@@ -205,7 +202,6 @@
     .git-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; background: var(--success); color: #fff; font-size: 10px; font-weight: 700; }
     .git-badge.pending { background: var(--warning); color: #000; }
     .git-badge.error { background: var(--danger); }
-    .sync-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: var(--grad); color: #fff; text-align: center; padding: 4px; font-size: 11px; font-weight: 600; display: none; }
     @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)} }
     @keyframes glow { 0%,100%{box-shadow:0 10px 40px rgba(0,212,255,.3)}50%{box-shadow:0 14px 50px rgba(0,212,255,.5)} }
     @keyframes glow-wa { 0%,100%{box-shadow:0 14px 30px rgba(37,211,102,.4)}50%{box-shadow:0 18px 40px rgba(37,211,102,.6)} }
@@ -214,15 +210,20 @@
   </style>
 </head>
 <body>
-  <div class="sync-bar" id="syncBar"></div>
+  <!-- LOADING OVERLAY -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div style="font-weight:600;color:var(--text-2)">Loading latest data...</div>
+  </div>
+
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="50%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs></svg>
 
   <nav class="nav" id="nav">
     <a href="#home" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="logo-text grad-text" id="navName">Rhysco Power</span></a>
     <div class="nav-links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a></div>
     <div class="nav-actions">
-      <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
-      <button class="admin-btn" id="adminBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg><span id="adminBtnLabel">Admin</span></button>
+      <button class="icon-btn" onclick="toggleTheme()" aria-label="Theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
+      <button class="admin-btn" id="adminBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg><span id="adminBtnLabel">Admin</span></button>
       <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
     </div>
   </nav>
@@ -230,18 +231,18 @@
 
   <section id="home" class="hero">
     <div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-fade"></div>
-    <div class="hero-content"><span class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Since 2010 • Premium Quality</span><h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1><p id="heroSubtitle"></p><a href="#catalog" class="cta">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="hero-content"><span class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Since 2010</span><h1 id="heroTitle"></h1><p id="heroSubtitle"></p><a href="#catalog" class="cta">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
   </section>
 
   <div class="stats" id="statsGrid"></div>
 
   <section class="block"><a id="catalog" style="position:relative;top:-90px"></a>
-    <div class="section-head"><span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span><h2>Premium <span class="grad-text">Catalog</span></h2><p>Industrial-grade electrical equipment trusted by contractors, electricians and procurement teams across India.</p></div>
+    <div class="section-head"><span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span><h2>Premium <span class="grad-text">Catalog</span></h2><p>Industrial-grade electrical equipment trusted by contractors and electricians across India.</p></div>
     <div class="controls"><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="search" id="searchInput" placeholder="Search products…"><button id="clearBtn" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button></div><div class="pills" id="categoryPills"></div></div>
     <div id="productsGrid" class="grid"></div>
   </section>
 
-  <section id="features" class="block"><div class="section-head"><span class="eyebrow">Why Rhysco Power</span><h2>Built for <span class="grad-text-warm">professionals</span></h2><p>Trusted by electricians, contractors and procurement teams across India for over 15 years.</p></div><div class="features-grid" id="featuresGrid"></div></section>
+  <section id="features" class="block"><div class="section-head"><span class="eyebrow">Why Choose Us</span><h2>Built for <span class="grad-text-warm">professionals</span></h2><p>Trusted by electricians and contractors across India for over 15 years.</p></div><div class="features-grid" id="featuresGrid"></div></section>
 
   <section id="contact" class="block"><div class="contact-card"><div class="contact-left"><span class="badge-pill">Get in Touch</span><h2>Let's power your<br>next project.</h2><p>Reach out for product enquiries, bulk orders, or technical guidance.</p><a id="contactWa" href="#" target="_blank" rel="noopener" class="wa-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a></div><div class="contact-right" id="contactRight"></div></div></section>
 
@@ -257,41 +258,29 @@
 <script>
 'use strict';
 
-// ========== DATA ==========
+// ========== DEFAULT DATA (fallback agar GitHub connect nahi hai) ==========
 const DEFAULT_CATEGORIES = [
-  {
-    id: 'cat_WAA_Cables',
-    name: 'WAA Cables',
-    icon: '🔌',
-    products: [
-      { id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable' }
-    ]
-  }
+  { id: 'cat_WAA_Cables', name: 'WAA Cables', icon: '🔌', products: [
+    { id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable' }
+  ]}
 ];
 
 const DEFAULTS = {
   categories: DEFAULT_CATEGORIES,
   company: { name: 'Rhysco Power', tagline: 'Premium Electrical Solutions', since: '2010', phone: '+91 6203691393', email: 'bikram.biharelctrometer@gmail.com', whatsapp: '916203691393', address: 'India (Bihar & NCR)', heroTitle: 'Complete Electrical Solutions', heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories' },
-  stats: [{ icon: 'trophy', number: '15+', label: 'Years' }, { icon: 'boxes', number: '1', label: 'Products' }, { icon: 'users', number: '1000+', label: 'Clients' }, { icon: 'truck', number: 'PAN India', label: 'Delivery' }],
-  features: [{ icon: 'shield', title: 'Quality Assured', desc: 'ISO certified products' }, { icon: 'headset', title: '24/7 Support', desc: 'Technical assistance anytime' }, { icon: 'truck', title: 'Pan India Supply', desc: 'Fast shipping nationwide' }, { icon: 'rupee', title: 'Best Price', desc: 'Wholesale & dealer pricing' }, { icon: 'award', title: 'Trusted Brands', desc: 'Original grade only' }, { icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply specialist' }]
+  stats: [{ icon: 'trophy', number: '15+', label: 'Years' },{ icon: 'boxes', number: '1', label: 'Products' },{ icon: 'users', number: '1000+', label: 'Clients' },{ icon: 'truck', number: 'PAN India', label: 'Delivery' }],
+  features: [{ icon: 'shield', title: 'Quality Assured', desc: 'ISO certified products' },{ icon: 'headset', title: '24/7 Support', desc: 'Technical assistance anytime' },{ icon: 'truck', title: 'Pan India Supply', desc: 'Fast shipping nationwide' },{ icon: 'rupee', title: 'Best Price', desc: 'Wholesale & dealer pricing' },{ icon: 'award', title: 'Trusted Brands', desc: 'Original grade only' },{ icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply specialist' }]
 };
 
-// ========== STORAGE ==========
-const LS = {
-  get(k, fb) { try { const v = localStorage.getItem('rc_' + k); return v ? JSON.parse(v) : fb; } catch { return fb; } },
-  set(k, v) { try { localStorage.setItem('rc_' + k, JSON.stringify(v)); } catch(e) { toast('Storage full!'); } }
-};
-
-// ========== GIT ==========
+// ========== GIT CONFIG ==========
 const GIT = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
-Object.assign(GIT, LS.get('git_cfg', {}));
 
 // ========== STATE ==========
 let state = {
-  categories: LS.get('cat', DEFAULTS.categories),
-  company: { ...DEFAULTS.company, ...LS.get('com', {}) },
-  stats: LS.get('stat', DEFAULTS.stats),
-  features: LS.get('feat', DEFAULTS.features),
+  categories: JSON.parse(JSON.stringify(DEFAULTS.categories)),
+  company: { ...DEFAULTS.company },
+  stats: JSON.parse(JSON.stringify(DEFAULTS.stats)),
+  features: JSON.parse(JSON.stringify(DEFAULTS.features)),
   isAdmin: false,
   activeCategory: 'all',
   query: '',
@@ -299,37 +288,16 @@ let state = {
   adminCat: null,
   editingId: null,
   editDraft: { name: '', spec: '', desc: '', icon: '📦' },
-  syncPending: false,
-  gitConnected: !!(GIT.token && GIT.owner)
+  gitConnected: false
 };
 
 let syncTimer = null, searchTimer = null;
-
-function persist() {
-  LS.set('cat', state.categories);
-  LS.set('com', state.company);
-  LS.set('stat', state.stats);
-  LS.set('feat', state.features);
-  LS.set('auth', state.isAdmin);
-  state.syncPending = true;
-  LS.set('sync', true);
-  clearTimeout(syncTimer);
-  syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub(); }, 2000);
-}
-
-// ========== SYNC BAR ==========
-function showSyncBar(msg) {
-  const bar = document.getElementById('syncBar');
-  bar.textContent = msg;
-  bar.style.display = 'block';
-  setTimeout(() => { bar.style.display = 'none'; }, 3000);
-}
 
 // ========== GITHUB API ==========
 async function gitAPI(endpoint, method = 'GET', body = null) {
   if (!GIT.token) throw new Error('No token');
   const ctrl = new AbortController();
-  const to = setTimeout(() => ctrl.abort(), 15000);
+  const to = setTimeout(() => ctrl.abort(), 12000);
   try {
     const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(GIT.owner)}/${encodeURIComponent(GIT.repo)}${endpoint}`, {
       method, signal: ctrl.signal,
@@ -337,9 +305,7 @@ async function gitAPI(endpoint, method = 'GET', body = null) {
       body: body ? JSON.stringify(body) : null
     });
     clearTimeout(to);
-    if (res.status === 401 || res.status === 403) throw new Error('Invalid token');
-    if (res.status === 404) throw new Error('Repo not found');
-    if (!res.ok) throw new Error('Error ' + res.status);
+    if (!res.ok) throw new Error('API error ' + res.status);
     return res.json();
   } catch (e) { clearTimeout(to); throw e; }
 }
@@ -352,10 +318,7 @@ async function syncToGitHub() {
     try { sha = (await gitAPI(`/contents/${GIT.path}`)).sha; } catch {}
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
     await gitAPI(`/contents/${GIT.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: GIT.branch, ...(sha ? { sha } : {}) });
-    state.syncPending = false;
-    LS.set('sync', false);
     updateGitBadge();
-    console.log('✅ Synced to GitHub');
     return true;
   } catch (e) {
     console.warn('Sync failed:', e.message);
@@ -364,40 +327,18 @@ async function syncToGitHub() {
   }
 }
 
-// ===== FIX: Load from GitHub with localStorage override =====
 async function loadFromGitHub() {
-  if (!state.gitConnected) return false;
+  if (!GIT.token || !GIT.owner) return false;
   try {
     const raw = await gitAPI(`/contents/${GIT.path}`);
     const content = JSON.parse(atob(raw.content));
-    
-    // FIX: GitHub data ko localStorage me SAVE karo
-    if (content.categories && content.categories.length > 0) {
-      state.categories = content.categories;
-      LS.set('cat', state.categories);
-    }
-    if (content.company && content.company.name) {
-      state.company = { ...DEFAULTS.company, ...content.company };
-      LS.set('com', state.company);
-    }
-    if (content.stats && content.stats.length > 0) {
-      state.stats = content.stats;
-      LS.set('stat', state.stats);
-    }
-    if (content.features && content.features.length > 0) {
-      state.features = content.features;
-      LS.set('feat', state.features);
-    }
-    state.syncPending = false;
-    LS.set('sync', false);
-    refreshAll();
-    updateGitBadge();
-    showSyncBar('✅ Latest data loaded from GitHub');
-    console.log('✅ Loaded from GitHub:', state.company.name, state.categories.length, 'categories');
+    if (content.categories?.length) state.categories = content.categories;
+    if (content.company?.name) state.company = { ...DEFAULTS.company, ...content.company };
+    if (content.stats?.length) state.stats = content.stats;
+    if (content.features?.length) state.features = content.features;
     return true;
   } catch (e) {
     console.warn('Load failed:', e.message);
-    updateGitBadge();
     return false;
   }
 }
@@ -405,8 +346,8 @@ async function loadFromGitHub() {
 function updateGitBadge() {
   const b = document.getElementById('gitSyncBadge');
   if (!b) return;
-  b.className = 'git-badge' + (!state.gitConnected ? ' error' : state.syncPending ? ' pending' : '');
-  b.textContent = !state.gitConnected ? '⚡ Not Connected' : state.syncPending ? '⏳ Pending' : '✓ Synced';
+  b.className = 'git-badge' + (state.gitConnected ? '' : ' error');
+  b.textContent = state.gitConnected ? '✓ Synced' : '⚡ Not Connected';
 }
 
 function saveGitConfig() {
@@ -417,27 +358,25 @@ function saveGitConfig() {
   GIT.token = token;
   GIT.repo = document.getElementById('gitRepo').value.trim() || 'rhysco-data';
   GIT.branch = document.getElementById('gitBranch').value.trim() || 'main';
-  LS.set('git_cfg', GIT);
+  // Git config localStorage me save karo (sirf yehi cheez localStorage me rahegi)
+  try { localStorage.setItem('rc_git', JSON.stringify({ owner: GIT.owner, token: GIT.token, repo: GIT.repo, branch: GIT.branch })); } catch {}
   state.gitConnected = true;
-  toast('✅ Connecting to GitHub...');
-  // FIX: Connect hote hi turant data load karo
-  loadFromGitHub().then(ok => {
-    if (ok) toast('✅ Data loaded from GitHub!');
-    else toast('⚠️ Connected but no data found. Make changes & Push.');
-  });
+  toast('✅ Connected!');
+  // Turant data push karo
+  syncToGitHub().then(ok => toast(ok ? '✅ Data synced to GitHub' : '⚠️ Sync failed')).catch(() => toast('❌ Error'));
   updateGitBadge();
 }
 
 function disconnectGit() {
   if (!confirm('Disconnect GitHub?')) return;
   GIT.token = ''; GIT.owner = '';
-  LS.set('git_cfg', {});
-  state.gitConnected = false; state.syncPending = false;
-  LS.set('sync', false);
-  toast('🔌 Disconnected'); updateGitBadge();
+  try { localStorage.removeItem('rc_git'); } catch {}
+  state.gitConnected = false;
+  toast('🔌 Disconnected');
+  updateGitBadge();
 }
 
-// ========== SVG ==========
+// ========== SVG ICONS ==========
 const I = {
   trophy:'<polyline points="6 9 6 4 18 4 18 9"/><path d="M6 9a6 6 0 0 0 12 0"/><path d="M6 9H3a3 3 0 0 0 3 3"/><path d="M18 9h3a3 3 0 0 1-3 3"/><path d="M9 22h6"/><path d="M12 17v5"/>',
   boxes:'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
@@ -452,7 +391,7 @@ const I = {
   moon:'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
   ruler:'<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
   msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-  chevron:'<polyline points="9 18 15 12 9 6"/>',x:'<path d="M18 6L6 18M6 6l12 12"/>',
+  chevron:'<polyline points="9 18 15 12 9 6"/>', x:'<path d="M18 6L6 18M6 6l12 12"/>',
   check:'<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
   truckS:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
   phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
@@ -488,11 +427,15 @@ function toast(m) {
 
 // ========== THEME ==========
 function applyTheme() {
-  const t = LS.get('theme', 'dark');
+  const t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch { return 'dark'; } })();
   document.documentElement.dataset.theme = t;
   try { document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`; } catch {}
 }
-function toggleTheme() { LS.set('theme', document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'); applyTheme(); }
+function toggleTheme() {
+  const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('rc_theme', t); } catch {}
+  applyTheme();
+}
 
 function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('show'); }
 
@@ -520,7 +463,7 @@ function renderCompany() {
 }
 
 function renderStats() {
-  document.getElementById('statsGrid').innerHTML = state.stats.map((s,i) => '<div class="stat"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
+  document.getElementById('statsGrid').innerHTML = state.stats.map(s => '<div class="stat"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
 }
 
 function renderFeatures() {
@@ -553,7 +496,7 @@ function openProduct(id) {
   const p = flat().find(p => p.id === id);
   if (!p) return;
   const w = wa('Quote for: ' + p.name);
-  document.getElementById('productModalCard').innerHTML = '<button class="modal-close" onclick="closeProduct()">'+S('x',14)+'</button><div class="pdetail-head"><div class="pdetail-icon">'+esc(p.icon)+'</div><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="pdetail-title">'+esc(p.name)+'</div><div class="pdetail-spec">'+S('ruler',13)+' '+esc(p.spec)+'</div></div><div class="pdetail-body"><p class="pdetail-desc">'+esc(p.desc)+'</p><div class="pdetail-actions"><a class="wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',14)+' WhatsApp</a><a class="call" href="tel:'+escA(state.company.phone.replace(/\s+/g,''))+'">'+S('phone',14)+' Call</a></div></div>';
+  document.getElementById('productModalCard').innerHTML = '<button class="modal-close" onclick="closeProduct()">'+S('x',14)+'</button><div class="pdetail-head"><div class="pdetail-icon">'+esc(p.icon)+'</div><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="pdetail-title">'+esc(p.name)+'</div><div class="pdetail-spec">'+S('ruler',13)+' '+esc(p.spec)+'</div></div><div class="pdetail-body"><p style="color:var(--text-2);font-size:13px">'+esc(p.desc)+'</p><div class="pdetail-actions"><a class="wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',14)+' WhatsApp</a><a class="call" href="tel:'+escA(state.company.phone.replace(/\s+/g,''))+'">'+S('phone',14)+' Call</a></div></div>';
   document.getElementById('productModal').classList.add('open');
 }
 function closeProduct() { document.getElementById('productModal').classList.remove('open'); }
@@ -564,15 +507,23 @@ function closeAdmin() { document.getElementById('adminModal').classList.remove('
 
 function login() {
   if (document.getElementById('adminUser').value.trim() === 'sunny' && document.getElementById('adminPass').value === 'admin') {
-    state.isAdmin = true; persist(); updateAdminBtn(); renderAdmin(); toast('Welcome!');
+    state.isAdmin = true;
+    try { localStorage.setItem('rc_auth', '1'); } catch {}
+    updateAdminBtn(); renderAdmin(); toast('Welcome!');
   } else { document.getElementById('loginErr').textContent = 'Invalid credentials'; }
   return false;
 }
-function logout() { state.isAdmin = false; persist(); updateAdminBtn(); closeAdmin(); toast('Logged out'); }
+function logout() { state.isAdmin = false; try { localStorage.removeItem('rc_auth'); } catch {} updateAdminBtn(); closeAdmin(); toast('Logged out'); }
 function updateAdminBtn() {
   const b = document.getElementById('adminBtn'), l = document.getElementById('adminBtnLabel');
   if (state.isAdmin) { b.classList.add('danger'); l.textContent = 'Logout'; b.onclick = logout; }
   else { b.classList.remove('danger'); l.textContent = 'Admin'; b.onclick = openAdmin; }
+}
+
+function persist() {
+  // Data localStorage me nahi, sirf GitHub me save hoga
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub(); }, 2000);
 }
 
 function renderAdmin() {
@@ -594,11 +545,11 @@ function renderAdminPane() {
 }
 
 function paneProducts() {
-  if (!state.categories.length) return '<p>Add a category first.</p>';
+  if (!state.categories.length) return '<p style="color:var(--text-2)">Add a category first.</p>';
   if (!state.adminCat || !state.categories.find(c=>c.id===state.adminCat)) state.adminCat = state.categories[0].id;
   const cat = state.categories.find(c=>c.id===state.adminCat);
   const d = state.editDraft;
-  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' Product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><button class="btn btn-primary" style="margin-top:8px" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?' <button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div></div><div class="lact"><button class="edit" onclick="editProduct(\''+p.id+'\')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct(\''+p.id+'\')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="text-align:center;color:var(--text-2);grid-column:1/-1">No products</p>')+'</div>';
+  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' Product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name *</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><button class="btn btn-primary" style="margin-top:8px" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?' <button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div></div><div class="lact"><button class="edit" onclick="editProduct(\''+p.id+'\')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct(\''+p.id+'\')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="text-align:center;color:var(--text-2);grid-column:1/-1">No products</p>')+'</div>';
 }
 function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
 function saveProduct() {
@@ -655,7 +606,7 @@ function paneCompany() {
 function updateCompany(k, v) { state.company[k] = v; persist(); renderCompany(); }
 
 function paneGit() {
-  return '<div class="panel-section"><h4>'+S('github',14)+' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:12px">Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → repo scope</p><div class="grid-2"><div class="field"><label>Username</label><input id="gitOwner" value="'+escA(GIT.owner)+'" placeholder="github-username"></div><div class="field"><label>Token</label><input id="gitToken" type="password" value="'+escA(GIT.token)+'" placeholder="ghp_..."></div></div><div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitConfig()">Save & Load</button>'+(state.gitConnected?'<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?\'✅ Pushed\':\'❌ Failed\'))">Push</button><button class="btn btn-success" onclick="loadFromGitHub().then(s=>toast(s?\'✅ Loaded\':\'❌ Failed\'))">Pull</button><button class="btn btn-danger" onclick="disconnectGit()">Disconnect</button>':'')+'</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">'+(state.gitConnected?'✅ Connected':'⚡ Not connected')+' '+(state.syncPending?'| ⏳ Pending':'')+'</div></div>';
+  return '<div class="panel-section"><h4>'+S('github',14)+' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:12px"><strong>⚠️ Important:</strong> Data sirf GitHub se load hota hai. Token yaha dalne ke baad sabhi users ko latest data dikhega.<br><br>Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → <strong>repo</strong> scope</p><div class="grid-2"><div class="field"><label>GitHub Username</label><input id="gitOwner" value="'+escA(GIT.owner)+'" placeholder="github-username"></div><div class="field"><label>Token</label><input id="gitToken" type="password" value="'+escA(GIT.token)+'" placeholder="ghp_..."></div></div><div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitConfig()">💾 Save & Sync</button>'+(state.gitConnected?'<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?\'✅ Pushed\':\'❌ Failed\'))">📤 Push</button><button class="btn btn-success" onclick="loadFromGitHub().then(s=>{if(s){refreshAll();toast(\'✅ Loaded\')}else toast(\'❌ Failed\')})">📥 Pull</button><button class="btn btn-danger" onclick="disconnectGit()">🔌 Disconnect</button>':'')+'</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>'+(state.gitConnected?'✅ Connected — All users see live data':'⚡ Not connected — Using default data')+'</strong></div></div>';
 }
 
 // ========== EVENTS ==========
@@ -672,17 +623,42 @@ window.addEventListener('scroll', () => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
 document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
 
-// ========== INIT: GitHub se data load karo ==========
+// ========== INIT — Har bar GitHub se fresh load ==========
 applyTheme();
+
 (async () => {
-  // FIX: Har page load pe GitHub check karo
+  // Git config load karo (sirf yehi localStorage me bachega)
+  try {
+    const saved = JSON.parse(localStorage.getItem('rc_git') || '{}');
+    if (saved.owner && saved.token) {
+      GIT.owner = saved.owner;
+      GIT.token = saved.token;
+      GIT.repo = saved.repo || 'rhysco-data';
+      GIT.branch = saved.branch || 'main';
+      state.gitConnected = true;
+    }
+  } catch {}
+
+  // Admin session check
+  try { state.isAdmin = localStorage.getItem('rc_auth') === '1'; } catch {}
+
+  // GitHub se data load karo
   if (state.gitConnected) {
-    showSyncBar('🔄 Checking GitHub for updates...');
     const ok = await loadFromGitHub().catch(() => false);
-    if (!ok) refreshAll();
-  } else {
-    refreshAll();
+    if (!ok) {
+      // Fallback to defaults
+      state.categories = JSON.parse(JSON.stringify(DEFAULTS.categories));
+      state.company = { ...DEFAULTS.company };
+      state.stats = JSON.parse(JSON.stringify(DEFAULTS.stats));
+      state.features = JSON.parse(JSON.stringify(DEFAULTS.features));
+    }
   }
+
+  // Loading overlay hide karo
+  document.getElementById('loadingOverlay').classList.add('hidden');
+
+  // Render
+  refreshAll();
   updateAdminBtn();
   updateGitBadge();
 })();
