@@ -3,13 +3,13 @@
     {
       "id": "cat_WAA_Cables",
       "name": "WAA Cables",
-      "icon": "🔌",
+      "icon": "ð",
       "products": [
         {
           "id": "p_1",
           "name": "4.00SQMM WAA CABLE RED BLACK",
           "spec": "100 MTR",
-          "icon": "🔌",
+          "icon": "ð",
           "desc": "Premium 100% pure copper flexible cable - Testing product"
         }
       ]
@@ -24,7 +24,7 @@
     "whatsapp": "916203691393",
     "address": "India (Bihar & NCR)",
     "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories"
+    "heroSubtitle": "WAA Cables â¢ Solar & MC4 â¢ Meters â¢ Earthing â¢ Fire Safety â¢ Accessories"
   },
   "stats": [
     {
@@ -80,5 +80,5 @@
       "desc": "Project supply specialist"
     }
   ],
-  "lastSync": "2026-04-29T14:38:26.731Z"
+  "lastSync": "2026-04-29T14:38:35.090Z"
 }
