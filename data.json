@@ -1,0 +1,73 @@
+{
+  "cat": [
+    {
+      "id": "cat_WAA",
+      "name": "WAA Cables",
+      "icon": "🔌",
+      "prods": [
+        {
+          "id": "p_1",
+          "name": "4.0 SQMM WAA CABLE RED BLACK",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "Premium 100% pure copper flexible cable for industrial use"
+        }
+      ]
+    }
+  ],
+  "com": {
+    "name": "Rhysco Power",
+    "tag": "Premium Electrical Solutions",
+    "ph": "+91 6203691393",
+    "em": "bikram.biharelctrometer@gmail.com",
+    "wa": "916203691393",
+    "ad": "India",
+    "ht": "Complete Electrical Solutions",
+    "hs": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety"
+  },
+  "st": [
+    {
+      "n": "15+",
+      "l": "Years"
+    },
+    {
+      "n": "100+",
+      "l": "Products"
+    },
+    {
+      "n": "1000+",
+      "l": "Clients"
+    },
+    {
+      "n": "PAN India",
+      "l": "Delivery"
+    }
+  ],
+  "ft": [
+    {
+      "t": "Quality Assured",
+      "d": "ISO certified products"
+    },
+    {
+      "t": "24/7 Support",
+      "d": "Technical assistance anytime"
+    },
+    {
+      "t": "Fast Delivery",
+      "d": "Nationwide shipping"
+    },
+    {
+      "t": "Best Price",
+      "d": "Wholesale pricing"
+    },
+    {
+      "t": "Trusted Brands",
+      "d": "Original grade only"
+    },
+    {
+      "t": "Bulk Orders",
+      "d": "Project supply expert"
+    }
+  ],
+  "lastUpdated": "2026-04-29T17:20:19.106Z"
+}
