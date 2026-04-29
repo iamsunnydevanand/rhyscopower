@@ -3,188 +3,188 @@
     {
       "id": "WAA_Cables",
       "name": "WAA Cables",
-      "icon": "Ã°ÂÂÂ",
+      "icon": "ÃÂ°ÃÂÃÂÃÂ",
       "products": [
         {
           "id": "p_1",
           "name": "4.00SQMM WAA CABLE RED BLACK",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Premium 100% pure copper flexible cable"
         },
         {
           "id": "p_2",
           "name": "4.00SQMM WAA CABLE BLACK",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
           "desc": "Heavy duty industrial grade cable"
         },
         {
           "id": "p_3",
           "name": "WAA CABLE RED BLACK",
           "spec": "500 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Long length roll for large projects"
         },
         {
           "id": "p_4",
           "name": "WAA CABLE BLACK",
           "spec": "500 MTR",
-          "icon": "Ã¢ÂÂ¡",
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
           "desc": "Bulk packing industrial cable"
         },
         {
           "id": "p_5",
           "name": "6MM WAA CABLE BLACK",
           "spec": "500 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "6 sqmm heavy duty power cable"
         },
         {
           "id": "p_6",
           "name": "6MM WAA CABLE RED BLACK",
           "spec": "500 MTR",
-          "icon": "Ã¢ÂÂ¡",
-          "desc": "Red & Black pair 6mmÃÂ²"
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
+          "desc": "Red & Black pair 6mmÃÂÃÂ²"
         },
         {
           "id": "p_7",
           "name": "6MM WAA CABLE BLACK",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "6mmÃÂ² flexible cable"
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
+          "desc": "6mmÃÂÃÂ² flexible cable"
         },
         {
           "id": "p_8",
           "name": "6MM WAA CABLE RED BLACK",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
-          "desc": "6mmÃÂ² twin core cable"
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
+          "desc": "6mmÃÂÃÂ² twin core cable"
         },
         {
           "id": "p_9",
           "name": "4 CORE 6.00SQMM",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "4 core control cable industrial"
         },
         {
           "id": "p_10",
           "name": "4 CORE 4.00SQMM",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "4 core multi-core cable"
         },
         {
           "id": "p_11",
           "name": "2 CORE 6.00SQMM",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
           "desc": "Twin core heavy duty"
         },
         {
           "id": "p_12",
           "name": "4 CORE 2.50SQMM",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "4 core 2.5mmÃÂ² flexible"
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
+          "desc": "4 core 2.5mmÃÂÃÂ² flexible"
         },
         {
           "id": "p_13",
           "name": "2 CORE 4.00SQMM",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
-          "desc": "2 core 4mmÃÂ² power cable"
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
+          "desc": "2 core 4mmÃÂÃÂ² power cable"
         },
         {
           "id": "p_14",
           "name": "3 CORE 1.50SQMM",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "3 core 1.5mmÃÂ² cable"
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
+          "desc": "3 core 1.5mmÃÂÃÂ² cable"
         },
         {
           "id": "p_15",
           "name": "3 CORE 2.50SQMM",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "3 core 2.5mmÃÂ² flexible"
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
+          "desc": "3 core 2.5mmÃÂÃÂ² flexible"
         },
         {
           "id": "p_16",
           "name": "3 CORE 2.50SQMM",
           "spec": "500 MTR",
-          "icon": "Ã°ÂÂÂ",
-          "desc": "3 core 2.5mmÃÂ² bulk roll"
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
+          "desc": "3 core 2.5mmÃÂÃÂ² bulk roll"
         },
         {
           "id": "p_17",
           "name": "2 CORE 0.75SQMM",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
-          "desc": "2 core 0.75mmÃÂ² thin cable"
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
+          "desc": "2 core 0.75mmÃÂÃÂ² thin cable"
         },
         {
           "id": "p_18",
           "name": "2 CORE 1.50SQMM",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
-          "desc": "2 core 1.5mmÃÂ² cable"
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
+          "desc": "2 core 1.5mmÃÂÃÂ² cable"
         },
         {
           "id": "p_19",
           "name": "2 CORE 1.00SQMM",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
-          "desc": "2 core 1mmÃÂ² cable"
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
+          "desc": "2 core 1mmÃÂÃÂ² cable"
         },
         {
           "id": "p_20",
           "name": "RG 6",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ¡",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¡",
           "desc": "Coaxial cable RG6"
         },
         {
           "id": "p_21",
           "name": "2 CORE 1.00SQMM SPEAKER WIRE",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Speaker wire oxygen free"
         },
         {
           "id": "p_22",
           "name": "2 CORE 2.50SQMM",
           "spec": "100 MTR",
-          "icon": "Ã¢ÂÂ¡",
-          "desc": "2 core 2.5mmÃÂ² cable"
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
+          "desc": "2 core 2.5mmÃÂÃÂ² cable"
         },
         {
           "id": "p_23",
           "name": "CCTV CABLE",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ¹",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¹",
           "desc": "CCTV power video combo"
         },
         {
           "id": "p_24",
           "name": "AIDEO VIDEO 1+4",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂº",
+          "icon": "ÃÂ°ÃÂÃÂÃÂº",
           "desc": "Video+power cable 1+4"
         },
         {
           "id": "p_25",
           "name": "AIDEO VIDEO 1+3",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂº",
+          "icon": "ÃÂ°ÃÂÃÂÃÂº",
           "desc": "Video+power cable 1+3"
         },
         {
           "id": "p_26",
           "name": "CAT 6",
           "spec": "305 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Pure copper network cable"
         }
       ]
@@ -192,76 +192,76 @@
     {
       "id": "Solar___MC4",
       "name": "Solar & MC4",
-      "icon": "Ã¢ÂÂÃ¯Â¸Â",
+      "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
       "products": [
         {
           "id": "p_27",
           "name": "SOLAR DC 4.00SQMM RED",
           "spec": "500 MTR",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "RHEIN solar DC cable UV protected"
         },
         {
           "id": "p_28",
           "name": "SOLAR DC 4.00SQMM BLACK",
           "spec": "500 MTR",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "TUV approved solar cable"
         },
         {
           "id": "p_29",
           "name": "MC4 CONNECTOR",
           "spec": "Pair",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "IP67 rated original grade"
         },
         {
           "id": "p_30",
           "name": "MC4 CONNECTOR 2 IN 1",
           "spec": "Branch",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "2 to 1 solar combiner"
         },
         {
           "id": "p_31",
           "name": "MC4 CONNECTOR 3 IN 1",
           "spec": "Branch",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "3 to 1 solar combiner"
         },
         {
           "id": "p_32",
           "name": "MC4 CONNECTOR 4 IN 1",
           "spec": "Branch",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "4 to 1 heavy combiner"
         },
         {
           "id": "p_33",
           "name": "MC4 CONNECTOR 3IN 1OUT",
           "spec": "Branch",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "3 input 1 output"
         },
         {
           "id": "p_34",
           "name": "MC4 CONNECTOR 2IN 1OUT",
           "spec": "Branch",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "2 input 1 output"
         },
         {
           "id": "p_89",
           "name": "SOLAR DC 4.00SQMM RED-500MTR RHEIN",
           "spec": "500MTR",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "RHEIN brand solar cable"
         },
         {
           "id": "p_90",
           "name": "SOLAR DC 4.00SQMM BLACK-500MTR RHEIN",
           "spec": "500MTR",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "RHEIN black solar cable"
         }
       ]
@@ -269,118 +269,118 @@
     {
       "id": "Meters",
       "name": "Meters",
-      "icon": "Ã°ÂÂÂ",
+      "icon": "ÃÂ°ÃÂÃÂÃÂ",
       "products": [
         {
           "id": "p_35",
           "name": "SINGLE PHASE NET METER WITH BOX 5/30",
           "spec": "5/30A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Bi-directional net meter with box"
         },
         {
           "id": "p_36",
           "name": "SINGLE PHASE NORMAL METER WITH BOX 5/30",
           "spec": "5/30A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Standard single phase meter"
         },
         {
           "id": "p_37",
           "name": "SINGLE CABLE METER",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Single cable meter"
         },
         {
           "id": "p_38",
           "name": "SINGLE PHASE NET METER WITH BOX 10/60",
           "spec": "10/60A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Net meter high capacity"
         },
         {
           "id": "p_39",
           "name": "3 PHASE METER",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Three phase meter"
         },
         {
           "id": "p_40",
           "name": "WHOLE CURRENT NET MTR 10/60A",
           "spec": "10/60A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Net meter 3 phase"
         },
         {
           "id": "p_41",
           "name": "WHOLE CURRENT NORMAL MTR 10/60A",
           "spec": "10/60A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Normal 3 phase meter"
         },
         {
           "id": "p_42",
           "name": "SARAL 10-100",
           "spec": "10-100A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Saral series meter"
         },
         {
           "id": "p_43",
           "name": "WHOLE CURRENT 305 NET MTR 10/100A",
           "spec": "10/100A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "305 net meter"
         },
         {
           "id": "p_44",
           "name": "WHOLE CURRENT 305 NORMAL MTR 10/100A",
           "spec": "10/100A",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "305 normal meter"
         },
         {
           "id": "p_45",
           "name": "LTCT TRIVECTORE MTR 600/5A",
           "spec": "600/5A",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Trivector meter with CT"
         },
         {
           "id": "p_46",
           "name": "LTCT METER",
           "spec": "Standard",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "LTCT meter only"
         },
         {
           "id": "p_47",
           "name": "LTCT TRAVACTOR NORMAL METER 200/5",
           "spec": "200/5A",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Travector normal"
         },
         {
           "id": "p_48",
           "name": "LTCT NET METER 200/5",
           "spec": "200/5A",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "LTCT net meter"
         },
         {
           "id": "p_49",
           "name": "HT NET 33KV METER",
           "spec": "33kV",
-          "icon": "Ã¢ÂÂ¡",
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
           "desc": "High tension 33kV meter"
         },
         {
           "id": "p_50",
           "name": "HT NET 11KV METER",
           "spec": "11kV",
-          "icon": "Ã¢ÂÂ¡",
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
           "desc": "High tension 11kV meter"
         }
       ]
@@ -388,69 +388,69 @@
     {
       "id": "Panel_Meters",
       "name": "Panel Meters",
-      "icon": "Ã°ÂÂÂ",
+      "icon": "ÃÂ°ÃÂÃÂÃÂ",
       "products": [
         {
           "id": "p_51",
           "name": "PANEL METER DPM96I100-1",
           "spec": "96x96",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Digital panel meter ammeter"
         },
         {
           "id": "p_52",
           "name": "DPM 96M 310-2",
           "spec": "96x96",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Multifunction meter"
         },
         {
           "id": "p_53",
           "name": "DPM 96V 300-2",
           "spec": "96x96",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Voltmeter panel"
         },
         {
           "id": "p_54",
           "name": "DPM 96I 300-2",
           "spec": "96x96",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Ammeter panel"
         },
         {
           "id": "p_55",
           "name": "ELITE 307-2",
           "spec": "Standard",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Elite series meter"
         },
         {
           "id": "p_56",
           "name": "ELITE 103-2",
           "spec": "Standard",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Elite 103-2 meter"
         },
         {
           "id": "p_57",
           "name": "ELITE 30B-2",
           "spec": "Standard",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Elite 30B-2"
         },
         {
           "id": "p_58",
           "name": "ELITE 440-443",
           "spec": "Standard",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Elite multi-function"
         },
         {
           "id": "p_59",
           "name": "APEX-100",
           "spec": "Standard",
-          "icon": "Ã¢ÂÂ¡",
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
           "desc": "Apex series meter"
         }
       ]
@@ -458,146 +458,146 @@
     {
       "id": "Accessories",
       "name": "Accessories",
-      "icon": "Ã¢ÂÂÃ¯Â¸Â",
+      "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
       "products": [
         {
           "id": "p_60",
           "name": "CURRENT TRANSFORMER 600/5A",
           "spec": "600/5A",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Precision CT for metering"
         },
         {
           "id": "p_61",
           "name": "CURRENT TRANSFORMER 200/5A",
           "spec": "200/5A",
-          "icon": "Ã¢ÂÂÃ¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ",
           "desc": "CT 200/5A class 1"
         },
         {
           "id": "p_62",
           "name": "ACDB",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ¦",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¦",
           "desc": "Solar AC distribution box"
         },
         {
           "id": "p_63",
           "name": "T",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "T connector electrical"
         },
         {
           "id": "p_64",
           "name": "T-BAND",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "T-band clamp"
         },
         {
           "id": "p_65",
           "name": "L",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "L-elbow conduit"
         },
         {
           "id": "p_66",
           "name": "L-ELBOW",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "L shape elbow"
         },
         {
           "id": "p_67",
           "name": "SADEL 25MM",
           "spec": "PKT",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "Saddle clamp 25mm"
         },
         {
           "id": "p_68",
           "name": "GITTY",
           "spec": "PKT",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "Gitties / cable clip"
         },
         {
           "id": "p_69",
           "name": "PVC PIPE",
           "spec": "PKT",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "PVC conduit pipe"
         },
         {
           "id": "p_70",
           "name": "CABLE TIE",
           "spec": "PKT",
-          "icon": "Ã°ÂÂÂ§",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ§",
           "desc": "Nylon cable ties"
         },
         {
           "id": "p_71",
           "name": "SPN 8 WAY",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ¦",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¦",
           "desc": "Single phase DB 8 way"
         },
         {
           "id": "p_72",
           "name": "PIT COVER",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ¡Ã¯Â¸Â",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¡ÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Inspection pit cover"
         },
         {
           "id": "p_73",
           "name": "SPIKE GARDE BLACK",
           "spec": "Standard",
-          "icon": "Ã¢ÂÂ¡",
+          "icon": "ÃÂ¢ÃÂÃÂ¡",
           "desc": "Spike guard surge protector"
         },
         {
           "id": "p_74",
           "name": "MODEM SKYLINE E90",
           "spec": "GPRS",
-          "icon": "Ã°ÂÂÂ¡",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¡",
           "desc": "Remote meter reading modem"
         },
         {
           "id": "p_75",
           "name": "APEX MODEM",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ¡",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¡",
           "desc": "APEX communication modem"
         },
         {
           "id": "p_76",
           "name": "HT BOX ONLY",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ¦",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¦",
           "desc": "HT meter box"
         },
         {
           "id": "p_77",
           "name": "LTCT BOX ONLY",
           "spec": "Standard",
-          "icon": "Ã°ÂÂÂ¦",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¦",
           "desc": "LTCT meter enclosure"
         },
         {
           "id": "p_78",
           "name": "BAG 15KG",
           "spec": "15KG",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Carry bag"
         },
         {
           "id": "p_79",
           "name": "4Cx16.00SQMM ROUND",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "4 core 16mm round cable"
         }
       ]
@@ -605,48 +605,48 @@
     {
       "id": "Earthing___Lightning",
       "name": "Earthing & Lightning",
-      "icon": "Ã°ÂÂÂ©Ã¯Â¸Â",
+      "icon": "ÃÂ°ÃÂÃÂÃÂ©ÃÂ¯ÃÂ¸ÃÂ",
       "products": [
         {
           "id": "p_80",
           "name": "LIGHTNING ARRESTER 1 MTR",
           "spec": "1 MTR",
-          "icon": "Ã°ÂÂÂ©Ã¯Â¸Â",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ©ÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Copper bonded LA"
         },
         {
           "id": "p_81",
           "name": "LIGHTNING ARRESTER 2 MTR",
           "spec": "2 MTR",
-          "icon": "Ã°ÂÂÂ©Ã¯Â¸Â",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ©ÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Heavy duty LA"
         },
         {
           "id": "p_82",
           "name": "LIGHTNING ARRESTER 3 MTR",
           "spec": "3 MTR",
-          "icon": "Ã°ÂÂÂ©Ã¯Â¸Â",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ©ÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Industrial LA"
         },
         {
           "id": "p_83",
           "name": "EARTHING ROD 1 MTR",
           "spec": "1 MTR",
-          "icon": "Ã¢ÂÂ°Ã¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂ°ÃÂ¯ÃÂ¸ÃÂ",
           "desc": "Pure copper coated rod"
         },
         {
           "id": "p_84",
           "name": "EARTHING ROD 2 MTR",
           "spec": "2 MTR",
-          "icon": "Ã¢ÂÂ°Ã¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂ°ÃÂ¯ÃÂ¸ÃÂ",
           "desc": "2 meter earthing rod"
         },
         {
           "id": "p_85",
           "name": "EARTHING ROD 3 MTR",
           "spec": "3 MTR",
-          "icon": "Ã¢ÂÂ°Ã¯Â¸Â",
+          "icon": "ÃÂ¢ÃÂÃÂ°ÃÂ¯ÃÂ¸ÃÂ",
           "desc": "3 meter heavy rod"
         }
       ]
@@ -654,27 +654,27 @@
     {
       "id": "Fire_Safety",
       "name": "Fire Safety",
-      "icon": "Ã°ÂÂÂ¥",
+      "icon": "ÃÂ°ÃÂÃÂÃÂ¥",
       "products": [
         {
           "id": "p_86",
           "name": "FIRE EXTINGUISHER 2KG",
           "spec": "2KG ABC",
-          "icon": "Ã°ÂÂÂ¥",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ¥",
           "desc": "ISI marked dry powder"
         },
         {
           "id": "p_87",
           "name": "FIRE BUCKET",
           "spec": "Red",
-          "icon": "Ã°ÂÂ§Â¯",
+          "icon": "ÃÂ°ÃÂÃÂ§ÃÂ¯",
           "desc": "Emergency fire bucket"
         },
         {
           "id": "p_88",
           "name": "FIRE SPRAYE 2 KG",
           "spec": "2KG",
-          "icon": "Ã°ÂÂ§Â¯",
+          "icon": "ÃÂ°ÃÂÃÂ§ÃÂ¯",
           "desc": "Fire spray extinguisher"
         }
       ]
@@ -689,7 +689,7 @@
     "whatsapp": "916203691393",
     "address": "India (Bihar & NCR)",
     "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables Ã¢ÂÂ¢ Solar & MC4 Ã¢ÂÂ¢ Meters Ã¢ÂÂ¢ Earthing Ã¢ÂÂ¢ Fire Safety Ã¢ÂÂ¢ Accessories"
+    "heroSubtitle": "WAA Cables ÃÂ¢ÃÂÃÂ¢ Solar & MC4 ÃÂ¢ÃÂÃÂ¢ Meters ÃÂ¢ÃÂÃÂ¢ Earthing ÃÂ¢ÃÂÃÂ¢ Fire Safety ÃÂ¢ÃÂÃÂ¢ Accessories"
   },
   "stats": [
     {
@@ -745,5 +745,5 @@
       "desc": "Project supply specialist"
     }
   ],
-  "lastSync": "2026-04-29T15:17:28.549Z"
+  "lastSync": "2026-04-29T15:17:41.298Z"
 }
