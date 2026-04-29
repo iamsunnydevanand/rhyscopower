@@ -7,56 +7,56 @@
     "whatsapp": "916203691393",
     "address": "India",
     "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories"
+    "heroSubtitle": "WAA Cables â¢ Solar & MC4 â¢ Meters â¢ Earthing â¢ Fire Safety â¢ Accessories"
   },
   "products": [
     {
       "id": "p1",
       "name": "4.00SQMM WAA CABLE RED BLACK",
       "spec": "100 MTR",
-      "icon": "🔌",
+      "icon": "ð",
       "desc": "Premium 100% pure copper flexible cable",
       "category": "WAA Cables"
     }
   ],
   "stats": [
     {
-      "icon": "⭐",
+      "icon": "â­",
       "number": "15+",
       "label": "Years"
     },
     {
-      "icon": "📦",
+      "icon": "ð¦",
       "number": "1",
       "label": "Products"
     },
     {
-      "icon": "👥",
+      "icon": "ð¥",
       "number": "1000+",
       "label": "Clients"
     },
     {
-      "icon": "🚚",
+      "icon": "ð",
       "number": "PAN India",
       "label": "Delivery"
     }
   ],
   "features": [
     {
-      "icon": "🛡️",
+      "icon": "ð¡ï¸",
       "title": "Quality Assured",
       "desc": "ISO certified"
     },
     {
-      "icon": "🎧",
+      "icon": "ð§",
       "title": "24/7 Support",
       "desc": "Always available"
     },
     {
-      "icon": "🚚",
+      "icon": "ð",
       "title": "Fast Delivery",
       "desc": "Nationwide"
     }
   ],
-  "lastSync": "2026-04-29T15:07:52.780Z"
+  "lastSync": "2026-04-29T15:08:29.880Z"
 }
