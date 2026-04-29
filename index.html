@@ -3,665 +3,490 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Rhysco Power — Complete Electrical Solutions</title>
-  <meta name="description" content="Rhysco Power — Premium electrical solutions distributor since 2010" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <title>Rhysco Power</title>
   <style>
-    :root {
-      --bg: #f5f5f7; --bg-2: #ffffff; --text: #1a1a2e; --text-2: #4a4a6a;
-      --border: rgba(0,0,0,0.08); --card-bg: rgba(255,255,255,0.7);
-      --nav-bg: rgba(255,255,255,0.78); --hero-overlay: linear-gradient(135deg, rgba(20,20,40,0.55), rgba(124,58,237,0.35));
-      --shadow: 0 8px 30px rgba(0,0,0,0.06);
-      --grad: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
-      --grad-warm: linear-gradient(135deg, #f97316 0%, #ff2d75 100%);
-      --wa: #25D366; --success: #10b981; --danger: #ef4444; --warning: #f59e0b;
-    }
-    [data-theme="dark"] {
-      --bg: #0a0a0f; --bg-2: #111118; --text: #ffffff; --text-2: #a0a0b0;
-      --border: rgba(255,255,255,0.08); --card-bg: rgba(18,18,28,0.72);
-      --nav-bg: rgba(10,10,18,0.72); --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.78), rgba(124,58,237,0.42));
-      --shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
+    :root { --bg: #f5f5f7; --bg-2: #fff; --text: #1a1a2e; --text-2: #4a4a6a; --border: rgba(0,0,0,0.08); --card-bg: rgba(255,255,255,0.7); --nav-bg: rgba(255,255,255,0.78); --grad: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%); --grad-warm: linear-gradient(135deg, #f97316 0%, #ff2d75 100%); --wa: #25D366; --success: #10b981; --danger: #ef4444; }
+    [data-theme="dark"] { --bg: #0a0a0f; --bg-2: #111118; --text: #fff; --text-2: #a0a0b0; --border: rgba(255,255,255,0.08); --card-bg: rgba(18,18,28,0.72); --nav-bg: rgba(10,10,18,0.72); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; line-height: 1.5; }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-    input, textarea { font-family: inherit; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    button { cursor: pointer; border: none; background: none; color: inherit; font-family: inherit; }
+    input { font-family: inherit; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; width: 100%; }
     .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .grad-text-warm { background: var(--grad-warm); -webkit-background-clip: text; background-clip: text; color: transparent; }
-
-    /* LOADING OVERLAY */
-    .loading-overlay { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
-    .loading-overlay.hidden { display: none; }
-    .loading-spinner { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: #06b6d4; border-radius: 50%; animation: spin .8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); width: 94%; max-width: 1300px; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; transition: all .3s; }
-    .nav.scrolled { top: 6px; padding: 6px 12px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .logo-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 4px 18px rgba(0,212,255,0.3); animation: float 3.2s ease-in-out infinite; }
-    .logo-mark svg { width: 18px; height: 18px; color: #fff; }
-    .logo-text { font-size: 16px; }
+    
+    /* SIMPLE LAYOUT */
+    .nav { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1200px; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 16px; }
+    .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--grad); display: grid; place-items: center; color: #fff; }
     .nav-links { display: flex; gap: 4px; }
-    .nav-links a { font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; color: var(--text); opacity: .8; transition: all .2s; }
-    .nav-links a:hover { opacity: 1; background: var(--border); }
-    .nav-actions { display: flex; align-items: center; gap: 6px; }
-    .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 999px; }
-    .icon-btn:hover { background: var(--border); }
-    .icon-btn svg { width: 15px; height: 15px; }
-    .admin-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; border-radius: 999px; background: var(--grad-warm); color: #fff; font-size: 11px; font-weight: 700; box-shadow: 0 4px 14px rgba(249,115,22,0.3); transition: all .2s; }
-    .admin-btn:hover { filter: brightness(1.1); }
-    .admin-btn svg { width: 13px; height: 13px; }
-    .admin-btn.danger { background: linear-gradient(135deg, #ef4444, #b91c1c); box-shadow: 0 4px 14px rgba(239,68,68,0.3); }
-    .hamburger { display: none; width: 36px; height: 36px; place-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 999px; }
-    .hamburger svg { width: 18px; height: 18px; }
-    .mobile-menu { display: none; position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; z-index: 99; background: var(--card-bg); backdrop-filter: blur(30px); border: 1px solid var(--border); border-radius: 24px; padding: 12px; flex-direction: column; gap: 4px; }
-    .mobile-menu.show { display: flex; }
-    .mobile-menu a { padding: 12px 16px; border-radius: 14px; font-weight: 500; font-size: 14px; }
-    .mobile-menu a:hover { background: var(--border); }
-    @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: grid; } }
-    .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 80px; text-align: center; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(0,212,255,0.25)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1200&q=80'); background-size: cover; background-position: center; filter: brightness(0.55); }
-    .hero-overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
-    .hero-fade { position: absolute; left: 0; right: 0; bottom: -1px; height: 140px; pointer-events: none; background: linear-gradient(to bottom, transparent, var(--bg) 95%); }
-    .hero-content { position: relative; z-index: 2; max-width: 900px; }
-    .badge-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 12px; font-weight: 500; margin-bottom: 20px; }
-    .badge-pill svg { width: 13px; height: 13px; color: #67e8f9; }
-    .hero h1 { color: #fff; font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 18px; }
-    .hero p { color: rgba(255,255,255,0.85); font-size: clamp(14px, 1.4vw, 17px); max-width: 600px; margin: 0 auto 32px; }
-    .cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 10px 40px rgba(0,212,255,0.3); animation: glow 2.4s ease-in-out infinite; }
-    .cta:hover { transform: translateY(-2px); }
-    .cta svg { width: 16px; height: 16px; }
-    .stats { position: relative; z-index: 5; max-width: 1200px; margin: -70px auto 0; padding: 0 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-    .stat { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 20px 16px; border-radius: 22px; text-align: center; box-shadow: var(--shadow); }
-    .stat-icon { width: 42px; height: 42px; margin: 0 auto 10px; border-radius: 12px; display: grid; place-items: center; background: rgba(0,212,255,0.08); }
-    .stat-icon svg { width: 22px; height: 22px; }
-    .stat-num { font-size: clamp(22px, 2.5vw, 30px); font-weight: 900; letter-spacing: -0.02em; }
-    .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-top: 4px; }
-    section.block { max-width: 1200px; margin: 0 auto; padding: 70px 16px; }
-    .section-head { text-align: center; margin-bottom: 36px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: var(--border); font-size: 11px; font-weight: 600; color: var(--text-2); margin-bottom: 12px; }
-    .section-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.02em; }
-    .section-head p { color: var(--text-2); font-size: 14px; max-width: 520px; margin: 10px auto 0; }
-    .controls { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
-    .search-wrap { position: relative; background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: 999px; display: flex; align-items: center; padding: 4px 4px 4px 14px; }
-    .search-wrap svg { width: 15px; height: 15px; color: var(--text-2); flex-shrink: 0; }
-    .search-wrap input { flex: 1; padding: 10px 10px; border: none; background: transparent; font-size: 13px; outline: none; color: var(--text); }
-    .search-wrap input::placeholder { color: var(--text-2); opacity: .7; }
-    .clear-btn { padding: 7px 16px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 11px; }
-    .clear-btn:hover { filter: brightness(1.1); }
-    .pills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-    .pill { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); transition: all .2s; }
-    .pill:hover { background: var(--border); }
-    .pill.active { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 6px 20px rgba(0,212,255,0.25); }
+    .nav-links a { font-size: 13px; padding: 6px 12px; border-radius: 999px; opacity: .8; }
+    .admin-btn { padding: 8px 14px; border-radius: 999px; background: var(--grad-warm); color: #fff; font-size: 12px; font-weight: 700; }
+    .admin-btn.danger { background: #ef4444; }
+    
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; position: relative; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(0,212,255,0.25)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1200&q=80') center/cover; filter: brightness(0.5); }
+    .hero-content { position: relative; z-index: 2; color: #fff; }
+    .hero h1 { font-size: clamp(40px, 6vw, 70px); font-weight: 900; }
+    .hero p { font-size: 16px; opacity: .9; margin: 10px 0 24px; }
+    .cta { display: inline-block; padding: 14px 28px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; }
+    
+    section { max-width: 1100px; margin: 0 auto; padding: 60px 16px; }
+    .section-head { text-align: center; margin-bottom: 30px; }
+    .section-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; }
     .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
-    .card { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: 22px; padding: 20px; display: flex; flex-direction: column; transition: all .3s; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,212,255,0.1); }
-    .card .icon { font-size: 32px; line-height: 1; margin-bottom: 8px; }
-    .card h3 { font-size: 14px; font-weight: 700; line-height: 1.3; margin: 0 0 4px; }
-    .card .spec { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #06b6d4; margin-bottom: 6px; }
-    [data-theme="dark"] .card .spec { color: #22d3ee; }
-    .card .spec svg { width: 11px; height: 11px; }
-    .card .desc { font-size: 12px; color: var(--text-2); line-height: 1.5; margin: 0 0 12px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .card .cat-badge { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; background: var(--grad-warm); color: #fff; padding: 4px 8px; border-radius: 999px; margin-bottom: 10px; align-self: flex-start; }
-    .card .actions { display: flex; gap: 6px; }
-    .btn-wa, .btn-detail { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 9px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 18px; }
+    .card h3 { font-size: 14px; margin: 6px 0; }
+    .card .spec { font-size: 11px; color: #06b6d4; }
+    .card .actions { display: flex; gap: 6px; margin-top: 10px; }
+    .btn-wa, .btn-detail { flex: 1; padding: 8px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; text-align: center; }
     .btn-wa { background: var(--wa); }
-    .btn-wa:hover { filter: brightness(1.1); }
     .btn-detail { background: var(--grad); }
-    .btn-detail:hover { filter: brightness(1.1); }
-    .empty { text-align: center; padding: 50px 20px; border-radius: 22px; background: var(--card-bg); border: 1px solid var(--border); }
+    
     .features-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-    .feat { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); padding: 24px; border-radius: 22px; }
-    .feat:hover { transform: translateY(-4px); }
-    .feat .feat-icon { width: 44px; height: 44px; border-radius: 14px; background: var(--grad); display: grid; place-items: center; margin-bottom: 14px; }
-    .feat .feat-icon svg { width: 22px; height: 22px; color: #fff; }
-    .feat h3 { font-size: 16px; font-weight: 800; margin: 0 0 5px; }
+    .feat { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 22px; }
+    .feat h3 { font-size: 16px; font-weight: 800; margin: 8px 0 4px; }
     .feat p { font-size: 13px; color: var(--text-2); }
-    .contact-card { background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: 28px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
-    @media (max-width: 768px) { .contact-card { grid-template-columns: 1fr; } }
-    .contact-left { position: relative; padding: 36px 32px; background: var(--grad); color: #fff; }
-    .contact-left::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.4), transparent 40%), radial-gradient(circle at 80% 80%, rgba(255,255,255,.3), transparent 40%); mix-blend-mode: overlay; opacity: .3; }
-    .contact-left>* { position: relative; }
-    .contact-left .badge-pill { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.25); }
-    .contact-left h2 { font-size: clamp(26px, 3.5vw, 38px); font-weight: 900; letter-spacing: -0.02em; margin: 0 0 12px; }
-    .contact-left p { color: rgba(255,255,255,0.9); font-size: 14px; }
-    .wa-cta { display: inline-flex; align-items: center; gap: 7px; margin-top: 22px; padding: 12px 22px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 700; font-size: 13px; }
-    .wa-cta:hover { filter: brightness(1.1); }
-    .contact-right { padding: 36px 32px; display: flex; flex-direction: column; gap: 10px; }
-    .contact-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 16px; }
-    a.contact-item:hover { background: var(--border); }
-    .contact-item .ic { width: 38px; height: 38px; border-radius: 12px; background: var(--grad); display: grid; place-items: center; flex-shrink: 0; }
-    .contact-item .ic svg { width: 16px; height: 16px; color: #fff; }
-    .contact-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-2); font-weight: 600; }
-    .contact-item .value { font-size: 13px; font-weight: 500; word-break: break-word; }
-    footer { padding: 24px 16px 32px; }
-    .footer-card { max-width: 1200px; margin: 0 auto; padding: 20px 24px; border-radius: 22px; background: var(--card-bg); border: 1px solid var(--border); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
-    .footer-text { font-size: 11px; color: var(--text-2); }
-    .float-wa, .float-top { position: fixed; right: 16px; z-index: 80; border-radius: 999px; display: grid; place-items: center; color: #fff; }
-    .float-wa { bottom: 16px; width: 50px; height: 50px; background: var(--wa); box-shadow: 0 14px 30px rgba(37,211,102,0.4); animation: glow-wa 2.4s ease-in-out infinite; }
-    .float-wa svg { width: 22px; height: 22px; }
-    .float-top { bottom: 80px; width: 42px; height: 42px; background: var(--grad); opacity: 0; pointer-events: none; transition: all .3s; }
-    .float-top.visible { opacity: 1; pointer-events: auto; }
-    .float-top svg { width: 18px; height: 18px; }
-    .modal { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 16px; }
-    .modal.open { display: flex; animation: fadeIn .2s ease; }
-    .modal-card { width: 100%; max-width: 500px; max-height: 90vh; background: var(--bg-2); border: 1px solid var(--border); border-radius: 24px; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.4); animation: slideUp .25s ease; }
-    .modal-card.wide { max-width: 680px; }
-    .modal-close { position: absolute; top: 12px; right: 12px; z-index: 5; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.15); display: grid; place-items: center; color: #fff; }
-    .modal-close svg { width: 14px; height: 14px; }
-    .pdetail-head { position: relative; padding: 40px 20px 24px; text-align: center; background: linear-gradient(to bottom, rgba(0,212,255,0.15), rgba(124,58,237,0.1), transparent); }
-    .pdetail-icon { font-size: 56px; margin-bottom: 10px; }
-    .pdetail-title { font-size: 20px; font-weight: 900; }
-    .pdetail-spec { font-size: 12px; font-weight: 700; color: #06b6d4; }
-    [data-theme="dark"] .pdetail-spec { color: #22d3ee; }
-    .pdetail-body { padding: 0 20px 20px; }
-    .pdetail-actions { display: flex; gap: 6px; }
-    .pdetail-actions a { flex: 1; padding: 12px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 12px; text-align: center; }
-    .pdetail-actions a.wa { background: var(--wa); }
-    .pdetail-actions a.call { background: var(--grad); }
-    .admin-head { padding: 16px 20px; background: var(--grad-warm); color: #fff; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 2; }
-    .admin-head h3 { font-size: 15px; font-weight: 800; }
-    .admin-body { padding: 16px 20px; overflow-y: auto; flex: 1; }
-    .login-form { max-width: 300px; margin: 16px auto; display: flex; flex-direction: column; gap: 12px; }
-    .login-icon { width: 48px; height: 48px; margin: 0 auto; border-radius: 16px; background: var(--grad); display: grid; place-items: center; }
-    .login-icon svg { width: 22px; height: 22px; color: #fff; }
-    .login-form h3 { text-align: center; font-size: 20px; font-weight: 900; }
-    .field { display: flex; flex-direction: column; gap: 5px; }
-    .field label { font-size: 11px; font-weight: 600; }
-    .field input, .field textarea { padding: 9px 11px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); color: var(--text); font-size: 13px; outline: none; width: 100%; }
-    .field input:focus, .field textarea:focus { border-color: #06b6d4; }
-    .btn { padding: 9px 15px; border-radius: 10px; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
-    .btn:hover { filter: brightness(1.1); }
+    
+    .contact-card { display: grid; grid-template-columns: 1fr 1fr; background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; }
+    @media (max-width: 700px) { .contact-card { grid-template-columns: 1fr; } }
+    .contact-left { padding: 30px; background: var(--grad); color: #fff; }
+    .contact-left h2 { font-size: 28px; font-weight: 900; }
+    .contact-right { padding: 30px; }
+    .contact-item { display: flex; gap: 10px; padding: 10px; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 8px; }
+    
+    footer { text-align: center; padding: 30px; color: var(--text-2); font-size: 12px; }
+    
+    .float-wa { position: fixed; bottom: 16px; right: 16px; width: 50px; height: 50px; background: var(--wa); border-radius: 50%; display: grid; place-items: center; color: #fff; z-index: 80; }
+    
+    /* MODAL */
+    .modal { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; padding: 16px; }
+    .modal.open { display: flex; }
+    .modal-card { width: 100%; max-width: 600px; max-height: 85vh; background: var(--bg-2); border-radius: 20px; overflow-y: auto; padding: 20px; }
+    .modal-close { float: right; width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,0.1); display: grid; place-items: center; }
+    
+    .field { margin-bottom: 10px; }
+    .field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    .btn { padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
     .btn-primary { background: var(--grad); color: #fff; }
-    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-    .btn-danger { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
     .btn-success { background: var(--success); color: #fff; }
-    .tabs { display: flex; gap: 3px; padding: 3px; background: var(--border); border-radius: 12px; margin-bottom: 14px; }
-    .tabs button { flex: 1; padding: 8px 6px; border-radius: 9px; font-weight: 600; font-size: 12px; color: var(--text-2); }
-    .tabs button.active { background: var(--bg-2); color: var(--text); }
-    .panel-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
-    .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
-    .item-list { display: grid; gap: 6px; grid-template-columns: 1fr 1fr; }
-    @media (max-width: 600px) { .item-list { grid-template-columns: 1fr; } }
-    .li { display: flex; gap: 8px; padding: 8px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; }
-    .li .lbody { flex: 1; }
-    .li .ln { font-weight: 700; font-size: 12px; }
-    .li .ls { font-size: 10px; color: #06b6d4; font-weight: 700; }
-    .li .lact button { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; }
-    .li .lact button.edit { background: rgba(6,182,212,0.12); color: #06b6d4; }
-    .li .lact button.del { background: rgba(239,68,68,0.12); color: #ef4444; }
-    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--bg-2); color: var(--text); border: 1px solid var(--border); padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; z-index: 300; opacity: 0; pointer-events: none; transition: all .3s; }
-    .toast.show { opacity: 1; }
-    .git-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; background: var(--success); color: #fff; font-size: 10px; font-weight: 700; }
-    .git-badge.pending { background: var(--warning); color: #000; }
-    .git-badge.error { background: var(--danger); }
-    @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)} }
-    @keyframes glow { 0%,100%{box-shadow:0 10px 40px rgba(0,212,255,.3)}50%{box-shadow:0 14px 50px rgba(0,212,255,.5)} }
-    @keyframes glow-wa { 0%,100%{box-shadow:0 14px 30px rgba(37,211,102,.4)}50%{box-shadow:0 18px 40px rgba(37,211,102,.6)} }
-    @keyframes fadeIn { from{opacity:0}to{opacity:1} }
-    @keyframes slideUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+    .btn-danger { background: var(--danger); color: #fff; }
+    
+    .tabs { display: flex; gap: 4px; margin-bottom: 14px; background: var(--border); padding: 3px; border-radius: 12px; }
+    .tabs button { flex: 1; padding: 8px; border-radius: 9px; font-size: 12px; font-weight: 600; }
+    .tabs button.active { background: var(--bg-2); }
+    
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--bg-2); border: 1px solid var(--border); padding: 10px 18px; border-radius: 10px; font-size: 13px; z-index: 300; display: none; }
+    .toast.show { display: block; }
+    
+    /* DEBUG LOG */
+    .debug-log { position: fixed; bottom: 0; left: 0; right: 0; max-height: 200px; overflow-y: auto; background: #000; color: #0f0; font-family: monospace; font-size: 11px; padding: 8px; z-index: 999; display: none; }
+    .debug-log.show { display: block; }
   </style>
 </head>
 <body>
-  <!-- LOADING OVERLAY -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <div style="font-weight:600;color:var(--text-2)">Loading latest data...</div>
-  </div>
 
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="50%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs></svg>
+  <!-- DEBUG LOG -->
+  <div class="debug-log" id="debugLog"></div>
 
-  <nav class="nav" id="nav">
-    <a href="#home" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="logo-text grad-text" id="navName">Rhysco Power</span></a>
-    <div class="nav-links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a></div>
-    <div class="nav-actions">
-      <button class="icon-btn" onclick="toggleTheme()" aria-label="Theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
-      <button class="admin-btn" id="adminBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg><span id="adminBtnLabel">Admin</span></button>
-      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
-    </div>
+  <nav class="nav">
+    <a href="#" class="logo"><span class="logo-mark">⚡</span><span class="grad-text" id="navName">Rhysco Power</span></a>
+    <div class="nav-links"><a href="#home">Home</a><a href="#products">Products</a><a href="#contact">Contact</a></div>
+    <button class="admin-btn" id="adminBtn" onclick="openAdmin()">🔑 Admin</button>
   </nav>
-  <div class="mobile-menu" id="mobileMenu"><a href="#home" onclick="toggleMobileMenu()">Home</a><a href="#catalog" onclick="toggleMobileMenu()">Products</a><a href="#features" onclick="toggleMobileMenu()">Features</a><a href="#contact" onclick="toggleMobileMenu()">Contact</a></div>
 
-  <section id="home" class="hero">
-    <div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-fade"></div>
-    <div class="hero-content"><span class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Since 2010</span><h1 id="heroTitle"></h1><p id="heroSubtitle"></p><a href="#catalog" class="cta">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1>
+      <p id="heroSubtitle"></p>
+      <a href="#products" class="cta">Explore Products →</a>
+    </div>
   </section>
 
   <div class="stats" id="statsGrid"></div>
 
-  <section class="block"><a id="catalog" style="position:relative;top:-90px"></a>
-    <div class="section-head"><span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span><h2>Premium <span class="grad-text">Catalog</span></h2><p>Industrial-grade electrical equipment trusted by contractors and electricians across India.</p></div>
-    <div class="controls"><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="search" id="searchInput" placeholder="Search products…"><button id="clearBtn" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button></div><div class="pills" id="categoryPills"></div></div>
-    <div id="productsGrid" class="grid"></div>
+  <section id="products">
+    <div class="section-head"><h2>Our <span class="grad-text">Products</span></h2></div>
+    <div class="grid" id="productsGrid"></div>
   </section>
 
-  <section id="features" class="block"><div class="section-head"><span class="eyebrow">Why Choose Us</span><h2>Built for <span class="grad-text-warm">professionals</span></h2><p>Trusted by electricians and contractors across India for over 15 years.</p></div><div class="features-grid" id="featuresGrid"></div></section>
+  <section id="features"><div class="section-head"><h2>Why <span class="grad-text">Choose Us</span></h2></div><div class="features-grid" id="featuresGrid"></div></section>
 
-  <section id="contact" class="block"><div class="contact-card"><div class="contact-left"><span class="badge-pill">Get in Touch</span><h2>Let's power your<br>next project.</h2><p>Reach out for product enquiries, bulk orders, or technical guidance.</p><a id="contactWa" href="#" target="_blank" rel="noopener" class="wa-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat on WhatsApp</a></div><div class="contact-right" id="contactRight"></div></div></section>
+  <section id="contact">
+    <div class="contact-card">
+      <div class="contact-left"><h2>Get In Touch</h2><p style="margin-top:10px">Contact us for bulk orders</p><a id="contactWa" href="#" target="_blank" class="cta" style="display:inline-block;margin-top:16px">💬 WhatsApp</a></div>
+      <div class="contact-right" id="contactRight"></div>
+    </div>
+  </section>
 
-  <footer><div class="footer-card"><div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><div class="grad-text" id="footerName" style="font-weight:800;font-size:14px"></div><div class="footer-text">Since 2010 • Premium Electrical Solutions</div></div></div><div class="footer-text" id="footerText"></div></div></footer>
+  <footer>© <span id="footerText"></span></footer>
+  <a id="floatWa" href="#" target="_blank" class="float-wa">💬</a>
 
-  <a id="floatWa" href="#" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
-  <button class="float-top" id="floatTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <!-- ADMIN MODAL -->
+  <div class="modal" id="adminModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeAdmin()">✕</button>
+      <h3 style="margin-bottom:14px">Admin Panel</h3>
+      <div class="tabs" id="adminTabs">
+        <button onclick="setTab('company')" id="tabCompany">Company</button>
+        <button onclick="setTab('git')" id="tabGit">🔗 Git</button>
+      </div>
+      <div id="adminContent"></div>
+    </div>
+  </div>
 
-  <div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()"><div class="modal-card" id="productModalCard"></div></div>
-  <div class="modal" id="adminModal" onclick="if(event.target===this)closeAdmin()"><div class="modal-card wide"><div class="admin-head"><div style="display:flex;align-items:center;gap:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><h3>Admin Panel</h3><div style="font-size:10px;opacity:.9">Manage catalog & settings</div></div></div><button class="modal-close" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="admin-body" id="adminBody"></div></div></div>
-  <div id="toast" class="toast"></div>
+  <div class="toast" id="toast"></div>
 
 <script>
-'use strict';
-
-// ========== DEFAULT DATA (fallback agar GitHub connect nahi hai) ==========
-const DEFAULT_CATEGORIES = [
-  { id: 'cat_WAA_Cables', name: 'WAA Cables', icon: '🔌', products: [
-    { id: 'p_1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable' }
-  ]}
-];
-
-const DEFAULTS = {
-  categories: DEFAULT_CATEGORIES,
-  company: { name: 'Rhysco Power', tagline: 'Premium Electrical Solutions', since: '2010', phone: '+91 6203691393', email: 'bikram.biharelctrometer@gmail.com', whatsapp: '916203691393', address: 'India (Bihar & NCR)', heroTitle: 'Complete Electrical Solutions', heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories' },
-  stats: [{ icon: 'trophy', number: '15+', label: 'Years' },{ icon: 'boxes', number: '1', label: 'Products' },{ icon: 'users', number: '1000+', label: 'Clients' },{ icon: 'truck', number: 'PAN India', label: 'Delivery' }],
-  features: [{ icon: 'shield', title: 'Quality Assured', desc: 'ISO certified products' },{ icon: 'headset', title: '24/7 Support', desc: 'Technical assistance anytime' },{ icon: 'truck', title: 'Pan India Supply', desc: 'Fast shipping nationwide' },{ icon: 'rupee', title: 'Best Price', desc: 'Wholesale & dealer pricing' },{ icon: 'award', title: 'Trusted Brands', desc: 'Original grade only' },{ icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply specialist' }]
-};
-
-// ========== GIT CONFIG ==========
-const GIT = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
-
-// ========== STATE ==========
-let state = {
-  categories: JSON.parse(JSON.stringify(DEFAULTS.categories)),
-  company: { ...DEFAULTS.company },
-  stats: JSON.parse(JSON.stringify(DEFAULTS.stats)),
-  features: JSON.parse(JSON.stringify(DEFAULTS.features)),
-  isAdmin: false,
-  activeCategory: 'all',
-  query: '',
-  adminTab: 'products',
-  adminCat: null,
-  editingId: null,
-  editDraft: { name: '', spec: '', desc: '', icon: '📦' },
-  gitConnected: false
-};
-
-let syncTimer = null, searchTimer = null;
-
-// ========== GITHUB API ==========
-async function gitAPI(endpoint, method = 'GET', body = null) {
-  if (!GIT.token) throw new Error('No token');
-  const ctrl = new AbortController();
-  const to = setTimeout(() => ctrl.abort(), 12000);
-  try {
-    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(GIT.owner)}/${encodeURIComponent(GIT.repo)}${endpoint}`, {
-      method, signal: ctrl.signal,
-      headers: { 'Authorization': `Bearer ${GIT.token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-      body: body ? JSON.stringify(body) : null
-    });
-    clearTimeout(to);
-    if (!res.ok) throw new Error('API error ' + res.status);
-    return res.json();
-  } catch (e) { clearTimeout(to); throw e; }
+// ========== DEBUG LOGGER ==========
+function log(msg, color = '#0f0') {
+  console.log('[DEBUG]', msg);
+  const logEl = document.getElementById('debugLog');
+  logEl.classList.add('show');
+  logEl.innerHTML += `<div style="color:${color}">[${new Date().toLocaleTimeString()}] ${msg}</div>`;
+  logEl.scrollTop = logEl.scrollHeight;
 }
 
-async function syncToGitHub() {
-  if (!state.gitConnected) return false;
-  const data = { categories: state.categories, company: state.company, stats: state.stats, features: state.features, lastSync: new Date().toISOString() };
-  try {
-    let sha = null;
-    try { sha = (await gitAPI(`/contents/${GIT.path}`)).sha; } catch {}
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-    await gitAPI(`/contents/${GIT.path}`, 'PUT', { message: `Update ${new Date().toLocaleString()}`, content, branch: GIT.branch, ...(sha ? { sha } : {}) });
-    updateGitBadge();
-    return true;
-  } catch (e) {
-    console.warn('Sync failed:', e.message);
-    updateGitBadge();
-    return false;
+// ========== DATA ==========
+let companyData = { name: 'Rhysco Power', tagline: 'Premium Electrical Solutions', phone: '+91 6203691393', email: 'test@test.com', whatsapp: '916203691393', address: 'India', heroTitle: 'Complete Electrical Solutions', heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories' };
+let products = [{ id: 'p1', name: '4.00SQMM WAA CABLE RED BLACK', spec: '100 MTR', icon: '🔌', desc: 'Premium 100% pure copper flexible cable', category: 'WAA Cables' }];
+let stats = [{ icon: '⭐', number: '15+', label: 'Years' },{ icon: '📦', number: '1', label: 'Products' },{ icon: '👥', number: '1000+', label: 'Clients' },{ icon: '🚚', number: 'PAN India', label: 'Delivery' }];
+let features = [{ icon: '🛡️', title: 'Quality Assured', desc: 'ISO certified' },{ icon: '🎧', title: '24/7 Support', desc: 'Always available' },{ icon: '🚚', title: 'Fast Delivery', desc: 'Nationwide' }];
+
+// ========== GIT CONFIG ==========
+let gitConfig = { owner: '', repo: 'rhysco-data', branch: 'main', token: '', path: 'data.json' };
+let gitConnected = false;
+
+// Load saved git config
+try {
+  const saved = JSON.parse(localStorage.getItem('rc_git') || '{}');
+  if (saved.owner && saved.token) {
+    gitConfig = { ...gitConfig, ...saved };
+    gitConnected = true;
+    log('✅ Git config loaded: ' + gitConfig.owner + '/' + gitConfig.repo, '#0f0');
   }
+} catch(e) { log('❌ Error loading git config: ' + e.message, '#f00'); }
+
+// ========== TOAST ==========
+function toast(msg) {
+  log('🔔 Toast: ' + msg, '#ff0');
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ========== RENDER ==========
+function renderAll() {
+  document.getElementById('navName').textContent = companyData.name;
+  document.getElementById('heroTitle').innerHTML = companyData.heroTitle.replace(/Electrical/gi, '<span class="grad-text">Electrical</span>');
+  document.getElementById('heroSubtitle').textContent = companyData.heroSubtitle;
+  document.getElementById('footerText').textContent = new Date().getFullYear() + ' ' + companyData.name;
+  document.title = companyData.name;
+  
+  document.getElementById('statsGrid').innerHTML = stats.map(s => `<div class="stat"><div class="stat-icon">${s.icon}</div><div class="stat-num">${s.number}</div><div class="stat-label">${s.label}</div></div>`).join('');
+  document.getElementById('featuresGrid').innerHTML = features.map(f => `<div class="feat"><div style="font-size:30px">${f.icon}</div><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
+  document.getElementById('productsGrid').innerHTML = products.map(p => `<div class="card"><div style="font-size:28px">${p.icon}</div><h3>${p.name}</h3><div class="spec">📏 ${p.spec}</div><p style="font-size:12px;color:var(--text-2)">${p.desc}</p><div class="actions"><a class="btn-wa" href="https://wa.me/${companyData.whatsapp}" target="_blank">💬 Enquiry</a><button class="btn-detail">Details</button></div></div>`).join('');
+  
+  document.getElementById('contactRight').innerHTML = [
+    { l:'Phone', v:companyData.phone },
+    { l:'Email', v:companyData.email },
+    { l:'Address', v:companyData.address }
+  ].map(i => `<div class="contact-item"><div><strong>${i.l}</strong></div><div>${i.v}</div></div>`).join('');
+  
+  document.getElementById('floatWa').href = 'https://wa.me/' + companyData.whatsapp;
+  document.getElementById('contactWa').href = 'https://wa.me/' + companyData.whatsapp;
+}
+
+// ========== GITHUB API ==========
+async function testGitConnection() {
+  log('🔄 Testing GitHub connection...', '#0ff');
+  log('URL: https://api.github.com/repos/' + gitConfig.owner + '/' + gitConfig.repo, '#0ff');
+  log('Token starts with: ' + gitConfig.token.substring(0, 4) + '...', '#0ff');
+  
+  try {
+    const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(gitConfig.owner)}/${encodeURIComponent(gitConfig.repo)}`, {
+      headers: {
+        'Authorization': `Bearer ${gitConfig.token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+    
+    log('Response status: ' + res.status, res.ok ? '#0f0' : '#f00');
+    
+    if (res.status === 401) {
+      log('❌ ERROR 401: Invalid token! Token galat hai ya expire ho gaya.', '#f00');
+      throw new Error('Invalid token. Generate new token at github.com/settings/tokens');
+    }
+    if (res.status === 403) {
+      log('❌ ERROR 403: Forbidden! Token me "repo" scope nahi hai.', '#f00');
+      throw new Error('Token needs "repo" permission');
+    }
+    if (res.status === 404) {
+      log('❌ ERROR 404: Repository not found! Repo: ' + gitConfig.owner + '/' + gitConfig.repo, '#f00');
+      throw new Error('Repository not found. Create it on GitHub first.');
+    }
+    
+    const data = await res.json();
+    log('✅ Connected! Repo: ' + data.full_name, '#0f0');
+    return true;
+  } catch(e) {
+    log('❌ Connection error: ' + e.message, '#f00');
+    throw e;
+  }
+}
+
+async function pushToGitHub() {
+  log('📤 Pushing data to GitHub...', '#0ff');
+  
+  const pushData = {
+    company: companyData,
+    products: products,
+    stats: stats,
+    features: features,
+    lastSync: new Date().toISOString()
+  };
+  
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(pushData, null, 2))));
+  log('Data size: ' + content.length + ' chars', '#0ff');
+  
+  let sha = null;
+  try {
+    const fileRes = await fetch(`https://api.github.com/repos/${encodeURIComponent(gitConfig.owner)}/${encodeURIComponent(gitConfig.repo)}/contents/${gitConfig.path}`, {
+      headers: { 'Authorization': `Bearer ${gitConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (fileRes.ok) {
+      const fileData = await fileRes.json();
+      sha = fileData.sha;
+      log('Existing file SHA: ' + sha, '#0ff');
+    } else {
+      log('File doesnt exist yet, will create new', '#0ff');
+    }
+  } catch(e) {
+    log('Checking existing file: ' + e.message, '#ff0');
+  }
+  
+  const body = {
+    message: 'Update ' + new Date().toLocaleString(),
+    content: content,
+    branch: gitConfig.branch
+  };
+  if (sha) body.sha = sha;
+  
+  const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(gitConfig.owner)}/${encodeURIComponent(gitConfig.repo)}/contents/${gitConfig.path}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${gitConfig.token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  
+  log('Push response: ' + res.status, res.ok ? '#0f0' : '#f00');
+  
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    log('❌ Push error: ' + (err.message || 'Unknown'), '#f00');
+    throw new Error(err.message || 'Push failed');
+  }
+  
+  log('✅ Successfully pushed to GitHub!', '#0f0');
+  return true;
 }
 
 async function loadFromGitHub() {
-  if (!GIT.token || !GIT.owner) return false;
-  try {
-    const raw = await gitAPI(`/contents/${GIT.path}`);
-    const content = JSON.parse(atob(raw.content));
-    if (content.categories?.length) state.categories = content.categories;
-    if (content.company?.name) state.company = { ...DEFAULTS.company, ...content.company };
-    if (content.stats?.length) state.stats = content.stats;
-    if (content.features?.length) state.features = content.features;
-    return true;
-  } catch (e) {
-    console.warn('Load failed:', e.message);
-    return false;
+  log('📥 Loading data from GitHub...', '#0ff');
+  
+  const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(gitConfig.owner)}/${encodeURIComponent(gitConfig.repo)}/contents/${gitConfig.path}`, {
+    headers: { 'Authorization': `Bearer ${gitConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+  });
+  
+  if (!res.ok) {
+    log('❌ Load failed: ' + res.status, '#f00');
+    throw new Error('Failed to load');
+  }
+  
+  const fileData = await res.json();
+  const content = JSON.parse(atob(fileData.content));
+  log('✅ Loaded data from GitHub', '#0f0');
+  log('Company: ' + (content.company?.name || 'N/A'), '#0f0');
+  log('Products: ' + (content.products?.length || 0), '#0f0');
+  
+  if (content.company) companyData = content.company;
+  if (content.products) products = content.products;
+  if (content.stats) stats = content.stats;
+  if (content.features) features = content.features;
+  
+  renderAll();
+  return true;
+}
+
+// ========== ADMIN FUNCTIONS ==========
+let currentTab = 'git';
+
+function openAdmin() {
+  document.getElementById('adminModal').classList.add('open');
+  setTab('git');
+}
+
+function closeAdmin() {
+  document.getElementById('adminModal').classList.remove('open');
+}
+
+function setTab(tab) {
+  currentTab = tab;
+  document.getElementById('tabCompany').classList.toggle('active', tab === 'company');
+  document.getElementById('tabGit').classList.toggle('active', tab === 'git');
+  
+  const content = document.getElementById('adminContent');
+  
+  if (tab === 'git') {
+    content.innerHTML = `
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:16px">
+        <h4 style="margin-bottom:12px">🔗 GitHub Sync Settings</h4>
+        <p style="font-size:12px;color:var(--text-2);margin-bottom:14px">
+          <strong>Step 1:</strong> Create repo on GitHub<br>
+          <strong>Step 2:</strong> Get token from <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> (select <strong>repo</strong> scope)<br>
+          <strong>Step 3:</strong> Enter below and Save
+        </p>
+        <div class="field">
+          <label>GitHub Username</label>
+          <input id="gitOwner" value="${gitConfig.owner}" placeholder="your-username">
+        </div>
+        <div class="field">
+          <label>Personal Access Token</label>
+          <input id="gitToken" type="password" value="${gitConfig.token}" placeholder="ghp_xxxxxxxxxxxx">
+        </div>
+        <div class="field">
+          <label>Repository (default: rhysco-data)</label>
+          <input id="gitRepo" value="${gitConfig.repo}" placeholder="rhysco-data">
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="saveGitAndSync()">💾 Save & Sync</button>
+          ${gitConnected ? `<button class="btn btn-success" onclick="pushToGitHub().then(()=>toast('✅ Pushed!')).catch(e=>toast('❌ '+e.message))">📤 Push Now</button>` : ''}
+          ${gitConnected ? `<button class="btn btn-success" onclick="loadFromGitHub().then(()=>toast('✅ Loaded!')).catch(e=>toast('❌ '+e.message))">📥 Load from GitHub</button>` : ''}
+        </div>
+        <div style="margin-top:8px;font-size:12px;padding:8px;background:${gitConnected?'rgba(16,185,129,0.1)':'rgba(239,68,68,0.1)'};border-radius:8px">
+          Status: <strong style="color:${gitConnected?'#10b981':'#ef4444'}">${gitConnected ? '✅ Connected to ' + gitConfig.owner + '/' + gitConfig.repo : '⚡ Not connected'}</strong>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:11px;color:var(--text-2)">
+        <button onclick="document.getElementById('debugLog').classList.toggle('show')" style="text-decoration:underline">Toggle Debug Log</button>
+      </div>
+    `;
+  } else if (tab === 'company') {
+    content.innerHTML = `
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:16px">
+        <h4 style="margin-bottom:12px">Company Settings</h4>
+        <div class="field"><label>Name</label><input id="compName" value="${companyData.name}"></div>
+        <div class="field"><label>Hero Title</label><input id="compHeroTitle" value="${companyData.heroTitle}"></div>
+        <div class="field"><label>Hero Subtitle</label><input id="compHeroSub" value="${companyData.heroSubtitle}"></div>
+        <div class="field"><label>Phone</label><input id="compPhone" value="${companyData.phone}"></div>
+        <button class="btn btn-primary" style="margin-top:10px" onclick="saveCompany()">💾 Save Company</button>
+      </div>
+    `;
   }
 }
 
-function updateGitBadge() {
-  const b = document.getElementById('gitSyncBadge');
-  if (!b) return;
-  b.className = 'git-badge' + (state.gitConnected ? '' : ' error');
-  b.textContent = state.gitConnected ? '✓ Synced' : '⚡ Not Connected';
-}
-
-function saveGitConfig() {
-  const owner = document.getElementById('gitOwner').value.trim();
-  const token = document.getElementById('gitToken').value.trim();
-  if (!owner || !token) return toast('⚠️ Username and token required');
-  GIT.owner = owner;
-  GIT.token = token;
-  GIT.repo = document.getElementById('gitRepo').value.trim() || 'rhysco-data';
-  GIT.branch = document.getElementById('gitBranch').value.trim() || 'main';
-  // Git config localStorage me save karo (sirf yehi cheez localStorage me rahegi)
-  try { localStorage.setItem('rc_git', JSON.stringify({ owner: GIT.owner, token: GIT.token, repo: GIT.repo, branch: GIT.branch })); } catch {}
-  state.gitConnected = true;
-  toast('✅ Connected!');
-  // Turant data push karo
-  syncToGitHub().then(ok => toast(ok ? '✅ Data synced to GitHub' : '⚠️ Sync failed')).catch(() => toast('❌ Error'));
-  updateGitBadge();
-}
-
-function disconnectGit() {
-  if (!confirm('Disconnect GitHub?')) return;
-  GIT.token = ''; GIT.owner = '';
-  try { localStorage.removeItem('rc_git'); } catch {}
-  state.gitConnected = false;
-  toast('🔌 Disconnected');
-  updateGitBadge();
-}
-
-// ========== SVG ICONS ==========
-const I = {
-  trophy:'<polyline points="6 9 6 4 18 4 18 9"/><path d="M6 9a6 6 0 0 0 12 0"/><path d="M6 9H3a3 3 0 0 0 3 3"/><path d="M18 9h3a3 3 0 0 1-3 3"/><path d="M9 22h6"/><path d="M12 17v5"/>',
-  boxes:'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
-  users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-  truck:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
-  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',
-  award:'<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
-  rupee:'<path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/>',
-  headset:'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
-  'boxes-feat':'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
-  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
-  moon:'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
-  ruler:'<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
-  msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-  chevron:'<polyline points="9 18 15 12 9 6"/>', x:'<path d="M18 6L6 18M6 6l12 12"/>',
-  check:'<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-  truckS:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
-  phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
-  mail:'<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
-  pin:'<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
-  clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
-  plus:'<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
-  edit:'<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>',
-  trash:'<polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/>',
-  save:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',
-  reset:'<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>',
-  lock:'<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
-  pkg:'<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
-  github:'<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',
-  cloud:'<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
-  download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'
-};
-const S = (n, s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]||''}</svg>`;
-
-// ========== UTILS ==========
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-const escA = s => esc(s);
-const uid = () => 'id_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-const wa = t => `https://wa.me/${state.company.whatsapp}?text=${encodeURIComponent(t)}`;
-const flat = () => state.categories.flatMap(c => c.products.map(p => ({ ...p, categoryId: c.id, categoryName: c.name, categoryIcon: c.icon })));
-const refreshAll = () => { renderCompany(); renderStats(); renderCategories(); renderProducts(); renderFeatures(); };
-
-function toast(m) {
-  const t = document.getElementById('toast');
-  t.textContent = m; t.classList.add('show');
-  clearTimeout(window._t); window._t = setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-// ========== THEME ==========
-function applyTheme() {
-  const t = (() => { try { return localStorage.getItem('rc_theme') || 'dark'; } catch { return 'dark'; } })();
-  document.documentElement.dataset.theme = t;
-  try { document.getElementById('themeIcon').outerHTML = `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[t==='dark'?'sun':'moon']}</svg>`; } catch {}
-}
-function toggleTheme() {
-  const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('rc_theme', t); } catch {}
-  applyTheme();
-}
-
-function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('show'); }
-
-// ========== RENDER ==========
-function renderCompany() {
-  document.getElementById('navName').textContent = state.company.name;
-  document.getElementById('footerName').textContent = state.company.name;
-  document.title = state.company.name + ' — ' + state.company.tagline;
-  document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
-  document.getElementById('footerText').textContent = '© ' + new Date().getFullYear() + ' ' + state.company.name;
-  const words = state.company.heroTitle.split(' ');
-  document.getElementById('heroTitle').innerHTML = words.map((w,i) => (/electric/i.test(w)?'<span class="grad-text">'+esc(w)+'</span>':esc(w))+(i<words.length-1?' ':'')).join('');
-  document.getElementById('floatWa').href = wa('Hi, I have a question.');
-  document.getElementById('contactWa').href = wa('Hi, I\'d like to discuss a bulk order.');
-  document.getElementById('contactRight').innerHTML = [
-    { ic:'phone', l:'Phone', v:state.company.phone, h:'tel:'+state.company.phone.replace(/\s+/g,'') },
-    { ic:'msg', l:'WhatsApp', v:'+'+state.company.whatsapp, h:wa('Hi'), ext:true },
-    { ic:'mail', l:'Email', v:state.company.email, h:'mailto:'+state.company.email },
-    { ic:'pin', l:'Address', v:state.company.address },
-    { ic:'clock', l:'Hours', v:'Mon – Sat • 9 AM to 8 PM' }
-  ].map(it => {
-    const inner = '<div class="ic">'+S(it.ic,16)+'</div><div><div class="label">'+it.l+'</div><div class="value">'+esc(it.v)+'</div></div>';
-    return it.h ? '<a href="'+escA(it.h)+'" '+(it.ext?'target="_blank" rel="noopener"':'')+' class="contact-item">'+inner+'</a>' : '<div class="contact-item">'+inner+'</div>';
-  }).join('');
-}
-
-function renderStats() {
-  document.getElementById('statsGrid').innerHTML = state.stats.map(s => '<div class="stat"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
-}
-
-function renderFeatures() {
-  document.getElementById('featuresGrid').innerHTML = state.features.map(f => '<div class="feat"><div class="feat-icon">'+S(f.icon,22)+'</div><h3>'+esc(f.title)+'</h3><p>'+esc(f.desc)+'</p></div>').join('');
-}
-
-function renderCategories() {
-  const all = flat();
-  document.getElementById('catalogCount').textContent = all.length + ' products';
-  document.getElementById('categoryPills').innerHTML = '<button class="pill '+(state.activeCategory==='all'?'active':'')+'" onclick="setCategory(\'all\')">📂 All</button>' + state.categories.map(c => '<button class="pill '+(state.activeCategory===c.id?'active':'')+'" onclick="setCategory(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('');
-}
-
-function renderProducts() {
-  const grid = document.getElementById('productsGrid');
-  const all = flat();
-  const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
-  const q = state.query.trim().toLowerCase();
-  const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
-  if (!filtered.length) { grid.innerHTML = '<div class="empty" style="grid-column:1/-1">'+S('pkg',44)+'<div style="font-size:16px;font-weight:700;margin-top:8px">No products</div></div>'; return; }
-  grid.innerHTML = filtered.map(p => {
-    const w = wa('Interested in: ' + p.name + ' (' + p.spec + ')');
-    return '<div class="card"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><div class="spec">'+S('ruler',11)+' '+esc(p.spec)+'</div><p class="desc">'+esc(p.desc)+'</p><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="actions"><a class="btn-wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',13)+' Enquiry</a><button class="btn-detail" onclick="openProduct(\''+p.id+'\')">Details '+S('chevron',13)+'</button></div></div>';
-  }).join('');
-}
-
-function setCategory(id) { state.activeCategory = id; renderCategories(); renderProducts(); }
-function clearSearch() { state.query = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; renderProducts(); }
-
-function openProduct(id) {
-  const p = flat().find(p => p.id === id);
-  if (!p) return;
-  const w = wa('Quote for: ' + p.name);
-  document.getElementById('productModalCard').innerHTML = '<button class="modal-close" onclick="closeProduct()">'+S('x',14)+'</button><div class="pdetail-head"><div class="pdetail-icon">'+esc(p.icon)+'</div><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="pdetail-title">'+esc(p.name)+'</div><div class="pdetail-spec">'+S('ruler',13)+' '+esc(p.spec)+'</div></div><div class="pdetail-body"><p style="color:var(--text-2);font-size:13px">'+esc(p.desc)+'</p><div class="pdetail-actions"><a class="wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',14)+' WhatsApp</a><a class="call" href="tel:'+escA(state.company.phone.replace(/\s+/g,''))+'">'+S('phone',14)+' Call</a></div></div>';
-  document.getElementById('productModal').classList.add('open');
-}
-function closeProduct() { document.getElementById('productModal').classList.remove('open'); }
-
-// ========== ADMIN ==========
-function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
-function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
-
-function login() {
-  if (document.getElementById('adminUser').value.trim() === 'sunny' && document.getElementById('adminPass').value === 'admin') {
-    state.isAdmin = true;
-    try { localStorage.setItem('rc_auth', '1'); } catch {}
-    updateAdminBtn(); renderAdmin(); toast('Welcome!');
-  } else { document.getElementById('loginErr').textContent = 'Invalid credentials'; }
-  return false;
-}
-function logout() { state.isAdmin = false; try { localStorage.removeItem('rc_auth'); } catch {} updateAdminBtn(); closeAdmin(); toast('Logged out'); }
-function updateAdminBtn() {
-  const b = document.getElementById('adminBtn'), l = document.getElementById('adminBtnLabel');
-  if (state.isAdmin) { b.classList.add('danger'); l.textContent = 'Logout'; b.onclick = logout; }
-  else { b.classList.remove('danger'); l.textContent = 'Admin'; b.onclick = openAdmin; }
-}
-
-function persist() {
-  // Data localStorage me nahi, sirf GitHub me save hoga
-  clearTimeout(syncTimer);
-  syncTimer = setTimeout(() => { if (state.gitConnected) syncToGitHub(); }, 2000);
-}
-
-function renderAdmin() {
-  if (!state.isAdmin) {
-    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">'+S('lock',22)+'</div><h3>Admin Login</h3><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center"></div><button type="submit" class="btn btn-primary">Sign In</button></form>';
+// ========== MAIN SAVE FUNCTION ==========
+async function saveGitAndSync() {
+  log('🚀 saveGitAndSync() called', '#ff0');
+  
+  const ownerEl = document.getElementById('gitOwner');
+  const tokenEl = document.getElementById('gitToken');
+  const repoEl = document.getElementById('gitRepo');
+  
+  if (!ownerEl || !tokenEl) {
+    log('❌ ERROR: Input fields not found!', '#f00');
+    toast('❌ Error: Fields not found');
     return;
   }
-  document.getElementById('adminBody').innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px"><div class="tabs"><button class="'+(state.adminTab==='products'?'active':'')+'" onclick="setAdminTab(\'products\')">Products</button><button class="'+(state.adminTab==='categories'?'active':'')+'" onclick="setAdminTab(\'categories\')">Categories</button><button class="'+(state.adminTab==='company'?'active':'')+'" onclick="setAdminTab(\'company\')">Company</button><button class="'+(state.adminTab==='git'?'active':'')+'" onclick="setAdminTab(\'git\')">'+S('github',12)+' Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>';
-  renderAdminPane(); updateGitBadge();
-}
-function setAdminTab(t) { state.adminTab = t; renderAdmin(); }
-
-function renderAdminPane() {
-  const p = document.getElementById('adminPane');
-  if (state.adminTab === 'products') p.innerHTML = paneProducts();
-  else if (state.adminTab === 'categories') p.innerHTML = paneCategories();
-  else if (state.adminTab === 'company') p.innerHTML = paneCompany();
-  else if (state.adminTab === 'git') p.innerHTML = paneGit();
-}
-
-function paneProducts() {
-  if (!state.categories.length) return '<p style="color:var(--text-2)">Add a category first.</p>';
-  if (!state.adminCat || !state.categories.find(c=>c.id===state.adminCat)) state.adminCat = state.categories[0].id;
-  const cat = state.categories.find(c=>c.id===state.adminCat);
-  const d = state.editDraft;
-  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' Product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name *</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><button class="btn btn-primary" style="margin-top:8px" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?' <button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div></div><div class="lact"><button class="edit" onclick="editProduct(\''+p.id+'\')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct(\''+p.id+'\')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="text-align:center;color:var(--text-2);grid-column:1/-1">No products</p>')+'</div>';
-}
-function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
-function saveProduct() {
-  const d = state.editDraft;
-  if (!d.name.trim()) return toast('Name required');
-  const cat = state.categories.find(c=>c.id===state.adminCat);
-  if (state.editingId) {
-    const p = cat.products.find(p=>p.id===state.editingId);
-    if (p) Object.assign(p, { name:d.name.trim(), spec:d.spec.trim(), desc:d.desc.trim(), icon:d.icon||'📦' });
-    toast('Updated');
-  } else {
-    cat.products.push({ id:uid(), name:d.name.trim(), spec:d.spec.trim(), desc:d.desc.trim(), icon:d.icon||'📦' });
-    toast('Added');
+  
+  const owner = ownerEl.value.trim();
+  const token = tokenEl.value.trim();
+  const repo = repoEl ? repoEl.value.trim() || 'rhysco-data' : 'rhysco-data';
+  
+  log('Owner: ' + owner, '#0ff');
+  log('Token: ' + (token ? token.substring(0,4) + '...' : 'EMPTY'), '#0ff');
+  log('Repo: ' + repo, '#0ff');
+  
+  if (!owner) {
+    log('❌ Username empty', '#f00');
+    toast('⚠️ Please enter GitHub username');
+    return;
   }
-  state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' };
-  persist(); renderAdminPane(); renderCategories(); renderProducts();
-}
-function editProduct(id) {
-  const cat = state.categories.find(c=>c.id===state.adminCat);
-  const p = cat?.products.find(p=>p.id===id);
-  if (!p) return;
-  state.editingId = id; state.editDraft = { name:p.name, spec:p.spec, desc:p.desc, icon:p.icon };
-  renderAdminPane();
-}
-function cancelEdit() { state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
-function deleteProduct(id) {
-  const cat = state.categories.find(c=>c.id===state.adminCat);
-  if (!cat || !confirm('Delete?')) return;
-  cat.products = cat.products.filter(x=>x.id!==id);
-  persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
-}
-
-function paneCategories() {
-  return '<div class="panel-section"><h4>Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>'+state.categories.map(c=>'<div class="cat-row"><input style="width:50px;text-align:center" maxlength="4" value="'+escA(c.icon)+'" oninput="updateCat(\''+c.id+'\',\'icon\',this.value)"><input style="flex:1" value="'+escA(c.name)+'" oninput="updateCat(\''+c.id+'\',\'name\',this.value)"><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat(\''+c.id+'\')">'+S('trash',12)+'</button></div>').join('');
-}
-function addCat() {
-  const n = document.getElementById('newCatName').value.trim();
-  if (!n) return toast('Name required');
-  state.categories.push({ id:uid(), name:n, icon:document.getElementById('newCatIcon').value.trim()||'📁', products:[] });
-  persist(); renderAdminPane(); renderCategories(); toast('Added');
-}
-function updateCat(id, k, v) { const c = state.categories.find(c=>c.id===id); if (c) { c[k] = v; persist(); renderCategories(); } }
-function deleteCat(id) {
-  if (!confirm('Delete?')) return;
-  state.categories = state.categories.filter(x=>x.id!==id);
-  if (state.activeCategory === id) state.activeCategory = 'all';
-  persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
-}
-
-function paneCompany() {
-  const c = state.company;
-  return '<div class="grid-2">'+[['name','Company Name'],['tagline','Tagline'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m])=>'<div class="field" style="'+(m?'grid-column:1/-1':'')+'"><label>'+l+'</label>'+(m?'<textarea oninput="updateCompany(\''+k+'\',this.value)">'+esc(c[k]||'')+'</textarea>':'<input value="'+escA(c[k]||'')+'" oninput="updateCompany(\''+k+'\',this.value)">')+'</div>').join('')+'</div>';
-}
-function updateCompany(k, v) { state.company[k] = v; persist(); renderCompany(); }
-
-function paneGit() {
-  return '<div class="panel-section"><h4>'+S('github',14)+' GitHub Sync</h4><p style="font-size:12px;color:var(--text-2);margin-bottom:12px"><strong>⚠️ Important:</strong> Data sirf GitHub se load hota hai. Token yaha dalne ke baad sabhi users ko latest data dikhega.<br><br>Token: <a href="https://github.com/settings/tokens" target="_blank" style="color:#06b6d4">github.com/settings/tokens</a> → <strong>repo</strong> scope</p><div class="grid-2"><div class="field"><label>GitHub Username</label><input id="gitOwner" value="'+escA(GIT.owner)+'" placeholder="github-username"></div><div class="field"><label>Token</label><input id="gitToken" type="password" value="'+escA(GIT.token)+'" placeholder="ghp_..."></div></div><div class="row" style="margin-top:12px"><button class="btn btn-primary" onclick="saveGitConfig()">💾 Save & Sync</button>'+(state.gitConnected?'<button class="btn btn-success" onclick="syncToGitHub().then(s=>toast(s?\'✅ Pushed\':\'❌ Failed\'))">📤 Push</button><button class="btn btn-success" onclick="loadFromGitHub().then(s=>{if(s){refreshAll();toast(\'✅ Loaded\')}else toast(\'❌ Failed\')})">📥 Pull</button><button class="btn btn-danger" onclick="disconnectGit()">🔌 Disconnect</button>':'')+'</div><div style="margin-top:8px;font-size:10px;color:var(--text-2)">Status: <strong>'+(state.gitConnected?'✅ Connected — All users see live data':'⚡ Not connected — Using default data')+'</strong></div></div>';
-}
-
-// ========== EVENTS ==========
-document.getElementById('searchInput').addEventListener('input', e => {
-  state.query = e.target.value;
-  document.getElementById('clearBtn').style.display = state.query ? 'inline-flex' : 'none';
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(renderProducts, 200);
-});
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
-  document.getElementById('floatTop').classList.toggle('visible', window.scrollY > 400);
-}, { passive: true });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
-document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
-
-// ========== INIT — Har bar GitHub se fresh load ==========
-applyTheme();
-
-(async () => {
-  // Git config load karo (sirf yehi localStorage me bachega)
+  if (!token) {
+    log('❌ Token empty', '#f00');
+    toast('⚠️ Please enter token');
+    return;
+  }
+  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+    log('⚠️ Token format may be wrong. Expected ghp_ or github_pat_', '#ff0');
+    toast('⚠️ Token should start with ghp_ or github_pat_');
+  }
+  
+  // Save config
+  gitConfig.owner = owner;
+  gitConfig.token = token;
+  gitConfig.repo = repo;
+  
   try {
-    const saved = JSON.parse(localStorage.getItem('rc_git') || '{}');
-    if (saved.owner && saved.token) {
-      GIT.owner = saved.owner;
-      GIT.token = saved.token;
-      GIT.repo = saved.repo || 'rhysco-data';
-      GIT.branch = saved.branch || 'main';
-      state.gitConnected = true;
-    }
-  } catch {}
-
-  // Admin session check
-  try { state.isAdmin = localStorage.getItem('rc_auth') === '1'; } catch {}
-
-  // GitHub se data load karo
-  if (state.gitConnected) {
-    const ok = await loadFromGitHub().catch(() => false);
-    if (!ok) {
-      // Fallback to defaults
-      state.categories = JSON.parse(JSON.stringify(DEFAULTS.categories));
-      state.company = { ...DEFAULTS.company };
-      state.stats = JSON.parse(JSON.stringify(DEFAULTS.stats));
-      state.features = JSON.parse(JSON.stringify(DEFAULTS.features));
-    }
+    localStorage.setItem('rc_git', JSON.stringify({ owner, token, repo, branch: 'main' }));
+    log('✅ Git config saved to localStorage', '#0f0');
+  } catch(e) {
+    log('❌ localStorage save failed: ' + e.message, '#f00');
   }
+  
+  gitConnected = true;
+  toast('🔄 Testing connection...');
+  
+  try {
+    log('Testing connection...', '#0ff');
+    await testGitConnection();
+    log('✅ Connection test passed!', '#0f0');
+    
+    toast('📤 Pushing data...');
+    await pushToGitHub();
+    toast('✅ Successfully synced to GitHub!');
+    
+    setTab('git'); // Refresh tab
+  } catch(e) {
+    log('❌ Failed: ' + e.message, '#f00');
+    toast('❌ ' + e.message);
+  }
+}
 
-  // Loading overlay hide karo
-  document.getElementById('loadingOverlay').classList.add('hidden');
+function saveCompany() {
+  const name = document.getElementById('compName')?.value?.trim();
+  if (!name) return toast('Name required');
+  
+  companyData.name = name;
+  companyData.heroTitle = document.getElementById('compHeroTitle')?.value || companyData.heroTitle;
+  companyData.heroSubtitle = document.getElementById('compHeroSub')?.value || companyData.heroSubtitle;
+  companyData.phone = document.getElementById('compPhone')?.value || companyData.phone;
+  
+  renderAll();
+  
+  if (gitConnected) {
+    pushToGitHub().then(() => toast('✅ Saved & synced')).catch(e => toast('⚠️ Saved locally only'));
+  } else {
+    toast('✅ Saved (connect Git to sync)');
+  }
+}
 
-  // Render
-  refreshAll();
-  updateAdminBtn();
-  updateGitBadge();
-})();
+// ========== INIT ==========
+renderAll();
+
+// Load from GitHub on start
+if (gitConnected) {
+  log('🔄 Auto-loading from GitHub...', '#0ff');
+  loadFromGitHub()
+    .then(() => log('✅ Initial load complete', '#0f0'))
+    .catch(() => log('⚠️ Using default data', '#ff0'));
+} else {
+  log('ℹ️ Git not configured. Open Admin → Git to connect.', '#0ff');
+}
+
+log('✅ App ready! Open Admin → Git tab', '#0f0');
 </script>
 </body>
 </html>
