@@ -3,20 +3,20 @@
     {
       "id": "cat_WAA_Cables",
       "name": "WAA Cables",
-      "icon": "Ã°ÂÂÂ",
+      "icon": "ÃÂ°ÃÂÃÂÃÂ",
       "products": [
         {
           "id": "p_1",
           "name": "4.00SQMM WAA CABLE RED BLACK",
           "spec": "100 MTR",
-          "icon": "Ã°ÂÂÂ",
+          "icon": "ÃÂ°ÃÂÃÂÃÂ",
           "desc": "Premium 100% pure copper flexible cable"
         }
       ]
     }
   ],
   "company": {
-    "name": "kkk",
+    "name": "sdgjlskdhfg",
     "tagline": "Premium Electrical Solutions",
     "since": "2010",
     "phone": "+91 6203691393",
@@ -24,7 +24,7 @@
     "whatsapp": "916203691393",
     "address": "India (Bihar & NCR)",
     "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables Ã¢ÂÂ¢ Solar & MC4 Ã¢ÂÂ¢ Meters Ã¢ÂÂ¢ Earthing Ã¢ÂÂ¢ Fire Safety Ã¢ÂÂ¢ Accessories"
+    "heroSubtitle": "WAA Cables ÃÂ¢ÃÂÃÂ¢ Solar & MC4 ÃÂ¢ÃÂÃÂ¢ Meters ÃÂ¢ÃÂÃÂ¢ Earthing ÃÂ¢ÃÂÃÂ¢ Fire Safety ÃÂ¢ÃÂÃÂ¢ Accessories"
   },
   "stats": [
     {
@@ -80,5 +80,5 @@
       "desc": "Project supply specialist"
     }
   ],
-  "lastSync": "2026-04-29T15:44:16.957Z"
+  "lastSync": "2026-04-29T15:44:24.853Z"
 }
