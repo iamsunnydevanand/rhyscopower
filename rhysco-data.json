@@ -1,48 +1,60 @@
 {
   "categories": [
     {
-      "id": "1777376920838dxtyj3",
-      "name": "sunny",
-      "icon": "âï¸",
+      "id": "cat1",
+      "name": "WAA Cables",
+      "icon": "🔌",
       "products": [
         {
-          "id": "1777376937125iz44vg",
-          "name": "sunny dev anand",
+          "id": "p1",
+          "name": "WAA CABLE 4.00SQMM RED BLACK",
           "spec": "100 MTR",
-          "icon": "ð",
-          "desc": "100% pure copper, flame retardant, industrial grade"
+          "icon": "🔌",
+          "desc": "100% pure copper, flame retardant"
         }
       ]
     },
     {
-      "id": "1777376921508653lcd",
-      "name": "sunny",
-      "icon": "âï¸",
-      "products": []
+      "id": "cat2",
+      "name": "Solar & MC4",
+      "icon": "☀️",
+      "products": [
+        {
+          "id": "p2",
+          "name": "SOLAR DC CABLE",
+          "spec": "500MTR",
+          "icon": "☀️",
+          "desc": "UV protected solar cable"
+        }
+      ]
     },
     {
-      "id": "1777376921723mctpcz",
-      "name": "sunny",
-      "icon": "âï¸",
-      "products": []
-    },
-    {
-      "id": "1777376924764dms3xy",
-      "name": "dev",
-      "icon": "âï¸",
-      "products": []
+      "id": "cat3",
+      "name": "Meters",
+      "icon": "📊",
+      "products": [
+        {
+          "id": "p3",
+          "name": "SINGLE PHASE NET METER",
+          "spec": "5/30A",
+          "icon": "📊",
+          "desc": "Bi-directional net meter"
+        }
+      ]
     }
   ],
   "company": {
-    "name": "sunnydevanand",
+    "name": "Rhysco Power Private Limiteddd",
     "tagline": "Premium Electrical Solutions",
     "since": "2010",
     "phone": "+91 6203691393",
     "email": "bikram.biharelctrometer@gmail.com",
     "whatsapp": "916203691393",
-    "address": "India (Bihar & NCR)",
-    "heroTitle": "Complete Electrical Solutions",
-    "heroSubtitle": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories"
+    "address": "India (Bihar & NCR) | Global Shipping Available",
+    "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>⚡ A to Z</span>",
+    "heroSubtitle": "WAA Cables • Meters • Solar • Earthing • Fire Safety • Accessories",
+    "catalogTitle": "Our Premium Catalog",
+    "footer": "© 2026 Rhysco Power - All Rights Reserved"
   },
   "stats": [
     {
@@ -98,5 +110,5 @@
       "desc": "Project supply specialist"
     }
   ],
-  "lastSync": "2026-04-29T13:05:58.756Z"
+  "lastSync": "2026-04-29T13:22:52.157Z"
 }
