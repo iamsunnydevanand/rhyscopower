@@ -1,69 +1,750 @@
 {
   "categories": [
     {
-      "id": "1777376920838dxtyj3",
-      "name": "sunny",
-      "icon": "☀️",
+      "id": "WAA_Cables",
+      "name": "WAA Cables",
+      "icon": "🔌",
       "products": [
         {
-          "id": "1777376937125iz44vg",
-          "name": "sunny dev anand",
+          "id": 1777378539187.7546,
+          "name": "4.00SQMM WAA CABLE RED BLACK",
           "spec": "100 MTR",
           "icon": "🔌",
-          "desc": "100% pure copper, flame retardant, industrial grade"
+          "desc": "Premium 100% pure copper flexible cable"
+        },
+        {
+          "id": 1777378539187.4792,
+          "name": "4.00SQMM WAA CABLE BLACK",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "Heavy duty industrial grade cable"
+        },
+        {
+          "id": 1777378539187.31,
+          "name": "WAA CABLE RED BLACK",
+          "spec": "500 MTR",
+          "icon": "🔌",
+          "desc": "Long length roll for large projects"
+        },
+        {
+          "id": 1777378539187.4817,
+          "name": "WAA CABLE BLACK",
+          "spec": "500 MTR",
+          "icon": "⚡",
+          "desc": "Bulk packing industrial cable"
+        },
+        {
+          "id": 1777378539187.1772,
+          "name": "6MM WAA CABLE BLACK",
+          "spec": "500 MTR",
+          "icon": "🔌",
+          "desc": "6 sqmm heavy duty power cable"
+        },
+        {
+          "id": 1777378539187.42,
+          "name": "6MM WAA CABLE RED BLACK",
+          "spec": "500 MTR",
+          "icon": "⚡",
+          "desc": "Red & Black pair 6mm²"
+        },
+        {
+          "id": 1777378539187.964,
+          "name": "6MM WAA CABLE BLACK",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "6mm² flexible cable"
+        },
+        {
+          "id": 1777378539187.905,
+          "name": "6MM WAA CABLE RED BLACK",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "6mm² twin core cable"
+        },
+        {
+          "id": 1777378539187.315,
+          "name": "4 CORE 6.00SQMM",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "4 core control cable industrial"
+        },
+        {
+          "id": 1777378539187.1125,
+          "name": "4 CORE 4.00SQMM",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "4 core multi-core cable"
+        },
+        {
+          "id": 1777378539187.0588,
+          "name": "2 CORE 6.00SQMM",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "Twin core heavy duty"
+        },
+        {
+          "id": 1777378539187.5005,
+          "name": "4 CORE 2.50SQMM",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "4 core 2.5mm² flexible"
+        },
+        {
+          "id": 1777378539187.964,
+          "name": "2 CORE 4.00SQMM",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "2 core 4mm² power cable"
+        },
+        {
+          "id": 1777378539187.3838,
+          "name": "3 CORE 1.50SQMM",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "3 core 1.5mm² cable"
+        },
+        {
+          "id": 1777378539187.2803,
+          "name": "3 CORE 2.50SQMM",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "3 core 2.5mm² flexible"
+        },
+        {
+          "id": 1777378539187.7925,
+          "name": "3 CORE 2.50SQMM",
+          "spec": "500 MTR",
+          "icon": "🔌",
+          "desc": "3 core 2.5mm² bulk roll"
+        },
+        {
+          "id": 1777378539187.5095,
+          "name": "2 CORE 0.75SQMM",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "2 core 0.75mm² thin cable"
+        },
+        {
+          "id": 1777378539187.8008,
+          "name": "2 CORE 1.50SQMM",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "2 core 1.5mm² cable"
+        },
+        {
+          "id": 1777378539187.5344,
+          "name": "2 CORE 1.00SQMM",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "2 core 1mm² cable"
+        },
+        {
+          "id": 1777378539187.365,
+          "name": "RG 6",
+          "spec": "100 MTR",
+          "icon": "📡",
+          "desc": "Coaxial cable RG6"
+        },
+        {
+          "id": 1777378539187.8977,
+          "name": "2 CORE 1.00SQMM SPEAKER WIRE",
+          "spec": "100 MTR",
+          "icon": "🔊",
+          "desc": "Speaker wire oxygen free"
+        },
+        {
+          "id": 1777378539187.5684,
+          "name": "2 CORE 2.50SQMM",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "2 core 2.5mm² cable"
+        },
+        {
+          "id": 1777378539187.7002,
+          "name": "CCTV CABLE",
+          "spec": "Standard",
+          "icon": "📹",
+          "desc": "CCTV power video combo"
+        },
+        {
+          "id": 1777378539187.2708,
+          "name": "AIDEO VIDEO 1+4",
+          "spec": "Standard",
+          "icon": "📺",
+          "desc": "Video+power cable 1+4"
+        },
+        {
+          "id": 1777378539187.4429,
+          "name": "AIDEO VIDEO 1+3",
+          "spec": "Standard",
+          "icon": "📺",
+          "desc": "Video+power cable 1+3"
+        },
+        {
+          "id": 1777378539187.3188,
+          "name": "CAT 6",
+          "spec": "305 MTR",
+          "icon": "🌐",
+          "desc": "Pure copper network cable"
         }
       ]
     },
     {
-      "id": "1777376921508653lcd",
-      "name": "sunny",
+      "id": "Solar___MC4",
+      "name": "Solar & MC4",
       "icon": "☀️",
-      "products": []
+      "products": [
+        {
+          "id": 1777378539187.3228,
+          "name": "SOLAR DC 4.00SQMM RED",
+          "spec": "500 MTR",
+          "icon": "☀️",
+          "desc": "RHEIN solar DC cable UV protected"
+        },
+        {
+          "id": 1777378539187.455,
+          "name": "SOLAR DC 4.00SQMM BLACK",
+          "spec": "500 MTR",
+          "icon": "☀️",
+          "desc": "TUV approved solar cable"
+        },
+        {
+          "id": 1777378539187.734,
+          "name": "MC4 CONNECTOR",
+          "spec": "Pair",
+          "icon": "🔌",
+          "desc": "IP67 rated original grade"
+        },
+        {
+          "id": 1777378539187.1042,
+          "name": "MC4 CONNECTOR 2 IN 1",
+          "spec": "Branch",
+          "icon": "🔌",
+          "desc": "2 to 1 solar combiner"
+        },
+        {
+          "id": 1777378539187.2935,
+          "name": "MC4 CONNECTOR 3 IN 1",
+          "spec": "Branch",
+          "icon": "🔌",
+          "desc": "3 to 1 solar combiner"
+        },
+        {
+          "id": 1777378539187.2385,
+          "name": "MC4 CONNECTOR 4 IN 1",
+          "spec": "Branch",
+          "icon": "🔌",
+          "desc": "4 to 1 heavy combiner"
+        },
+        {
+          "id": 1777378539187.3843,
+          "name": "MC4 CONNECTOR 3IN 1OUT",
+          "spec": "Branch",
+          "icon": "🔌",
+          "desc": "3 input 1 output"
+        },
+        {
+          "id": 1777378539187.3452,
+          "name": "MC4 CONNECTOR 2IN 1OUT",
+          "spec": "Branch",
+          "icon": "🔌",
+          "desc": "2 input 1 output"
+        },
+        {
+          "id": 1777378539187.8455,
+          "name": "SOLAR DC 4.00SQMM RED-500MTR RHEIN",
+          "spec": "500MTR",
+          "icon": "☀️",
+          "desc": "RHEIN brand solar cable"
+        },
+        {
+          "id": 1777378539187.2954,
+          "name": "SOLAR DC 4.00SQMM BLACK-500MTR RHEIN",
+          "spec": "500MTR",
+          "icon": "☀️",
+          "desc": "RHEIN black solar cable"
+        }
+      ]
     },
     {
-      "id": "1777376921723mctpcz",
-      "name": "sunny",
-      "icon": "☀️",
-      "products": []
+      "id": "Meters",
+      "name": "Meters",
+      "icon": "📊",
+      "products": [
+        {
+          "id": 1777378539187.4702,
+          "name": "SINGLE PHASE NET METER WITH BOX 5/30",
+          "spec": "5/30A",
+          "icon": "📊",
+          "desc": "Bi-directional net meter with box"
+        },
+        {
+          "id": 1777378539187.203,
+          "name": "SINGLE PHASE NORMAL METER WITH BOX 5/30",
+          "spec": "5/30A",
+          "icon": "📊",
+          "desc": "Standard single phase meter"
+        },
+        {
+          "id": 1777378539187.8796,
+          "name": "SINGLE CABLE METER",
+          "spec": "Standard",
+          "icon": "📊",
+          "desc": "Single cable meter"
+        },
+        {
+          "id": 1777378539187.848,
+          "name": "SINGLE PHASE NET METER WITH BOX 10/60",
+          "spec": "10/60A",
+          "icon": "📊",
+          "desc": "Net meter high capacity"
+        },
+        {
+          "id": 1777378539187.6924,
+          "name": "3 PHASE METER",
+          "spec": "Standard",
+          "icon": "📈",
+          "desc": "Three phase meter"
+        },
+        {
+          "id": 1777378539187.828,
+          "name": "WHOLE CURRENT NET MTR 10/60A",
+          "spec": "10/60A",
+          "icon": "📈",
+          "desc": "Net meter 3 phase"
+        },
+        {
+          "id": 1777378539187.89,
+          "name": "WHOLE CURRENT NORMAL MTR 10/60A",
+          "spec": "10/60A",
+          "icon": "📈",
+          "desc": "Normal 3 phase meter"
+        },
+        {
+          "id": 1777378539187.2075,
+          "name": "SARAL 10-100",
+          "spec": "10-100A",
+          "icon": "📊",
+          "desc": "Saral series meter"
+        },
+        {
+          "id": 1777378539187.0256,
+          "name": "WHOLE CURRENT 305 NET MTR 10/100A",
+          "spec": "10/100A",
+          "icon": "📈",
+          "desc": "305 net meter"
+        },
+        {
+          "id": 1777378539187.2927,
+          "name": "WHOLE CURRENT 305 NORMAL MTR 10/100A",
+          "spec": "10/100A",
+          "icon": "📈",
+          "desc": "305 normal meter"
+        },
+        {
+          "id": 1777378539187.015,
+          "name": "LTCT TRIVECTORE MTR 600/5A",
+          "spec": "600/5A",
+          "icon": "⚙️",
+          "desc": "Trivector meter with CT"
+        },
+        {
+          "id": 1777378539187.4265,
+          "name": "LTCT METER",
+          "spec": "Standard",
+          "icon": "⚙️",
+          "desc": "LTCT meter only"
+        },
+        {
+          "id": 1777378539187.6372,
+          "name": "LTCT TRAVACTOR NORMAL METER 200/5",
+          "spec": "200/5A",
+          "icon": "⚙️",
+          "desc": "Travector normal"
+        },
+        {
+          "id": 1777378539187.8232,
+          "name": "LTCT NET METER 200/5",
+          "spec": "200/5A",
+          "icon": "⚙️",
+          "desc": "LTCT net meter"
+        },
+        {
+          "id": 1777378539187.625,
+          "name": "HT NET 33KV METER",
+          "spec": "33kV",
+          "icon": "⚡",
+          "desc": "High tension 33kV meter"
+        },
+        {
+          "id": 1777378539187.209,
+          "name": "HT NET 11KV METER",
+          "spec": "11kV",
+          "icon": "⚡",
+          "desc": "High tension 11kV meter"
+        }
+      ]
     },
     {
-      "id": "1777376924764dms3xy",
-      "name": "dev",
-      "icon": "☀️",
-      "products": []
+      "id": "Panel_Meters",
+      "name": "Panel Meters",
+      "icon": "📊",
+      "products": [
+        {
+          "id": 1777378539187.599,
+          "name": "PANEL METER DPM96I100-1",
+          "spec": "96x96",
+          "icon": "📊",
+          "desc": "Digital panel meter ammeter"
+        },
+        {
+          "id": 1777378539187.496,
+          "name": "DPM 96M 310-2",
+          "spec": "96x96",
+          "icon": "📊",
+          "desc": "Multifunction meter"
+        },
+        {
+          "id": 1777378539187.6064,
+          "name": "DPM 96V 300-2",
+          "spec": "96x96",
+          "icon": "📊",
+          "desc": "Voltmeter panel"
+        },
+        {
+          "id": 1777378539187.7385,
+          "name": "DPM 96I 300-2",
+          "spec": "96x96",
+          "icon": "📊",
+          "desc": "Ammeter panel"
+        },
+        {
+          "id": 1777378539187.907,
+          "name": "ELITE 307-2",
+          "spec": "Standard",
+          "icon": "⚙️",
+          "desc": "Elite series meter"
+        },
+        {
+          "id": 1777378539187.5447,
+          "name": "ELITE 103-2",
+          "spec": "Standard",
+          "icon": "⚙️",
+          "desc": "Elite 103-2 meter"
+        },
+        {
+          "id": 1777378539187.4001,
+          "name": "ELITE 30B-2",
+          "spec": "Standard",
+          "icon": "⚙️",
+          "desc": "Elite 30B-2"
+        },
+        {
+          "id": 1777378539187.9387,
+          "name": "ELITE 440-443",
+          "spec": "Standard",
+          "icon": "⚙️",
+          "desc": "Elite multi-function"
+        },
+        {
+          "id": 1777378539187.3943,
+          "name": "APEX-100",
+          "spec": "Standard",
+          "icon": "⚡",
+          "desc": "Apex series meter"
+        }
+      ]
+    },
+    {
+      "id": "Accessories",
+      "name": "Accessories",
+      "icon": "⚙️",
+      "products": [
+        {
+          "id": 1777378539187.9873,
+          "name": "CURRENT TRANSFORMER 600/5A",
+          "spec": "600/5A",
+          "icon": "⚙️",
+          "desc": "Precision CT for metering"
+        },
+        {
+          "id": 1777378539187.5398,
+          "name": "CURRENT TRANSFORMER 200/5A",
+          "spec": "200/5A",
+          "icon": "⚙️",
+          "desc": "CT 200/5A class 1"
+        },
+        {
+          "id": 1777378539187.4011,
+          "name": "ACDB",
+          "spec": "Standard",
+          "icon": "📦",
+          "desc": "Solar AC distribution box"
+        },
+        {
+          "id": 1777378539187.3394,
+          "name": "T",
+          "spec": "Standard",
+          "icon": "🔧",
+          "desc": "T connector electrical"
+        },
+        {
+          "id": 1777378539187.457,
+          "name": "T-BAND",
+          "spec": "Standard",
+          "icon": "🔧",
+          "desc": "T-band clamp"
+        },
+        {
+          "id": 1777378539187.5564,
+          "name": "L",
+          "spec": "Standard",
+          "icon": "🔧",
+          "desc": "L-elbow conduit"
+        },
+        {
+          "id": 1777378539187.4539,
+          "name": "L-ELBOW",
+          "spec": "Standard",
+          "icon": "🔧",
+          "desc": "L shape elbow"
+        },
+        {
+          "id": 1777378539187.5662,
+          "name": "SADEL 25MM",
+          "spec": "PKT",
+          "icon": "🔧",
+          "desc": "Saddle clamp 25mm"
+        },
+        {
+          "id": 1777378539187.0679,
+          "name": "GITTY",
+          "spec": "PKT",
+          "icon": "🔧",
+          "desc": "Gitties / cable clip"
+        },
+        {
+          "id": 1777378539187.1238,
+          "name": "PVC PIPE",
+          "spec": "PKT",
+          "icon": "🔧",
+          "desc": "PVC conduit pipe"
+        },
+        {
+          "id": 1777378539187.0366,
+          "name": "CABLE TIE",
+          "spec": "PKT",
+          "icon": "🔧",
+          "desc": "Nylon cable ties"
+        },
+        {
+          "id": 1777378539187.3762,
+          "name": "SPN 8 WAY",
+          "spec": "Standard",
+          "icon": "📦",
+          "desc": "Single phase DB 8 way"
+        },
+        {
+          "id": 1777378539187.605,
+          "name": "PIT COVER",
+          "spec": "Standard",
+          "icon": "🛡️",
+          "desc": "Inspection pit cover"
+        },
+        {
+          "id": 1777378539187.7292,
+          "name": "SPIKE GARDE BLACK",
+          "spec": "Standard",
+          "icon": "⚡",
+          "desc": "Spike guard surge protector"
+        },
+        {
+          "id": 1777378539187.1072,
+          "name": "MODEM SKYLINE E90",
+          "spec": "GPRS",
+          "icon": "📡",
+          "desc": "Remote meter reading modem"
+        },
+        {
+          "id": 1777378539187.7568,
+          "name": "APEX MODEM",
+          "spec": "Standard",
+          "icon": "📡",
+          "desc": "APEX communication modem"
+        },
+        {
+          "id": 1777378539187.806,
+          "name": "HT BOX ONLY",
+          "spec": "Standard",
+          "icon": "📦",
+          "desc": "HT meter box"
+        },
+        {
+          "id": 1777378539187.7449,
+          "name": "LTCT BOX ONLY",
+          "spec": "Standard",
+          "icon": "📦",
+          "desc": "LTCT meter enclosure"
+        },
+        {
+          "id": 1777378539187.824,
+          "name": "BAG 15KG",
+          "spec": "15KG",
+          "icon": "👜",
+          "desc": "Carry bag"
+        },
+        {
+          "id": 1777378539187.082,
+          "name": "4Cx16.00SQMM ROUND",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "4 core 16mm round cable"
+        }
+      ]
+    },
+    {
+      "id": "Earthing___Lightning",
+      "name": "Earthing & Lightning",
+      "icon": "🌩️",
+      "products": [
+        {
+          "id": 1777378539187.0588,
+          "name": "LIGHTNING ARRESTER 1 MTR",
+          "spec": "1 MTR",
+          "icon": "🌩️",
+          "desc": "Copper bonded LA"
+        },
+        {
+          "id": 1777378539187.3342,
+          "name": "LIGHTNING ARRESTER 2 MTR",
+          "spec": "2 MTR",
+          "icon": "🌩️",
+          "desc": "Heavy duty LA"
+        },
+        {
+          "id": 1777378539187.7886,
+          "name": "LIGHTNING ARRESTER 3 MTR",
+          "spec": "3 MTR",
+          "icon": "🌩️",
+          "desc": "Industrial LA"
+        },
+        {
+          "id": 1777378539187.4246,
+          "name": "EARTHING ROD 1 MTR",
+          "spec": "1 MTR",
+          "icon": "⛰️",
+          "desc": "Pure copper coated rod"
+        },
+        {
+          "id": 1777378539187.702,
+          "name": "EARTHING ROD 2 MTR",
+          "spec": "2 MTR",
+          "icon": "⛰️",
+          "desc": "2 meter earthing rod"
+        },
+        {
+          "id": 1777378539187.1548,
+          "name": "EARTHING ROD 3 MTR",
+          "spec": "3 MTR",
+          "icon": "⛰️",
+          "desc": "3 meter heavy rod"
+        }
+      ]
+    },
+    {
+      "id": "Fire_Safety",
+      "name": "Fire Safety",
+      "icon": "🔥",
+      "products": [
+        {
+          "id": 1777378539187.477,
+          "name": "FIRE EXTINGUISHER 2KG",
+          "spec": "2KG ABC",
+          "icon": "🔥",
+          "desc": "ISI marked dry powder"
+        },
+        {
+          "id": 1777378539187.5427,
+          "name": "FIRE BUCKET",
+          "spec": "Red",
+          "icon": "🧯",
+          "desc": "Emergency fire bucket"
+        },
+        {
+          "id": 1777378539187.2625,
+          "name": "FIRE SPRAYE 2 KG",
+          "spec": "2KG",
+          "icon": "🧯",
+          "desc": "Fire spray extinguisher"
+        }
+      ]
     }
   ],
-  "companyInfo": {
-    "name": "Rhysco Power Private Limitedd",
-    "heroTitle": "Complete Electrical Solutions <br> <span style='color: #f97316;'>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡ A to Z</span>",
-    "heroSubtitle": "WAA Cables ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ Meters ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ Solar ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ Earthing ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ Fire Safety ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ Accessories",
-    "catalogTitle": "Our Premium Catalog",
+  "company": {
+    "name": "Rhysco Power",
+    "tagline": "Premium Electrical Solutions",
+    "since": "2010",
     "phone": "+91 6203691393",
     "email": "bikram.biharelctrometer@gmail.com",
     "whatsapp": "916203691393",
-    "address": "India (Bihar & NCR) | Global Shipping Available",
-    "footer": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© 2026 Rhysco Power - All Rights Reserved"
+    "address": "India (Bihar & NCR)",
+    "heroTitle": "Complete Electrical Solutions",
+    "heroSubtitle": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories",
+    "footer": "© 2026 Rhysco Power - Premium Electrical Solutions | All Products Available"
   },
   "stats": [
     {
       "icon": "fas fa-trophy",
       "number": "15+",
-      "label": "Years Experience"
+      "label": "Years"
     },
     {
       "icon": "fas fa-boxes",
-      "number": "500+",
-      "label": "Premium Products"
+      "number": "150+",
+      "label": "Products"
     },
     {
       "icon": "fas fa-users",
       "number": "1000+",
-      "label": "Happy Clients"
+      "label": "Clients"
     },
     {
       "icon": "fas fa-truck",
       "number": "PAN India",
-      "label": "Fast Delivery"
+      "label": "Delivery"
     }
-  ]
+  ],
+  "features": [
+    {
+      "icon": "shield",
+      "title": "Quality Assured",
+      "desc": "ISO certified products"
+    },
+    {
+      "icon": "headset",
+      "title": "24/7 Support",
+      "desc": "Technical assistance anytime"
+    },
+    {
+      "icon": "truck",
+      "title": "Pan India Supply",
+      "desc": "Fast shipping nationwide"
+    },
+    {
+      "icon": "rupee",
+      "title": "Best Price",
+      "desc": "Wholesale & dealer pricing"
+    },
+    {
+      "icon": "award",
+      "title": "Trusted Brands",
+      "desc": "Original grade only"
+    },
+    {
+      "icon": "boxes-feat",
+      "title": "Bulk Orders",
+      "desc": "Project supply specialist"
+    }
+  ],
+  "lastSync": "2026-04-29T13:00:45.453Z"
 }
