@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
+    /* ----- same styles as original with minor improvements ----- */
     :root {
       --bg: #f5f5f7; --bg-2: #ffffff; --text: #1a1a2e; --text-2: #4a4a6a;
       --border: rgba(0,0,0,0.08); --card-bg: rgba(255,255,255,0.7);
@@ -34,7 +35,8 @@
     input, textarea { font-family: inherit; }
     .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .grad-text-warm { background: var(--grad-warm); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); width: 94%; max-width: 1300px; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; transition: all .3s; }
+    /* --- navigation --- */
+    .nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); width: 94%; max-width: 1300px; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; transition: all .3s; }
     .nav.scrolled { top: 6px; padding: 6px 12px; }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; }
     .logo-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 4px 18px rgba(0,212,255,0.3); animation: float 3.2s ease-in-out infinite; }
@@ -58,6 +60,7 @@
     .mobile-menu a { padding: 12px 16px; border-radius: 14px; font-weight: 500; font-size: 14px; }
     .mobile-menu a:hover { background: var(--border); }
     @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: grid; } }
+    /* --- hero --- */
     .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 80px; text-align: center; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background-image: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(0,212,255,0.25)), url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1200&q=80'); background-size: cover; background-position: center; filter: brightness(0.55); }
     .hero-overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
@@ -87,7 +90,7 @@
     .search-wrap svg { width: 15px; height: 15px; color: var(--text-2); flex-shrink: 0; }
     .search-wrap input { flex: 1; padding: 10px 10px; border: none; background: transparent; font-size: 13px; outline: none; color: var(--text); }
     .search-wrap input::placeholder { color: var(--text-2); opacity: .7; }
-    .clear-btn { padding: 7px 16px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 11px; }
+    .clear-btn { padding: 7px 16px; border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 11px; display: none; }
     .clear-btn:hover { filter: brightness(1.1); }
     .pills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
     .pill { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); transition: all .2s; }
@@ -206,11 +209,13 @@
     .git-badge.pending { background: var(--warning); color: #000; }
     .git-badge.error { background: var(--danger); }
     .sync-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: var(--grad); color: #fff; text-align: center; padding: 4px; font-size: 11px; font-weight: 600; display: none; }
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; }
     @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)} }
     @keyframes glow { 0%,100%{box-shadow:0 10px 40px rgba(0,212,255,.3)}50%{box-shadow:0 14px 50px rgba(0,212,255,.5)} }
     @keyframes glow-wa { 0%,100%{box-shadow:0 14px 30px rgba(37,211,102,.4)}50%{box-shadow:0 18px 40px rgba(37,211,102,.6)} }
     @keyframes fadeIn { from{opacity:0}to{opacity:1} }
     @keyframes slideUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+    @keyframes spin { to{transform:rotate(360deg)} }
   </style>
 </head>
 <body>
@@ -237,7 +242,7 @@
 
   <section class="block"><a id="catalog" style="position:relative;top:-90px"></a>
     <div class="section-head"><span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="catalogCount"></span></span><h2>Premium <span class="grad-text">Catalog</span></h2><p>Industrial-grade electrical equipment trusted by contractors, electricians and procurement teams across India.</p></div>
-    <div class="controls"><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="search" id="searchInput" placeholder="Search products…"><button id="clearBtn" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button></div><div class="pills" id="categoryPills"></div></div>
+    <div class="controls"><div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input type="search" id="searchInput" placeholder="Search products…"><button id="clearBtn" class="clear-btn" onclick="clearSearch()">Clear</button></div><div class="pills" id="categoryPills"></div></div>
     <div id="productsGrid" class="grid"></div>
   </section>
 
@@ -300,7 +305,9 @@ let state = {
   editingId: null,
   editDraft: { name: '', spec: '', desc: '', icon: '📦' },
   syncPending: false,
-  gitConnected: !!(GIT.token && GIT.owner)
+  gitConnected: !!(GIT.token && GIT.owner),
+  // NEW: store admin password hash (SHA-256)
+  adminHash: LS.get('adminHash', '') // empty = first setup
 };
 
 let syncTimer = null, searchTimer = null;
@@ -311,6 +318,7 @@ function persist() {
   LS.set('stat', state.stats);
   LS.set('feat', state.features);
   LS.set('auth', state.isAdmin);
+  LS.set('adminHash', state.adminHash);
   state.syncPending = true;
   LS.set('sync', true);
   clearTimeout(syncTimer);
@@ -318,11 +326,12 @@ function persist() {
 }
 
 // ========== SYNC BAR ==========
-function showSyncBar(msg) {
+function showSyncBar(msg, isError = false) {
   const bar = document.getElementById('syncBar');
   bar.textContent = msg;
   bar.style.display = 'block';
-  setTimeout(() => { bar.style.display = 'none'; }, 3000);
+  bar.style.background = isError ? 'var(--danger)' : 'var(--grad)';
+  setTimeout(() => { bar.style.display = 'none'; }, 4000);
 }
 
 // ========== GITHUB API ==========
@@ -355,26 +364,34 @@ async function syncToGitHub() {
     state.syncPending = false;
     LS.set('sync', false);
     updateGitBadge();
-    console.log('✅ Synced to GitHub');
+    showSyncBar('✅ Synced to GitHub');
     return true;
   } catch (e) {
     console.warn('Sync failed:', e.message);
     updateGitBadge();
+    showSyncBar('❌ Sync failed: ' + e.message, true);
     return false;
   }
 }
 
-// ===== FIX: Load from GitHub with localStorage override =====
 async function loadFromGitHub() {
   if (!state.gitConnected) return false;
+  showSyncBar('⏳ Loading from GitHub...');
   try {
     const raw = await gitAPI(`/contents/${GIT.path}`);
     const content = JSON.parse(atob(raw.content));
     
-    // FIX: GitHub data ko localStorage me SAVE karo
-    if (content.categories && content.categories.length > 0) {
-      state.categories = content.categories;
+    // Merge strategy: only overwrite if GitHub data is newer or local is empty
+    const localCat = LS.get('cat', []);
+    const ghCat = content.categories || [];
+    const ghTime = content.lastSync ? new Date(content.lastSync).getTime() : 0;
+    const localTime = LS.get('lastSync', 0);
+    
+    // Use GitHub if it has categories and either local empty or GitHub newer
+    if (ghCat.length > 0 && (localCat.length === 0 || ghTime > localTime)) {
+      state.categories = ghCat;
       LS.set('cat', state.categories);
+      LS.set('lastSync', ghTime);
     }
     if (content.company && content.company.name) {
       state.company = { ...DEFAULTS.company, ...content.company };
@@ -393,11 +410,11 @@ async function loadFromGitHub() {
     refreshAll();
     updateGitBadge();
     showSyncBar('✅ Latest data loaded from GitHub');
-    console.log('✅ Loaded from GitHub:', state.company.name, state.categories.length, 'categories');
     return true;
   } catch (e) {
     console.warn('Load failed:', e.message);
     updateGitBadge();
+    showSyncBar('❌ GitHub load failed: ' + e.message, true);
     return false;
   }
 }
@@ -419,8 +436,7 @@ function saveGitConfig() {
   GIT.branch = document.getElementById('gitBranch').value.trim() || 'main';
   LS.set('git_cfg', GIT);
   state.gitConnected = true;
-  toast('✅ Connecting to GitHub...');
-  // FIX: Connect hote hi turant data load karo
+  toast('⏳ Connecting to GitHub...');
   loadFromGitHub().then(ok => {
     if (ok) toast('✅ Data loaded from GitHub!');
     else toast('⚠️ Connected but no data found. Make changes & Push.');
@@ -437,7 +453,7 @@ function disconnectGit() {
   toast('🔌 Disconnected'); updateGitBadge();
 }
 
-// ========== SVG ==========
+// ========== SVG HELPERS ==========
 const I = {
   trophy:'<polyline points="6 9 6 4 18 4 18 9"/><path d="M6 9a6 6 0 0 0 12 0"/><path d="M6 9H3a3 3 0 0 0 3 3"/><path d="M18 9h3a3 3 0 0 1-3 3"/><path d="M9 22h6"/><path d="M12 17v5"/>',
   boxes:'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
@@ -454,7 +470,6 @@ const I = {
   msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
   chevron:'<polyline points="9 18 15 12 9 6"/>',x:'<path d="M18 6L6 18M6 6l12 12"/>',
   check:'<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-  truckS:'<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
   phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
   mail:'<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
   pin:'<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
@@ -473,12 +488,22 @@ const I = {
 const S = (n, s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[n]||''}</svg>`;
 
 // ========== UTILS ==========
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-const escA = s => esc(s);
+function escapeHTML(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+const esc = escapeHTML;
+function escA(s) { return esc(s); } // same for attributes
+
+// Safely embed a string in a JavaScript string literal (for onclick etc.)
+function safeJSStr(s) {
+  return JSON.stringify(s);
+}
+
 const uid = () => 'id_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
 const wa = t => `https://wa.me/${state.company.whatsapp}?text=${encodeURIComponent(t)}`;
 const flat = () => state.categories.flatMap(c => c.products.map(p => ({ ...p, categoryId: c.id, categoryName: c.name, categoryIcon: c.icon })));
-const refreshAll = () => { renderCompany(); renderStats(); renderCategories(); renderProducts(); renderFeatures(); };
 
 function toast(m) {
   const t = document.getElementById('toast');
@@ -504,7 +529,7 @@ function renderCompany() {
   document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
   document.getElementById('footerText').textContent = '© ' + new Date().getFullYear() + ' ' + state.company.name;
   const words = state.company.heroTitle.split(' ');
-  document.getElementById('heroTitle').innerHTML = words.map((w,i) => (/electric/i.test(w)?'<span class="grad-text">'+esc(w)+'</span>':esc(w))+(i<words.length-1?' ':'')).join('');
+  document.getElementById('heroTitle').innerHTML = words.map((w,i) => (/electric/i.test(w) ? '<span class="grad-text">'+esc(w)+'</span>' : esc(w)) + (i<words.length-1 ? ' ' : '')).join('');
   document.getElementById('floatWa').href = wa('Hi, I have a question.');
   document.getElementById('contactWa').href = wa('Hi, I\'d like to discuss a bulk order.');
   document.getElementById('contactRight').innerHTML = [
@@ -520,7 +545,13 @@ function renderCompany() {
 }
 
 function renderStats() {
-  document.getElementById('statsGrid').innerHTML = state.stats.map((s,i) => '<div class="stat"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
+  // Update product count dynamically
+  const totalProducts = flat().length;
+  const statsCopy = state.stats.map(s => {
+    if (s.label === 'Products') return { ...s, number: String(totalProducts) };
+    return s;
+  });
+  document.getElementById('statsGrid').innerHTML = statsCopy.map((s,i) => '<div class="stat"><div class="stat-icon">'+S(s.icon,22)+'</div><div class="stat-num">'+esc(s.number)+'</div><div class="stat-label">'+esc(s.label)+'</div></div>').join('');
 }
 
 function renderFeatures() {
@@ -529,8 +560,9 @@ function renderFeatures() {
 
 function renderCategories() {
   const all = flat();
-  document.getElementById('catalogCount').textContent = all.length + ' products';
-  document.getElementById('categoryPills').innerHTML = '<button class="pill '+(state.activeCategory==='all'?'active':'')+'" onclick="setCategory(\'all\')">📂 All</button>' + state.categories.map(c => '<button class="pill '+(state.activeCategory===c.id?'active':'')+'" onclick="setCategory(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('');
+  const count = all.length;
+  document.getElementById('catalogCount').textContent = count + ' products';
+  document.getElementById('categoryPills').innerHTML = '<button class="pill '+(state.activeCategory==='all'?'active':'')+'" onclick="setCategory(\'all\')">📂 All</button>' + state.categories.map(c => '<button class="pill '+(state.activeCategory===c.id?'active':'')+'" onclick="setCategory('+safeJSStr(c.id)+')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('');
 }
 
 function renderProducts() {
@@ -539,15 +571,27 @@ function renderProducts() {
   const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
   const q = state.query.trim().toLowerCase();
   const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
-  if (!filtered.length) { grid.innerHTML = '<div class="empty" style="grid-column:1/-1">'+S('pkg',44)+'<div style="font-size:16px;font-weight:700;margin-top:8px">No products</div></div>'; return; }
+  
+  // Update count in eyebrow
+  document.getElementById('catalogCount').textContent = filtered.length + ' products';
+  
+  if (!filtered.length) { 
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1">'+S('pkg',44)+'<div style="font-size:16px;font-weight:700;margin-top:8px">No products</div></div>'; 
+    return; 
+  }
   grid.innerHTML = filtered.map(p => {
     const w = wa('Interested in: ' + p.name + ' (' + p.spec + ')');
-    return '<div class="card"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><div class="spec">'+S('ruler',11)+' '+esc(p.spec)+'</div><p class="desc">'+esc(p.desc)+'</p><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="actions"><a class="btn-wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',13)+' Enquiry</a><button class="btn-detail" onclick="openProduct(\''+p.id+'\')">Details '+S('chevron',13)+'</button></div></div>';
+    return '<div class="card"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><div class="spec">'+S('ruler',11)+' '+esc(p.spec)+'</div><p class="desc">'+esc(p.desc)+'</p><span class="cat-badge">'+esc(p.categoryIcon)+' '+esc(p.categoryName)+'</span><div class="actions"><a class="btn-wa" href="'+escA(w)+'" target="_blank" rel="noopener">'+S('msg',13)+' Enquiry</a><button class="btn-detail" onclick="openProduct('+safeJSStr(p.id)+')">Details '+S('chevron',13)+'</button></div></div>';
   }).join('');
 }
 
 function setCategory(id) { state.activeCategory = id; renderCategories(); renderProducts(); }
-function clearSearch() { state.query = ''; document.getElementById('searchInput').value = ''; document.getElementById('clearBtn').style.display = 'none'; renderProducts(); }
+function clearSearch() { 
+  state.query = ''; 
+  document.getElementById('searchInput').value = ''; 
+  document.getElementById('clearBtn').style.display = 'none'; 
+  renderProducts(); 
+}
 
 function openProduct(id) {
   const p = flat().find(p => p.id === id);
@@ -558,16 +602,47 @@ function openProduct(id) {
 }
 function closeProduct() { document.getElementById('productModal').classList.remove('open'); }
 
-// ========== ADMIN ==========
-function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
-function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
+// ========== ADMIN (Secure login with hashed password) ==========
+async function hashPassword(pw) {
+  // Simple SHA-256 via SubtleCrypto (async)
+  const enc = new TextEncoder().encode(pw);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', enc);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
 
-function login() {
-  if (document.getElementById('adminUser').value.trim() === 'sunny' && document.getElementById('adminPass').value === 'admin') {
-    state.isAdmin = true; persist(); updateAdminBtn(); renderAdmin(); toast('Welcome!');
-  } else { document.getElementById('loginErr').textContent = 'Invalid credentials'; }
+async function login() {
+  const user = document.getElementById('adminUser').value.trim();
+  const pass = document.getElementById('adminPass').value;
+  if (user !== 'sunny') {
+    document.getElementById('loginErr').textContent = 'Invalid username';
+    return false;
+  }
+  // If no password set yet, set it now
+  if (!state.adminHash) {
+    if (!pass) { document.getElementById('loginErr').textContent = 'Set a password'; return false; }
+    state.adminHash = await hashPassword(pass);
+    LS.set('adminHash', state.adminHash);
+    state.isAdmin = true;
+    persist();
+    updateAdminBtn();
+    renderAdmin();
+    toast('Password set! Welcome.');
+    return false;
+  }
+  // Verify password
+  const hash = await hashPassword(pass);
+  if (hash === state.adminHash) {
+    state.isAdmin = true;
+    persist();
+    updateAdminBtn();
+    renderAdmin();
+    toast('Welcome!');
+  } else {
+    document.getElementById('loginErr').textContent = 'Invalid password';
+  }
   return false;
 }
+
 function logout() { state.isAdmin = false; persist(); updateAdminBtn(); closeAdmin(); toast('Logged out'); }
 function updateAdminBtn() {
   const b = document.getElementById('adminBtn'), l = document.getElementById('adminBtnLabel');
@@ -575,9 +650,13 @@ function updateAdminBtn() {
   else { b.classList.remove('danger'); l.textContent = 'Admin'; b.onclick = openAdmin; }
 }
 
+function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdmin(); }
+function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
+
 function renderAdmin() {
   if (!state.isAdmin) {
-    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">'+S('lock',22)+'</div><h3>Admin Login</h3><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center"></div><button type="submit" class="btn btn-primary">Sign In</button></form>';
+    const needsSetup = !state.adminHash;
+    document.getElementById('adminBody').innerHTML = '<form class="login-form" onsubmit="return login()"><div class="login-icon">'+S('lock',22)+'</div><h3>'+(needsSetup ? 'First Time Setup' : 'Admin Login')+'</h3><div class="field"><label>Username</label><input id="adminUser" autocomplete="username" value="sunny" required></div><div class="field"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password" required></div><div id="loginErr" style="color:#ef4444;font-size:11px;text-align:center"></div><button type="submit" class="btn btn-primary">'+(needsSetup ? 'Set Password & Login' : 'Sign In')+'</button></form>';
     return;
   }
   document.getElementById('adminBody').innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px"><div class="tabs"><button class="'+(state.adminTab==='products'?'active':'')+'" onclick="setAdminTab(\'products\')">Products</button><button class="'+(state.adminTab==='categories'?'active':'')+'" onclick="setAdminTab(\'categories\')">Categories</button><button class="'+(state.adminTab==='company'?'active':'')+'" onclick="setAdminTab(\'company\')">Company</button><button class="'+(state.adminTab==='git'?'active':'')+'" onclick="setAdminTab(\'git\')">'+S('github',12)+' Git</button></div><span id="gitSyncBadge" class="git-badge"></span></div><div id="adminPane"></div>';
@@ -594,11 +673,14 @@ function renderAdminPane() {
 }
 
 function paneProducts() {
-  if (!state.categories.length) return '<p>Add a category first.</p>';
-  if (!state.adminCat || !state.categories.find(c=>c.id===state.adminCat)) state.adminCat = state.categories[0].id;
+  if (!state.categories.length) return '<p>Add a category first. Switch to "Categories" tab.</p>';
+  // Keep adminCat valid
+  if (!state.adminCat || !state.categories.find(c=>c.id===state.adminCat)) {
+    state.adminCat = state.categories[0].id;
+  }
   const cat = state.categories.find(c=>c.id===state.adminCat);
   const d = state.editDraft;
-  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat(\''+c.id+'\')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' Product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><button class="btn btn-primary" style="margin-top:8px" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?' <button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div></div><div class="lact"><button class="edit" onclick="editProduct(\''+p.id+'\')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct(\''+p.id+'\')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="text-align:center;color:var(--text-2);grid-column:1/-1">No products</p>')+'</div>';
+  return '<div class="row" style="margin-bottom:10px">'+state.categories.map(c=>'<button class="cat-pill-admin '+(c.id===state.adminCat?'active':'')+'" onclick="adminPickCat('+safeJSStr(c.id)+')">'+esc(c.icon)+' '+esc(c.name)+'</button>').join('')+'</div><div class="panel-section"><h4>'+(state.editingId?'Edit':'Add')+' Product</h4><div class="grid-2"><div class="field"><label>Icon</label><input maxlength="4" value="'+escA(d.icon)+'" oninput="state.editDraft.icon=this.value"></div><div class="field"><label>Name</label><input maxlength="200" value="'+escA(d.name)+'" oninput="state.editDraft.name=this.value"></div><div class="field" style="grid-column:1/-1"><label>Spec</label><input maxlength="100" value="'+escA(d.spec)+'" oninput="state.editDraft.spec=this.value"></div><div class="field" style="grid-column:1/-1"><label>Desc</label><textarea maxlength="500" oninput="state.editDraft.desc=this.value">'+esc(d.desc)+'</textarea></div></div><button class="btn btn-primary" style="margin-top:8px" onclick="saveProduct()">'+S('save',13)+' '+(state.editingId?'Update':'Add')+'</button>'+(state.editingId?' <button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':'')+'</div><div class="item-list">'+(cat.products.map(p=>'<div class="li"><div>'+esc(p.icon)+'</div><div class="lbody"><div class="ln">'+esc(p.name)+'</div><div class="ls">'+esc(p.spec)+'</div></div><div class="lact"><button class="edit" onclick="editProduct('+safeJSStr(p.id)+')">'+S('edit',12)+'</button><button class="del" onclick="deleteProduct('+safeJSStr(p.id)+')">'+S('trash',12)+'</button></div></div>').join('')||'<p style="text-align:center;color:var(--text-2);grid-column:1/-1">No products</p>')+'</div>';
 }
 function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
 function saveProduct() {
@@ -632,7 +714,7 @@ function deleteProduct(id) {
 }
 
 function paneCategories() {
-  return '<div class="panel-section"><h4>Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>'+state.categories.map(c=>'<div class="cat-row"><input style="width:50px;text-align:center" maxlength="4" value="'+escA(c.icon)+'" oninput="updateCat(\''+c.id+'\',\'icon\',this.value)"><input style="flex:1" value="'+escA(c.name)+'" oninput="updateCat(\''+c.id+'\',\'name\',this.value)"><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat(\''+c.id+'\')">'+S('trash',12)+'</button></div>').join('');
+  return '<div class="panel-section"><h4>Add Category</h4><div class="row"><input id="newCatIcon" maxlength="4" value="📁" style="width:55px;text-align:center"><input id="newCatName" placeholder="Name"><button class="btn btn-primary" onclick="addCat()">Add</button></div></div>'+state.categories.map(c=>'<div class="cat-row"><input style="width:50px;text-align:center" maxlength="4" value="'+escA(c.icon)+'" oninput="updateCat('+safeJSStr(c.id)+',\'icon\',this.value)"><input style="flex:1" value="'+escA(c.name)+'" oninput="updateCat('+safeJSStr(c.id)+',\'name\',this.value)"><button class="btn btn-danger" style="padding:6px 10px" onclick="deleteCat('+safeJSStr(c.id)+')">'+S('trash',12)+'</button></div>').join('');
 }
 function addCat() {
   const n = document.getElementById('newCatName').value.trim();
@@ -645,12 +727,13 @@ function deleteCat(id) {
   if (!confirm('Delete?')) return;
   state.categories = state.categories.filter(x=>x.id!==id);
   if (state.activeCategory === id) state.activeCategory = 'all';
+  if (state.adminCat === id) state.adminCat = state.categories.length ? state.categories[0].id : null;
   persist(); renderAdminPane(); renderCategories(); renderProducts(); toast('Deleted');
 }
 
 function paneCompany() {
   const c = state.company;
-  return '<div class="grid-2">'+[['name','Company Name'],['tagline','Tagline'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m])=>'<div class="field" style="'+(m?'grid-column:1/-1':'')+'"><label>'+l+'</label>'+(m?'<textarea oninput="updateCompany(\''+k+'\',this.value)">'+esc(c[k]||'')+'</textarea>':'<input value="'+escA(c[k]||'')+'" oninput="updateCompany(\''+k+'\',this.value)">')+'</div>').join('')+'</div>';
+  return '<div class="grid-2">'+[['name','Company Name'],['tagline','Tagline'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['address','Address',1],['heroTitle','Hero Title'],['heroSubtitle','Hero Subtitle',1]].map(([k,l,m]) => '<div class="field" style="'+(m?'grid-column:1/-1':'')+'"><label>'+l+'</label>'+(m?'<textarea oninput="updateCompany('+safeJSStr(k)+',this.value)">'+esc(c[k]||'')+'</textarea>':'<input value="'+escA(c[k]||'')+'" oninput="updateCompany('+safeJSStr(k)+',this.value)">')+'</div>').join('')+'</div>';
 }
 function updateCompany(k, v) { state.company[k] = v; persist(); renderCompany(); }
 
@@ -672,20 +755,30 @@ window.addEventListener('scroll', () => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProduct(); closeAdmin(); } });
 document.addEventListener('click', e => { if (!e.target.closest('.hamburger') && !e.target.closest('.mobile-menu')) document.getElementById('mobileMenu').classList.remove('show'); });
 
-// ========== INIT: GitHub se data load karo ==========
+// ========== INIT ==========
 applyTheme();
 (async () => {
-  // FIX: Har page load pe GitHub check karo
+  // First, apply theme & render base
+  refreshAll();
+  updateAdminBtn();
+  updateGitBadge();
+  
+  // Then try to load from GitHub if connected
   if (state.gitConnected) {
     showSyncBar('🔄 Checking GitHub for updates...');
     const ok = await loadFromGitHub().catch(() => false);
     if (!ok) refreshAll();
-  } else {
-    refreshAll();
   }
-  updateAdminBtn();
-  updateGitBadge();
 })();
+
+// Refresh all (called after data changes)
+function refreshAll() { 
+  renderCompany(); 
+  renderStats(); 
+  renderCategories(); 
+  renderProducts(); 
+  renderFeatures(); 
+}
 </script>
 </body>
 </html>
