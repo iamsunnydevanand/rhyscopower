@@ -1,0 +1,234 @@
+{
+  "categories": [
+    {
+      "id": "cat_waa",
+      "name": "WAA Cables",
+      "icon": "🔌",
+      "products": [
+        {
+          "id": "p1",
+          "name": "4.00SQMM WAA CABLE RED BLACK",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "100% pure copper"
+        },
+        {
+          "id": "p2",
+          "name": "4.00SQMM WAA CABLE BLACK",
+          "spec": "100 MTR",
+          "icon": "⚡",
+          "desc": "Heavy duty"
+        },
+        {
+          "id": "p3",
+          "name": "6MM WAA CABLE RED BLACK",
+          "spec": "500 MTR",
+          "icon": "⚡",
+          "desc": "Industrial grade"
+        },
+        {
+          "id": "p4",
+          "name": "CAT 6",
+          "spec": "305 MTR",
+          "icon": "🌐",
+          "desc": "Network cable"
+        },
+        {
+          "id": "p5",
+          "name": "4 CORE 6.00SQMM",
+          "spec": "100 MTR",
+          "icon": "🔌",
+          "desc": "Control cable"
+        }
+      ]
+    },
+    {
+      "id": "cat_solar",
+      "name": "Solar & MC4",
+      "icon": "☀️",
+      "products": [
+        {
+          "id": "s1",
+          "name": "SOLAR DC 4.00SQMM RED",
+          "spec": "500 MTR",
+          "icon": "☀️",
+          "desc": "TUV certified"
+        },
+        {
+          "id": "s2",
+          "name": "MC4 CONNECTOR",
+          "spec": "Pair",
+          "icon": "🔌",
+          "desc": "IP67"
+        },
+        {
+          "id": "s3",
+          "name": "MC4 2 IN 1",
+          "spec": "Branch",
+          "icon": "🔌",
+          "desc": "Combiner"
+        }
+      ]
+    },
+    {
+      "id": "cat_meters",
+      "name": "Meters & CT",
+      "icon": "📊",
+      "products": [
+        {
+          "id": "m1",
+          "name": "SINGLE PHASE NET METER",
+          "spec": "5/30A",
+          "icon": "📊",
+          "desc": "Bi-directional"
+        },
+        {
+          "id": "m2",
+          "name": "3 PHASE NET METER",
+          "spec": "10/60A",
+          "icon": "📈",
+          "desc": "Net metering"
+        },
+        {
+          "id": "m3",
+          "name": "CURRENT TRANSFORMER",
+          "spec": "600/5A",
+          "icon": "⚙️",
+          "desc": "Precision CT"
+        }
+      ]
+    },
+    {
+      "id": "cat_panel",
+      "name": "Panel Meters",
+      "icon": "📟",
+      "products": [
+        {
+          "id": "pm1",
+          "name": "DPM96I100-1",
+          "spec": "Panel Meter",
+          "icon": "📊",
+          "desc": "Digital"
+        },
+        {
+          "id": "pm2",
+          "name": "ELITE 307-2",
+          "spec": "Elite",
+          "icon": "✨",
+          "desc": "Elite series"
+        }
+      ]
+    },
+    {
+      "id": "cat_earthing",
+      "name": "Earthing & Lightning",
+      "icon": "⛰️",
+      "products": [
+        {
+          "id": "e1",
+          "name": "LIGHTNING ARRESTER",
+          "spec": "2 MTR",
+          "icon": "🌩️",
+          "desc": "Copper bonded"
+        },
+        {
+          "id": "e2",
+          "name": "EARTHING ROD",
+          "spec": "3 MTR",
+          "icon": "⛰️",
+          "desc": "Pure copper"
+        }
+      ]
+    },
+    {
+      "id": "cat_fire",
+      "name": "Fire Safety",
+      "icon": "🔥",
+      "products": [
+        {
+          "id": "f1",
+          "name": "FIRE EXTINGUISHER",
+          "spec": "2KG ABC",
+          "icon": "🧯",
+          "desc": "ISI marked"
+        }
+      ]
+    },
+    {
+      "id": "cat_acc",
+      "name": "Accessories",
+      "icon": "🔧",
+      "products": [
+        {
+          "id": "a1",
+          "name": "SPIKE GUARD",
+          "spec": "Standard",
+          "icon": "⚡",
+          "desc": "Surge protection"
+        },
+        {
+          "id": "a2",
+          "name": "PVC PIPE",
+          "spec": "PKT",
+          "icon": "🔧",
+          "desc": "Electrical conduit"
+        }
+      ]
+    }
+  ],
+  "companyInfo": {
+    "name": "Rhysco Power",
+    "heroTitle": "Complete Electrical Solutions",
+    "heroSubtitle": "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety",
+    "catalogTitle": "Premium Catalog",
+    "phone": "+916203691393",
+    "email": "bikram.biharelctrometer@gmail.com",
+    "whatsapp": "916203691393",
+    "address": "India (Bihar & NCR) | Global Shipping",
+    "footer": "© 2026 Rhysco Power - All Rights Reserved"
+  },
+  "stats": [
+    {
+      "icon": "fas fa-trophy",
+      "number": "15+",
+      "label": "Years Experience"
+    },
+    {
+      "icon": "fas fa-boxes",
+      "number": "500+",
+      "label": "Premium Products"
+    },
+    {
+      "icon": "fas fa-users",
+      "number": "1000+",
+      "label": "Happy Clients"
+    },
+    {
+      "icon": "fas fa-truck",
+      "number": "PAN India",
+      "label": "Fast Delivery"
+    }
+  ],
+  "features": [
+    {
+      "icon": "fas fa-shield-alt",
+      "title": "Quality Assured",
+      "desc": "ISO certified"
+    },
+    {
+      "icon": "fas fa-clock",
+      "title": "24/7 Support",
+      "desc": "Technical assistance"
+    },
+    {
+      "icon": "fas fa-truck-fast",
+      "title": "Pan India Supply",
+      "desc": "Fast shipping"
+    },
+    {
+      "icon": "fas fa-hand-holding-usd",
+      "title": "Best Price",
+      "desc": "Wholesale pricing"
+    }
+  ]
+}
