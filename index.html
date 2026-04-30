@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    /* Dark Royal Theme (Default) */
     :root {
       --bg-primary: #0a0a0f;
       --bg-secondary: #111115;
@@ -29,8 +26,6 @@
       --nav-bg: rgba(10, 10, 15, 0.85);
       --hero-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(124, 58, 237, 0.3));
     }
-
-    /* Royal Light Theme (Jab day pe click karega) */
     body.light {
       --bg-primary: #f0eef7;
       --bg-secondary: #ffffff;
@@ -45,37 +40,28 @@
       --accent-gradient-2: linear-gradient(135deg, #ea580c, #f43f5e);
       --border-light: rgba(0, 0, 0, 0.08);
       --card-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.1);
-      --nav-bg: rgba(255, 255, 255, 0.9);
+      --nav-bg: rgba(255, 255, 255, 0.95);
       --hero-overlay: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(139, 92, 246, 0.15));
     }
-
     body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); transition: all 0.3s ease; overflow-x: hidden; }
     html { scroll-behavior: smooth; }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg-primary); }
     ::-webkit-scrollbar-thumb { background: var(--accent-gradient); border-radius: 10px; }
-
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
     @keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 5px rgba(0,212,255,0.3); } 50% { box-shadow: 0 0 25px rgba(0,212,255,0.5); } }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-
-    /* Navbar */
     .navbar { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1300px; background: var(--nav-bg); backdrop-filter: blur(20px); z-index: 1000; padding: 0.8rem 2rem; border-radius: 80px; transition: all 0.3s; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); }
     .navbar-scrolled { top: 10px; width: 95%; }
     .nav-container { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: 12px; }
     .logo-icon { width: 45px; height: 45px; background: var(--accent-gradient); border-radius: 15px; display: flex; align-items: center; justify-content: center; animation: float 3s ease infinite; }
-    .logo-icon i { font-size: 1.5rem; color: white; }
     .logo-text { font-size: 1.5rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-gradient); transition: 0.3s; border-radius: 2px; }
-    .nav-links a:hover::after { width: 100%; }
-    .admin-btn { background: var(--accent-gradient-2); color: white !important; padding: 0.5rem 1.5rem; border-radius: 40px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
-    .admin-btn:hover { transform: scale(1.05); box-shadow: var(--glow); }
-    .theme-btn { background: var(--bg-card); border: 1px solid var(--border-light); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; color: var(--text-primary); }
-    .theme-btn:hover { transform: rotate(15deg); background: var(--accent-gradient); color: white; }
+    .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: 0.3s; }
+    .admin-btn, .theme-btn { background: var(--accent-gradient-2); color: white !important; padding: 0.5rem 1.5rem; border-radius: 40px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
+    .admin-btn:hover { transform: scale(1.05); }
+    .theme-btn { background: var(--bg-card); color: var(--text-primary) !important; padding: 0; width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; }
     .mobile-menu { display: none; font-size: 1.8rem; cursor: pointer; }
     @media (max-width: 850px) {
       .navbar { top: 10px; width: 95%; padding: 0.8rem 1.2rem; }
@@ -83,313 +69,185 @@
       .nav-links.active { display: flex; }
       .mobile-menu { display: block; }
     }
-
-    /* Hero */
     .hero { min-height: 100vh; background: url('https://images.unsplash.com/photo-1581092335871-5d6a0e3f6e5e?q=80&w=2070&auto=format') center/cover fixed; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
     .hero::before { content: ''; position: absolute; inset: 0; background: var(--hero-overlay); }
     .hero-content { position: relative; z-index: 2; animation: fadeInUp 0.8s ease; }
-    .hero-badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 0.5rem 1.2rem; border-radius: 50px; display: inline-block; font-size: 0.85rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.2); }
-    .hero h1 { font-size: 4.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
+    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; }
     .gradient-text { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 12px; padding: 1rem 2.5rem; background: var(--accent-gradient); color: white; border-radius: 60px; font-weight: 700; text-decoration: none; animation: glow-pulse 2s infinite; transition: 0.3s; }
-    .cta-btn:hover { transform: translateY(-3px); filter: brightness(1.05); }
-    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
-
-    /* Stats */
-    .stats-section { padding: 4rem 2rem; max-width: 1300px; margin: -4rem auto 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-    .stat-card { background: var(--bg-card); backdrop-filter: blur(12px); padding: 2rem; border-radius: 32px; text-align: center; transition: 0.4s; border: 1px solid var(--border-light); }
-    .stat-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); }
-    .stat-card i { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
-    .stat-card h2 { font-size: 2.2rem; font-weight: 800; }
-
-    /* Filter Bar */
-    .catalog-header { text-align: center; padding: 2rem; }
-    .catalog-header h2 { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .filter-bar { max-width: 1300px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    .search-box { flex: 1; min-width: 260px; display: flex; background: var(--bg-card); border-radius: 60px; overflow: hidden; border: 1px solid var(--border-light); }
-    .search-box input { flex: 1; padding: 1rem 1.5rem; border: none; background: transparent; color: var(--text-primary); outline: none; }
-    .search-box button { padding: 0 2rem; background: var(--accent-gradient); border: none; color: white; cursor: pointer; font-weight: 600; }
-    .filter-group { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    .filter-btn { padding: 0.7rem 1.5rem; border-radius: 50px; border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text-primary); cursor: pointer; transition: 0.3s; }
-    .filter-btn.active, .filter-btn:hover { background: var(--accent-gradient); color: white; transform: translateY(-2px); }
-
-    /* Product Grid */
-    .product-grid { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
-    .product-card { background: var(--bg-card); backdrop-filter: blur(12px); border-radius: 28px; padding: 1.5rem; transition: 0.4s; border: 1px solid var(--border-light); position: relative; overflow: hidden; }
-    .product-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: var(--accent-gradient); transition: 0.5s; }
-    .product-card:hover::before { left: 0; }
-    .product-card:hover { transform: translateY(-8px); border-color: var(--accent-cyan); }
-    .product-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
-    .product-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; line-height: 1.3; }
-    .product-spec { font-size: 0.75rem; color: var(--accent-cyan); margin-bottom: 0.5rem; }
-    .product-desc { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem; }
-    .category-badge { background: var(--accent-gradient-2); padding: 3px 10px; border-radius: 20px; font-size: 0.65rem; display: inline-block; margin-bottom: 0.8rem; }
-    .product-actions { display: flex; gap: 0.8rem; }
-    .wa-btn, .detail-btn { flex: 1; padding: 0.6rem; border-radius: 40px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 12px; padding: 1rem 2.5rem; background: var(--accent-gradient); color: white; border-radius: 60px; font-weight: 700; text-decoration: none; animation: glow-pulse 2s infinite; }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } }
+    .stats-section, .product-grid, .features, .contact { max-width: 1400px; margin: 2rem auto; padding: 0 2rem; }
+    .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: -3rem; }
+    .stat-card, .feature-item { background: var(--bg-card); backdrop-filter: blur(12px); padding: 2rem; border-radius: 32px; text-align: center; border: 1px solid var(--border-light); transition: 0.3s; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
+    .search-box { flex: 1; min-width: 240px; background: var(--bg-card); border-radius: 60px; display: flex; overflow: hidden; }
+    .search-box input { flex: 1; padding: 1rem; background: transparent; border: none; color: var(--text-primary); }
+    .search-box button { background: var(--accent-gradient); border: none; padding: 0 1.5rem; color: white; cursor: pointer; }
+    .filter-btn { padding: 0.5rem 1.2rem; border-radius: 40px; background: var(--bg-card); border: 1px solid var(--border-light); color: var(--text-primary); cursor: pointer; }
+    .filter-btn.active, .filter-btn:hover { background: var(--accent-gradient); color: white; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
+    .product-card { background: var(--bg-card); border-radius: 28px; padding: 1.5rem; border: 1px solid var(--border-light); transition: 0.25s; }
+    .product-card:hover { transform: translateY(-6px); border-color: var(--accent-cyan); }
+    .product-actions { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .wa-btn, .call-btn, .detail-btn { padding: 0.6rem; border-radius: 40px; font-weight: 600; border: none; cursor: pointer; flex: 1; }
     .wa-btn { background: #25D366; color: white; }
+    .call-btn { background: var(--accent-orange); color: white; }
     .detail-btn { background: var(--accent-gradient); color: white; }
-
-    /* Features & Contact */
-    .features { background: var(--bg-card); margin: 3rem 2rem; padding: 4rem 2rem; border-radius: 48px; }
-    .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .feature-item { text-align: center; padding: 1.5rem; }
-    .feature-item i { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .contact { background: var(--accent-gradient); margin: 2rem; padding: 3rem 2rem; border-radius: 48px; text-align: center; color: white; }
-    footer { text-align: center; padding: 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-light); }
-    .floating-wa { position: fixed; bottom: 2rem; right: 2rem; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: white; z-index: 100; animation: float 2s infinite; }
-    .back-to-top { position: fixed; bottom: 7rem; right: 2rem; background: var(--accent-gradient); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: none; color: white; }
-
-    /* Modals */
-    .detail-modal, .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(15px); overflow-y: auto; }
-    .detail-modal-content, .admin-container { background: var(--bg-card); backdrop-filter: blur(20px); border-radius: 32px; padding: 2rem; max-width: 600px; width: 90%; border: 1px solid var(--border-light); margin: 2rem auto; }
-    .detail-close, .close-admin { float: right; font-size: 28px; cursor: pointer; background: none; border: none; color: var(--text-secondary); }
-    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; }
-    .admin-tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
-    .admin-tab { padding: 0.7rem 1.3rem; cursor: pointer; background: transparent; border: none; font-weight: 600; color: var(--text-primary); border-radius: 40px; }
+    .contact { background: var(--accent-gradient); border-radius: 48px; padding: 3rem; text-align: center; color: white; margin: 3rem auto; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border-light); }
+    .floating-wa, .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #25D366; color: white; font-size: 26px; z-index: 100; }
+    .back-to-top { bottom: 6rem; background: var(--accent-gradient); cursor: pointer; border: none; }
+    .detail-modal, .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+    .detail-modal-content, .admin-container { background: var(--bg-card); border-radius: 32px; padding: 2rem; max-width: 600px; width: 90%; border: 1px solid var(--border-light); max-height: 85vh; overflow-y: auto; }
+    .admin-tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border-light); margin-bottom: 1rem; flex-wrap: wrap; }
+    .admin-tab { padding: 0.6rem 1.2rem; border-radius: 40px; background: transparent; border: none; color: var(--text-primary); cursor: pointer; }
     .admin-tab.active { background: var(--accent-gradient); color: white; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .form-group { background: var(--bg-primary); border-radius: 24px; padding: 1.5rem; margin-bottom: 2rem; }
-    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid var(--border-light); border-radius: 16px; background: var(--bg-secondary); color: var(--text-primary); }
-    .save-btn { background: var(--accent-gradient); color: white; border: none; padding: 0.8rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; }
-    .category-list { max-height: 500px; overflow-y: auto; }
-    .category-item { background: var(--bg-secondary); border-radius: 20px; padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-light); }
-    .category-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 0.8rem; }
-    .category-name { font-size: 1.1rem; font-weight: 700; color: var(--accent-orange); }
-    .product-item { display: flex; justify-content: space-between; padding: 0.5rem; background: var(--bg-primary); border-radius: 12px; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
-    .small-btn { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem; border: none; cursor: pointer; }
-    .edit-btn { background: var(--accent-cyan); color: white; }
+    .form-group { background: var(--bg-secondary); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    input, textarea { width: 100%; padding: 0.7rem; margin-bottom: 0.8rem; border-radius: 20px; border: 1px solid var(--border-light); background: var(--bg-primary); color: var(--text-primary); }
+    .save-btn { background: var(--accent-gradient); border: none; padding: 0.7rem 1.5rem; border-radius: 40px; color: white; font-weight: bold; cursor: pointer; }
+    .category-item { background: var(--bg-primary); padding: 1rem; border-radius: 24px; margin-bottom: 1rem; }
+    .product-item { background: var(--bg-secondary); border-radius: 16px; padding: 0.8rem; margin: 0.5rem 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .small-btn { padding: 0.3rem 0.8rem; border-radius: 20px; border: none; cursor: pointer; font-size: 0.7rem; font-weight: bold; }
+    .edit-btn { background: var(--accent-cyan); color: black; }
     .delete-btn { background: #ef4444; color: white; }
-    .add-product-row { display: flex; gap: 0.5rem; margin-top: 0.8rem; flex-wrap: wrap; }
-    .add-product-row input { flex: 1; padding: 0.5rem; border-radius: 12px; border: 1px solid var(--border-light); background: var(--bg-secondary); }
-
-    .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
-    .login-box { background: var(--bg-card); padding: 2rem; border-radius: 32px; width: 90%; max-width: 380px; text-align: center; border: 1px solid var(--border-light); }
-    .login-box input { width: 100%; padding: 0.8rem; margin: 0.5rem 0; border-radius: 60px; border: 1px solid var(--border-light); background: var(--bg-primary); }
-    .login-box button { width: 100%; padding: 0.8rem; background: var(--accent-gradient); border: none; border-radius: 60px; color: white; font-weight: 700; cursor: pointer; }
-    .login-error { color: #ef4444; margin-top: 0.5rem; animation: shake 0.3s; }
-    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 10px 20px; border-radius: 50px; z-index: 3000; font-weight: 600; animation: fadeInUp 0.3s; }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 10px 20px; border-radius: 50px; z-index: 3000; animation: fadeInUp 0.3s; }
+    .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; display: flex; align-items: center; justify-content: center; }
+    .login-box { background: var(--bg-card); padding: 2rem; border-radius: 32px; width: 90%; max-width: 360px; text-align: center; }
   </style>
 </head>
 <body>
 
-<nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <div class="logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><div class="logo-text">Rhysco Power</div></div>
-    <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
-    <div class="nav-links" id="navLinks">
-      <a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a>
-      <button class="theme-btn" id="themeBtn"><i class="fas fa-sun"></i></button>
-      <button class="admin-btn" id="openAdminBtn"><i class="fas fa-user-shield"></i> Admin</button>
-      <button class="admin-btn" id="logoutBtn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
-    </div>
-  </div>
-</nav>
+<nav class="navbar" id="navbar"><div class="nav-container"><div class="logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><div class="logo-text">Rhysco Power</div></div><div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div><div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a><button class="theme-btn" id="themeBtn"><i class="fas fa-sun"></i></button><button class="admin-btn" id="openAdminBtn"><i class="fas fa-user-shield"></i> Admin</button><button class="admin-btn" id="logoutBtn" style="display:none;">Logout</button></div></div></nav>
 
-<section id="home" class="hero">
-  <div class="hero-content">
-    <div class="hero-badge"><i class="fas fa-certificate"></i> Since 2010 | Premium Quality</div>
-    <h1>Complete <span class="gradient-text">Electrical</span><br>Solutions</h1>
-    <p>WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories</p>
-    <a href="#catalog" class="cta-btn">Explore Products <i class="fas fa-arrow-right"></i></a>
-  </div>
-</section>
+<section id="home" class="hero"><div class="hero-content"><div class="hero-badge"><i class="fas fa-certificate"></i> Since 2010 | Premium Quality</div><h1>Complete <span class="gradient-text">Electrical</span><br>Solutions</h1><p id="heroSubtitle">WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety</p><a href="#catalog" class="cta-btn">Explore Products <i class="fas fa-arrow-right"></i></a></div></section>
 
 <div class="stats-section" id="statsSection"></div>
-<div id="catalog" style="scroll-margin-top: 100px;"></div>
-<div class="catalog-header"><h2><i class="fas fa-store"></i> Premium Catalog</h2></div>
-<div class="filter-bar">
-  <div class="search-box"><input type="text" id="searchInput" placeholder="Search products..."><button id="searchBtn"><i class="fas fa-search"></i> Find</button></div>
-  <div class="filter-group" id="filterGroup"></div>
-</div>
+<div style="text-align:center; margin-top:1rem;" id="catalog"><h2 id="catalogTitle"><i class="fas fa-store"></i> Premium Catalog</h2></div>
+<div class="filter-bar"><div class="search-box"><input type="text" id="searchInput" placeholder="Search products..."><button id="searchBtn"><i class="fas fa-search"></i></button></div><div id="filterGroup" class="filter-group"></div></div>
 <div id="productGrid" class="product-grid"></div>
-<section id="features" class="features"><div class="features-grid" id="featuresGrid"></div></section>
+<section id="features" class="features"><div class="features-grid" id="featuresGrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2rem;"></div></section>
 <section id="contact" class="contact"><div id="contactContent"></div></section>
-<footer><p id="footerText">© 2026 Rhysco Power - All Rights Reserved | Premium Electrical Solutions</p></footer>
+<footer><p id="footerText">© 2026 Rhysco Power - All Rights Reserved</p></footer>
 <a href="#" class="floating-wa" id="floatingWhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-<div id="detailModal" class="detail-modal"><div class="detail-modal-content"><button class="detail-close" id="detailCloseBtn">&times;</button><div id="detailContent"></div></div></div>
+<div id="detailModal" class="detail-modal"><div class="detail-modal-content"><button class="detail-close" id="detailCloseBtn" style="float:right; font-size:28px; background:none; border:none; cursor:pointer;">&times;</button><div id="detailContent"></div></div></div>
 
-<div id="adminModal" class="admin-modal">
-  <div class="admin-container">
-    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard</h2><button class="close-admin" id="closeAdminBtn">×</button></div>
-    <div class="admin-tabs"><button class="admin-tab active" data-tab="categories">📁 Categories</button><button class="admin-tab" data-tab="company">🏢 Company</button><button class="admin-tab" data-tab="github">🔧 GitHub</button></div>
-    <div id="tabCategories" class="tab-content active">
-      <div class="form-group"><h3>➕ Create New Category</h3><input type="text" id="newCatName" placeholder="Category Name"><input type="text" id="newCatIcon" placeholder="Icon (🔌, ☀️, 📊)"><button id="createCategoryBtn" class="save-btn">+ Create Category</button></div>
-      <div id="categoriesList" class="category-list"></div>
-    </div>
-    <div id="tabCompany" class="tab-content">
-      <div class="form-group"><h3>🏢 Company Info</h3><input type="text" id="companyName" placeholder="Company Name"><input type="text" id="heroTitleInput" placeholder="Hero Title"><input type="text" id="heroSubtitleInput" placeholder="Hero Subtitle"><input type="text" id="catalogTitleInput" placeholder="Catalog Title"><input type="text" id="phoneInput" placeholder="Phone"><input type="email" id="emailInput" placeholder="Email"><input type="text" id="whatsappInput" placeholder="WhatsApp"><textarea id="addressInput" placeholder="Address" rows="2"></textarea><input type="text" id="footerTextInput" placeholder="Footer"><button id="saveCompanyBtn" class="save-btn">Save</button></div>
-      <div class="form-group"><h3>📊 Stats Cards</h3><div id="statsEditList"></div></div>
-    </div>
-    <div id="tabGithub" class="tab-content">
-      <div class="form-group"><h3>🔐 GitHub Setup</h3><input type="text" id="githubRepo" placeholder="Repository" value="iamsunnydevanand/rhyscopower"><input type="password" id="githubToken" placeholder="GitHub Token"><button id="saveGithubBtn" class="save-btn">Save Config</button><div id="githubStatusMsg"></div></div>
-    </div>
-  </div>
-</div>
+<div id="adminModal" class="admin-modal"><div class="admin-container"><div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard</h2><button class="close-admin" id="closeAdminBtn" style="font-size:28px; background:none; border:none; float:right;">×</button></div><div class="admin-tabs"><button class="admin-tab active" data-tab="categories">📁 Categories</button><button class="admin-tab" data-tab="company">🏢 Company & Content</button><button class="admin-tab" data-tab="github">🔐 GitHub Sync</button></div>
+<div id="tabCategories" class="tab-content active"><div class="form-group"><h3>➕ New Category</h3><input type="text" id="newCatName" placeholder="Category Name"><input type="text" id="newCatIcon" placeholder="Icon e.g., 🔌"><button id="createCategoryBtn" class="save-btn">Create</button></div><div id="categoriesList"></div></div>
+<div id="tabCompany" class="tab-content"><div class="form-group"><h3>🏢 Company Info</h3><input type="text" id="companyName" placeholder="Company Name"><input type="text" id="heroTitleInput" placeholder="Hero Title"><input type="text" id="heroSubtitleInput" placeholder="Hero Subtitle"><input type="text" id="catalogTitleInput" placeholder="Catalog Title"><input type="tel" id="phoneInput" placeholder="Phone (Call)"><input type="email" id="emailInput" placeholder="Email"><input type="text" id="whatsappInput" placeholder="WhatsApp Number"><textarea id="addressInput" placeholder="Address"></textarea><input type="text" id="footerTextInput" placeholder="Footer"><button id="saveCompanyBtn" class="save-btn">Save Company</button></div><div class="form-group"><h3>📊 Stats Cards</h3><div id="statsEditList"></div></div><div class="form-group"><h3>✨ Features (Icons, Title, Desc)</h3><div id="featuresEditList"></div></div></div>
+<div id="tabGithub" class="tab-content"><div class="form-group"><h3>🔗 GitHub Permanent Storage</h3><input type="text" id="githubRepo" placeholder="Owner/Repo" value="iamsunnydevanand/rhyscopower"><input type="password" id="githubToken" placeholder="GitHub Token (with repo scope)"><button id="saveGithubBtn" class="save-btn">Save & Sync to GitHub</button><p style="margin-top:12px; font-size:13px;">✅ Changes saved here will permanently reflect on all devices after admin clicks save in any tab.</p><div id="githubStatusMsg"></div></div></div></div></div>
 
 <script>
-  // ==================== COMPLETE PRODUCT DATABASE ====================
+  // ---------- INITIAL DATA ----------
   let categories = [
-    { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
-      { id: "p1", name: "4.00SQMM WAA CABLE RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper, flame retardant, industrial grade" },
-      { id: "p2", name: "4.00SQMM WAA CABLE BLACK", spec: "100 MTR", icon: "⚡", desc: "Heavy duty flexible cable" },
-      { id: "p3", name: "WAA CABLE RED BLACK", spec: "500 MTR", icon: "🔌", desc: "Long length roll, perfect for large projects" },
-      { id: "p4", name: "WAA CABLE BLACK", spec: "500 MTR", icon: "⚡", desc: "Bulk packing industrial cable" },
-      { id: "p5", name: "6MM WAA CABLE BLACK", spec: "500 MTR", icon: "🔌", desc: "6 sqmm heavy duty power cable" },
-      { id: "p6", name: "6MM WAA CABLE RED BLACK", spec: "500 MTR", icon: "⚡", desc: "Red & Black pair, 6mm²" },
-      { id: "p7", name: "6MM WAA CABLE BLACK", spec: "100 MTR", icon: "🔌", desc: "6mm² heavy duty" },
-      { id: "p8", name: "6MM WAA CABLE RED BLACK", spec: "100 MTR", icon: "⚡", desc: "6mm² twin core" },
-      { id: "p9", name: "4 CORE 6.00SQMM", spec: "100 MTR", icon: "🔌", desc: "4 core control cable" },
-      { id: "p10", name: "4 CORE 4.00SQMM", spec: "100 MTR", icon: "🔌", desc: "Multi-core industrial cable" },
-      { id: "p11", name: "2 CORE 6.00SQMM", spec: "100 MTR", icon: "⚡", desc: "Twin core heavy duty" },
-      { id: "p12", name: "4 CORE 2.50SQMM", spec: "100 MTR", icon: "🔌", desc: "4 core flexible cable" },
-      { id: "p13", name: "2 CORE 4.00SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core power cable" },
-      { id: "p14", name: "3 CORE 1.50SQMM", spec: "100 MTR", icon: "🔌", desc: "3 core control cable" },
-      { id: "p15", name: "3 CORE 2.50SQMM", spec: "100 MTR", icon: "⚡", desc: "3 core industrial cable" },
-      { id: "p16", name: "3 CORE 2.50SQMM", spec: "500 MTR", icon: "🔌", desc: "Bulk 3 core cable" },
-      { id: "p17", name: "2 CORE 0.75SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core thin cable" },
-      { id: "p18", name: "2 CORE 1.50SQMM", spec: "100 MTR", icon: "🔌", desc: "2 core standard" },
-      { id: "p19", name: "2 CORE 1.00SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core 1mm²" },
-      { id: "p20", name: "2 CORE 1.00SQMM SPEAKER WIRE", spec: "100 MTR", icon: "🔊", desc: "Speaker wire" },
-      { id: "p21", name: "2 CORE 2.50SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core 2.5mm²" },
-      { id: "p22", name: "CCTV CABLE", spec: "Roll", icon: "📹", desc: "CCTV cable" },
-      { id: "p23", name: "AIDEO VIDEO 1+4", spec: "Roll", icon: "📺", desc: "Video cable 1+4" },
-      { id: "p24", name: "AIDEO VIDEO 1+3", spec: "Roll", icon: "📺", desc: "Video cable 1+3" },
-      { id: "p25", name: "RG 6", spec: "100 MTR", icon: "📡", desc: "Coaxial cable" },
-      { id: "p26", name: "CAT 6", spec: "305 MTR", icon: "🌐", desc: "Network cable, pure copper" },
-      { id: "p27", name: "4Cx16.00SQMM ROUND", spec: "100 MTR", icon: "🔌", desc: "4 core round cable" }
-    ]},
-    { id: "cat2", name: "Solar & MC4", icon: "☀️", products: [
-      { id: "s1", name: "SOLAR DC 4.00SQMM RED", spec: "500 MTR", icon: "☀️", desc: "RHEIN solar DC cable, UV protected" },
-      { id: "s2", name: "SOLAR DC 4.00SQMM BLACK", spec: "500 MTR", icon: "☀️", desc: "TUV approved solar cable" },
-      { id: "s3", name: "MC4 CONNECTOR", spec: "Pair", icon: "🔌", desc: "IP67 rated, original grade" },
-      { id: "s4", name: "MC4 CONNECTOR 2 IN 1", spec: "Branch", icon: "🔌", desc: "2 to 1 combiner" },
-      { id: "s5", name: "MC4 CONNECTOR 3 IN 1", spec: "Branch", icon: "🔌", desc: "3 to 1 solar combiner" },
-      { id: "s6", name: "MC4 CONNECTOR 4 IN 1", spec: "Branch", icon: "🔌", desc: "4 to 1 heavy combiner" }
-    ]},
-    { id: "cat3", name: "Meters & CT", icon: "📊", products: [
-      { id: "m1", name: "SINGLE PHASE NET METER", spec: "5/30A with Box", icon: "📊", desc: "Bi-directional net meter" },
-      { id: "m2", name: "SINGLE PHASE NORMAL METER", spec: "5/30A with Box", icon: "📊", desc: "Normal single phase meter" },
-      { id: "m3", name: "SINGLE CABLE METER", spec: "Standard", icon: "📊", desc: "Single cable meter" },
-      { id: "m4", name: "3 PHASE NET METER", spec: "10/60A", icon: "📈", desc: "3 phase net metering" },
-      { id: "m5", name: "3 PHASE NORMAL METER", spec: "10/60A", icon: "📈", desc: "3 phase normal meter" },
-      { id: "m6", name: "WHOLE CURRENT NET MTR", spec: "10/100A", icon: "📊", desc: "Whole current net meter" },
-      { id: "m7", name: "LTCT TRIVECTORE MTR", spec: "600/5A", icon: "⚙️", desc: "Trivector meter with CT" },
-      { id: "m8", name: "LTCT METER", spec: "200/5A", icon: "⚙️", desc: "LTCT meter" },
-      { id: "m9", name: "HT NET METER", spec: "11kV/33kV", icon: "⚡", desc: "High tension metering" },
-      { id: "m10", name: "LTCT NET MTR WITH 4CT BOX & MODEM", spec: "200/5A", icon: "📡", desc: "Complete LTCT solution" },
-      { id: "m11", name: "CURRENT TRANSFORMER", spec: "600/5A", icon: "⚙️", desc: "Precision CT for metering" },
-      { id: "m12", name: "CURRENT TRANSFORMER", spec: "200/5A", icon: "⚙️", desc: "Precision CT" }
-    ]},
-    { id: "cat4", name: "Panel Meters & Elite", icon: "📟", products: [
-      { id: "pm1", name: "DPM96I100-1", spec: "Panel Meter", icon: "📊", desc: "Digital panel meter" },
-      { id: "pm2", name: "DPM 96M 310-2", spec: "Panel Meter", icon: "📊", desc: "Digital panel meter" },
-      { id: "pm3", name: "DPM 96V 300-2", spec: "Panel Meter", icon: "📊", desc: "Voltage panel meter" },
-      { id: "pm4", name: "DPM 96I 300-2", spec: "Panel Meter", icon: "📊", desc: "Current panel meter" },
-      { id: "pm5", name: "ELITE 307-2", spec: "Elite Series", icon: "✨", desc: "Elite 307-2 meter" },
-      { id: "pm6", name: "ELITE 103-2", spec: "Elite Series", icon: "✨", desc: "Elite 103-2 meter" },
-      { id: "pm7", name: "ELITE 30B-2", spec: "Elite Series", icon: "✨", desc: "Elite 30B-2 meter" },
-      { id: "pm8", name: "ELITE 440-443", spec: "Elite Series", icon: "✨", desc: "Elite 440-443 meter" },
-      { id: "pm9", name: "APEX-100", spec: "Apex Series", icon: "⭐", desc: "Apex 100 panel meter" },
-      { id: "pm10", name: "DPM96V100-1", spec: "Panel Meter", icon: "📊", desc: "Voltage panel meter" },
-      { id: "pm11", name: "DPM96I100-1", spec: "Panel Meter", icon: "📊", desc: "Current panel meter" }
-    ]},
-    { id: "cat5", name: "Earthing & Lightning", icon: "⛰️", products: [
-      { id: "e1", name: "LIGHTNING ARRESTER", spec: "1 MTR", icon: "🌩️", desc: "Copper bonded LA" },
-      { id: "e2", name: "LIGHTNING ARRESTER", spec: "2 MTR", icon: "🌩️", desc: "Copper bonded LA" },
-      { id: "e3", name: "LIGHTNING ARRESTER", spec: "3 MTR", icon: "🌩️", desc: "Copper bonded LA" },
-      { id: "e4", name: "EARTHING ROD", spec: "1 MTR", icon: "⛰️", desc: "Pure copper coated rod" },
-      { id: "e5", name: "EARTHING ROD", spec: "2 MTR", icon: "⛰️", desc: "Pure copper coated rod" },
-      { id: "e6", name: "EARTHING ROD", spec: "3 MTR", icon: "⛰️", desc: "Pure copper coated rod" }
-    ]},
-    { id: "cat6", name: "Fire Safety", icon: "🔥", products: [
-      { id: "f1", name: "FIRE EXTINGUISHER", spec: "2KG ABC", icon: "🧯", desc: "ISI marked, dry powder" },
-      { id: "f2", name: "FIRE BUCKET", spec: "Red", icon: "🪣", desc: "Emergency fire bucket" },
-      { id: "f3", name: "FIRE SPRAY", spec: "2 KG", icon: "🧯", desc: "Fire spray" }
-    ]},
-    { id: "cat7", name: "Accessories & Hardware", icon: "🔧", products: [
-      { id: "a1", name: "ACDB", spec: "Solar ACDB", icon: "📦", desc: "AC distribution box" },
-      { id: "a2", name: "T-BAND", spec: "T Type", icon: "🔧", desc: "T band" },
-      { id: "a3", name: "L-ELBOW", spec: "L Type", icon: "🔧", desc: "L elbow" },
-      { id: "a4", name: "SADEL", spec: "25mm", icon: "🔧", desc: "Sadel" },
-      { id: "a5", name: "GITTY", spec: "PKT", icon: "📦", desc: "Gitty" },
-      { id: "a6", name: "PVC PIPE", spec: "PKT", icon: "🔧", desc: "PVC pipe" },
-      { id: "a7", name: "CABLE TIE", spec: "PKT", icon: "🔧", desc: "Cable ties" },
-      { id: "a8", name: "PIT COVER", spec: "Standard", icon: "🚪", desc: "Pit cover" },
-      { id: "a9", name: "SPIKE GUARD BLACK", spec: "Standard", icon: "⚡", desc: "Spike guard" },
-      { id: "a10", name: "SPN 8 WAY", spec: "Distribution Board", icon: "📦", desc: "Single phase DB" },
-      { id: "a11", name: "MODEM SKYLINE E90", spec: "GPRS", icon: "📡", desc: "Remote meter reading modem" },
-      { id: "a12", name: "APEX MODEM", spec: "GPRS", icon: "📡", desc: "Apex modem" },
-      { id: "a13", name: "HT BOX ONLY", spec: "Box", icon: "📦", desc: "HT box" },
-      { id: "a14", name: "LTCT BOX ONLY", spec: "Box", icon: "📦", desc: "LTCT box" },
-      { id: "a15", name: "BAG 15KG", spec: "Bag", icon: "👜", desc: "15KG bag" }
-    ]}
+    { id: "cat_waa", name: "WAA Cables", icon: "🔌", products: [{ id:"p1", name:"4.00SQMM WAA CABLE RED BLACK", spec:"100 MTR", icon:"🔌", desc:"100% pure copper"},{ id:"p2", name:"4.00SQMM WAA CABLE BLACK", spec:"100 MTR", icon:"⚡", desc:"Heavy duty"},{ id:"p3", name:"6MM WAA CABLE RED BLACK", spec:"500 MTR", icon:"⚡", desc:"Industrial grade"},{ id:"p4", name:"CAT 6", spec:"305 MTR", icon:"🌐", desc:"Network cable"},{ id:"p5", name:"4 CORE 6.00SQMM", spec:"100 MTR", icon:"🔌", desc:"Control cable"}] },
+    { id: "cat_solar", name: "Solar & MC4", icon: "☀️", products: [{ id:"s1", name:"SOLAR DC 4.00SQMM RED", spec:"500 MTR", icon:"☀️", desc:"TUV certified"},{ id:"s2", name:"MC4 CONNECTOR", spec:"Pair", icon:"🔌", desc:"IP67"},{ id:"s3", name:"MC4 2 IN 1", spec:"Branch", icon:"🔌", desc:"Combiner"}] },
+    { id: "cat_meters", name: "Meters & CT", icon: "📊", products: [{ id:"m1", name:"SINGLE PHASE NET METER", spec:"5/30A", icon:"📊", desc:"Bi-directional"},{ id:"m2", name:"3 PHASE NET METER", spec:"10/60A", icon:"📈", desc:"Net metering"},{ id:"m3", name:"CURRENT TRANSFORMER", spec:"600/5A", icon:"⚙️", desc:"Precision CT"}] },
+    { id: "cat_panel", name: "Panel Meters", icon: "📟", products: [{ id:"pm1", name:"DPM96I100-1", spec:"Panel Meter", icon:"📊", desc:"Digital"},{ id:"pm2", name:"ELITE 307-2", spec:"Elite", icon:"✨", desc:"Elite series"}] },
+    { id: "cat_earthing", name: "Earthing & Lightning", icon: "⛰️", products: [{ id:"e1", name:"LIGHTNING ARRESTER", spec:"2 MTR", icon:"🌩️", desc:"Copper bonded"},{ id:"e2", name:"EARTHING ROD", spec:"3 MTR", icon:"⛰️", desc:"Pure copper"}] },
+    { id: "cat_fire", name: "Fire Safety", icon: "🔥", products: [{ id:"f1", name:"FIRE EXTINGUISHER", spec:"2KG ABC", icon:"🧯", desc:"ISI marked"}] },
+    { id: "cat_acc", name: "Accessories", icon: "🔧", products: [{ id:"a1", name:"SPIKE GUARD", spec:"Standard", icon:"⚡", desc:"Surge protection"},{ id:"a2", name:"PVC PIPE", spec:"PKT", icon:"🔧", desc:"Electrical conduit"}] }
   ];
-
-  let companyInfo = JSON.parse(localStorage.getItem('rhysco_company')) || {
-    name: "Rhysco Power", heroTitle: "Complete Electrical Solutions", heroSubtitle: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety", catalogTitle: "Premium Catalog",
-    phone: "+91 6203691393", email: "bikram.biharelctrometer@gmail.com", whatsapp: "916203691393", address: "India (Bihar & NCR) | Global Shipping", footer: "© 2026 Rhysco Power - All Rights Reserved"
-  };
+  let companyInfo = { name: "Rhysco Power", heroTitle: "Complete Electrical Solutions", heroSubtitle: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety", catalogTitle: "Premium Catalog", phone: "+916203691393", email: "bikram.biharelctrometer@gmail.com", whatsapp: "916203691393", address: "India (Bihar & NCR) | Global Shipping", footer: "© 2026 Rhysco Power - All Rights Reserved" };
   let stats = [{ icon: "fas fa-trophy", number: "15+", label: "Years Experience" }, { icon: "fas fa-boxes", number: "500+", label: "Premium Products" }, { icon: "fas fa-users", number: "1000+", label: "Happy Clients" }, { icon: "fas fa-truck", number: "PAN India", label: "Fast Delivery" }];
   let features = [{ icon: "fas fa-shield-alt", title: "Quality Assured", desc: "ISO certified" }, { icon: "fas fa-clock", title: "24/7 Support", desc: "Technical assistance" }, { icon: "fas fa-truck-fast", title: "Pan India Supply", desc: "Fast shipping" }, { icon: "fas fa-hand-holding-usd", title: "Best Price", desc: "Wholesale pricing" }];
-  let activeCategory = "all", searchQuery = "", isAdminAuthenticated = false;
-  let githubConfig = JSON.parse(localStorage.getItem('rhysco_github_config')) || { repo: "iamsunnydevanand/rhyscopower", token: "" };
-  function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
-  function showToast(msg, color) { let t = document.createElement('div'); t.className = 'toast'; t.style.background = color; t.innerHTML = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
-  function showProductDetail(p) { let modal = document.getElementById('detailModal'); document.getElementById('detailContent').innerHTML = `<div style="text-align:center"><div style="font-size:4rem">${p.icon}</div><h2>${escapeHtml(p.name)}</h2><p style="color:var(--accent-cyan)"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</p><span style="background:var(--accent-gradient-2);padding:4px 12px;border-radius:20px;display:inline-block;margin:10px 0">📁 ${escapeHtml(p.categoryName)}</span><p style="margin:15px 0">${escapeHtml(p.desc)}</p><button class="detail-wa-btn" style="background:#25D366;color:white;border:none;padding:12px;border-radius:50px;width:100%;margin-top:10px;font-weight:700;cursor:pointer" id="detailWABtn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</button></div>`; modal.style.display = 'flex'; document.getElementById('detailWABtn').onclick = () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(p.name)}`, '_blank'); }
-  document.getElementById('detailCloseBtn').onclick = () => document.getElementById('detailModal').style.display = 'none';
-  window.onclick = (e) => { if(e.target === document.getElementById('detailModal')) document.getElementById('detailModal').style.display = 'none'; };
-  async function loadFromGitHubPublic() { try { let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`); if(res.ok){ let data=await res.json(); let c=JSON.parse(atob(data.content)); if(c.categories) categories=c.categories; if(c.companyInfo) companyInfo=c.companyInfo; if(c.stats) stats=c.stats; renderAll(); return true; } } catch(e){} try { let rawRes = await fetch(`https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`); if(rawRes.ok){ let c=await rawRes.json(); if(c.categories) categories=c.categories; if(c.companyInfo) companyInfo=c.companyInfo; if(c.stats) stats=c.stats; renderAll(); return true; } } catch(e){} renderAll(); return false; }
-  function saveToLocal() { localStorage.setItem('rhysco_all_data', JSON.stringify({categories,companyInfo,stats})); }
-  async function saveToGitHub() { if(!githubConfig.token) { saveToLocal(); return false; } let data={categories,companyInfo,stats}; let content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2)))); try { let sha=null; let check=await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`,{headers:{'Authorization':`token ${githubConfig.token}`}}); if(check.ok){ let fd=await check.json(); sha=fd.sha; } let res=await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`,{method:'PUT',headers:{'Authorization':`token ${githubConfig.token}`,'Content-Type':'application/json'},body:JSON.stringify({message:"Update",content:content,sha:sha})}); if(res.ok){ saveToLocal(); showToast("✅ Saved permanently!","#10b981"); return true; } } catch(e){ showToast("❌ Save failed","#ef4444"); } return false; }
-  async function saveAllData() { saveToLocal(); await saveToGitHub(); renderAll(); }
-  function getAllProducts() { let all=[]; categories.forEach(c=>c.products.forEach(p=>all.push({...p,categoryName:c.name,categoryIcon:c.icon}))); return all; }
-  function renderAll() { renderCompanyInfo(); renderStats(); renderFeatures(); renderContact(); renderFilters(); renderProducts(); if(isAdminAuthenticated){ renderCategoriesList(); renderStatsAdmin(); } }
-  function renderCompanyInfo() { 
-    let d1=document.getElementById('companyNameDisplay'); if(d1) d1.innerHTML=companyInfo.name;
-    let ht=document.getElementById('heroTitle'); if(ht) ht.innerHTML=companyInfo.heroTitle || "Complete Electrical Solutions";
-    let hs=document.getElementById('heroSubtitle'); if(hs) hs.innerHTML=companyInfo.heroSubtitle;
-    let ct=document.getElementById('catalogTitle'); if(ct) ct.innerHTML=companyInfo.catalogTitle || "Premium Catalog";
-    let ft=document.getElementById('footerText'); if(ft) ft.innerHTML=companyInfo.footer;
-    let wa=document.getElementById('floatingWhatsApp'); if(wa) wa.href=`https://wa.me/${companyInfo.whatsapp}`;
+  let githubConfig = { repo: "iamsunnydevanand/rhyscopower", token: "" };
+  let activeCategory = "all", searchQuery = "", isAdmin = false;
+  function showToast(msg, bg="#10b981") { let t=document.createElement('div'); t.className='toast'; t.style.background=bg; t.innerText=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),3000); }
+  function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+  function generateId() { return Date.now()+'-'+Math.random().toString(36).substr(2,8); }
+
+  // ---------- GITHUB SYNC ----------
+  async function loadFromGithub() {
+    try {
+      let url = `https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`;
+      let res = await fetch(url);
+      if(res.ok) {
+        let data = await res.json();
+        if(data.categories) categories = data.categories;
+        if(data.companyInfo) companyInfo = data.companyInfo;
+        if(data.stats) stats = data.stats;
+        if(data.features) features = data.features;
+        renderAll();
+        showToast("✅ Synced from GitHub", "#10b981");
+        return true;
+      }
+    } catch(e) { console.log("github fetch fail",e); }
+    let local = localStorage.getItem("rhysco_full_backup");
+    if(local) { let d=JSON.parse(local); if(d.categories) categories=d.categories; if(d.companyInfo) companyInfo=d.companyInfo; if(d.stats) stats=d.stats; if(d.features) features=d.features; renderAll(); showToast("📀 Loaded local backup","#f97316"); }
+    else renderAll();
+    return false;
   }
-  function renderStats() { let c=document.getElementById('statsSection'); if(c) c.innerHTML=stats.map(s=>`<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join(''); }
-  function renderFeatures() { let c=document.getElementById('featuresGrid'); if(c) c.innerHTML=features.map(f=>`<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join(''); }
-  function renderContact() { let c=document.getElementById('contactContent'); if(c) c.innerHTML=`<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>`; }
-  function renderFilters() { let total=getAllProducts().length; let c=document.getElementById('filterGroup'); if(c) c.innerHTML=`<button class="filter-btn ${activeCategory==='all'?'active':''}" data-cat="all">📂 All (${total})</button>`+categories.map(cat=>`<button class="filter-btn ${activeCategory===cat.id?'active':''}" data-cat="${cat.id}">${cat.icon} ${cat.name} (${cat.products.length})</button>`).join(''); document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{activeCategory=btn.getAttribute('data-cat');renderProducts();renderFilters();})); }
-  function renderProducts() { let filtered=activeCategory==='all'?getAllProducts():(categories.find(c=>c.id===activeCategory)?.products.map(p=>({...p,categoryName:categories.find(c=>c.id===activeCategory).name}))||[]); filtered=filtered.filter(p=>searchQuery===""||p.name.toLowerCase().includes(searchQuery)||p.spec.toLowerCase().includes(searchQuery)); let container=document.getElementById('productGrid'); if(!container) return; if(filtered.length===0){container.innerHTML=`<div class="no-results" style="text-align:center;padding:4rem">No products found.</div>`;return;} container.innerHTML=filtered.map(p=>`<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc.substring(0,80))}${p.desc.length>80?'...':''}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail='${JSON.stringify(p)}'><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
-    document.querySelectorAll('.wa-btn').forEach(btn=>btn.addEventListener('click',()=>window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`,'_blank')));
-    document.querySelectorAll('.detail-btn').forEach(btn=>btn.addEventListener('click',()=>{try{showProductDetail(JSON.parse(btn.getAttribute('data-detail')));}catch(e){showToast("Error","#ef4444");}})); }
-  function renderCategoriesList() { let container=document.getElementById('categoriesList'); if(!container) return; container.innerHTML=categories.map((cat,catIdx)=>`<div class="category-item"><div class="category-header"><span><span style="font-size:1.5rem;">${cat.icon}</span> <span class="category-name">${cat.name}</span> (${cat.products.length})</span><div><button class="small-btn edit-btn" onclick="editCategory(${catIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteCategory(${catIdx})">Delete</button></div></div><div class="category-products">${cat.products.map((prod,prodIdx)=>`<div class="product-item"><span>${prod.icon} ${prod.name} | ${prod.spec}</span><div><button class="small-btn edit-btn" onclick="editProduct(${catIdx},${prodIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteProduct(${catIdx},${prodIdx})">Delete</button></div></div>`).join('')}<div class="add-product-row"><input type="text" id="newProdName_${catIdx}" placeholder="Product Name"><input type="text" id="newProdSpec_${catIdx}" placeholder="Spec"><input type="text" id="newProdIcon_${catIdx}" placeholder="🔌" style="width:60px"><input type="text" id="newProdDesc_${catIdx}" placeholder="Description"><button class="small-btn edit-btn" onclick="addProduct(${catIdx})">+ Add Product</button></div></div></div>`).join(''); }
-  function renderStatsAdmin() { let container=document.getElementById('statsEditList'); if(container) container.innerHTML=stats.map((s,idx)=>`<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="flex:1; padding:0.5rem; border-radius:12px;"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:80px; padding:0.5rem; border-radius:12px;"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1; padding:0.5rem; border-radius:12px;"><button class="small-btn edit-btn" onclick="updateStat(${idx})">Save</button></div>`).join(''); }
-  window.updateStat=async function(idx){ stats[idx]={icon:document.getElementById(`statIcon_${idx}`).value,number:document.getElementById(`statNum_${idx}`).value,label:document.getElementById(`statLabel_${idx}`).value}; await saveAllData(); renderAll(); };
-  window.createCategory=async function(){ let name=document.getElementById('newCatName').value.trim(); let icon=document.getElementById('newCatIcon').value.trim()||'📁'; if(name){ categories.push({id:generateId(),name,icon,products:[]}); await saveAllData(); document.getElementById('newCatName').value=''; renderAll(); showToast(`✅ Category "${name}" created!`,"#10b981"); } else showToast("⚠️ Enter name","#ef4444"); };
-  window.editCategory=async function(idx){ let newName=prompt('Edit Category:',categories[idx].name); if(newName){ categories[idx].name=newName; await saveAllData(); renderAll(); showToast("✅ Updated","#10b981"); } };
-  window.deleteCategory=async function(idx){ if(confirm(`Delete "${categories[idx].name}"?`)){ categories.splice(idx,1); await saveAllData(); renderAll(); showToast("✅ Deleted","#10b981"); } };
-  window.addProduct=async function(catIdx){ let name=document.getElementById(`newProdName_${catIdx}`).value.trim(); if(name){ categories[catIdx].products.push({id:generateId(),name,spec:document.getElementById(`newProdSpec_${catIdx}`).value.trim()||"Standard",icon:document.getElementById(`newProdIcon_${catIdx}`).value.trim()||"🔌",desc:document.getElementById(`newProdDesc_${catIdx}`).value.trim()||"Premium product"}); await saveAllData(); renderAll(); document.getElementById(`newProdName_${catIdx}`).value=''; showToast(`✅ "${name}" added!`,"#10b981"); } else showToast("⚠️ Name required","#ef4444"); };
-  window.editProduct=async function(catIdx,prodIdx){ let newName=prompt('Edit Product:',categories[catIdx].products[prodIdx].name); if(newName){ categories[catIdx].products[prodIdx].name=newName; await saveAllData(); renderAll(); showToast("✅ Updated","#10b981"); } };
-  window.deleteProduct=async function(catIdx,prodIdx){ if(confirm('Delete product?')){ categories[catIdx].products.splice(prodIdx,1); await saveAllData(); renderAll(); showToast("✅ Deleted","#10b981"); } };
-  function escapeHtml(str){ if(!str) return ''; return str.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
-  document.getElementById('createCategoryBtn').onclick=()=>window.createCategory();
-  document.getElementById('saveCompanyBtn').onclick=async()=>{ companyInfo.name=document.getElementById('companyName').value; companyInfo.heroTitle=document.getElementById('heroTitleInput').value; companyInfo.heroSubtitle=document.getElementById('heroSubtitleInput').value; companyInfo.catalogTitle=document.getElementById('catalogTitleInput').value; companyInfo.phone=document.getElementById('phoneInput').value; companyInfo.email=document.getElementById('emailInput').value; companyInfo.whatsapp=document.getElementById('whatsappInput').value; companyInfo.address=document.getElementById('addressInput').value; companyInfo.footer=document.getElementById('footerTextInput').value; await saveAllData(); showToast("✅ Company saved!","#10b981"); };
-  document.getElementById('saveGithubBtn').onclick=async()=>{ let repo=document.getElementById('githubRepo').value.trim(); let token=document.getElementById('githubToken').value.trim(); if(repo){ githubConfig={repo,token}; localStorage.setItem('rhysco_github_config',JSON.stringify(githubConfig)); document.getElementById('githubStatusMsg').innerHTML='<div style="background:#10b981;padding:10px;border-radius:12px">✅ Saved!</div>'; await loadFromGitHubPublic(); setTimeout(()=>{document.getElementById('githubStatusMsg').innerHTML='';},3000); } else showToast("⚠️ Enter repo","#ef4444"); };
+  async function pushToGithub() {
+    if(!githubConfig.token) { showToast("⚠️ No GitHub token", "#ef4444"); return false; }
+    let data = { categories, companyInfo, stats, features };
+    let content = btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
+    try {
+      let sha = null;
+      let check = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, { headers: { 'Authorization': `token ${githubConfig.token}` } });
+      if(check.ok) { let fd = await check.json(); sha = fd.sha; }
+      let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`, { method: 'PUT', headers: { 'Authorization': `token ${githubConfig.token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ message: "Update catalog", content, sha }) });
+      if(res.ok) { localStorage.setItem("rhysco_full_backup", JSON.stringify(data)); showToast("✅ Permanently saved to GitHub!", "#10b981"); return true; }
+      else throw new Error();
+    } catch(e) { showToast("❌ GitHub save failed, check token", "#ef4444"); return false; }
+  }
+  async function saveAllAndSync() { localStorage.setItem("rhysco_full_backup", JSON.stringify({ categories, companyInfo, stats, features })); await pushToGithub(); renderAll(); if(isAdmin) { renderCategoriesList(); renderStatsAdmin(); renderFeaturesAdmin(); } }
+
+  // ---------- RENDER ALL UI ----------
+  function renderAll() {
+    document.getElementById("heroSubtitle").innerText = companyInfo.heroSubtitle;
+    document.getElementById("catalogTitle").innerHTML = `<i class="fas fa-store"></i> ${companyInfo.catalogTitle}`;
+    document.getElementById("footerText").innerText = companyInfo.footer;
+    document.getElementById("floatingWhatsApp").href = `https://wa.me/${companyInfo.whatsapp}`;
+    renderStats(); renderFeatures(); renderContact(); renderFilters(); renderProducts();
+  }
+  function renderStats() { document.getElementById("statsSection").innerHTML = stats.map(s => `<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join(''); }
+  function renderFeatures() { document.getElementById("featuresGrid").innerHTML = features.map(f => `<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join(''); }
+  function renderContact() { document.getElementById("contactContent").innerHTML = `<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> <a href="tel:${companyInfo.phone}" style="color:white; text-decoration:none;">${companyInfo.phone}</a></p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank" style="color:white;"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>`; }
+  function getAllProducts() { let all=[]; categories.forEach(c=>c.products.forEach(p=>all.push({...p, categoryName:c.name, categoryIcon:c.icon}))); return all; }
+  function renderFilters() { let allCount=getAllProducts().length; let html=`<button class="filter-btn ${activeCategory==='all'?'active':''}" data-cat="all">📂 All (${allCount})</button>`+categories.map(c=>`<button class="filter-btn ${activeCategory===c.id?'active':''}" data-cat="${c.id}">${c.icon} ${c.name} (${c.products.length})</button>`).join(''); document.getElementById("filterGroup").innerHTML=html; document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{activeCategory=btn.dataset.cat; renderFilters(); renderProducts();})); }
+  function renderProducts() { let list = activeCategory==='all' ? getAllProducts() : (categories.find(c=>c.id===activeCategory)?.products.map(p=>({...p, categoryName:categories.find(c=>c.id===activeCategory).name})) || []); list = list.filter(p=>searchQuery==="" || p.name.toLowerCase().includes(searchQuery) || p.spec.toLowerCase().includes(searchQuery)); if(list.length===0){ document.getElementById("productGrid").innerHTML=`<div style="text-align:center;padding:3rem;">No products found</div>`; return; }
+    document.getElementById("productGrid").innerHTML = list.map(p=>`<div class="product-card"><div style="font-size:2rem;">${p.icon}</div><div class="product-title"><strong>${escapeHtml(p.name)}</strong> <span style="color:var(--accent-cyan);">${escapeHtml(p.spec)}</span></div><div class="product-desc">${escapeHtml(p.desc)}</div><div style="background:var(--accent-gradient-2); display:inline-block; padding:2px 12px; border-radius:20px; font-size:0.7rem;">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-pname="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="call-btn" data-phone="${companyInfo.phone}"><i class="fas fa-phone-alt"></i> Call</button><button class="detail-btn" data-detail='${JSON.stringify(p)}'><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
+    document.querySelectorAll('.wa-btn').forEach(btn=>btn.addEventListener('click',()=>window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.dataset.pname)}`,'_blank')));
+    document.querySelectorAll('.call-btn').forEach(btn=>btn.addEventListener('click',()=>window.location.href=`tel:${btn.dataset.phone}`));
+    document.querySelectorAll('.detail-btn').forEach(btn=>btn.addEventListener('click',()=>{ let p=JSON.parse(btn.dataset.detail); showProductDetail(p); }));
+  }
+  function showProductDetail(p) { let modal=document.getElementById('detailModal'); document.getElementById('detailContent').innerHTML=`<div style="text-align:center"><div style="font-size:3rem;">${p.icon}</div><h2>${escapeHtml(p.name)}</h2><p style="color:var(--accent-cyan)">${escapeHtml(p.spec)}</p><p>${escapeHtml(p.desc)}</p><div style="display:flex; gap:1rem; margin-top:1.5rem;"><a href="tel:${companyInfo.phone}" class="call-btn" style="display:inline-block; padding:12px; text-decoration:none;"><i class="fas fa-phone-alt"></i> Call Now</a><a href="https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(p.name)}" target="_blank" class="wa-btn" style="display:inline-block; padding:12px; text-decoration:none; text-align:center;"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div>`; modal.style.display='flex'; }
+  document.getElementById('detailCloseBtn').onclick=()=>document.getElementById('detailModal').style.display='none';
+
+  // ADMIN PANEL RENDERS
+  function renderCategoriesList() { let container=document.getElementById('categoriesList'); if(!container) return; container.innerHTML=categories.map((cat,idx)=>`<div class="category-item"><div><span style="font-size:1.5rem;">${cat.icon}</span> <strong>${escapeHtml(cat.name)}</strong> (${cat.products.length}) <button class="small-btn edit-btn" onclick="window.editCategory(${idx})">Edit</button> <button class="small-btn delete-btn" onclick="window.deleteCategory(${idx})">Del</button></div><div>${cat.products.map((p,pidx)=>`<div class="product-item"><span>${p.icon} ${escapeHtml(p.name)} | ${p.spec}</span><div><button class="small-btn edit-btn" onclick="window.editProduct(${idx},${pidx})">Edit</button><button class="small-btn delete-btn" onclick="window.deleteProduct(${idx},${pidx})">Del</button></div></div>`).join('')}<div class="add-product-row" style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.6rem;"><input type="text" id="prodName_${idx}" placeholder="Name" style="width:auto; flex:2;"><input type="text" id="prodSpec_${idx}" placeholder="Spec" style="width:auto; flex:1;"><input type="text" id="prodIcon_${idx}" placeholder="🔌" style="width:60px;"><input type="text" id="prodDesc_${idx}" placeholder="Desc" style="flex:2;"><button class="small-btn edit-btn" onclick="window.addProduct(${idx})">+ Add</button></div></div></div>`).join(''); }
+  function renderStatsAdmin() { let div=document.getElementById('statsEditList'); if(div) div.innerHTML=stats.map((s,idx)=>`<div style="display:flex; gap:0.5rem; margin-bottom:0.6rem; flex-wrap:wrap;"><input id="statIcon_${idx}" value="${s.icon}" placeholder="icon"><input id="statNum_${idx}" value="${s.number}" style="width:100px;"><input id="statLabel_${idx}" value="${s.label}"><button class="small-btn edit-btn" onclick="window.updateStat(${idx})">Save</button></div>`).join(''); }
+  function renderFeaturesAdmin() { let div=document.getElementById('featuresEditList'); if(div) div.innerHTML=features.map((f,idx)=>`<div style="display:flex; gap:0.5rem; margin-bottom:0.6rem; flex-wrap:wrap;"><input id="featIcon_${idx}" value="${f.icon}"><input id="featTitle_${idx}" value="${f.title}"><input id="featDesc_${idx}" value="${f.desc}"><button class="small-btn edit-btn" onclick="window.updateFeature(${idx})">Save</button></div>`).join(''); }
+  window.updateStat = async function(idx) { stats[idx]={ icon:document.getElementById(`statIcon_${idx}`).value, number:document.getElementById(`statNum_${idx}`).value, label:document.getElementById(`statLabel_${idx}`).value }; await saveAllAndSync(); renderAll(); };
+  window.updateFeature = async function(idx) { features[idx]={ icon:document.getElementById(`featIcon_${idx}`).value, title:document.getElementById(`featTitle_${idx}`).value, desc:document.getElementById(`featDesc_${idx}`).value }; await saveAllAndSync(); renderAll(); };
+  window.editCategory = async function(idx) { let newName=prompt("Category name:", categories[idx].name); if(newName) categories[idx].name=newName; let newIcon=prompt("Icon (emoji):", categories[idx].icon); if(newIcon) categories[idx].icon=newIcon; await saveAllAndSync(); };
+  window.deleteCategory = async function(idx) { if(confirm(`Delete ${categories[idx].name}?`)){ categories.splice(idx,1); await saveAllAndSync(); } };
+  window.addProduct = async function(catIdx) { let name=document.getElementById(`prodName_${catIdx}`).value.trim(); if(!name) return showToast("Enter name","#ef4444"); let spec=document.getElementById(`prodSpec_${catIdx}`).value.trim()||"Standard"; let icon=document.getElementById(`prodIcon_${catIdx}`).value.trim()||"🔌"; let desc=document.getElementById(`prodDesc_${catIdx}`).value.trim()||"Premium product"; categories[catIdx].products.push({ id:generateId(), name, spec, icon, desc }); await saveAllAndSync(); document.getElementById(`prodName_${catIdx}`).value=""; document.getElementById(`prodSpec_${catIdx}`).value=""; document.getElementById(`prodIcon_${catIdx}`).value=""; document.getElementById(`prodDesc_${catIdx}`).value=""; };
+  window.editProduct = async function(catIdx, prodIdx) { let p=categories[catIdx].products[prodIdx]; let newName=prompt("Name:", p.name); if(newName) p.name=newName; let newSpec=prompt("Spec:", p.spec); if(newSpec) p.spec=newSpec; let newIcon=prompt("Icon:", p.icon); if(newIcon) p.icon=newIcon; let newDesc=prompt("Desc:", p.desc); if(newDesc) p.desc=newDesc; await saveAllAndSync(); };
+  window.deleteProduct = async function(catIdx, prodIdx) { if(confirm("Delete product?")){ categories[catIdx].products.splice(prodIdx,1); await saveAllAndSync(); } };
+  document.getElementById('createCategoryBtn').onclick=async()=>{ let name=document.getElementById('newCatName').value.trim(); if(!name) return; let icon=document.getElementById('newCatIcon').value.trim()||"📁"; categories.push({ id:generateId(), name, icon, products:[] }); await saveAllAndSync(); document.getElementById('newCatName').value=''; };
+  document.getElementById('saveCompanyBtn').onclick=async()=>{ companyInfo.name=document.getElementById('companyName').value; companyInfo.heroTitle=document.getElementById('heroTitleInput').value; companyInfo.heroSubtitle=document.getElementById('heroSubtitleInput').value; companyInfo.catalogTitle=document.getElementById('catalogTitleInput').value; companyInfo.phone=document.getElementById('phoneInput').value; companyInfo.email=document.getElementById('emailInput').value; companyInfo.whatsapp=document.getElementById('whatsappInput').value; companyInfo.address=document.getElementById('addressInput').value; companyInfo.footer=document.getElementById('footerTextInput').value; await saveAllAndSync(); showToast("Company saved & Synced","#10b981"); };
+  document.getElementById('saveGithubBtn').onclick=async()=>{ githubConfig.repo=document.getElementById('githubRepo').value.trim(); githubConfig.token=document.getElementById('githubToken').value.trim(); localStorage.setItem('rhysco_github', JSON.stringify(githubConfig)); await pushToGithub(); showToast("GitHub config saved","#10b981"); };
+
+  // ADMIN LOGIN
+  function showLogin() { let d=document.createElement('div'); d.className='login-overlay'; d.innerHTML=`<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginSubmit" style="margin-top:1rem;">Login</button><div id="loginErr" style="color:red; margin-top:0.5rem;"></div></div>`; document.body.appendChild(d); document.getElementById('loginSubmit').onclick=()=>{ if(document.getElementById('loginUser').value==='sunny' && document.getElementById('loginPass').value==='admin'){ isAdmin=true; d.remove(); document.getElementById('logoutBtn').style.display='inline-block'; document.getElementById('openAdminBtn').style.display='none'; openAdminPanel(); } else document.getElementById('loginErr').innerText='Wrong credentials'; }; }
+  function openAdminPanel(){ if(!isAdmin){ showLogin(); return; } document.getElementById('companyName').value=companyInfo.name; document.getElementById('heroTitleInput').value=companyInfo.heroTitle; document.getElementById('heroSubtitleInput').value=companyInfo.heroSubtitle; document.getElementById('catalogTitleInput').value=companyInfo.catalogTitle; document.getElementById('phoneInput').value=companyInfo.phone; document.getElementById('emailInput').value=companyInfo.email; document.getElementById('whatsappInput').value=companyInfo.whatsapp; document.getElementById('addressInput').value=companyInfo.address; document.getElementById('footerTextInput').value=companyInfo.footer; document.getElementById('githubRepo').value=githubConfig.repo; document.getElementById('githubToken').value=githubConfig.token; renderCategoriesList(); renderStatsAdmin(); renderFeaturesAdmin(); document.getElementById('adminModal').style.display='block'; }
+  document.getElementById('openAdminBtn').onclick=openAdminPanel;
+  document.getElementById('logoutBtn').onclick=()=>{ isAdmin=false; document.getElementById('logoutBtn').style.display='none'; document.getElementById('openAdminBtn').style.display='inline-flex'; document.getElementById('adminModal').style.display='none'; showToast("Logged out","#ef4444"); };
+  document.getElementById('closeAdminBtn').onclick=()=>document.getElementById('adminModal').style.display='none';
+  document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.onclick=()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); document.getElementById('tabCategories').classList.toggle('active',tab.dataset.tab==='categories'); document.getElementById('tabCompany').classList.toggle('active',tab.dataset.tab==='company'); document.getElementById('tabGithub').classList.toggle('active',tab.dataset.tab==='github'); }; });
+  document.getElementById('themeBtn').onclick=()=>{ document.body.classList.toggle('light'); let i=document.getElementById('themeBtn').querySelector('i'); if(document.body.classList.contains('light')) i.className='fas fa-moon'; else i.className='fas fa-sun'; };
+  document.getElementById('mobileMenu').onclick=()=>document.getElementById('navLinks').classList.toggle('active');
+  document.getElementById('backToTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
   document.getElementById('searchBtn').onclick=()=>{ searchQuery=document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
   document.getElementById('searchInput').onkeyup=(e)=>{ if(e.key==='Enter'){ searchQuery=e.target.value.toLowerCase(); renderProducts(); } };
-  function showLoginPopup(){ let div=document.createElement('div'); div.className='login-overlay'; div.innerHTML=`<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange)"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" class="login-error"></div></div>`; document.body.appendChild(div); document.getElementById('loginBtn').onclick=()=>{ if(document.getElementById('loginUser').value==='sunny'&&document.getElementById('loginPass').value==='admin'){ isAdminAuthenticated=true; div.remove(); openAdminPanel(); showToast("✅ Welcome!","#10b981"); } else { document.getElementById('loginErr').innerText='❌ Invalid credentials'; } }; }
-  function openAdminPanel(){ if(!isAdminAuthenticated){ showLoginPopup(); return; } document.getElementById('companyName').value=companyInfo.name; document.getElementById('heroTitleInput').value=companyInfo.heroTitle; document.getElementById('heroSubtitleInput').value=companyInfo.heroSubtitle; document.getElementById('catalogTitleInput').value=companyInfo.catalogTitle; document.getElementById('phoneInput').value=companyInfo.phone; document.getElementById('emailInput').value=companyInfo.email; document.getElementById('whatsappInput').value=companyInfo.whatsapp; document.getElementById('addressInput').value=companyInfo.address; document.getElementById('footerTextInput').value=companyInfo.footer; document.getElementById('githubRepo').value=githubConfig.repo; document.getElementById('githubToken').value=githubConfig.token; renderCategoriesList(); renderStatsAdmin(); document.getElementById('adminModal').style.display='block'; }
-  document.getElementById('openAdminBtn').onclick=openAdminPanel;
-  document.getElementById('logoutBtn').onclick=()=>{ isAdminAuthenticated=false; document.getElementById('adminModal').style.display='none'; renderAll(); showToast("✅ Logged out","#10b981"); };
-  document.getElementById('closeAdminBtn').onclick=()=>document.getElementById('adminModal').style.display='none';
-  window.onclick=(e)=>{ if(e.target===document.getElementById('adminModal')) document.getElementById('adminModal').style.display='none'; };
-  document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.onclick=()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); document.getElementById('tabCategories').classList.toggle('active',tab.dataset.tab==='categories'); document.getElementById('tabCompany').classList.toggle('active',tab.dataset.tab==='company'); document.getElementById('tabGithub').classList.toggle('active',tab.dataset.tab==='github'); }; });
-  let themeBtn=document.getElementById('themeBtn'); 
-  themeBtn.onclick=()=>{ document.body.classList.toggle('light'); let i=themeBtn.querySelector('i'); if(document.body.classList.contains('light')){ i.classList.remove('fa-sun'); i.classList.add('fa-moon'); } else { i.classList.remove('fa-moon'); i.classList.add('fa-sun'); } };
-  let mobileMenu=document.getElementById('mobileMenu'),navLinks=document.getElementById('navLinks'); mobileMenu.onclick=()=>navLinks.classList.toggle('active'); document.querySelectorAll('.nav-links a').forEach(link=>link.onclick=()=>navLinks.classList.remove('active'));
-  let backToTop=document.getElementById('backToTop'); window.onscroll=()=>{ backToTop.style.display=window.scrollY>300?'flex':'none'; if(window.scrollY>50) document.getElementById('navbar').classList.add('navbar-scrolled'); else document.getElementById('navbar').classList.remove('navbar-scrolled'); }; backToTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
-  loadFromGitHubPublic();
+  window.onclick=(e)=>{ if(e.target===document.getElementById('adminModal')) document.getElementById('adminModal').style.display='none'; if(e.target===document.getElementById('detailModal')) document.getElementById('detailModal').style.display='none'; };
+  let storedGithub=localStorage.getItem('rhysco_github'); if(storedGithub) { let g=JSON.parse(storedGithub); githubConfig.repo=g.repo; githubConfig.token=g.token; }
+  loadFromGithub();
 </script>
 </body>
 </html>
