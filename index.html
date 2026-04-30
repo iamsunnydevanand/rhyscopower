@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    /* ----- same styles as original with minor improvements ----- */
+    /* ----- all styles unchanged ----- */
     :root {
       --bg: #f5f5f7; --bg-2: #ffffff; --text: #1a1a2e; --text-2: #4a4a6a;
       --border: rgba(0,0,0,0.08); --card-bg: rgba(255,255,255,0.7);
@@ -306,8 +306,7 @@ let state = {
   editDraft: { name: '', spec: '', desc: '', icon: '📦' },
   syncPending: false,
   gitConnected: !!(GIT.token && GIT.owner),
-  // NEW: store admin password hash (SHA-256)
-  adminHash: LS.get('adminHash', '') // empty = first setup
+  adminHash: LS.get('adminHash', '')
 };
 
 let syncTimer = null, searchTimer = null;
@@ -368,6 +367,8 @@ async function syncToGitHub() {
     return true;
   } catch (e) {
     console.warn('Sync failed:', e.message);
+    state.syncPending = false;
+    LS.set('sync', false);
     updateGitBadge();
     showSyncBar('❌ Sync failed: ' + e.message, true);
     return false;
@@ -387,7 +388,6 @@ async function loadFromGitHub() {
     const ghTime = content.lastSync ? new Date(content.lastSync).getTime() : 0;
     const localTime = LS.get('lastSync', 0);
     
-    // Use GitHub if it has categories and either local empty or GitHub newer
     if (ghCat.length > 0 && (localCat.length === 0 || ghTime > localTime)) {
       state.categories = ghCat;
       LS.set('cat', state.categories);
@@ -413,6 +413,9 @@ async function loadFromGitHub() {
     return true;
   } catch (e) {
     console.warn('Load failed:', e.message);
+    // 🔁 FIX: clear pending flag even on error
+    state.syncPending = false;
+    LS.set('sync', false);
     updateGitBadge();
     showSyncBar('❌ GitHub load failed: ' + e.message, true);
     return false;
@@ -436,6 +439,9 @@ function saveGitConfig() {
   GIT.branch = document.getElementById('gitBranch').value.trim() || 'main';
   LS.set('git_cfg', GIT);
   state.gitConnected = true;
+  // 🔁 FIX: clear pending flag when connecting
+  state.syncPending = false;
+  LS.set('sync', false);
   toast('⏳ Connecting to GitHub...');
   loadFromGitHub().then(ok => {
     if (ok) toast('✅ Data loaded from GitHub!');
@@ -494,12 +500,8 @@ function escapeHTML(str) {
   return div.innerHTML;
 }
 const esc = escapeHTML;
-function escA(s) { return esc(s); } // same for attributes
-
-// Safely embed a string in a JavaScript string literal (for onclick etc.)
-function safeJSStr(s) {
-  return JSON.stringify(s);
-}
+function escA(s) { return esc(s); }
+function safeJSStr(s) { return JSON.stringify(s); }
 
 const uid = () => 'id_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
 const wa = t => `https://wa.me/${state.company.whatsapp}?text=${encodeURIComponent(t)}`;
@@ -545,7 +547,6 @@ function renderCompany() {
 }
 
 function renderStats() {
-  // Update product count dynamically
   const totalProducts = flat().length;
   const statsCopy = state.stats.map(s => {
     if (s.label === 'Products') return { ...s, number: String(totalProducts) };
@@ -572,7 +573,6 @@ function renderProducts() {
   const q = state.query.trim().toLowerCase();
   const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
   
-  // Update count in eyebrow
   document.getElementById('catalogCount').textContent = filtered.length + ' products';
   
   if (!filtered.length) { 
@@ -602,9 +602,8 @@ function openProduct(id) {
 }
 function closeProduct() { document.getElementById('productModal').classList.remove('open'); }
 
-// ========== ADMIN (Secure login with hashed password) ==========
+// ========== ADMIN ==========
 async function hashPassword(pw) {
-  // Simple SHA-256 via SubtleCrypto (async)
   const enc = new TextEncoder().encode(pw);
   const hashBuffer = await crypto.subtle.digest('SHA-256', enc);
   return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
@@ -617,7 +616,6 @@ async function login() {
     document.getElementById('loginErr').textContent = 'Invalid username';
     return false;
   }
-  // If no password set yet, set it now
   if (!state.adminHash) {
     if (!pass) { document.getElementById('loginErr').textContent = 'Set a password'; return false; }
     state.adminHash = await hashPassword(pass);
@@ -629,7 +627,6 @@ async function login() {
     toast('Password set! Welcome.');
     return false;
   }
-  // Verify password
   const hash = await hashPassword(pass);
   if (hash === state.adminHash) {
     state.isAdmin = true;
@@ -674,7 +671,6 @@ function renderAdminPane() {
 
 function paneProducts() {
   if (!state.categories.length) return '<p>Add a category first. Switch to "Categories" tab.</p>';
-  // Keep adminCat valid
   if (!state.adminCat || !state.categories.find(c=>c.id===state.adminCat)) {
     state.adminCat = state.categories[0].id;
   }
@@ -758,12 +754,9 @@ document.addEventListener('click', e => { if (!e.target.closest('.hamburger') &&
 // ========== INIT ==========
 applyTheme();
 (async () => {
-  // First, apply theme & render base
   refreshAll();
   updateAdminBtn();
   updateGitBadge();
-  
-  // Then try to load from GitHub if connected
   if (state.gitConnected) {
     showSyncBar('🔄 Checking GitHub for updates...');
     const ok = await loadFromGitHub().catch(() => false);
@@ -771,7 +764,6 @@ applyTheme();
   }
 })();
 
-// Refresh all (called after data changes)
 function refreshAll() { 
   renderCompany(); 
   renderStats(); 
