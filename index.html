@@ -1,1376 +1,395 @@
+
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Rhysco Power — Complete Electrical Solutions</title>
-  <meta name="description" content="Rhysco Power — Premium electrical solutions distributor since 2010. WAA cables, solar & MC4, meters, earthing, fire safety and more." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Rhysco Power | Premium Electrical Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Dark Royal Theme (Default) */
     :root {
-      --bg: #f5f5f7;
-      --bg-2: #ffffff;
-      --text: #1a1a2e;
-      --text-2: #4a4a6a;
-      --border: rgba(0,0,0,0.08);
-      --card-bg: rgba(255,255,255,0.7);
-      --nav-bg: rgba(255,255,255,0.78);
-      --hero-overlay: linear-gradient(135deg, rgba(20,20,40,0.55), rgba(124,58,237,0.35));
-      --shadow: 0 8px 30px rgba(0,0,0,0.06);
-      --grad: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
-      --grad-warm: linear-gradient(135deg, #f97316 0%, #ff2d75 100%);
-      --wa: #25D366;
-    }
-    [data-theme="dark"] {
-      --bg: #0a0a0f;
-      --bg-2: #111118;
-      --text: #ffffff;
-      --text-2: #a0a0b0;
-      --border: rgba(255,255,255,0.08);
-      --card-bg: rgba(18,18,28,0.72);
-      --nav-bg: rgba(10,10,18,0.72);
-      --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.78), rgba(124,58,237,0.42));
-      --shadow: 0 10px 40px rgba(0,0,0,0.4);
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111115;
+      --bg-card: rgba(18, 18, 24, 0.9);
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent-cyan: #00d4ff;
+      --accent-purple: #7c3aed;
+      --accent-pink: #ec4899;
+      --accent-orange: #f97316;
+      --accent-gradient: linear-gradient(135deg, #00d4ff, #7c3aed, #ec4899);
+      --accent-gradient-2: linear-gradient(135deg, #f97316, #ff2d75);
+      --glow: 0 0 20px rgba(0, 212, 255, 0.3);
+      --border-light: rgba(255, 255, 255, 0.08);
+      --card-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5);
+      --nav-bg: rgba(10, 10, 15, 0.85);
+      --hero-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(124, 58, 237, 0.3));
     }
 
-    * { box-sizing: border-box; }
+    /* Royal Light Theme (Jab day pe click karega) */
+    body.light {
+      --bg-primary: #f0eef7;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --text-primary: #1a1a2e;
+      --text-secondary: #4a4a6a;
+      --accent-cyan: #4f46e5;
+      --accent-purple: #8b5cf6;
+      --accent-pink: #ec4899;
+      --accent-orange: #ea580c;
+      --accent-gradient: linear-gradient(135deg, #4f46e5, #8b5cf6, #ec4899);
+      --accent-gradient-2: linear-gradient(135deg, #ea580c, #f43f5e);
+      --border-light: rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.1);
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --hero-overlay: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(139, 92, 246, 0.15));
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); transition: all 0.3s ease; overflow-x: hidden; }
     html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      transition: background .3s ease, color .3s ease;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-    input, textarea { font-family: inherit; }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--grad); border-radius: 10px; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-gradient); border-radius: 10px; }
 
-    .grad-text {
-      background: var(--grad);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .grad-text-warm {
-      background: var(--grad-warm);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .glass {
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 5px rgba(0,212,255,0.3); } 50% { box-shadow: 0 0 25px rgba(0,212,255,0.5); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
-    /* NAVBAR */
-    .nav {
-      position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
-      width: 94%; max-width: 1300px; z-index: 100;
-      background: var(--nav-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 10px 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
-      transition: all .3s ease;
-    }
-    .nav.scrolled { top: 6px; padding: 8px 12px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .logo-mark {
-      width: 38px; height: 38px; border-radius: 12px;
-      background: var(--grad); display: grid; place-items: center;
-      box-shadow: 0 4px 18px rgba(0,212,255,0.3);
-      animation: float 3.2s ease-in-out infinite;
-    }
-    .logo-mark svg { width: 20px; height: 20px; color: #fff; }
-    .logo-text { font-size: 18px; }
-    .nav-links { display: flex; gap: 4px; }
-    .nav-links a {
-      font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 999px;
-      color: var(--text); opacity: .8;
-    }
-    .nav-links a:hover { opacity: 1; background: var(--border); }
-    .nav-actions { display: flex; align-items: center; gap: 8px; }
-    .icon-btn {
-      width: 38px; height: 38px; display: grid; place-items: center;
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: 999px;
-    }
-    .icon-btn:hover { background: var(--border); }
-    .icon-btn svg { width: 16px; height: 16px; }
-    .admin-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 14px; border-radius: 999px;
-      background: var(--grad-warm); color: #fff;
-      font-size: 12px; font-weight: 700;
-      box-shadow: 0 4px 14px rgba(249,115,22,0.3);
-    }
-    .admin-btn svg { width: 14px; height: 14px; }
-    .admin-btn.danger { background: linear-gradient(135deg, #ef4444, #b91c1c); box-shadow: 0 4px 14px rgba(239,68,68,0.3); }
-    .menu-btn { display: none; }
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .menu-btn { display: grid; }
+    /* Navbar */
+    .navbar { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1300px; background: var(--nav-bg); backdrop-filter: blur(20px); z-index: 1000; padding: 0.8rem 2rem; border-radius: 80px; transition: all 0.3s; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); }
+    .navbar-scrolled { top: 10px; width: 95%; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { width: 45px; height: 45px; background: var(--accent-gradient); border-radius: 15px; display: flex; align-items: center; justify-content: center; animation: float 3s ease infinite; }
+    .logo-icon i { font-size: 1.5rem; color: white; }
+    .logo-text { font-size: 1.5rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent-gradient); transition: 0.3s; border-radius: 2px; }
+    .nav-links a:hover::after { width: 100%; }
+    .admin-btn { background: var(--accent-gradient-2); color: white !important; padding: 0.5rem 1.5rem; border-radius: 40px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
+    .admin-btn:hover { transform: scale(1.05); box-shadow: var(--glow); }
+    .theme-btn { background: var(--bg-card); border: 1px solid var(--border-light); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; color: var(--text-primary); }
+    .theme-btn:hover { transform: rotate(15deg); background: var(--accent-gradient); color: white; }
+    .mobile-menu { display: none; font-size: 1.8rem; cursor: pointer; }
+    @media (max-width: 850px) {
+      .navbar { top: 10px; width: 95%; padding: 0.8rem 1.2rem; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; border-radius: 30px; gap: 1rem; }
+      .nav-links.active { display: flex; }
+      .mobile-menu { display: block; }
     }
 
-    /* HERO */
-    .hero {
-      position: relative; min-height: 100vh; min-height: 100svh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 120px 20px 80px; text-align: center; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(135deg, rgba(124,58,237,0.4), rgba(0,212,255,0.25)),
-        url('https://images.unsplash.com/photo-1473073077800-fe50b8c5e0c2?w=1600&q=80');
-      background-size: cover; background-position: center;
-      filter: brightness(0.55);
-    }
-    .hero-overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
-    .hero-fade { position: absolute; left: 0; right: 0; bottom: -1px; height: 140px; pointer-events: none; background: linear-gradient(to bottom, transparent, var(--bg) 95%); }
-    .hero-content { position: relative; z-index: 2; max-width: 900px; }
-    .badge-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 999px;
-      background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff; font-size: 13px; font-weight: 500; margin-bottom: 22px;
-    }
-    .badge-pill svg { width: 14px; height: 14px; color: #67e8f9; }
-    .hero h1 {
-      color: #fff; font-size: clamp(40px, 7vw, 84px); font-weight: 900;
-      line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 20px;
-    }
-    .hero p {
-      color: rgba(255,255,255,0.85); font-size: clamp(15px, 1.5vw, 18px);
-      max-width: 620px; margin: 0 auto 36px;
-    }
-    .cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 16px 32px; border-radius: 999px;
-      background: var(--grad); color: #fff; font-weight: 700; font-size: 16px;
-      box-shadow: 0 10px 40px rgba(0,212,255,0.3);
-      animation: glow 2.4s ease-in-out infinite;
-    }
-    .cta:hover { transform: translateY(-2px); }
-    .cta svg { width: 18px; height: 18px; }
+    /* Hero */
+    .hero { min-height: 100vh; background: url('https://images.unsplash.com/photo-1581092335871-5d6a0e3f6e5e?q=80&w=2070&auto=format') center/cover fixed; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: var(--hero-overlay); }
+    .hero-content { position: relative; z-index: 2; animation: fadeInUp 0.8s ease; }
+    .hero-badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 0.5rem 1.2rem; border-radius: 50px; display: inline-block; font-size: 0.85rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.2); }
+    .hero h1 { font-size: 4.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
+    .gradient-text { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 12px; padding: 1rem 2.5rem; background: var(--accent-gradient); color: white; border-radius: 60px; font-weight: 700; text-decoration: none; animation: glow-pulse 2s infinite; transition: 0.3s; }
+    .cta-btn:hover { transform: translateY(-3px); filter: brightness(1.05); }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
 
-    /* STATS */
-    .stats {
-      position: relative; z-index: 5;
-      max-width: 1300px; margin: -80px auto 0; padding: 0 20px;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
-    }
-    @media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-    .stat {
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      padding: 22px 18px; border-radius: 24px; text-align: center;
-      box-shadow: var(--shadow);
-      transition: transform .25s ease;
-    }
-    .stat:hover { transform: translateY(-4px); }
-    .stat-icon { width: 46px; height: 46px; margin: 0 auto 10px; border-radius: 14px; display: grid; place-items: center; background: rgba(0,212,255,0.08); }
-    .stat-icon svg { width: 24px; height: 24px; }
-    .stat-icon svg path, .stat-icon svg circle, .stat-icon svg polyline, .stat-icon svg line, .stat-icon svg polygon, .stat-icon svg rect { stroke: url(#statGrad); }
-    .stat-num { font-size: clamp(24px, 3vw, 34px); font-weight: 900; letter-spacing: -0.02em; }
-    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-top: 4px; }
+    /* Stats */
+    .stats-section { padding: 4rem 2rem; max-width: 1300px; margin: -4rem auto 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .stat-card { background: var(--bg-card); backdrop-filter: blur(12px); padding: 2rem; border-radius: 32px; text-align: center; transition: 0.4s; border: 1px solid var(--border-light); }
+    .stat-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); }
+    .stat-card i { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
+    .stat-card h2 { font-size: 2.2rem; font-weight: 800; }
 
-    /* SECTION */
-    section.block { max-width: 1400px; margin: 0 auto; padding: 80px 20px; }
-    .section-head { text-align: center; margin-bottom: 40px; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 999px; background: var(--border);
-      font-size: 12px; font-weight: 600; color: var(--text-2);
-      margin-bottom: 14px;
-    }
-    .section-head h2 { font-size: clamp(30px, 4.5vw, 50px); font-weight: 900; letter-spacing: -0.02em; margin: 0; }
-    .section-head p { color: var(--text-2); font-size: 15px; max-width: 560px; margin: 12px auto 0; }
+    /* Filter Bar */
+    .catalog-header { text-align: center; padding: 2rem; }
+    .catalog-header h2 { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .filter-bar { max-width: 1300px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .search-box { flex: 1; min-width: 260px; display: flex; background: var(--bg-card); border-radius: 60px; overflow: hidden; border: 1px solid var(--border-light); }
+    .search-box input { flex: 1; padding: 1rem 1.5rem; border: none; background: transparent; color: var(--text-primary); outline: none; }
+    .search-box button { padding: 0 2rem; background: var(--accent-gradient); border: none; color: white; cursor: pointer; font-weight: 600; }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .filter-btn { padding: 0.7rem 1.5rem; border-radius: 50px; border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text-primary); cursor: pointer; transition: 0.3s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--accent-gradient); color: white; transform: translateY(-2px); }
 
-    /* CATALOG CONTROLS */
-    .controls { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
-    .search-wrap {
-      position: relative; background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); border-radius: 999px;
-      display: flex; align-items: center; padding: 6px 6px 6px 16px;
-    }
-    .search-wrap svg { width: 16px; height: 16px; color: var(--text-2); flex-shrink: 0; }
-    .search-wrap input {
-      flex: 1; padding: 12px 12px; border: none; background: transparent;
-      font-size: 14px; outline: none; color: var(--text); min-width: 0;
-    }
-    .search-wrap input::placeholder { color: var(--text-2); opacity: .8; }
-    .clear-btn {
-      padding: 8px 18px; border-radius: 999px; background: var(--grad);
-      color: #fff; font-weight: 700; font-size: 12px;
-    }
-    .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-    .pill {
-      padding: 9px 16px; border-radius: 999px; font-size: 13px; font-weight: 500;
-      background: var(--card-bg); border: 1px solid var(--border); color: var(--text);
-      transition: all .2s ease;
-    }
-    .pill:hover { transform: translateY(-1px); }
-    .pill.active { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 6px 20px rgba(0,212,255,0.25); }
-    .pill .count { font-size: 11px; opacity: .7; margin-left: 6px; }
+    /* Product Grid */
+    .product-grid { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+    .product-card { background: var(--bg-card); backdrop-filter: blur(12px); border-radius: 28px; padding: 1.5rem; transition: 0.4s; border: 1px solid var(--border-light); position: relative; overflow: hidden; }
+    .product-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: var(--accent-gradient); transition: 0.5s; }
+    .product-card:hover::before { left: 0; }
+    .product-card:hover { transform: translateY(-8px); border-color: var(--accent-cyan); }
+    .product-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .product-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; line-height: 1.3; }
+    .product-spec { font-size: 0.75rem; color: var(--accent-cyan); margin-bottom: 0.5rem; }
+    .product-desc { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    .category-badge { background: var(--accent-gradient-2); padding: 3px 10px; border-radius: 20px; font-size: 0.65rem; display: inline-block; margin-bottom: 0.8rem; }
+    .product-actions { display: flex; gap: 0.8rem; }
+    .wa-btn, .detail-btn { flex: 1; padding: 0.6rem; border-radius: 40px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .wa-btn { background: #25D366; color: white; }
+    .detail-btn { background: var(--accent-gradient); color: white; }
 
-    /* PRODUCT GRID */
-    .grid {
-      display: grid; gap: 18px;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
-    .card {
-      position: relative; background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-radius: 24px; padding: 22px;
-      display: flex; flex-direction: column;
-      transition: all .3s ease;
-    }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,212,255,0.12); }
-    .card .icon { font-size: 36px; line-height: 1; margin-bottom: 10px; }
-    .card h3 { font-size: 15px; font-weight: 700; line-height: 1.3; margin: 0 0 6px; }
-    .card .spec { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #06b6d4; margin-bottom: 8px; }
-    [data-theme="dark"] .card .spec { color: #22d3ee; }
-    .card .spec svg { width: 12px; height: 12px; }
-    .card .desc { font-size: 13px; color: var(--text-2); line-height: 1.5; margin: 0 0 14px; flex: 1;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .card .cat-badge {
-      display: inline-block; font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.05em;
-      background: var(--grad-warm); color: #fff;
-      padding: 5px 10px; border-radius: 999px; margin-bottom: 12px; align-self: flex-start;
-    }
-    .card .actions { display: flex; gap: 8px; }
-    .btn-wa, .btn-detail {
-      flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 10px 12px; border-radius: 999px;
-      font-size: 12px; font-weight: 700; color: #fff;
-    }
-    .btn-wa { background: var(--wa); }
-    .btn-wa:hover { filter: brightness(1.1); }
-    .btn-detail { background: var(--grad); }
-    .btn-detail:hover { filter: brightness(1.1); }
-    .btn-wa svg, .btn-detail svg { width: 14px; height: 14px; }
+    /* Features & Contact */
+    .features { background: var(--bg-card); margin: 3rem 2rem; padding: 4rem 2rem; border-radius: 48px; }
+    .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .feature-item { text-align: center; padding: 1.5rem; }
+    .feature-item i { font-size: 2.5rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .contact { background: var(--accent-gradient); margin: 2rem; padding: 3rem 2rem; border-radius: 48px; text-align: center; color: white; }
+    footer { text-align: center; padding: 2rem; background: var(--bg-secondary); border-top: 1px solid var(--border-light); }
+    .floating-wa { position: fixed; bottom: 2rem; right: 2rem; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: white; z-index: 100; animation: float 2s infinite; }
+    .back-to-top { position: fixed; bottom: 7rem; right: 2rem; background: var(--accent-gradient); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: none; color: white; }
 
-    .empty {
-      text-align: center; padding: 60px 20px; border-radius: 24px;
-      background: var(--card-bg); border: 1px solid var(--border);
-    }
-    .empty svg { width: 50px; height: 50px; color: var(--text-2); margin: 0 auto 12px; display: block; }
+    /* Modals */
+    .detail-modal, .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(15px); overflow-y: auto; }
+    .detail-modal-content, .admin-container { background: var(--bg-card); backdrop-filter: blur(20px); border-radius: 32px; padding: 2rem; max-width: 600px; width: 90%; border: 1px solid var(--border-light); margin: 2rem auto; }
+    .detail-close, .close-admin { float: right; font-size: 28px; cursor: pointer; background: none; border: none; color: var(--text-secondary); }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; }
+    .admin-tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border-light); margin-bottom: 2rem; flex-wrap: wrap; }
+    .admin-tab { padding: 0.7rem 1.3rem; cursor: pointer; background: transparent; border: none; font-weight: 600; color: var(--text-primary); border-radius: 40px; }
+    .admin-tab.active { background: var(--accent-gradient); color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .form-group { background: var(--bg-primary); border-radius: 24px; padding: 1.5rem; margin-bottom: 2rem; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid var(--border-light); border-radius: 16px; background: var(--bg-secondary); color: var(--text-primary); }
+    .save-btn { background: var(--accent-gradient); color: white; border: none; padding: 0.8rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; }
+    .category-list { max-height: 500px; overflow-y: auto; }
+    .category-item { background: var(--bg-secondary); border-radius: 20px; padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-light); }
+    .category-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 0.8rem; }
+    .category-name { font-size: 1.1rem; font-weight: 700; color: var(--accent-orange); }
+    .product-item { display: flex; justify-content: space-between; padding: 0.5rem; background: var(--bg-primary); border-radius: 12px; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .small-btn { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem; border: none; cursor: pointer; }
+    .edit-btn { background: var(--accent-cyan); color: white; }
+    .delete-btn { background: #ef4444; color: white; }
+    .add-product-row { display: flex; gap: 0.5rem; margin-top: 0.8rem; flex-wrap: wrap; }
+    .add-product-row input { flex: 1; padding: 0.5rem; border-radius: 12px; border: 1px solid var(--border-light); background: var(--bg-secondary); }
 
-    /* FEATURES */
-    .features-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-    .feat {
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); padding: 26px; border-radius: 24px;
-      transition: transform .25s ease;
-    }
-    .feat:hover { transform: translateY(-4px); }
-    .feat .feat-icon {
-      width: 50px; height: 50px; border-radius: 16px;
-      background: var(--grad); display: grid; place-items: center;
-      margin-bottom: 16px; box-shadow: 0 8px 22px rgba(0,212,255,0.25);
-    }
-    .feat .feat-icon svg { width: 26px; height: 26px; color: #fff; }
-    .feat h3 { font-size: 18px; font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
-    .feat p { font-size: 14px; color: var(--text-2); margin: 0; line-height: 1.5; }
-
-    /* CONTACT */
-    .contact-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px); border-radius: 32px; overflow: hidden;
-      display: grid; grid-template-columns: 1fr 1fr;
-    }
-    @media (max-width: 900px) { .contact-card { grid-template-columns: 1fr; } }
-    .contact-left {
-      position: relative; padding: 44px 40px; background: var(--grad); color: #fff;
-    }
-    .contact-left::before {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.4), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,.3), transparent 40%);
-      mix-blend-mode: overlay; opacity: .3;
-    }
-    .contact-left > * { position: relative; }
-    .contact-left .badge-pill { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.25); }
-    .contact-left h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -0.02em; margin: 0 0 14px; }
-    .contact-left p { color: rgba(255,255,255,0.9); font-size: 15px; margin: 0; max-width: 420px; }
-    .wa-cta {
-      display: inline-flex; align-items: center; gap: 8px; margin-top: 26px;
-      padding: 14px 26px; border-radius: 999px; background: var(--wa); color: #fff;
-      font-weight: 700; font-size: 14px; box-shadow: 0 14px 30px rgba(37,211,102,0.4);
-    }
-    .wa-cta:hover { filter: brightness(1.1); }
-    .wa-cta svg { width: 16px; height: 16px; }
-    .contact-right { padding: 44px 40px; display: flex; flex-direction: column; gap: 12px; }
-    .contact-item {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 14px; border: 1px solid var(--border); border-radius: 18px;
-      transition: background .2s ease;
-    }
-    a.contact-item:hover { background: var(--border); }
-    .contact-item .ic { width: 42px; height: 42px; border-radius: 14px; background: var(--grad); display: grid; place-items: center; flex-shrink: 0; }
-    .contact-item .ic svg { width: 18px; height: 18px; color: #fff; }
-    .contact-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-2); font-weight: 600; }
-    .contact-item .value { font-size: 14px; font-weight: 500; word-break: break-word; }
-
-    /* FOOTER */
-    footer { padding: 30px 20px 40px; }
-    .footer-card {
-      max-width: 1300px; margin: 0 auto; padding: 22px 28px; border-radius: 24px;
-      background: var(--card-bg); border: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-    }
-    .footer-text { font-size: 12px; color: var(--text-2); }
-
-    /* FLOATING */
-    .float-wa, .float-top {
-      position: fixed; right: 18px; z-index: 80; border-radius: 999px;
-      display: grid; place-items: center; color: #fff;
-    }
-    .float-wa {
-      bottom: 18px; width: 56px; height: 56px; background: var(--wa);
-      box-shadow: 0 14px 30px rgba(37,211,102,0.4);
-      animation: glow-wa 2.4s ease-in-out infinite;
-    }
-    .float-wa svg { width: 26px; height: 26px; }
-    .float-top {
-      bottom: 90px; width: 48px; height: 48px; background: var(--grad);
-      box-shadow: 0 10px 24px rgba(0,212,255,0.3);
-      opacity: 0; pointer-events: none; transform: translateY(8px);
-      transition: all .3s ease;
-    }
-    .float-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .float-top svg { width: 20px; height: 20px; }
-
-    /* MODAL */
-    .modal {
-      position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
-      display: none; align-items: center; justify-content: center; padding: 16px;
-    }
-    .modal.open { display: flex; animation: fade .2s ease; }
-    .modal-card {
-      width: 100%; max-width: 540px; max-height: 92vh;
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: 28px; overflow: hidden; display: flex; flex-direction: column;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-      animation: pop .25s ease;
-    }
-    .modal-card.wide { max-width: 760px; }
-    .modal-close {
-      position: absolute; top: 14px; right: 14px; z-index: 5;
-      width: 38px; height: 38px; border-radius: 999px;
-      background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
-      display: grid; place-items: center; color: #fff;
-    }
-    .modal-close svg { width: 16px; height: 16px; }
-    .pdetail-head {
-      position: relative; padding: 50px 24px 28px; text-align: center;
-      background: linear-gradient(to bottom, rgba(0,212,255,0.18), rgba(124,58,237,0.12), transparent);
-    }
-    .pdetail-icon { font-size: 70px; line-height: 1; margin-bottom: 12px; }
-    .pdetail-title { font-size: 22px; font-weight: 900; letter-spacing: -0.01em; margin: 6px 0 4px; }
-    .pdetail-spec { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #06b6d4; }
-    [data-theme="dark"] .pdetail-spec { color: #22d3ee; }
-    .pdetail-spec svg { width: 14px; height: 14px; }
-    .pdetail-body { padding: 0 24px 24px; }
-    .pdetail-desc { color: var(--text-2); font-size: 14px; line-height: 1.6; margin: 0 0 16px; }
-    .pdetail-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-    .pdetail-badge {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 16px; padding: 12px 8px; text-align: center;
-    }
-    .pdetail-badge svg { width: 18px; height: 18px; margin: 0 auto 4px; display: block; }
-    .pdetail-badge .lbl { font-size: 11px; font-weight: 700; }
-    .pdetail-actions { display: flex; gap: 8px; }
-    .pdetail-actions a { flex: 1; padding: 14px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
-    .pdetail-actions svg { width: 16px; height: 16px; }
-    .pdetail-actions a.wa { background: var(--wa); }
-    .pdetail-actions a.call { background: var(--grad); }
-
-    /* ADMIN MODAL */
-    .admin-head {
-      padding: 18px 22px; background: var(--grad-warm); color: #fff;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .admin-head .h-left { display: flex; align-items: center; gap: 10px; }
-    .admin-head h3 { margin: 0; font-size: 16px; font-weight: 800; }
-    .admin-head .h-sub { font-size: 11px; opacity: .9; }
-    .admin-head svg { width: 20px; height: 20px; }
-    .admin-body { padding: 20px 22px; overflow-y: auto; flex: 1; }
-
-    .login-form { max-width: 340px; margin: 18px auto; display: flex; flex-direction: column; gap: 14px; }
-    .login-icon { width: 56px; height: 56px; margin: 0 auto; border-radius: 18px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 12px 30px rgba(0,212,255,0.35); }
-    .login-icon svg { width: 26px; height: 26px; color: #fff; }
-    .login-form h3 { text-align: center; font-size: 22px; margin: 0; font-weight: 900; }
-    .login-form .hint { text-align: center; font-size: 12px; color: var(--text-2); margin-top: -8px; }
-    .login-form code { font-family: ui-monospace, monospace; background: var(--border); padding: 2px 6px; border-radius: 6px; }
-
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    .field label { font-size: 12px; font-weight: 600; }
-    .field input, .field textarea, .field select {
-      padding: 10px 12px; border-radius: 12px;
-      background: var(--bg); border: 1px solid var(--border); color: var(--text);
-      font-size: 14px; outline: none; width: 100%;
-    }
-    .field input:focus, .field textarea:focus { border-color: #06b6d4; }
-    .field textarea { resize: vertical; min-height: 60px; }
-
-    .btn {
-      padding: 11px 18px; border-radius: 12px; font-weight: 700; font-size: 13px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    }
-    .btn svg { width: 14px; height: 14px; }
-    .btn-primary { background: var(--grad); color: #fff; }
-    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-    .btn-danger { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
-
-    .tabs { display: flex; gap: 4px; padding: 4px; background: var(--border); border-radius: 14px; margin-bottom: 18px; }
-    .tabs button {
-      flex: 1; padding: 9px 8px; border-radius: 10px; font-weight: 600; font-size: 13px;
-      color: var(--text-2);
-    }
-    .tabs button.active { background: var(--bg-2); color: var(--text); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-
-    .panel-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 14px; }
-    .panel-section h4 { margin: 0 0 12px; font-size: 14px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
-    .panel-section h4 svg { width: 14px; height: 14px; }
-    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .row > input { flex: 1; min-width: 120px; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .grid-2.full { grid-template-columns: 1fr; }
-    @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
-
-    .item-list { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; }
-    @media (max-width: 700px) { .item-list { grid-template-columns: 1fr; } }
-    .li {
-      display: flex; gap: 10px; padding: 10px;
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
-    }
-    .li .lico { font-size: 22px; line-height: 1; flex-shrink: 0; }
-    .li .lbody { flex: 1; min-width: 0; }
-    .li .lbody .ln { font-weight: 700; font-size: 13px; }
-    .li .lbody .ls { font-size: 11px; color: #06b6d4; font-weight: 700; }
-    .li .lbody .ld { font-size: 12px; color: var(--text-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .li .lact { display: flex; flex-direction: column; gap: 4px; }
-    .li .lact button { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; }
-    .li .lact button.edit { background: rgba(6,182,212,0.12); color: #06b6d4; }
-    .li .lact button.del { background: rgba(239,68,68,0.12); color: #ef4444; }
-    .li .lact svg { width: 14px; height: 14px; }
-
-    .cat-pill-admin { padding: 7px 13px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--card-bg); border: 1px solid var(--border); }
-    .cat-pill-admin.active { background: var(--grad); color: #fff; border-color: transparent; }
-
-    .cat-row { display: flex; gap: 8px; align-items: center; padding: 10px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 8px; }
-    .cat-row input.icon-input { width: 60px; text-align: center; }
-    .cat-row input.name-input { flex: 1; min-width: 100px; }
-    .cat-row .meta { font-size: 11px; color: var(--text-2); white-space: nowrap; }
-
-    .toast {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
-      background: var(--bg-2); color: var(--text); border: 1px solid var(--border);
-      padding: 12px 20px; border-radius: 14px; font-size: 14px; font-weight: 600;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.2); z-index: 300;
-      opacity: 0; pointer-events: none; transition: all .3s ease;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    @keyframes glow {
-      0%, 100% { box-shadow: 0 10px 40px rgba(0,212,255,0.3); }
-      50% { box-shadow: 0 14px 50px rgba(0,212,255,0.55), 0 0 0 6px rgba(124,58,237,0.1); }
-    }
-    @keyframes glow-wa {
-      0%, 100% { box-shadow: 0 14px 30px rgba(37,211,102,0.4); }
-      50% { box-shadow: 0 18px 40px rgba(37,211,102,0.6), 0 0 0 6px rgba(37,211,102,0.15); }
-    }
-    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-up { animation: fadeUp .4s ease both; }
+    .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+    .login-box { background: var(--bg-card); padding: 2rem; border-radius: 32px; width: 90%; max-width: 380px; text-align: center; border: 1px solid var(--border-light); }
+    .login-box input { width: 100%; padding: 0.8rem; margin: 0.5rem 0; border-radius: 60px; border: 1px solid var(--border-light); background: var(--bg-primary); }
+    .login-box button { width: 100%; padding: 0.8rem; background: var(--accent-gradient); border: none; border-radius: 60px; color: white; font-weight: 700; cursor: pointer; }
+    .login-error { color: #ef4444; margin-top: 0.5rem; animation: shake 0.3s; }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 10px 20px; border-radius: 50px; z-index: 3000; font-weight: 600; animation: fadeInUp 0.3s; }
   </style>
 </head>
 <body>
-  <!-- gradient defs for SVG strokes -->
-  <svg width="0" height="0" style="position:absolute">
-    <defs>
-      <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#00d4ff"/>
-        <stop offset="50%" stop-color="#7c3aed"/>
-        <stop offset="100%" stop-color="#ec4899"/>
-      </linearGradient>
-    </defs>
-  </svg>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <a href="#home" class="logo">
-      <span class="logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      </span>
-      <span class="logo-text grad-text" id="navName">Rhysco Power</span>
-    </a>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#catalog">Products</a>
-      <a href="#features">Features</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">
-        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      </button>
-      <button class="admin-btn" id="adminBtn" onclick="openAdmin()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3 3-2-2"/></svg>
-        <span id="adminBtnLabel">Admin</span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-fade"></div>
-    <div class="hero-content fade-up">
-      <span class="badge-pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Since 2010 • Premium Quality
-      </span>
-      <h1 id="heroTitle">Complete <span class="grad-text">Electrical</span> Solutions</h1>
-      <p id="heroSubtitle">WAA Cables • Solar &amp; MC4 • Meters • Earthing • Fire Safety • Accessories</p>
-      <a href="#catalog" class="cta">
-        Explore Products
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats" id="statsGrid"></div>
-
-  <!-- CATALOG -->
-  <section class="block">
-    <a id="catalog" style="position:relative;top:-90px"></a>
-    <div class="section-head">
-      <span class="eyebrow">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-        <span id="catalogCount">0 products</span>
-      </span>
-      <h2>Premium <span class="grad-text">Catalog</span></h2>
-      <p>Industrial-grade electrical equipment trusted by contractors, electricians and procurement teams across India.</p>
-    </div>
-    <div class="controls">
-      <div class="search-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="search" id="searchInput" placeholder="Search cables, meters, MC4 connectors…" />
-        <button id="clearBtn" class="clear-btn" style="display:none" onclick="clearSearch()">Clear</button>
-      </div>
-      <div class="pills" id="categoryPills"></div>
-    </div>
-    <div id="productsGrid" class="grid"></div>
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features" class="block">
-    <div class="section-head">
-      <span class="eyebrow">Why Rhysco Power</span>
-      <h2>Built for <span class="grad-text-warm">professionals</span></h2>
-      <p>Trusted by electricians, contractors and procurement teams across India for over 15 years.</p>
-    </div>
-    <div class="features-grid" id="featuresGrid"></div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="block">
-    <div class="contact-card">
-      <div class="contact-left">
-        <span class="badge-pill">Get in Touch</span>
-        <h2>Let's power your<br/>next project.</h2>
-        <p>Reach out for product enquiries, bulk orders, or technical guidance — our team responds within minutes on WhatsApp.</p>
-        <a id="contactWa" href="#" target="_blank" rel="noopener" class="wa-cta">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Chat on WhatsApp
-        </a>
-      </div>
-      <div class="contact-right" id="contactRight"></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-card">
-      <div class="logo">
-        <span class="logo-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </span>
-        <div>
-          <div class="grad-text" id="footerName" style="font-weight:800; font-size:15px">Rhysco Power</div>
-          <div class="footer-text">Since 2010 • Premium Electrical Solutions</div>
-        </div>
-      </div>
-      <div class="footer-text" id="footerText">© 2026 Rhysco Power. All rights reserved.</div>
-    </div>
-  </footer>
-
-  <!-- FLOATING -->
-  <a id="floatWa" href="#" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-  </a>
-  <button class="float-top" id="floatTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-  </button>
-
-  <!-- PRODUCT DETAIL MODAL -->
-  <div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()">
-    <div class="modal-card" id="productModalCard"></div>
-  </div>
-
-  <!-- ADMIN MODAL -->
-  <div class="modal" id="adminModal" onclick="if(event.target===this)closeAdmin()">
-    <div class="modal-card wide">
-      <div class="admin-head">
-        <div class="h-left">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h0"/></svg>
-          <div>
-            <h3>Admin Panel</h3>
-            <div class="h-sub">Manage catalog, company info &amp; site stats.</div>
-          </div>
-        </div>
-        <button class="modal-close" style="position:static;background:rgba(255,255,255,0.18)" onclick="closeAdmin()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="admin-body" id="adminBody"></div>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><div class="logo-text">Rhysco Power</div></div>
+    <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a><a href="#catalog">Products</a><a href="#features">Features</a><a href="#contact">Contact</a>
+      <button class="theme-btn" id="themeBtn"><i class="fas fa-sun"></i></button>
+      <button class="admin-btn" id="openAdminBtn"><i class="fas fa-user-shield"></i> Admin</button>
+      <button class="admin-btn" id="logoutBtn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
     </div>
   </div>
+</nav>
 
-  <div id="toast" class="toast"></div>
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-certificate"></i> Since 2010 | Premium Quality</div>
+    <h1>Complete <span class="gradient-text">Electrical</span><br>Solutions</h1>
+    <p>WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories</p>
+    <a href="#catalog" class="cta-btn">Explore Products <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
 
-  <script>
-  /* ============== DATA ============== */
-  const RAW_PRODUCTS = [
-    "4.00SQMM WAA CABLE RED BLACK,100 MTR,WAA Cables,🔌,Premium 100% pure copper flexible cable",
-    "4.00SQMM WAA CABLE BLACK,100 MTR,WAA Cables,⚡,Heavy duty industrial grade cable",
-    "WAA CABLE RED BLACK,500 MTR,WAA Cables,🔌,Long length roll for large projects",
-    "WAA CABLE BLACK,500 MTR,WAA Cables,⚡,Bulk packing industrial cable",
-    "6MM WAA CABLE BLACK,500 MTR,WAA Cables,🔌,6 sqmm heavy duty power cable",
-    "6MM WAA CABLE RED BLACK,500 MTR,WAA Cables,⚡,Red & Black pair 6mm²",
-    "6MM WAA CABLE BLACK,100 MTR,WAA Cables,🔌,6mm² flexible cable",
-    "6MM WAA CABLE RED BLACK,100 MTR,WAA Cables,⚡,6mm² twin core cable",
-    "4 CORE 6.00SQMM,100 MTR,WAA Cables,🔌,4 core control cable industrial",
-    "4 CORE 4.00SQMM,100 MTR,WAA Cables,🔌,4 core multi-core cable",
-    "2 CORE 6.00SQMM,100 MTR,WAA Cables,⚡,Twin core heavy duty",
-    "4 CORE 2.50SQMM,100 MTR,WAA Cables,🔌,4 core 2.5mm² flexible",
-    "2 CORE 4.00SQMM,100 MTR,WAA Cables,⚡,2 core 4mm² power cable",
-    "3 CORE 1.50SQMM,100 MTR,WAA Cables,🔌,3 core 1.5mm² cable",
-    "3 CORE 2.50SQMM,100 MTR,WAA Cables,🔌,3 core 2.5mm² flexible",
-    "3 CORE 2.50SQMM,500 MTR,WAA Cables,🔌,3 core 2.5mm² bulk roll",
-    "2 CORE 0.75SQMM,100 MTR,WAA Cables,⚡,2 core 0.75mm² thin cable",
-    "2 CORE 1.50SQMM,100 MTR,WAA Cables,⚡,2 core 1.5mm² cable",
-    "2 CORE 1.00SQMM,100 MTR,WAA Cables,⚡,2 core 1mm² cable",
-    "RG 6,100 MTR,WAA Cables,📡,Coaxial cable RG6",
-    "2 CORE 1.00SQMM SPEAKER WIRE,100 MTR,WAA Cables,🔊,Speaker wire oxygen free",
-    "2 CORE 2.50SQMM,100 MTR,WAA Cables,⚡,2 core 2.5mm² cable",
-    "CCTV CABLE,Standard,WAA Cables,📹,CCTV power video combo",
-    "AIDEO VIDEO 1+4,Standard,WAA Cables,📺,Video+power cable 1+4",
-    "AIDEO VIDEO 1+3,Standard,WAA Cables,📺,Video+power cable 1+3",
-    "CAT 6,305 MTR,WAA Cables,🌐,Pure copper network cable",
-    "SOLAR DC 4.00SQMM RED,500 MTR,Solar & MC4,☀️,RHEIN solar DC cable UV protected",
-    "SOLAR DC 4.00SQMM BLACK,500 MTR,Solar & MC4,☀️,TUV approved solar cable",
-    "MC4 CONNECTOR,Pair,Solar & MC4,🔌,IP67 rated original grade",
-    "MC4 CONNECTOR 2 IN 1,Branch,Solar & MC4,🔌,2 to 1 solar combiner",
-    "MC4 CONNECTOR 3 IN 1,Branch,Solar & MC4,🔌,3 to 1 solar combiner",
-    "MC4 CONNECTOR 4 IN 1,Branch,Solar & MC4,🔌,4 to 1 heavy combiner",
-    "MC4 CONNECTOR 3IN 1OUT,Branch,Solar & MC4,🔌,3 input 1 output",
-    "MC4 CONNECTOR 2IN 1OUT,Branch,Solar & MC4,🔌,2 input 1 output",
-    "SINGLE PHASE NET METER WITH BOX 5/30,5/30A,Meters,📊,Bi-directional net meter with box",
-    "SINGLE PHASE NORMAL METER WITH BOX 5/30,5/30A,Meters,📊,Standard single phase meter",
-    "SINGLE CABLE METER,Standard,Meters,📊,Single cable meter",
-    "SINGLE PHASE NET METER WITH BOX 10/60,10/60A,Meters,📊,Net meter high capacity",
-    "3 PHASE METER,Standard,Meters,📈,Three phase meter",
-    "WHOLE CURRENT NET MTR 10/60A,10/60A,Meters,📈,Net meter 3 phase",
-    "WHOLE CURRENT NORMAL MTR 10/60A,10/60A,Meters,📈,Normal 3 phase meter",
-    "SARAL 10-100,10-100A,Meters,📊,Saral series meter",
-    "WHOLE CURRENT 305 NET MTR 10/100A,10/100A,Meters,📈,305 net meter",
-    "WHOLE CURRENT 305 NORMAL MTR 10/100A,10/100A,Meters,📈,305 normal meter",
-    "LTCT TRIVECTORE MTR 600/5A,600/5A,Meters,⚙️,Trivector meter with CT",
-    "LTCT METER,Standard,Meters,⚙️,LTCT meter only",
-    "LTCT TRAVACTOR NORMAL METER 200/5,200/5A,Meters,⚙️,Travector normal",
-    "LTCT NET METER 200/5,200/5A,Meters,⚙️,LTCT net meter",
-    "HT NET 33KV METER,33kV,Meters,⚡,High tension 33kV meter",
-    "HT NET 11KV METER,11kV,Meters,⚡,High tension 11kV meter",
-    "PANEL METER DPM96I100-1,96x96,Panel Meters,📊,Digital panel meter ammeter",
-    "DPM 96M 310-2,96x96,Panel Meters,📊,Multifunction meter",
-    "DPM 96V 300-2,96x96,Panel Meters,📊,Voltmeter panel",
-    "DPM 96I 300-2,96x96,Panel Meters,📊,Ammeter panel",
-    "ELITE 307-2,Standard,Panel Meters,⚙️,Elite series meter",
-    "ELITE 103-2,Standard,Panel Meters,⚙️,Elite 103-2 meter",
-    "ELITE 30B-2,Standard,Panel Meters,⚙️,Elite 30B-2",
-    "ELITE 440-443,Standard,Panel Meters,⚙️,Elite multi-function",
-    "APEX-100,Standard,Panel Meters,⚡,Apex series meter",
-    "CURRENT TRANSFORMER 600/5A,600/5A,Accessories,⚙️,Precision CT for metering",
-    "CURRENT TRANSFORMER 200/5A,200/5A,Accessories,⚙️,CT 200/5A class 1",
-    "ACDB,Standard,Accessories,📦,Solar AC distribution box",
-    "T,Standard,Accessories,🔧,T connector electrical",
-    "T-BAND,Standard,Accessories,🔧,T-band clamp",
-    "L,Standard,Accessories,🔧,L-elbow conduit",
-    "L-ELBOW,Standard,Accessories,🔧,L shape elbow",
-    "SADEL 25MM,PKT,Accessories,🔧,Saddle clamp 25mm",
-    "GITTY,PKT,Accessories,🔧,Gitties / cable clip",
-    "PVC PIPE,PKT,Accessories,🔧,PVC conduit pipe",
-    "CABLE TIE,PKT,Accessories,🔧,Nylon cable ties",
-    "SPN 8 WAY,Standard,Accessories,📦,Single phase DB 8 way",
-    "PIT COVER,Standard,Accessories,🛡️,Inspection pit cover",
-    "SPIKE GARDE BLACK,Standard,Accessories,⚡,Spike guard surge protector",
-    "MODEM SKYLINE E90,GPRS,Accessories,📡,Remote meter reading modem",
-    "APEX MODEM,Standard,Accessories,📡,APEX communication modem",
-    "HT BOX ONLY,Standard,Accessories,📦,HT meter box",
-    "LTCT BOX ONLY,Standard,Accessories,📦,LTCT meter enclosure",
-    "BAG 15KG,15KG,Accessories,👜,Carry bag",
-    "4Cx16.00SQMM ROUND,100 MTR,Accessories,🔌,4 core 16mm round cable",
-    "LIGHTNING ARRESTER 1 MTR,1 MTR,Earthing & Lightning,🌩️,Copper bonded LA",
-    "LIGHTNING ARRESTER 2 MTR,2 MTR,Earthing & Lightning,🌩️,Heavy duty LA",
-    "LIGHTNING ARRESTER 3 MTR,3 MTR,Earthing & Lightning,🌩️,Industrial LA",
-    "EARTHING ROD 1 MTR,1 MTR,Earthing & Lightning,⛰️,Pure copper coated rod",
-    "EARTHING ROD 2 MTR,2 MTR,Earthing & Lightning,⛰️,2 meter earthing rod",
-    "EARTHING ROD 3 MTR,3 MTR,Earthing & Lightning,⛰️,3 meter heavy rod",
-    "FIRE EXTINGUISHER 2KG,2KG ABC,Fire Safety,🔥,ISI marked dry powder",
-    "FIRE BUCKET,Red,Fire Safety,🧯,Emergency fire bucket",
-    "FIRE SPRAYE 2 KG,2KG,Fire Safety,🧯,Fire spray extinguisher",
-    "SOLAR DC 4.00SQMM RED-500MTR RHEIN,500MTR,Solar & MC4,☀️,RHEIN brand solar cable",
-    "SOLAR DC 4.00SQMM BLACK-500MTR RHEIN,500MTR,Solar & MC4,☀️,RHEIN black solar cable"
+<div class="stats-section" id="statsSection"></div>
+<div id="catalog" style="scroll-margin-top: 100px;"></div>
+<div class="catalog-header"><h2><i class="fas fa-store"></i> Premium Catalog</h2></div>
+<div class="filter-bar">
+  <div class="search-box"><input type="text" id="searchInput" placeholder="Search products..."><button id="searchBtn"><i class="fas fa-search"></i> Find</button></div>
+  <div class="filter-group" id="filterGroup"></div>
+</div>
+<div id="productGrid" class="product-grid"></div>
+<section id="features" class="features"><div class="features-grid" id="featuresGrid"></div></section>
+<section id="contact" class="contact"><div id="contactContent"></div></section>
+<footer><p id="footerText">© 2026 Rhysco Power - All Rights Reserved | Premium Electrical Solutions</p></footer>
+<a href="#" class="floating-wa" id="floatingWhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+<div id="detailModal" class="detail-modal"><div class="detail-modal-content"><button class="detail-close" id="detailCloseBtn">&times;</button><div id="detailContent"></div></div></div>
+
+<div id="adminModal" class="admin-modal">
+  <div class="admin-container">
+    <div class="admin-header"><h2><i class="fas fa-user-cog"></i> Admin Dashboard</h2><button class="close-admin" id="closeAdminBtn">×</button></div>
+    <div class="admin-tabs"><button class="admin-tab active" data-tab="categories">📁 Categories</button><button class="admin-tab" data-tab="company">🏢 Company</button><button class="admin-tab" data-tab="github">🔧 GitHub</button></div>
+    <div id="tabCategories" class="tab-content active">
+      <div class="form-group"><h3>➕ Create New Category</h3><input type="text" id="newCatName" placeholder="Category Name"><input type="text" id="newCatIcon" placeholder="Icon (🔌, ☀️, 📊)"><button id="createCategoryBtn" class="save-btn">+ Create Category</button></div>
+      <div id="categoriesList" class="category-list"></div>
+    </div>
+    <div id="tabCompany" class="tab-content">
+      <div class="form-group"><h3>🏢 Company Info</h3><input type="text" id="companyName" placeholder="Company Name"><input type="text" id="heroTitleInput" placeholder="Hero Title"><input type="text" id="heroSubtitleInput" placeholder="Hero Subtitle"><input type="text" id="catalogTitleInput" placeholder="Catalog Title"><input type="text" id="phoneInput" placeholder="Phone"><input type="email" id="emailInput" placeholder="Email"><input type="text" id="whatsappInput" placeholder="WhatsApp"><textarea id="addressInput" placeholder="Address" rows="2"></textarea><input type="text" id="footerTextInput" placeholder="Footer"><button id="saveCompanyBtn" class="save-btn">Save</button></div>
+      <div class="form-group"><h3>📊 Stats Cards</h3><div id="statsEditList"></div></div>
+    </div>
+    <div id="tabGithub" class="tab-content">
+      <div class="form-group"><h3>🔐 GitHub Setup</h3><input type="text" id="githubRepo" placeholder="Repository" value="iamsunnydevanand/rhyscopower"><input type="password" id="githubToken" placeholder="GitHub Token"><button id="saveGithubBtn" class="save-btn">Save Config</button><div id="githubStatusMsg"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ==================== COMPLETE PRODUCT DATABASE ====================
+  let categories = [
+    { id: "cat1", name: "WAA Cables", icon: "🔌", products: [
+      { id: "p1", name: "4.00SQMM WAA CABLE RED BLACK", spec: "100 MTR", icon: "🔌", desc: "100% pure copper, flame retardant, industrial grade" },
+      { id: "p2", name: "4.00SQMM WAA CABLE BLACK", spec: "100 MTR", icon: "⚡", desc: "Heavy duty flexible cable" },
+      { id: "p3", name: "WAA CABLE RED BLACK", spec: "500 MTR", icon: "🔌", desc: "Long length roll, perfect for large projects" },
+      { id: "p4", name: "WAA CABLE BLACK", spec: "500 MTR", icon: "⚡", desc: "Bulk packing industrial cable" },
+      { id: "p5", name: "6MM WAA CABLE BLACK", spec: "500 MTR", icon: "🔌", desc: "6 sqmm heavy duty power cable" },
+      { id: "p6", name: "6MM WAA CABLE RED BLACK", spec: "500 MTR", icon: "⚡", desc: "Red & Black pair, 6mm²" },
+      { id: "p7", name: "6MM WAA CABLE BLACK", spec: "100 MTR", icon: "🔌", desc: "6mm² heavy duty" },
+      { id: "p8", name: "6MM WAA CABLE RED BLACK", spec: "100 MTR", icon: "⚡", desc: "6mm² twin core" },
+      { id: "p9", name: "4 CORE 6.00SQMM", spec: "100 MTR", icon: "🔌", desc: "4 core control cable" },
+      { id: "p10", name: "4 CORE 4.00SQMM", spec: "100 MTR", icon: "🔌", desc: "Multi-core industrial cable" },
+      { id: "p11", name: "2 CORE 6.00SQMM", spec: "100 MTR", icon: "⚡", desc: "Twin core heavy duty" },
+      { id: "p12", name: "4 CORE 2.50SQMM", spec: "100 MTR", icon: "🔌", desc: "4 core flexible cable" },
+      { id: "p13", name: "2 CORE 4.00SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core power cable" },
+      { id: "p14", name: "3 CORE 1.50SQMM", spec: "100 MTR", icon: "🔌", desc: "3 core control cable" },
+      { id: "p15", name: "3 CORE 2.50SQMM", spec: "100 MTR", icon: "⚡", desc: "3 core industrial cable" },
+      { id: "p16", name: "3 CORE 2.50SQMM", spec: "500 MTR", icon: "🔌", desc: "Bulk 3 core cable" },
+      { id: "p17", name: "2 CORE 0.75SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core thin cable" },
+      { id: "p18", name: "2 CORE 1.50SQMM", spec: "100 MTR", icon: "🔌", desc: "2 core standard" },
+      { id: "p19", name: "2 CORE 1.00SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core 1mm²" },
+      { id: "p20", name: "2 CORE 1.00SQMM SPEAKER WIRE", spec: "100 MTR", icon: "🔊", desc: "Speaker wire" },
+      { id: "p21", name: "2 CORE 2.50SQMM", spec: "100 MTR", icon: "⚡", desc: "2 core 2.5mm²" },
+      { id: "p22", name: "CCTV CABLE", spec: "Roll", icon: "📹", desc: "CCTV cable" },
+      { id: "p23", name: "AIDEO VIDEO 1+4", spec: "Roll", icon: "📺", desc: "Video cable 1+4" },
+      { id: "p24", name: "AIDEO VIDEO 1+3", spec: "Roll", icon: "📺", desc: "Video cable 1+3" },
+      { id: "p25", name: "RG 6", spec: "100 MTR", icon: "📡", desc: "Coaxial cable" },
+      { id: "p26", name: "CAT 6", spec: "305 MTR", icon: "🌐", desc: "Network cable, pure copper" },
+      { id: "p27", name: "4Cx16.00SQMM ROUND", spec: "100 MTR", icon: "🔌", desc: "4 core round cable" }
+    ]},
+    { id: "cat2", name: "Solar & MC4", icon: "☀️", products: [
+      { id: "s1", name: "SOLAR DC 4.00SQMM RED", spec: "500 MTR", icon: "☀️", desc: "RHEIN solar DC cable, UV protected" },
+      { id: "s2", name: "SOLAR DC 4.00SQMM BLACK", spec: "500 MTR", icon: "☀️", desc: "TUV approved solar cable" },
+      { id: "s3", name: "MC4 CONNECTOR", spec: "Pair", icon: "🔌", desc: "IP67 rated, original grade" },
+      { id: "s4", name: "MC4 CONNECTOR 2 IN 1", spec: "Branch", icon: "🔌", desc: "2 to 1 combiner" },
+      { id: "s5", name: "MC4 CONNECTOR 3 IN 1", spec: "Branch", icon: "🔌", desc: "3 to 1 solar combiner" },
+      { id: "s6", name: "MC4 CONNECTOR 4 IN 1", spec: "Branch", icon: "🔌", desc: "4 to 1 heavy combiner" }
+    ]},
+    { id: "cat3", name: "Meters & CT", icon: "📊", products: [
+      { id: "m1", name: "SINGLE PHASE NET METER", spec: "5/30A with Box", icon: "📊", desc: "Bi-directional net meter" },
+      { id: "m2", name: "SINGLE PHASE NORMAL METER", spec: "5/30A with Box", icon: "📊", desc: "Normal single phase meter" },
+      { id: "m3", name: "SINGLE CABLE METER", spec: "Standard", icon: "📊", desc: "Single cable meter" },
+      { id: "m4", name: "3 PHASE NET METER", spec: "10/60A", icon: "📈", desc: "3 phase net metering" },
+      { id: "m5", name: "3 PHASE NORMAL METER", spec: "10/60A", icon: "📈", desc: "3 phase normal meter" },
+      { id: "m6", name: "WHOLE CURRENT NET MTR", spec: "10/100A", icon: "📊", desc: "Whole current net meter" },
+      { id: "m7", name: "LTCT TRIVECTORE MTR", spec: "600/5A", icon: "⚙️", desc: "Trivector meter with CT" },
+      { id: "m8", name: "LTCT METER", spec: "200/5A", icon: "⚙️", desc: "LTCT meter" },
+      { id: "m9", name: "HT NET METER", spec: "11kV/33kV", icon: "⚡", desc: "High tension metering" },
+      { id: "m10", name: "LTCT NET MTR WITH 4CT BOX & MODEM", spec: "200/5A", icon: "📡", desc: "Complete LTCT solution" },
+      { id: "m11", name: "CURRENT TRANSFORMER", spec: "600/5A", icon: "⚙️", desc: "Precision CT for metering" },
+      { id: "m12", name: "CURRENT TRANSFORMER", spec: "200/5A", icon: "⚙️", desc: "Precision CT" }
+    ]},
+    { id: "cat4", name: "Panel Meters & Elite", icon: "📟", products: [
+      { id: "pm1", name: "DPM96I100-1", spec: "Panel Meter", icon: "📊", desc: "Digital panel meter" },
+      { id: "pm2", name: "DPM 96M 310-2", spec: "Panel Meter", icon: "📊", desc: "Digital panel meter" },
+      { id: "pm3", name: "DPM 96V 300-2", spec: "Panel Meter", icon: "📊", desc: "Voltage panel meter" },
+      { id: "pm4", name: "DPM 96I 300-2", spec: "Panel Meter", icon: "📊", desc: "Current panel meter" },
+      { id: "pm5", name: "ELITE 307-2", spec: "Elite Series", icon: "✨", desc: "Elite 307-2 meter" },
+      { id: "pm6", name: "ELITE 103-2", spec: "Elite Series", icon: "✨", desc: "Elite 103-2 meter" },
+      { id: "pm7", name: "ELITE 30B-2", spec: "Elite Series", icon: "✨", desc: "Elite 30B-2 meter" },
+      { id: "pm8", name: "ELITE 440-443", spec: "Elite Series", icon: "✨", desc: "Elite 440-443 meter" },
+      { id: "pm9", name: "APEX-100", spec: "Apex Series", icon: "⭐", desc: "Apex 100 panel meter" },
+      { id: "pm10", name: "DPM96V100-1", spec: "Panel Meter", icon: "📊", desc: "Voltage panel meter" },
+      { id: "pm11", name: "DPM96I100-1", spec: "Panel Meter", icon: "📊", desc: "Current panel meter" }
+    ]},
+    { id: "cat5", name: "Earthing & Lightning", icon: "⛰️", products: [
+      { id: "e1", name: "LIGHTNING ARRESTER", spec: "1 MTR", icon: "🌩️", desc: "Copper bonded LA" },
+      { id: "e2", name: "LIGHTNING ARRESTER", spec: "2 MTR", icon: "🌩️", desc: "Copper bonded LA" },
+      { id: "e3", name: "LIGHTNING ARRESTER", spec: "3 MTR", icon: "🌩️", desc: "Copper bonded LA" },
+      { id: "e4", name: "EARTHING ROD", spec: "1 MTR", icon: "⛰️", desc: "Pure copper coated rod" },
+      { id: "e5", name: "EARTHING ROD", spec: "2 MTR", icon: "⛰️", desc: "Pure copper coated rod" },
+      { id: "e6", name: "EARTHING ROD", spec: "3 MTR", icon: "⛰️", desc: "Pure copper coated rod" }
+    ]},
+    { id: "cat6", name: "Fire Safety", icon: "🔥", products: [
+      { id: "f1", name: "FIRE EXTINGUISHER", spec: "2KG ABC", icon: "🧯", desc: "ISI marked, dry powder" },
+      { id: "f2", name: "FIRE BUCKET", spec: "Red", icon: "🪣", desc: "Emergency fire bucket" },
+      { id: "f3", name: "FIRE SPRAY", spec: "2 KG", icon: "🧯", desc: "Fire spray" }
+    ]},
+    { id: "cat7", name: "Accessories & Hardware", icon: "🔧", products: [
+      { id: "a1", name: "ACDB", spec: "Solar ACDB", icon: "📦", desc: "AC distribution box" },
+      { id: "a2", name: "T-BAND", spec: "T Type", icon: "🔧", desc: "T band" },
+      { id: "a3", name: "L-ELBOW", spec: "L Type", icon: "🔧", desc: "L elbow" },
+      { id: "a4", name: "SADEL", spec: "25mm", icon: "🔧", desc: "Sadel" },
+      { id: "a5", name: "GITTY", spec: "PKT", icon: "📦", desc: "Gitty" },
+      { id: "a6", name: "PVC PIPE", spec: "PKT", icon: "🔧", desc: "PVC pipe" },
+      { id: "a7", name: "CABLE TIE", spec: "PKT", icon: "🔧", desc: "Cable ties" },
+      { id: "a8", name: "PIT COVER", spec: "Standard", icon: "🚪", desc: "Pit cover" },
+      { id: "a9", name: "SPIKE GUARD BLACK", spec: "Standard", icon: "⚡", desc: "Spike guard" },
+      { id: "a10", name: "SPN 8 WAY", spec: "Distribution Board", icon: "📦", desc: "Single phase DB" },
+      { id: "a11", name: "MODEM SKYLINE E90", spec: "GPRS", icon: "📡", desc: "Remote meter reading modem" },
+      { id: "a12", name: "APEX MODEM", spec: "GPRS", icon: "📡", desc: "Apex modem" },
+      { id: "a13", name: "HT BOX ONLY", spec: "Box", icon: "📦", desc: "HT box" },
+      { id: "a14", name: "LTCT BOX ONLY", spec: "Box", icon: "📦", desc: "LTCT box" },
+      { id: "a15", name: "BAG 15KG", spec: "Bag", icon: "👜", desc: "15KG bag" }
+    ]}
   ];
 
-  function buildDefaultCategories() {
-    const map = new Map();
-    let id = 1;
-    RAW_PRODUCTS.forEach(line => {
-      const [name, spec, catName, icon, desc] = line.split(',');
-      if (!map.has(catName)) {
-        map.set(catName, {
-          id: catName.replace(/[^a-zA-Z0-9]/g, '_'),
-          name: catName,
-          icon: icon || '📁',
-          products: []
-        });
-      }
-      map.get(catName).products.push({
-        id: 'p_' + (id++),
-        name, spec, icon: icon || '🔌',
-        desc: desc || 'Premium quality electrical product'
-      });
-    });
-    return Array.from(map.values());
-  }
-
-  const DEFAULTS = {
-    categories: buildDefaultCategories(),
-    company: {
-      name: 'Rhysco Power',
-      tagline: 'Premium Electrical Solutions',
-      since: '2010',
-      phone: '+91 6203691393',
-      email: 'bikram.biharelctrometer@gmail.com',
-      whatsapp: '916203691393',
-      address: 'India (Bihar & NCR)',
-      heroTitle: 'Complete Electrical Solutions',
-      heroSubtitle: 'WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety • Accessories'
-    },
-    stats: [
-      { icon: 'trophy', number: '15+', label: 'Years' },
-      { icon: 'boxes', number: '150+', label: 'Products' },
-      { icon: 'users', number: '1000+', label: 'Clients' },
-      { icon: 'truck', number: 'PAN India', label: 'Delivery' }
-    ],
-    features: [
-      { icon: 'shield', title: 'Quality Assured', desc: 'ISO certified products' },
-      { icon: 'headset', title: '24/7 Support', desc: 'Technical assistance anytime' },
-      { icon: 'truck', title: 'Pan India Supply', desc: 'Fast shipping nationwide' },
-      { icon: 'rupee', title: 'Best Price', desc: 'Wholesale & dealer pricing' },
-      { icon: 'award', title: 'Trusted Brands', desc: 'Original grade only' },
-      { icon: 'boxes-feat', title: 'Bulk Orders', desc: 'Project supply specialist' }
-    ]
+  let companyInfo = JSON.parse(localStorage.getItem('rhysco_company')) || {
+    name: "Rhysco Power", heroTitle: "Complete Electrical Solutions", heroSubtitle: "WAA Cables • Solar & MC4 • Meters • Earthing • Fire Safety", catalogTitle: "Premium Catalog",
+    phone: "+91 6203691393", email: "bikram.biharelctrometer@gmail.com", whatsapp: "916203691393", address: "India (Bihar & NCR) | Global Shipping", footer: "© 2026 Rhysco Power - All Rights Reserved"
   };
-
-  /* ============== STATE & STORAGE ============== */
-  const KEYS = {
-    cat: 'rhysco_categories', com: 'rhysco_company',
-    stat: 'rhysco_stats', feat: 'rhysco_features',
-    auth: 'rhysco_auth', theme: 'rhysco_theme'
-  };
-
-  function load(key, fallback) {
-    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
-    catch { return fallback; }
+  let stats = [{ icon: "fas fa-trophy", number: "15+", label: "Years Experience" }, { icon: "fas fa-boxes", number: "500+", label: "Premium Products" }, { icon: "fas fa-users", number: "1000+", label: "Happy Clients" }, { icon: "fas fa-truck", number: "PAN India", label: "Fast Delivery" }];
+  let features = [{ icon: "fas fa-shield-alt", title: "Quality Assured", desc: "ISO certified" }, { icon: "fas fa-clock", title: "24/7 Support", desc: "Technical assistance" }, { icon: "fas fa-truck-fast", title: "Pan India Supply", desc: "Fast shipping" }, { icon: "fas fa-hand-holding-usd", title: "Best Price", desc: "Wholesale pricing" }];
+  let activeCategory = "all", searchQuery = "", isAdminAuthenticated = false;
+  let githubConfig = JSON.parse(localStorage.getItem('rhysco_github_config')) || { repo: "iamsunnydevanand/rhyscopower", token: "" };
+  function generateId() { return Date.now().toString() + Math.random().toString(36).substr(2, 6); }
+  function showToast(msg, color) { let t = document.createElement('div'); t.className = 'toast'; t.style.background = color; t.innerHTML = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
+  function showProductDetail(p) { let modal = document.getElementById('detailModal'); document.getElementById('detailContent').innerHTML = `<div style="text-align:center"><div style="font-size:4rem">${p.icon}</div><h2>${escapeHtml(p.name)}</h2><p style="color:var(--accent-cyan)"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</p><span style="background:var(--accent-gradient-2);padding:4px 12px;border-radius:20px;display:inline-block;margin:10px 0">📁 ${escapeHtml(p.categoryName)}</span><p style="margin:15px 0">${escapeHtml(p.desc)}</p><button class="detail-wa-btn" style="background:#25D366;color:white;border:none;padding:12px;border-radius:50px;width:100%;margin-top:10px;font-weight:700;cursor:pointer" id="detailWABtn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</button></div>`; modal.style.display = 'flex'; document.getElementById('detailWABtn').onclick = () => window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(p.name)}`, '_blank'); }
+  document.getElementById('detailCloseBtn').onclick = () => document.getElementById('detailModal').style.display = 'none';
+  window.onclick = (e) => { if(e.target === document.getElementById('detailModal')) document.getElementById('detailModal').style.display = 'none'; };
+  async function loadFromGitHubPublic() { try { let res = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json?t=${Date.now()}`); if(res.ok){ let data=await res.json(); let c=JSON.parse(atob(data.content)); if(c.categories) categories=c.categories; if(c.companyInfo) companyInfo=c.companyInfo; if(c.stats) stats=c.stats; renderAll(); return true; } } catch(e){} try { let rawRes = await fetch(`https://raw.githubusercontent.com/${githubConfig.repo}/main/rhysco-data.json?t=${Date.now()}`); if(rawRes.ok){ let c=await rawRes.json(); if(c.categories) categories=c.categories; if(c.companyInfo) companyInfo=c.companyInfo; if(c.stats) stats=c.stats; renderAll(); return true; } } catch(e){} renderAll(); return false; }
+  function saveToLocal() { localStorage.setItem('rhysco_all_data', JSON.stringify({categories,companyInfo,stats})); }
+  async function saveToGitHub() { if(!githubConfig.token) { saveToLocal(); return false; } let data={categories,companyInfo,stats}; let content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2)))); try { let sha=null; let check=await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`,{headers:{'Authorization':`token ${githubConfig.token}`}}); if(check.ok){ let fd=await check.json(); sha=fd.sha; } let res=await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/rhysco-data.json`,{method:'PUT',headers:{'Authorization':`token ${githubConfig.token}`,'Content-Type':'application/json'},body:JSON.stringify({message:"Update",content:content,sha:sha})}); if(res.ok){ saveToLocal(); showToast("✅ Saved permanently!","#10b981"); return true; } } catch(e){ showToast("❌ Save failed","#ef4444"); } return false; }
+  async function saveAllData() { saveToLocal(); await saveToGitHub(); renderAll(); }
+  function getAllProducts() { let all=[]; categories.forEach(c=>c.products.forEach(p=>all.push({...p,categoryName:c.name,categoryIcon:c.icon}))); return all; }
+  function renderAll() { renderCompanyInfo(); renderStats(); renderFeatures(); renderContact(); renderFilters(); renderProducts(); if(isAdminAuthenticated){ renderCategoriesList(); renderStatsAdmin(); } }
+  function renderCompanyInfo() { 
+    let d1=document.getElementById('companyNameDisplay'); if(d1) d1.innerHTML=companyInfo.name;
+    let ht=document.getElementById('heroTitle'); if(ht) ht.innerHTML=companyInfo.heroTitle || "Complete Electrical Solutions";
+    let hs=document.getElementById('heroSubtitle'); if(hs) hs.innerHTML=companyInfo.heroSubtitle;
+    let ct=document.getElementById('catalogTitle'); if(ct) ct.innerHTML=companyInfo.catalogTitle || "Premium Catalog";
+    let ft=document.getElementById('footerText'); if(ft) ft.innerHTML=companyInfo.footer;
+    let wa=document.getElementById('floatingWhatsApp'); if(wa) wa.href=`https://wa.me/${companyInfo.whatsapp}`;
   }
-  function save(key, value) {
-    try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
-  }
-
-  let state = {
-    categories: load(KEYS.cat, DEFAULTS.categories),
-    company: { ...DEFAULTS.company, ...load(KEYS.com, {}) },
-    stats: load(KEYS.stat, DEFAULTS.stats),
-    features: load(KEYS.feat, DEFAULTS.features),
-    isAdmin: load(KEYS.auth, false),
-    activeCategory: 'all',
-    query: '',
-    adminTab: 'products',
-    adminCat: null,
-    editingId: null,
-    editDraft: { name: '', spec: '', desc: '', icon: '📦' }
-  };
-
-  function persist() {
-    save(KEYS.cat, state.categories);
-    save(KEYS.com, state.company);
-    save(KEYS.stat, state.stats);
-    save(KEYS.feat, state.features);
-    save(KEYS.auth, state.isAdmin);
-  }
-
-  /* ============== ICONS ============== */
-  const SVG = {
-    trophy: '<polyline points="6 9 6 4 18 4 18 9"/><path d="M6 9a6 6 0 0 0 12 0"/><path d="M6 9H3a3 3 0 0 0 3 3"/><path d="M18 9h3a3 3 0 0 1-3 3"/><path d="M9 22h6"/><path d="M12 17v5"/>',
-    boxes: '<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
-    users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-    truck: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
-    shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',
-    award: '<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
-    rupee: '<path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/>',
-    headset: '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
-    'boxes-feat': '<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>',
-    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
-    moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
-    ruler: '<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
-    msg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
-    arrow: '<path d="M5 12h14M12 5l7 7-7 7"/>',
-    chevron: '<polyline points="9 18 15 12 9 6"/>',
-    search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
-    x: '<path d="M18 6L6 18M6 6l12 12"/>',
-    badge: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
-    check: '<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
-    truckS: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
-    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
-    mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
-    pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
-    clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
-    plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
-    edit: '<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>',
-    trash: '<polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>',
-    save: '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',
-    reset: '<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>',
-    lock: '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
-    folder: '<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>',
-    user: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>',
-    logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
-    pkg: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>'
-  };
-  function svg(name, size = 16, extra = '') {
-    const path = SVG[name] || '';
-    return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${extra}>${path}</svg>`;
-  }
-
-  /* ============== UTIL ============== */
-  function escapeHtml(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-  function escapeAttr(s) { return escapeHtml(s); }
-  function genId() { return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8); }
-  function waLink(text) {
-    return `https://wa.me/${state.company.whatsapp}?text=${encodeURIComponent(text)}`;
-  }
-  function toast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(window._toast);
-    window._toast = setTimeout(() => t.classList.remove('show'), 2200);
-  }
-  function flatProducts() {
-    return state.categories.flatMap(c => c.products.map(p => ({ ...p, categoryId: c.id, categoryName: c.name, categoryIcon: c.icon })));
-  }
-
-  /* ============== THEME ============== */
-  function applyTheme() {
-    const t = load(KEYS.theme, 'dark');
-    document.documentElement.dataset.theme = t;
-    document.getElementById('themeIcon').outerHTML =
-      `<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${SVG[t === 'dark' ? 'sun' : 'moon']}</svg>`;
-  }
-  function toggleTheme() {
-    const cur = document.documentElement.dataset.theme;
-    const next = cur === 'dark' ? 'light' : 'dark';
-    save(KEYS.theme, next);
-    applyTheme();
-  }
-
-  /* ============== RENDER: COMPANY ============== */
-  function renderCompany() {
-    document.getElementById('navName').textContent = state.company.name;
-    document.getElementById('footerName').textContent = state.company.name;
-    document.title = state.company.name + ' — ' + state.company.tagline;
-    const title = state.company.heroTitle || 'Complete Electrical Solutions';
-    const words = title.split(' ');
-    let html = '';
-    words.forEach((w, i) => {
-      if (/electric/i.test(w)) html += `<span class="grad-text">${escapeHtml(w)}</span>`;
-      else html += escapeHtml(w);
-      if (i < words.length - 1) html += ' ';
-    });
-    document.getElementById('heroTitle').innerHTML = html;
-    document.getElementById('heroSubtitle').textContent = state.company.heroSubtitle;
-
-    const footerYear = new Date().getFullYear();
-    document.getElementById('footerText').textContent = `© ${footerYear} ${state.company.name}. All rights reserved.`;
-
-    document.getElementById('floatWa').href = waLink('Hi ' + state.company.name + ', I have a quick question.');
-    document.getElementById('contactWa').href = waLink("Hi " + state.company.name + ", I'd like to discuss a bulk order.");
-
-    const right = document.getElementById('contactRight');
-    const items = [
-      { ic: 'phone', label: 'Phone', value: state.company.phone, href: 'tel:' + state.company.phone.replace(/\s+/g, '') },
-      { ic: 'msg', label: 'WhatsApp', value: '+' + state.company.whatsapp, href: waLink('Hi ' + state.company.name + ', I have a question.'), ext: true },
-      { ic: 'mail', label: 'Email', value: state.company.email, href: 'mailto:' + state.company.email },
-      { ic: 'pin', label: 'Address', value: state.company.address },
-      { ic: 'clock', label: 'Hours', value: 'Mon – Sat • 9 AM to 8 PM' }
-    ];
-    right.innerHTML = items.map(it => {
-      const inner = `
-        <div class="ic">${svg(it.ic, 18)}</div>
-        <div>
-          <div class="label">${it.label}</div>
-          <div class="value">${escapeHtml(it.value)}</div>
-        </div>`;
-      if (it.href) return `<a href="${escapeAttr(it.href)}" ${it.ext ? 'target="_blank" rel="noopener"' : ''} class="contact-item">${inner}</a>`;
-      return `<div class="contact-item">${inner}</div>`;
-    }).join('');
-  }
-
-  /* ============== RENDER: STATS ============== */
-  function renderStats() {
-    const el = document.getElementById('statsGrid');
-    el.innerHTML = state.stats.map((s, i) => `
-      <div class="stat fade-up" style="animation-delay:${i * 0.08}s">
-        <div class="stat-icon">${svg(s.icon, 24)}</div>
-        <div class="stat-num">${escapeHtml(s.number)}</div>
-        <div class="stat-label">${escapeHtml(s.label)}</div>
-      </div>
-    `).join('');
-  }
-
-  /* ============== RENDER: FEATURES ============== */
-  function renderFeatures() {
-    const el = document.getElementById('featuresGrid');
-    el.innerHTML = state.features.map((f, i) => `
-      <div class="feat fade-up" style="animation-delay:${i * 0.06}s">
-        <div class="feat-icon">${svg(f.icon, 26)}</div>
-        <h3>${escapeHtml(f.title)}</h3>
-        <p>${escapeHtml(f.desc)}</p>
-      </div>
-    `).join('');
-  }
-
-  /* ============== RENDER: CATALOG ============== */
-  function renderCategories() {
-    const all = flatProducts();
-    const total = all.length;
-    document.getElementById('catalogCount').textContent = `${total} products in stock`;
-    const pills = document.getElementById('categoryPills');
-    let html = `<button class="pill ${state.activeCategory === 'all' ? 'active' : ''}" onclick="setCategory('all')">📂 All <span class="count">(${total})</span></button>`;
-    state.categories.forEach(c => {
-      html += `<button class="pill ${state.activeCategory === c.id ? 'active' : ''}" onclick="setCategory('${c.id}')">${escapeHtml(c.icon)} ${escapeHtml(c.name)} <span class="count">(${c.products.length})</span></button>`;
-    });
-    pills.innerHTML = html;
-  }
-
-  function renderProducts() {
-    const grid = document.getElementById('productsGrid');
-    const all = flatProducts();
-    const base = state.activeCategory === 'all' ? all : all.filter(p => p.categoryId === state.activeCategory);
-    const q = state.query.trim().toLowerCase();
-    const filtered = q ? base.filter(p => p.name.toLowerCase().includes(q) || p.spec.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)) : base;
-
-    if (filtered.length === 0) {
-      grid.innerHTML = `<div class="empty" style="grid-column:1/-1">${svg('pkg', 50)}<div style="font-size:18px;font-weight:700;margin-top:8px">No products found</div><div style="color:var(--text-2);font-size:14px;margin-top:4px">Try a different search or category filter.</div></div>`;
-      return;
-    }
-
-    grid.innerHTML = filtered.map((p, i) => {
-      const wa = waLink(`Hi ${state.company.name}, I'm interested in: ${p.name} (${p.spec}). Please share availability & price.`);
-      return `
-        <div class="card fade-up" style="animation-delay:${Math.min(i * 0.02, 0.3)}s">
-          <div class="icon">${escapeHtml(p.icon)}</div>
-          <h3>${escapeHtml(p.name)}</h3>
-          <div class="spec">${svg('ruler', 12)} ${escapeHtml(p.spec)}</div>
-          <p class="desc">${escapeHtml(p.desc)}</p>
-          <span class="cat-badge">${escapeHtml(p.categoryIcon)} ${escapeHtml(p.categoryName)}</span>
-          <div class="actions">
-            <a class="btn-wa" href="${escapeAttr(wa)}" target="_blank" rel="noopener">${svg('msg', 14)} Enquiry</a>
-            <button class="btn-detail" onclick="openProduct('${p.id}')">Details ${svg('chevron', 14)}</button>
-          </div>
-        </div>`;
-    }).join('');
-  }
-
-  function setCategory(id) { state.activeCategory = id; renderCategories(); renderProducts(); }
-  function clearSearch() {
-    state.query = '';
-    document.getElementById('searchInput').value = '';
-    document.getElementById('clearBtn').style.display = 'none';
-    renderProducts();
-  }
-
-  /* ============== PRODUCT MODAL ============== */
-  function openProduct(id) {
-    const p = flatProducts().find(p => p.id === id);
-    if (!p) return;
-    const card = document.getElementById('productModalCard');
-    const wa = waLink(`Hi ${state.company.name}, I'd like a quote for: ${p.name} (${p.spec}).`);
-    card.innerHTML = `
-      <button class="modal-close" onclick="closeProduct()">${svg('x', 16)}</button>
-      <div class="pdetail-head">
-        <div class="pdetail-icon">${escapeHtml(p.icon)}</div>
-        <span class="cat-badge">${escapeHtml(p.categoryIcon)} ${escapeHtml(p.categoryName)}</span>
-        <div class="pdetail-title">${escapeHtml(p.name)}</div>
-        <div class="pdetail-spec">${svg('ruler', 14)} ${escapeHtml(p.spec)}</div>
-      </div>
-      <div class="pdetail-body">
-        <p class="pdetail-desc">${escapeHtml(p.desc)}</p>
-        <div class="pdetail-badges">
-          <div class="pdetail-badge"><span class="grad-text">${svg('check', 18)}</span><div class="lbl">In Stock</div></div>
-          <div class="pdetail-badge"><span class="grad-text">${svg('shield', 18)}</span><div class="lbl">Quality</div></div>
-          <div class="pdetail-badge"><span class="grad-text">${svg('truckS', 18)}</span><div class="lbl">Fast Ship</div></div>
-        </div>
-        <div class="pdetail-actions">
-          <a class="wa" href="${escapeAttr(wa)}" target="_blank" rel="noopener">${svg('msg', 16)} WhatsApp</a>
-          <a class="call" href="tel:${escapeAttr(state.company.phone.replace(/\s+/g,''))}">${svg('phone', 16)} Call Now</a>
-        </div>
-      </div>
-    `;
-    document.getElementById('productModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeProduct() {
-    document.getElementById('productModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  /* ============== ADMIN ============== */
-  function openAdmin() { document.getElementById('adminModal').classList.add('open'); document.body.style.overflow = 'hidden'; renderAdmin(); }
-  function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); document.body.style.overflow = ''; }
-
-  function login() {
-    const u = document.getElementById('adminUser').value.trim();
-    const p = document.getElementById('adminPass').value;
-    if (u === 'sunny' && p === 'admin') {
-      state.isAdmin = true; persist();
-      updateAdminBtn(); renderAdmin();
-      toast('Welcome back, admin');
-    } else {
-      document.getElementById('loginErr').textContent = 'Invalid credentials. Use sunny / admin';
-    }
-    return false;
-  }
-  function logout() {
-    state.isAdmin = false; persist();
-    updateAdminBtn();
-    closeAdmin();
-    toast('Logged out');
-  }
-  function updateAdminBtn() {
-    const btn = document.getElementById('adminBtn');
-    const lbl = document.getElementById('adminBtnLabel');
-    if (state.isAdmin) {
-      btn.classList.add('danger');
-      lbl.textContent = 'Logout';
-      btn.onclick = logout;
-    } else {
-      btn.classList.remove('danger');
-      lbl.textContent = 'Admin';
-      btn.onclick = openAdmin;
-    }
-  }
-
-  function renderAdmin() {
-    const body = document.getElementById('adminBody');
-    if (!state.isAdmin) {
-      body.innerHTML = `
-        <form class="login-form" onsubmit="return login()">
-          <div class="login-icon">${svg('lock', 26)}</div>
-          <h3>Admin Login</h3>
-          <div class="hint">Default: <code>sunny</code> / <code>admin</code></div>
-          <div class="field">
-            <label>Username</label>
-            <input id="adminUser" autocomplete="username" required />
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <input id="adminPass" type="password" autocomplete="current-password" required />
-          </div>
-          <div id="loginErr" style="color:#ef4444;font-size:12px;text-align:center;font-weight:600"></div>
-          <button type="submit" class="btn btn-primary">Sign In</button>
-        </form>`;
-      return;
-    }
-    body.innerHTML = `
-      <div class="tabs" id="adminTabs">
-        <button class="${state.adminTab==='products'?'active':''}" onclick="setAdminTab('products')">Products</button>
-        <button class="${state.adminTab==='categories'?'active':''}" onclick="setAdminTab('categories')">Categories</button>
-        <button class="${state.adminTab==='company'?'active':''}" onclick="setAdminTab('company')">Company</button>
-        <button class="${state.adminTab==='content'?'active':''}" onclick="setAdminTab('content')">Content</button>
-      </div>
-      <div id="adminPane"></div>`;
-    renderAdminPane();
-  }
-  function setAdminTab(t) { state.adminTab = t; renderAdmin(); }
-
-  function renderAdminPane() {
-    const pane = document.getElementById('adminPane');
-    if (state.adminTab === 'products') pane.innerHTML = paneProducts();
-    else if (state.adminTab === 'categories') pane.innerHTML = paneCategories();
-    else if (state.adminTab === 'company') pane.innerHTML = paneCompany();
-    else if (state.adminTab === 'content') pane.innerHTML = paneContent();
-  }
-
-  function paneProducts() {
-    if (state.categories.length === 0) return '<p style="color:var(--text-2)">Add a category first.</p>';
-    if (!state.adminCat || !state.categories.find(c => c.id === state.adminCat)) state.adminCat = state.categories[0].id;
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    const d = state.editDraft;
-    return `
-      <div class="row" style="margin-bottom:14px">
-        ${state.categories.map(c => `<button class="cat-pill-admin ${c.id===state.adminCat?'active':''}" onclick="adminPickCat('${c.id}')">${escapeHtml(c.icon)} ${escapeHtml(c.name)} (${c.products.length})</button>`).join('')}
-      </div>
-      <div class="panel-section">
-        <h4>${state.editingId ? svg('edit',14)+' Edit product' : svg('plus',14)+' Add new product to '+escapeHtml(cat.name)}</h4>
-        <div class="grid-2">
-          <div class="field"><label>Icon</label><input maxlength="4" value="${escapeAttr(d.icon)}" oninput="state.editDraft.icon=this.value" /></div>
-          <div class="field"><label>Name</label><input value="${escapeAttr(d.name)}" oninput="state.editDraft.name=this.value" /></div>
-          <div class="field" style="grid-column:1/-1"><label>Specification</label><input value="${escapeAttr(d.spec)}" oninput="state.editDraft.spec=this.value" /></div>
-          <div class="field" style="grid-column:1/-1"><label>Description</label><textarea oninput="state.editDraft.desc=this.value">${escapeHtml(d.desc)}</textarea></div>
-        </div>
-        <div class="row" style="margin-top:12px">
-          <button class="btn btn-primary" onclick="saveProduct()">${svg('save',14)} ${state.editingId?'Update':'Add Product'}</button>
-          ${state.editingId?'<button class="btn btn-outline" onclick="cancelEdit()">Cancel</button>':''}
-        </div>
-      </div>
-      <div class="item-list">
-        ${cat.products.map(p => `
-          <div class="li">
-            <div class="lico">${escapeHtml(p.icon)}</div>
-            <div class="lbody">
-              <div class="ln">${escapeHtml(p.name)}</div>
-              <div class="ls">${escapeHtml(p.spec)}</div>
-              <div class="ld">${escapeHtml(p.desc)}</div>
-            </div>
-            <div class="lact">
-              <button class="edit" onclick="editProduct('${p.id}')">${svg('edit',14)}</button>
-              <button class="del" onclick="deleteProduct('${p.id}')">${svg('trash',14)}</button>
-            </div>
-          </div>`).join('') || '<p style="color:var(--text-2);grid-column:1/-1;text-align:center;padding:20px">No products in this category yet.</p>'}
-      </div>`;
-  }
-  function adminPickCat(id) { state.adminCat = id; state.editingId = null; state.editDraft = { name:'', spec:'', desc:'', icon:'📦' }; renderAdminPane(); }
-  function saveProduct() {
-    const d = state.editDraft;
-    if (!d.name.trim()) { toast('Name is required'); return; }
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    if (state.editingId) {
-      const p = cat.products.find(p => p.id === state.editingId);
-      Object.assign(p, d);
-      toast('Product updated');
-    } else {
-      cat.products.push({ id: genId(), ...d });
-      toast('Product added');
-    }
-    state.editingId = null;
-    state.editDraft = { name:'', spec:'', desc:'', icon:'📦' };
-    persist(); renderAdminPane(); renderCategories(); renderProducts();
-  }
-  function editProduct(id) {
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    const p = cat.products.find(p => p.id === id);
-    if (!p) return;
-    state.editingId = id;
-    state.editDraft = { name: p.name, spec: p.spec, desc: p.desc, icon: p.icon };
-    renderAdminPane();
-  }
-  function cancelEdit() {
-    state.editingId = null;
-    state.editDraft = { name:'', spec:'', desc:'', icon:'📦' };
-    renderAdminPane();
-  }
-  function deleteProduct(id) {
-    const cat = state.categories.find(c => c.id === state.adminCat);
-    const p = cat.products.find(p => p.id === id);
-    if (!p) return;
-    if (!confirm(`Delete "${p.name}"?`)) return;
-    cat.products = cat.products.filter(x => x.id !== id);
-    persist(); renderAdminPane(); renderCategories(); renderProducts();
-    toast('Product deleted');
-  }
-
-  function paneCategories() {
-    return `
-      <div class="panel-section">
-        <h4>${svg('plus',14)} Add new category</h4>
-        <div class="row">
-          <input id="newCatIcon" maxlength="4" value="📁" style="width:70px;text-align:center" />
-          <input id="newCatName" placeholder="Category name" />
-          <button class="btn btn-primary" onclick="addCat()">Add</button>
-        </div>
-      </div>
-      ${state.categories.map(c => `
-        <div class="cat-row">
-          <input class="icon-input" maxlength="4" value="${escapeAttr(c.icon)}" oninput="updateCat('${c.id}','icon',this.value)" />
-          <input class="name-input" value="${escapeAttr(c.name)}" oninput="updateCat('${c.id}','name',this.value)" />
-          <span class="meta">${c.products.length} items</span>
-          <button class="btn btn-danger" style="padding:8px 12px" onclick="deleteCat('${c.id}')">${svg('trash',14)}</button>
-        </div>`).join('')}
-      <div style="margin-top:14px">
-        <button class="btn btn-danger" onclick="resetAll()">${svg('reset',14)} Reset everything to defaults</button>
-      </div>`;
-  }
-  function addCat() {
-    const name = document.getElementById('newCatName').value.trim();
-    const icon = document.getElementById('newCatIcon').value.trim() || '📁';
-    if (!name) { toast('Category name required'); return; }
-    state.categories.push({ id: genId(), name, icon, products: [] });
-    persist(); renderAdminPane(); renderCategories();
-    toast('Category added');
-  }
-  function updateCat(id, key, val) {
-    const c = state.categories.find(c => c.id === id);
-    if (!c) return;
-    c[key] = val;
-    persist();
-    renderCategories();
-  }
-  function deleteCat(id) {
-    const c = state.categories.find(c => c.id === id);
-    if (!c) return;
-    if (!confirm(`Delete category "${c.name}" and ${c.products.length} products?`)) return;
-    state.categories = state.categories.filter(x => x.id !== id);
-    if (state.activeCategory === id) state.activeCategory = 'all';
-    if (state.adminCat === id) state.adminCat = state.categories[0]?.id || null;
-    persist(); renderAdminPane(); renderCategories(); renderProducts();
-    toast('Category deleted');
-  }
-  function resetAll() {
-    if (!confirm('Reset ALL data to defaults? This cannot be undone.')) return;
-    state.categories = JSON.parse(JSON.stringify(DEFAULTS.categories));
-    state.company = { ...DEFAULTS.company };
-    state.stats = JSON.parse(JSON.stringify(DEFAULTS.stats));
-    state.features = JSON.parse(JSON.stringify(DEFAULTS.features));
-    state.activeCategory = 'all'; state.adminCat = null;
-    persist(); renderAdmin(); renderCategories(); renderProducts(); renderStats(); renderFeatures(); renderCompany();
-    toast('Reset to defaults');
-  }
-
-  function paneCompany() {
-    const c = state.company;
-    const fields = [
-      ['name', 'Company Name'],
-      ['tagline', 'Tagline'],
-      ['since', 'Established Year'],
-      ['phone', 'Phone (display)'],
-      ['whatsapp', 'WhatsApp number (digits only, e.g. 916203691393)'],
-      ['email', 'Email'],
-      ['address', 'Address', true],
-      ['heroTitle', 'Hero Title'],
-      ['heroSubtitle', 'Hero Subtitle', true]
-    ];
-    return `<div class="grid-2">
-      ${fields.map(([k, label, multi]) => `
-        <div class="field" style="${multi?'grid-column:1/-1':''}">
-          <label>${label}</label>
-          ${multi
-            ? `<textarea oninput="updateCompany('${k}',this.value)">${escapeHtml(c[k] || '')}</textarea>`
-            : `<input value="${escapeAttr(c[k] || '')}" oninput="updateCompany('${k}',this.value)" />`}
-        </div>`).join('')}
-    </div>`;
-  }
-  function updateCompany(key, val) {
-    state.company[key] = val;
-    persist();
-    renderCompany();
-  }
-
-  function paneContent() {
-    return `
-      <div class="panel-section">
-        <h4>Stats (overlapping hero)</h4>
-        <div class="grid-2">
-          ${state.stats.map((s, i) => `
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:10px;display:grid;gap:6px">
-              <div class="grid-2">
-                <input value="${escapeAttr(s.number)}" placeholder="15+" oninput="updateStat(${i},'number',this.value)" />
-                <input value="${escapeAttr(s.icon)}" placeholder="trophy" oninput="updateStat(${i},'icon',this.value)" />
-              </div>
-              <input value="${escapeAttr(s.label)}" placeholder="Years" oninput="updateStat(${i},'label',this.value)" />
-            </div>`).join('')}
-        </div>
-        <p style="font-size:11px;color:var(--text-2);margin-top:8px">Icon options: trophy, boxes, users, truck.</p>
-      </div>
-      <div class="panel-section">
-        <h4>Features</h4>
-        <div class="grid-2">
-          ${state.features.map((f, i) => `
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:10px;display:grid;gap:6px">
-              <div class="grid-2">
-                <input value="${escapeAttr(f.title)}" placeholder="Title" oninput="updateFeature(${i},'title',this.value)" />
-                <input value="${escapeAttr(f.icon)}" placeholder="award" oninput="updateFeature(${i},'icon',this.value)" />
-              </div>
-              <textarea oninput="updateFeature(${i},'desc',this.value)">${escapeHtml(f.desc)}</textarea>
-            </div>`).join('')}
-        </div>
-        <p style="font-size:11px;color:var(--text-2);margin-top:8px">Icon options: award, truck, rupee, shield, headset, boxes-feat.</p>
-      </div>`;
-  }
-  function updateStat(i, key, val) { state.stats[i][key] = val; persist(); renderStats(); }
-  function updateFeature(i, key, val) { state.features[i][key] = val; persist(); renderFeatures(); }
-
-  /* ============== EVENTS ============== */
-  document.getElementById('searchInput').addEventListener('input', e => {
-    state.query = e.target.value;
-    document.getElementById('clearBtn').style.display = state.query ? 'inline-flex' : 'none';
-    renderProducts();
-  });
-
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
-    document.getElementById('floatTop').classList.toggle('visible', window.scrollY > 400);
-  }, { passive: true });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeProduct(); closeAdmin(); }
-  });
-
-  /* ============== INIT ============== */
-  applyTheme();
-  renderCompany();
-  renderStats();
-  renderCategories();
-  renderProducts();
-  renderFeatures();
-  updateAdminBtn();
-  </script>
+  function renderStats() { let c=document.getElementById('statsSection'); if(c) c.innerHTML=stats.map(s=>`<div class="stat-card"><i class="${s.icon}"></i><h2>${s.number}</h2><p>${s.label}</p></div>`).join(''); }
+  function renderFeatures() { let c=document.getElementById('featuresGrid'); if(c) c.innerHTML=features.map(f=>`<div class="feature-item"><i class="${f.icon}"></i><h3>${f.title}</h3><p>${f.desc}</p></div>`).join(''); }
+  function renderContact() { let c=document.getElementById('contactContent'); if(c) c.innerHTML=`<h3><i class="fas fa-headset"></i> Get In Touch</h3><p><i class="fas fa-phone-alt"></i> ${companyInfo.phone}</p><p><i class="fas fa-envelope"></i> ${companyInfo.email}</p><p><i class="fas fa-map-marker-alt"></i> ${companyInfo.address}</p><p><a href="https://wa.me/${companyInfo.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>`; }
+  function renderFilters() { let total=getAllProducts().length; let c=document.getElementById('filterGroup'); if(c) c.innerHTML=`<button class="filter-btn ${activeCategory==='all'?'active':''}" data-cat="all">📂 All (${total})</button>`+categories.map(cat=>`<button class="filter-btn ${activeCategory===cat.id?'active':''}" data-cat="${cat.id}">${cat.icon} ${cat.name} (${cat.products.length})</button>`).join(''); document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{activeCategory=btn.getAttribute('data-cat');renderProducts();renderFilters();})); }
+  function renderProducts() { let filtered=activeCategory==='all'?getAllProducts():(categories.find(c=>c.id===activeCategory)?.products.map(p=>({...p,categoryName:categories.find(c=>c.id===activeCategory).name}))||[]); filtered=filtered.filter(p=>searchQuery===""||p.name.toLowerCase().includes(searchQuery)||p.spec.toLowerCase().includes(searchQuery)); let container=document.getElementById('productGrid'); if(!container) return; if(filtered.length===0){container.innerHTML=`<div class="no-results" style="text-align:center;padding:4rem">No products found.</div>`;return;} container.innerHTML=filtered.map(p=>`<div class="product-card"><div class="product-icon">${p.icon}</div><div class="product-title">${escapeHtml(p.name)}</div><div class="product-spec"><i class="fas fa-ruler"></i> ${escapeHtml(p.spec)}</div><div class="product-desc">${escapeHtml(p.desc.substring(0,80))}${p.desc.length>80?'...':''}</div><div class="category-badge">📁 ${escapeHtml(p.categoryName)}</div><div class="product-actions"><button class="wa-btn" data-product="${escapeHtml(p.name)} (${p.spec})"><i class="fab fa-whatsapp"></i> Enquiry</button><button class="detail-btn" data-detail='${JSON.stringify(p)}'><i class="fas fa-info-circle"></i> Details</button></div></div>`).join('');
+    document.querySelectorAll('.wa-btn').forEach(btn=>btn.addEventListener('click',()=>window.open(`https://wa.me/${companyInfo.whatsapp}?text=I'm%20interested%20in%20${encodeURIComponent(btn.getAttribute('data-product'))}`,'_blank')));
+    document.querySelectorAll('.detail-btn').forEach(btn=>btn.addEventListener('click',()=>{try{showProductDetail(JSON.parse(btn.getAttribute('data-detail')));}catch(e){showToast("Error","#ef4444");}})); }
+  function renderCategoriesList() { let container=document.getElementById('categoriesList'); if(!container) return; container.innerHTML=categories.map((cat,catIdx)=>`<div class="category-item"><div class="category-header"><span><span style="font-size:1.5rem;">${cat.icon}</span> <span class="category-name">${cat.name}</span> (${cat.products.length})</span><div><button class="small-btn edit-btn" onclick="editCategory(${catIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteCategory(${catIdx})">Delete</button></div></div><div class="category-products">${cat.products.map((prod,prodIdx)=>`<div class="product-item"><span>${prod.icon} ${prod.name} | ${prod.spec}</span><div><button class="small-btn edit-btn" onclick="editProduct(${catIdx},${prodIdx})">Edit</button> <button class="small-btn delete-btn" onclick="deleteProduct(${catIdx},${prodIdx})">Delete</button></div></div>`).join('')}<div class="add-product-row"><input type="text" id="newProdName_${catIdx}" placeholder="Product Name"><input type="text" id="newProdSpec_${catIdx}" placeholder="Spec"><input type="text" id="newProdIcon_${catIdx}" placeholder="🔌" style="width:60px"><input type="text" id="newProdDesc_${catIdx}" placeholder="Description"><button class="small-btn edit-btn" onclick="addProduct(${catIdx})">+ Add Product</button></div></div></div>`).join(''); }
+  function renderStatsAdmin() { let container=document.getElementById('statsEditList'); if(container) container.innerHTML=stats.map((s,idx)=>`<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap;"><input type="text" id="statIcon_${idx}" value="${s.icon}" style="flex:1; padding:0.5rem; border-radius:12px;"><input type="text" id="statNum_${idx}" value="${s.number}" style="width:80px; padding:0.5rem; border-radius:12px;"><input type="text" id="statLabel_${idx}" value="${s.label}" style="flex:1; padding:0.5rem; border-radius:12px;"><button class="small-btn edit-btn" onclick="updateStat(${idx})">Save</button></div>`).join(''); }
+  window.updateStat=async function(idx){ stats[idx]={icon:document.getElementById(`statIcon_${idx}`).value,number:document.getElementById(`statNum_${idx}`).value,label:document.getElementById(`statLabel_${idx}`).value}; await saveAllData(); renderAll(); };
+  window.createCategory=async function(){ let name=document.getElementById('newCatName').value.trim(); let icon=document.getElementById('newCatIcon').value.trim()||'📁'; if(name){ categories.push({id:generateId(),name,icon,products:[]}); await saveAllData(); document.getElementById('newCatName').value=''; renderAll(); showToast(`✅ Category "${name}" created!`,"#10b981"); } else showToast("⚠️ Enter name","#ef4444"); };
+  window.editCategory=async function(idx){ let newName=prompt('Edit Category:',categories[idx].name); if(newName){ categories[idx].name=newName; await saveAllData(); renderAll(); showToast("✅ Updated","#10b981"); } };
+  window.deleteCategory=async function(idx){ if(confirm(`Delete "${categories[idx].name}"?`)){ categories.splice(idx,1); await saveAllData(); renderAll(); showToast("✅ Deleted","#10b981"); } };
+  window.addProduct=async function(catIdx){ let name=document.getElementById(`newProdName_${catIdx}`).value.trim(); if(name){ categories[catIdx].products.push({id:generateId(),name,spec:document.getElementById(`newProdSpec_${catIdx}`).value.trim()||"Standard",icon:document.getElementById(`newProdIcon_${catIdx}`).value.trim()||"🔌",desc:document.getElementById(`newProdDesc_${catIdx}`).value.trim()||"Premium product"}); await saveAllData(); renderAll(); document.getElementById(`newProdName_${catIdx}`).value=''; showToast(`✅ "${name}" added!`,"#10b981"); } else showToast("⚠️ Name required","#ef4444"); };
+  window.editProduct=async function(catIdx,prodIdx){ let newName=prompt('Edit Product:',categories[catIdx].products[prodIdx].name); if(newName){ categories[catIdx].products[prodIdx].name=newName; await saveAllData(); renderAll(); showToast("✅ Updated","#10b981"); } };
+  window.deleteProduct=async function(catIdx,prodIdx){ if(confirm('Delete product?')){ categories[catIdx].products.splice(prodIdx,1); await saveAllData(); renderAll(); showToast("✅ Deleted","#10b981"); } };
+  function escapeHtml(str){ if(!str) return ''; return str.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+  document.getElementById('createCategoryBtn').onclick=()=>window.createCategory();
+  document.getElementById('saveCompanyBtn').onclick=async()=>{ companyInfo.name=document.getElementById('companyName').value; companyInfo.heroTitle=document.getElementById('heroTitleInput').value; companyInfo.heroSubtitle=document.getElementById('heroSubtitleInput').value; companyInfo.catalogTitle=document.getElementById('catalogTitleInput').value; companyInfo.phone=document.getElementById('phoneInput').value; companyInfo.email=document.getElementById('emailInput').value; companyInfo.whatsapp=document.getElementById('whatsappInput').value; companyInfo.address=document.getElementById('addressInput').value; companyInfo.footer=document.getElementById('footerTextInput').value; await saveAllData(); showToast("✅ Company saved!","#10b981"); };
+  document.getElementById('saveGithubBtn').onclick=async()=>{ let repo=document.getElementById('githubRepo').value.trim(); let token=document.getElementById('githubToken').value.trim(); if(repo){ githubConfig={repo,token}; localStorage.setItem('rhysco_github_config',JSON.stringify(githubConfig)); document.getElementById('githubStatusMsg').innerHTML='<div style="background:#10b981;padding:10px;border-radius:12px">✅ Saved!</div>'; await loadFromGitHubPublic(); setTimeout(()=>{document.getElementById('githubStatusMsg').innerHTML='';},3000); } else showToast("⚠️ Enter repo","#ef4444"); };
+  document.getElementById('searchBtn').onclick=()=>{ searchQuery=document.getElementById('searchInput').value.toLowerCase(); renderProducts(); };
+  document.getElementById('searchInput').onkeyup=(e)=>{ if(e.key==='Enter'){ searchQuery=e.target.value.toLowerCase(); renderProducts(); } };
+  function showLoginPopup(){ let div=document.createElement('div'); div.className='login-overlay'; div.innerHTML=`<div class="login-box"><i class="fas fa-user-shield" style="font-size:3rem;color:var(--accent-orange)"></i><h3>Admin Login</h3><input type="text" id="loginUser" placeholder="Username"><input type="password" id="loginPass" placeholder="Password"><button id="loginBtn">Login</button><div id="loginErr" class="login-error"></div></div>`; document.body.appendChild(div); document.getElementById('loginBtn').onclick=()=>{ if(document.getElementById('loginUser').value==='sunny'&&document.getElementById('loginPass').value==='admin'){ isAdminAuthenticated=true; div.remove(); openAdminPanel(); showToast("✅ Welcome!","#10b981"); } else { document.getElementById('loginErr').innerText='❌ Invalid credentials'; } }; }
+  function openAdminPanel(){ if(!isAdminAuthenticated){ showLoginPopup(); return; } document.getElementById('companyName').value=companyInfo.name; document.getElementById('heroTitleInput').value=companyInfo.heroTitle; document.getElementById('heroSubtitleInput').value=companyInfo.heroSubtitle; document.getElementById('catalogTitleInput').value=companyInfo.catalogTitle; document.getElementById('phoneInput').value=companyInfo.phone; document.getElementById('emailInput').value=companyInfo.email; document.getElementById('whatsappInput').value=companyInfo.whatsapp; document.getElementById('addressInput').value=companyInfo.address; document.getElementById('footerTextInput').value=companyInfo.footer; document.getElementById('githubRepo').value=githubConfig.repo; document.getElementById('githubToken').value=githubConfig.token; renderCategoriesList(); renderStatsAdmin(); document.getElementById('adminModal').style.display='block'; }
+  document.getElementById('openAdminBtn').onclick=openAdminPanel;
+  document.getElementById('logoutBtn').onclick=()=>{ isAdminAuthenticated=false; document.getElementById('adminModal').style.display='none'; renderAll(); showToast("✅ Logged out","#10b981"); };
+  document.getElementById('closeAdminBtn').onclick=()=>document.getElementById('adminModal').style.display='none';
+  window.onclick=(e)=>{ if(e.target===document.getElementById('adminModal')) document.getElementById('adminModal').style.display='none'; };
+  document.querySelectorAll('.admin-tab').forEach(tab=>{ tab.onclick=()=>{ document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); document.getElementById('tabCategories').classList.toggle('active',tab.dataset.tab==='categories'); document.getElementById('tabCompany').classList.toggle('active',tab.dataset.tab==='company'); document.getElementById('tabGithub').classList.toggle('active',tab.dataset.tab==='github'); }; });
+  let themeBtn=document.getElementById('themeBtn'); 
+  themeBtn.onclick=()=>{ document.body.classList.toggle('light'); let i=themeBtn.querySelector('i'); if(document.body.classList.contains('light')){ i.classList.remove('fa-sun'); i.classList.add('fa-moon'); } else { i.classList.remove('fa-moon'); i.classList.add('fa-sun'); } };
+  let mobileMenu=document.getElementById('mobileMenu'),navLinks=document.getElementById('navLinks'); mobileMenu.onclick=()=>navLinks.classList.toggle('active'); document.querySelectorAll('.nav-links a').forEach(link=>link.onclick=()=>navLinks.classList.remove('active'));
+  let backToTop=document.getElementById('backToTop'); window.onscroll=()=>{ backToTop.style.display=window.scrollY>300?'flex':'none'; if(window.scrollY>50) document.getElementById('navbar').classList.add('navbar-scrolled'); else document.getElementById('navbar').classList.remove('navbar-scrolled'); }; backToTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  loadFromGitHubPublic();
+</script>
 </body>
 </html>
